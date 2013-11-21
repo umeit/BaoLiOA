@@ -19,4 +19,7 @@
 // 收文、呈批件
 @property (strong, nonatomic) NSString *matterType;
 
+// 流转次数
+@property (nonatomic) NSInteger flowTimes;
+
 @end

@@ -10,4 +10,12 @@
 
 @interface BLBaseMatterCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *matterTitleLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *receivedDateLabel;
+
+@property (weak, nonatomic) IBOutlet UIImageView *flowTimesImageView;
+
+@property (weak, nonatomic) IBOutlet UILabel *matterTypeLabel;
+
 @end

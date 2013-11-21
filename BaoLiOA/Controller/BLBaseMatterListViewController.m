@@ -7,18 +7,26 @@
 //
 
 #import "BLBaseMatterListViewController.h"
+#import "BLMatterService.h"
+#import "UIViewController+BLViewController.h"
+#import "BLBaseMatterCell.h"
+#import "BLMatterEntity.h"
 
 @interface BLBaseMatterListViewController ()
+
+@property (strong, nonatomic) NSArray *matterList;
+
+@property (strong, nonatomic) BLMatterService *matterService;
 
 @end
 
 @implementation BLBaseMatterListViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super initWithStyle:style];
+    self = [super init];
     if (self) {
-        // Custom initialization
+        self.matterService = [[BLMatterService alloc] init];
     }
     return self;
 }
@@ -27,11 +35,16 @@
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self.matterService backlogListWithBlock:^(NSArray *list, NSError *error) {
+        
+        if (error) {
+            [self showNetworkingErrorAlert];
+        }
+        else {
+            self.matterList = list;
+            [self.tableView reloadData];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -58,10 +71,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"BLBaseMatterCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
+    [self configureCell:(BLBaseMatterCell *)cell atIndex:indexPath];
     
     return cell;
 }
@@ -116,5 +130,16 @@
 }
 
  */
+
+#pragma mark - Private
+- (void)configureCell:(BLBaseMatterCell *)cell atIndex:(NSIndexPath *)indexPath
+{
+    BLMatterEntity *matterEntity = self.matterList[indexPath.row];
+    
+    cell.matterTitleLabel.text = matterEntity.title;
+    cell.receivedDateLabel.text = matterEntity.receivedDate.description;
+    cell.matterTypeLabel.text = matterEntity.matterType;
+    #warning 设置流转次数
+}
 
 @end

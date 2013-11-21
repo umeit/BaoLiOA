@@ -12,6 +12,7 @@
 		03588FE1183E4B620067F5D0 /* BLMatterService.m in Sources */ = {isa = PBXBuildFile; fileRef = 03588FE0183E4B620067F5D0 /* BLMatterService.m */; };
 		03588FE4183E4B830067F5D0 /* BLMatterHTTPLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 03588FE3183E4B830067F5D0 /* BLMatterHTTPLogic.m */; };
 		03588FE7183E4F7B0067F5D0 /* BLMatterEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 03588FE6183E4F7B0067F5D0 /* BLMatterEntity.m */; };
+		03588FEA183E52440067F5D0 /* UIViewController+BLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03588FE9183E52440067F5D0 /* UIViewController+BLViewController.m */; };
 		036C0FA8183D02AB00C61808 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 036C0FA7183D02AB00C61808 /* Foundation.framework */; };
 		036C0FAA183D02AB00C61808 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 036C0FA9183D02AB00C61808 /* CoreGraphics.framework */; };
 		036C0FAC183D02AB00C61808 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 036C0FAB183D02AB00C61808 /* UIKit.framework */; };
@@ -57,6 +58,8 @@
 		03588FE3183E4B830067F5D0 /* BLMatterHTTPLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterHTTPLogic.m; sourceTree = "<group>"; };
 		03588FE5183E4F7B0067F5D0 /* BLMatterEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterEntity.h; sourceTree = "<group>"; };
 		03588FE6183E4F7B0067F5D0 /* BLMatterEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterEntity.m; sourceTree = "<group>"; };
+		03588FE8183E52440067F5D0 /* UIViewController+BLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BLViewController.h"; sourceTree = "<group>"; };
+		03588FE9183E52440067F5D0 /* UIViewController+BLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BLViewController.m"; sourceTree = "<group>"; };
 		036C0FA4183D02AB00C61808 /* BaoLiOA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaoLiOA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		036C0FA7183D02AB00C61808 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		036C0FA9183D02AB00C61808 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -122,6 +125,8 @@
 		03588FD3183E4A340067F5D0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				03588FE8183E52440067F5D0 /* UIViewController+BLViewController.h */,
+				03588FE9183E52440067F5D0 /* UIViewController+BLViewController.m */,
 				03588FD8183E4A780067F5D0 /* BLBaseMatterListViewController.h */,
 				03588FD9183E4A780067F5D0 /* BLBaseMatterListViewController.m */,
 			);
@@ -380,6 +385,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03588FEA183E52440067F5D0 /* UIViewController+BLViewController.m in Sources */,
 				03588FE1183E4B620067F5D0 /* BLMatterService.m in Sources */,
 				036C0FF3183D05AD00C61808 /* AFURLRequestSerialization.m in Sources */,
 				036C0FF2183D05AD00C61808 /* AFURLConnectionOperation.m in Sources */,

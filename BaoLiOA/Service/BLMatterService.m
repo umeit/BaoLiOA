@@ -13,24 +13,24 @@
 
 - (void)backlogListWithBlock:(BLMatterServiceBaseListBlock)block
 {
-    [BLMatterHTTPLogic matterListWithMatterType:BacklogMatter withBlock:^(NSArray *list, NSError *error) {
+    [BLMatterHTTPLogic matterListWithMatterType:BacklogMatter withBlock:^(id responselist, NSError *error) {
         if (error) {
             block(nil, error);
         }
         else {
-            block(list, nil);
+            block(responselist, nil);
         }
     }];
 }
 
 - (void)takenMatterWithBlock:(BLMatterServiceBaseListBlock)block
 {
-    [BLMatterHTTPLogic matterListWithMatterType:TakenMatter withBlock:^(NSArray *list, NSError *error) {
+    [BLMatterHTTPLogic matterListWithMatterType:TakenMatter withBlock:^(id responselist, NSError *error) {
         if (error) {
             block(nil, error);
         }
         else {
-            block(list, nil);
+            block(responselist, nil);
         }
     }];
 }

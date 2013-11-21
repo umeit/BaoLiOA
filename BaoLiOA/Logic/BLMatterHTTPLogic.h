@@ -15,7 +15,7 @@ typedef enum MatterType : NSInteger{
     ApproveMatter
 }MatterType;
 
-typedef void(^BLMatterHTTPLogicBaseListBlock)(NSArray *list, NSError *error);
+typedef void(^BLMatterHTTPLogicBaseListBlock)(id responselist, NSError *error);
 
 @interface BLMatterHTTPLogic : NSObject
 
