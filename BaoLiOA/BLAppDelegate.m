@@ -7,12 +7,18 @@
 //
 
 #import "BLAppDelegate.h"
+#import "BLSplitViewControllerManager.h"
 
 @implementation BLAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
+    UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
+    
+    // 用于保留 BLSplitViewControllerManager 的引用
+    self.splitViewControllerManager = [[BLSplitViewControllerManager alloc] initWithSplitViewController:splitViewController];
+    splitViewController.delegate = (id)self.splitViewControllerManager;
+    
     return YES;
 }
 

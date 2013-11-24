@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		030CD00C1841B91B005A9B58 /* BLSplitViewControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 030CD00B1841B91B005A9B58 /* BLSplitViewControllerManager.m */; };
 		03588FDA183E4A780067F5D0 /* BLBaseMatterListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03588FD9183E4A780067F5D0 /* BLBaseMatterListViewController.m */; };
 		03588FDE183E4AED0067F5D0 /* BLBaseMatterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03588FDD183E4AED0067F5D0 /* BLBaseMatterCell.m */; };
 		03588FE1183E4B620067F5D0 /* BLMatterService.m in Sources */ = {isa = PBXBuildFile; fileRef = 03588FE0183E4B620067F5D0 /* BLMatterService.m */; };
@@ -35,6 +36,7 @@
 		036C0FF3183D05AD00C61808 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 036C0FE8183D05AD00C61808 /* AFURLRequestSerialization.m */; };
 		036C0FF4183D05AD00C61808 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 036C0FEA183D05AD00C61808 /* AFURLResponseSerialization.m */; };
 		036C0FF5183D05AD00C61808 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 036C0FEC183D05AD00C61808 /* AFURLSessionManager.m */; };
+		03D2E929183FB6350096E463 /* BLMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03D2E928183FB6350096E463 /* BLMasterViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		030CD00A1841B91B005A9B58 /* BLSplitViewControllerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLSplitViewControllerManager.h; sourceTree = "<group>"; };
+		030CD00B1841B91B005A9B58 /* BLSplitViewControllerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLSplitViewControllerManager.m; sourceTree = "<group>"; };
 		03588FD8183E4A780067F5D0 /* BLBaseMatterListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLBaseMatterListViewController.h; sourceTree = "<group>"; };
 		03588FD9183E4A780067F5D0 /* BLBaseMatterListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLBaseMatterListViewController.m; sourceTree = "<group>"; };
 		03588FDC183E4AED0067F5D0 /* BLBaseMatterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLBaseMatterCell.h; sourceTree = "<group>"; };
@@ -96,6 +100,8 @@
 		036C0FEA183D05AD00C61808 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		036C0FEB183D05AD00C61808 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		036C0FEC183D05AD00C61808 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		03D2E927183FB6350096E463 /* BLMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMasterViewController.h; sourceTree = "<group>"; };
+		03D2E928183FB6350096E463 /* BLMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMasterViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +128,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		030CD0091841B8E2005A9B58 /* ControllerManager */ = {
+			isa = PBXGroup;
+			children = (
+				030CD00A1841B91B005A9B58 /* BLSplitViewControllerManager.h */,
+				030CD00B1841B91B005A9B58 /* BLSplitViewControllerManager.m */,
+			);
+			path = ControllerManager;
+			sourceTree = "<group>";
+		};
 		03588FD3183E4A340067F5D0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +144,8 @@
 				03588FE9183E52440067F5D0 /* UIViewController+BLViewController.m */,
 				03588FD8183E4A780067F5D0 /* BLBaseMatterListViewController.h */,
 				03588FD9183E4A780067F5D0 /* BLBaseMatterListViewController.m */,
+				03D2E927183FB6350096E463 /* BLMasterViewController.h */,
+				03D2E928183FB6350096E463 /* BLMasterViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -209,6 +226,7 @@
 		036C0FAD183D02AB00C61808 /* BaoLiOA */ = {
 			isa = PBXGroup;
 			children = (
+				030CD0091841B8E2005A9B58 /* ControllerManager */,
 				03588FDB183E4AA30067F5D0 /* View */,
 				03588FD3183E4A340067F5D0 /* Controller */,
 				03588FD4183E4A340067F5D0 /* Entity */,
@@ -391,6 +409,7 @@
 				036C0FF2183D05AD00C61808 /* AFURLConnectionOperation.m in Sources */,
 				03588FE7183E4F7B0067F5D0 /* BLMatterEntity.m in Sources */,
 				036C0FF1183D05AD00C61808 /* AFSecurityPolicy.m in Sources */,
+				03D2E929183FB6350096E463 /* BLMasterViewController.m in Sources */,
 				03588FDE183E4AED0067F5D0 /* BLBaseMatterCell.m in Sources */,
 				036C0FED183D05AD00C61808 /* AFHTTPRequestOperation.m in Sources */,
 				036C0FF5183D05AD00C61808 /* AFURLSessionManager.m in Sources */,
@@ -400,6 +419,7 @@
 				036C0FEF183D05AD00C61808 /* AFHTTPSessionManager.m in Sources */,
 				036C0FEE183D05AD00C61808 /* AFHTTPRequestOperationManager.m in Sources */,
 				03588FDA183E4A780067F5D0 /* BLBaseMatterListViewController.m in Sources */,
+				030CD00C1841B91B005A9B58 /* BLSplitViewControllerManager.m in Sources */,
 				036C0FF0183D05AD00C61808 /* AFNetworkReachabilityManager.m in Sources */,
 				036C0FB4183D02AB00C61808 /* main.m in Sources */,
 			);

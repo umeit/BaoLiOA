@@ -11,6 +11,7 @@
 #import "UIViewController+BLViewController.h"
 #import "BLBaseMatterCell.h"
 #import "BLMatterEntity.h"
+//#import "BLBaseMatterNavigationController.h"
 
 @interface BLBaseMatterListViewController ()
 
@@ -24,7 +25,7 @@
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super init];
+    self = [super initWithCoder:aDecoder];
     if (self) {
         self.matterService = [[BLMatterService alloc] init];
     }
@@ -34,9 +35,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    // 设置标题
+    switch (self.matterType) {
+        case BacklogMatterList:
+            self.title = @"待办事宜";
+            break;
+            
+        case TakenMatterList:
+            self.title = @"已办事宜";
+            break;
+            
+        default:
+            break;
+    }
+    
+    // 取得数据后刷新表格
     [self.matterService backlogListWithBlock:^(NSArray *list, NSError *error) {
-        
         if (error) {
             [self showNetworkingErrorAlert];
         }
@@ -47,26 +62,16 @@
     }];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return [self.matterList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -74,8 +79,7 @@
     static NSString *CellIdentifier = @"BLBaseMatterCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
-    [self configureCell:(BLBaseMatterCell *)cell atIndex:indexPath];
+    [self configureCell:cell atIndexPath:indexPath];
     
     return cell;
 }
@@ -119,26 +123,24 @@
 }
 */
 
-/*
-#pragma mark - Navigation
+//#pragma mark - Navigation
+//
+//// In a story board-based application, you will often want to do a little preparation before navigation
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//    NSLog(@"asdf");
+//}
 
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
- */
 
 #pragma mark - Private
-- (void)configureCell:(BLBaseMatterCell *)cell atIndex:(NSIndexPath *)indexPath
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    BLMatterEntity *matterEntity = self.matterList[indexPath.row];
+    BLBaseMatterCell *matterCell = (BLBaseMatterCell *)cell;
+    BLMatterEntity *matterEntity = self.matterList[0];
     
-    cell.matterTitleLabel.text = matterEntity.title;
-    cell.receivedDateLabel.text = matterEntity.receivedDate.description;
-    cell.matterTypeLabel.text = matterEntity.matterType;
+    matterCell.matterTitleLabel.text = matterEntity.title;
+    matterCell.receivedDateLabel.text = matterEntity.receivedDate.description;
+    matterCell.matterTypeLabel.text = matterEntity.matterType;
     #warning 设置流转次数
 }
 

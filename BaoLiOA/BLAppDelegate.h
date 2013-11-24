@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class  BLSplitViewControllerManager;
+
 @interface BLAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+
+@property (strong, nonatomic) BLSplitViewControllerManager *splitViewControllerManager;
 
 @end

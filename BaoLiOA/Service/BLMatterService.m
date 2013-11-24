@@ -8,19 +8,29 @@
 
 #import "BLMatterService.h"
 #import "BLMatterHTTPLogic.h"
+#import "BLMatterEntity.h"
 
 @implementation BLMatterService
 
 - (void)backlogListWithBlock:(BLMatterServiceBaseListBlock)block
 {
-    [BLMatterHTTPLogic matterListWithMatterType:BacklogMatter withBlock:^(id responselist, NSError *error) {
-        if (error) {
-            block(nil, error);
-        }
-        else {
-            block(responselist, nil);
-        }
-    }];
+    #warning 测试代码
+    BLMatterEntity *matterEntity = [[BLMatterEntity alloc] init];
+    matterEntity.title = @"asdf";
+    matterEntity.receivedDate = [NSDate date];
+    matterEntity.matterType = @"收文文";
+    matterEntity.flowTimes = 3;
+    
+    block(@[matterEntity, matterEntity], nil);
+    
+//    [BLMatterHTTPLogic matterListWithMatterType:BacklogMatter withBlock:^(id responselist, NSError *error) {
+//        if (error) {
+//            block(nil, error);
+//        }
+//        else {
+//            block(responselist, nil);
+//        }
+//    }];
 }
 
 - (void)takenMatterWithBlock:(BLMatterServiceBaseListBlock)block
