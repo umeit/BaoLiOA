@@ -447,7 +447,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="BLMatterMainBodyCell" id="EGi-Ew-Axe">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="BLMatterMainBodyCell" id="EGi-Ew-Axe" customClass="BLMatterMainBodyCell">
                                         <rect key="frame" x="0.0" y="22" width="703" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EGi-Ew-Axe" id="ac0-Sh-sed">
@@ -476,6 +476,8 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="downloadButton" destination="1Xh-gL-mAT" id="5dR-n5-K7G"/>
+                                            <outlet property="mainBodyTitleLabel" destination="GK2-i3-zbj" id="CWj-Sl-vur"/>
                                             <segue destination="dSB-iV-uM4" kind="push" id="luI-h2-05c"/>
                                         </connections>
                                     </tableViewCell>
@@ -546,10 +548,10 @@
             </objects>
             <point key="canvasLocation" x="2241" y="-418"/>
         </scene>
-        <!--View Controller-->
+        <!--Main Body View Controller-->
         <scene sceneID="0aN-tY-deE">
             <objects>
-                <viewController id="dSB-iV-uM4" sceneMemberID="viewController">
+                <viewController id="dSB-iV-uM4" customClass="BLMainBodyViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RLI-ae-xtL"/>
                         <viewControllerLayoutGuide type="bottom" id="NGh-KD-1y8"/>
@@ -559,7 +561,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Ym-nQ-hqi">
-                                <rect key="frame" x="0.0" y="50" width="703" height="718"/>
+                                <rect key="frame" x="0.0" y="114" width="703" height="654"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="正文内容：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kBf-aD-5mT">
@@ -569,7 +571,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YaJ-Pd-Pu2">
-                                        <rect key="frame" x="20" y="49" width="663" height="649"/>
+                                        <rect key="frame" x="20" y="55" width="663" height="544"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -580,7 +582,7 @@
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="01K-RN-L8y">
-                                <rect key="frame" x="0.0" y="0.0" width="703" height="52"/>
+                                <rect key="frame" x="0.0" y="64" width="703" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="文件标题：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jrQ-ux-Me4">

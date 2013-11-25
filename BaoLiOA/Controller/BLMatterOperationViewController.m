@@ -24,9 +24,11 @@
 {
     [super viewDidLoad];
 	
+    // 为默认第一个被选中的 segment 获取对应的 view controller
     UIViewController *vc = [self viewControllerForSelectedSegment];
     [self addChildViewController:vc];
     
+    // 修改新加入的的视图的尺寸，可以刚好放在预留好的地方
     vc.view.frame = self.contentView.bounds;
     [self.contentView addSubview:vc.view];
     

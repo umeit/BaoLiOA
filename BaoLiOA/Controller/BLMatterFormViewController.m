@@ -8,8 +8,10 @@
 
 #import "BLMatterFormViewController.h"
 #import "BLMatterOprationService.h"
+#import "BLMatterMainBodyCell.h"
 
 @interface BLMatterFormViewController () <UITableViewDataSource>
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) NSArray *matterFormList;
@@ -55,8 +57,33 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    static NSString *CellIdentifier = @"BLMatterMainBodyCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    return nil;
+    [self configureCell:cell atIndexPath:indexPath];
+    
+    return cell;
 }
 
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    UIViewController *vc = (UIViewController *)segue.destinationViewController;
+    CGRect frame = vc.view.frame;
+    
+    frame.origin.x = 100;
+    frame.size.height = 100;
+    vc.view.frame = frame;
+    vc.view.bounds = frame;
+}
+
+#pragma mark - Private
+
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    BLMatterMainBodyCell *matterMainBodyCell = (BLMatterMainBodyCell *)cell;
+    
+    matterMainBodyCell.mainBodyTitleLabel.text = @"测试";
+}
 @end
