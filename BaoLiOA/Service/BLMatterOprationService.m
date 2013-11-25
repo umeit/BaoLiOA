@@ -15,4 +15,8 @@
     block(@[@""], nil);
 }
 
+- (void)downloadMatterMainBodyFileFromURL:(NSString *)urlString withBlock:(BLMatterOprationServiceDownloadFileBlock)block
+{
+    block(@"path", nil);
+}
 @end

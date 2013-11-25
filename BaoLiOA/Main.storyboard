@@ -466,6 +466,9 @@
                                                     <state key="normal" title="下载">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="downloadMainBodyFileButtonPress:" destination="iG9-Xq-Hqt" eventType="touchUpInside" id="0ya-Cr-ejC"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="关于组织开展" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GK2-i3-zbj">
                                                     <rect key="frame" x="113" y="11" width="102" height="21"/>
@@ -593,7 +596,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="关于组织开展" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Smj-ix-xjt">
-                                        <rect key="frame" x="113" y="15" width="102" height="21"/>
+                                        <rect key="frame" x="113" y="16" width="102" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
@@ -615,6 +618,11 @@
                     <navigationItem key="navigationItem" id="7z4-SN-Vvq"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="downloadButton" destination="9T7-uF-4Q8" id="nuw-1Z-pIo"/>
+                        <outlet property="mainBodyLabel" destination="Smj-ix-xjt" id="pAT-st-gLg"/>
+                        <outlet property="mainBodyTextView" destination="YaJ-Pd-Pu2" id="tbx-81-zmO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="plU-hf-UcK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

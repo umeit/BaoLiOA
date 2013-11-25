@@ -9,6 +9,7 @@
 #import "BLMatterFormViewController.h"
 #import "BLMatterOprationService.h"
 #import "BLMatterMainBodyCell.h"
+#import "BLMainBodyViewController.h"
 
 @interface BLMatterFormViewController () <UITableViewDataSource>
 
@@ -17,6 +18,8 @@
 @property (strong, nonatomic) NSArray *matterFormList;
 
 @property (strong, nonatomic) BLMatterOprationService *matterOprationService;
+
+@property (strong, nonatomic) NSString *mainbodyFileLocalPath;
 
 @end
 
@@ -43,6 +46,7 @@
     }];
 }
 
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -60,7 +64,7 @@
     static NSString *CellIdentifier = @"BLMatterMainBodyCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    [self configureCell:cell atIndexPath:indexPath];
+    [self configureMatterMainBodyCell:(BLMatterMainBodyCell *)cell atIndexPath:indexPath];
     
     return cell;
 }
@@ -69,21 +73,48 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    UIViewController *vc = (UIViewController *)segue.destinationViewController;
-    CGRect frame = vc.view.frame;
+    BLMainBodyViewController *mainBodyViewController = (BLMainBodyViewController *)segue.destinationViewController;
+    BLMatterMainBodyCell *matterMainBodyCell = (BLMatterMainBodyCell *)sender;
     
-    frame.origin.x = 100;
-    frame.size.height = 100;
-    vc.view.frame = frame;
-    vc.view.bounds = frame;
+    mainBodyViewController.mainBodyLabel.text = matterMainBodyCell.mainBodyTitleLabel.text;
+    mainBodyViewController.mainBodyTextView.text = [self mainBodyText];
+    mainBodyViewController.mainBodyFileURLString = self.mainbodyFileLocalPath;
+}
+
+#pragma mark - Action
+
+- (IBAction)downloadMainBodyFileButtonPress:(UIButton *)button
+{
+    if (self.mainbodyFileLocalPath && [self.mainbodyFileLocalPath length] > 0) {
+        // 使用第三放 app 打开正文文件
+        
+    }
+    else {
+        [self.matterOprationService downloadMatterMainBodyFileFromURL:@"remote file path"
+                                                            withBlock:^(NSString *localFilePath, NSError *error) {
+                                                                self.mainbodyFileLocalPath = localFilePath;
+                                                                [button setTitle:@"打开" forState:UIControlStateNormal];
+        }];
+    }
 }
 
 #pragma mark - Private
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (void)configureMatterMainBodyCell:(BLMatterMainBodyCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    BLMatterMainBodyCell *matterMainBodyCell = (BLMatterMainBodyCell *)cell;
+    cell.mainBodyTitleLabel.text = @"测试";
     
-    matterMainBodyCell.mainBodyTitleLabel.text = @"测试";
+    // 检查本地是否有下载过
+    if (self.mainbodyFileLocalPath && [self.mainbodyFileLocalPath length] > 0) {
+        [cell.downloadButton setTitle:@"打开" forState:UIControlStateNormal];
+    }
+
+    
+}
+
+- (NSString *)mainBodyText
+{
+    #warning 从实体类读 或 从服务器读
+    return @"test, test main body Text";
 }
 @end

@@ -10,8 +10,12 @@
 
 typedef void(^BLMatterOprationServiceGeneralListBlock)(NSArray *list, NSError *error);
 
+typedef void(^BLMatterOprationServiceDownloadFileBlock)(NSString *localFilePath, NSError *error);
+
 @interface BLMatterOprationService : NSObject
 
 - (void)matterFormListWithBlock:(BLMatterOprationServiceGeneralListBlock)block;
+
+- (void)downloadMatterMainBodyFileFromURL:(NSString *)urlString withBlock:(BLMatterOprationServiceDownloadFileBlock)block;
 
 @end

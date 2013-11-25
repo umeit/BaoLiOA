@@ -41,6 +41,7 @@
 {
     UIViewController *vc;
     
+    // 根据 segment 的 index 找到相应的 view controller
     switch (self.SegmentView.selectedSegmentIndex) {
         case 0:
             vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMatterFormViewController"];
