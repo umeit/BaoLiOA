@@ -12,5 +12,5 @@
 @property (weak, nonatomic) IBOutlet UITextView *mainBodyTextView;
 @property (weak, nonatomic) IBOutlet UIButton *downloadButton;
 @property (weak, nonatomic) IBOutlet UILabel *mainBodyLabel;
-@property (strong, nonatomic) NSString *mainBodyFileURLString;
+@property (strong, nonatomic) NSString *mainBodyFilePath;
 @end

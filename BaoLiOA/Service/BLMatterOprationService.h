@@ -18,4 +18,8 @@ typedef void(^BLMatterOprationServiceDownloadFileBlock)(NSString *localFilePath,
 
 - (void)downloadMatterMainBodyFileFromURL:(NSString *)urlString withBlock:(BLMatterOprationServiceDownloadFileBlock)block;
 
+- (void)downloadMatterAttachmentFileFromURL:(NSString *)urlString withBlock:(BLMatterOprationServiceDownloadFileBlock)block;
+
+- (void)matterAttachmentListWithBlock:(BLMatterOprationServiceGeneralListBlock)block;
+
 @end

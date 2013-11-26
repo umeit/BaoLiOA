@@ -19,4 +19,14 @@
 {
     block(@"path", nil);
 }
+
+- (void)downloadMatterAttachmentFileFromURL:(NSString *)urlString withBlock:(BLMatterOprationServiceDownloadFileBlock)block
+{
+    
+}
+
+- (void)matterAttachmentListWithBlock:(BLMatterOprationServiceGeneralListBlock)block
+{
+    
+}
 @end

@@ -61,11 +61,21 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"BLMatterMainBodyCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *matterMainBodyCell = @"BLMatterMainBodyCell";
+    static NSString *matterFormBaseCell = @"BLMatterFormBaseCell";
     
-    [self configureMatterMainBodyCell:(BLMatterMainBodyCell *)cell atIndexPath:indexPath];
+    UITableViewCell *cell;
     
+    if ([self isMainBodyIndex]) {
+        cell = [tableView dequeueReusableCellWithIdentifier:matterMainBodyCell forIndexPath:indexPath];
+        [self configureMatterMainBodyCell:(BLMatterMainBodyCell *)cell atIndexPath:indexPath];
+    }
+    else {
+        cell = [tableView dequeueReusableCellWithIdentifier:matterFormBaseCell forIndexPath:indexPath];
+        [self configureMatterFormBaseCell:cell atIndexPath:indexPath];
+    }
+    
+
     return cell;
 }
 
@@ -78,18 +88,20 @@
     
     mainBodyViewController.mainBodyLabel.text = matterMainBodyCell.mainBodyTitleLabel.text;
     mainBodyViewController.mainBodyTextView.text = [self mainBodyText];
-    mainBodyViewController.mainBodyFileURLString = self.mainbodyFileLocalPath;
+    mainBodyViewController.mainBodyFilePath = self.mainbodyFileLocalPath;
 }
 
 #pragma mark - Action
 
-- (IBAction)downloadMainBodyFileButtonPress:(UIButton *)button
+- (IBAction)downloadMainBodyFileOrOpenButtonPress:(UIButton *)button
 {
+    // 判断是否已经下载到了本地
     if (self.mainbodyFileLocalPath && [self.mainbodyFileLocalPath length] > 0) {
         // 使用第三放 app 打开正文文件
         
     }
     else {
+        // 下载正文文件
         [self.matterOprationService downloadMatterMainBodyFileFromURL:@"remote file path"
                                                             withBlock:^(NSString *localFilePath, NSError *error) {
                                                                 self.mainbodyFileLocalPath = localFilePath;
@@ -100,6 +112,7 @@
 
 #pragma mark - Private
 
+// 配置正文 cell 的标题与按钮的标题
 - (void)configureMatterMainBodyCell:(BLMatterMainBodyCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     cell.mainBodyTitleLabel.text = @"测试";
@@ -108,13 +121,22 @@
     if (self.mainbodyFileLocalPath && [self.mainbodyFileLocalPath length] > 0) {
         [cell.downloadButton setTitle:@"打开" forState:UIControlStateNormal];
     }
+}
 
+- (void)configureMatterFormBaseCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
     
 }
 
+// 获取正文预览文本
 - (NSString *)mainBodyText
 {
     #warning 从实体类读 或 从服务器读
     return @"test, test main body Text";
+}
+
+- (BOOL)isMainBodyIndex
+{
+    return YES;
 }
 @end
