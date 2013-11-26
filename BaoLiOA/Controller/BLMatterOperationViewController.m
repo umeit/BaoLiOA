@@ -35,6 +35,49 @@
     self.currentViewController = vc;
 }
 
+#pragma - mark Action
+
+- (IBAction)segmentChanged:(UISegmentedControl *)segmentedControl
+{
+    UIViewController *vc = [self viewControllerForSelectedSegment];
+    [self addChildViewController:vc];
+//    [self transitionFromViewController:self.currentViewController
+//                      toViewController:vc
+//                              duration:0.5
+//                               options:UIViewAnimationOptionOverrideInheritedOptions
+//                            animations:^{
+//                                [self.currentViewController.view removeFromSuperview];
+//                                vc.view.frame =self.contentView.bounds;
+//                                [self.contentView addSubview:vc.view];
+//                            }
+//                            completion:^(BOOL finished){
+//                                [vc didMoveToParentViewController:self];
+//                                [self.currentViewController removeFromParentViewController];
+//                                self.currentViewController = vc;
+//                            }
+//    ];
+    
+    
+    [self.currentViewController.view removeFromSuperview];
+    vc.view.frame =self.contentView.bounds;
+    [self.contentView addSubview:vc.view];
+    [vc didMoveToParentViewController:self];
+    [self.currentViewController removeFromParentViewController];
+    self.currentViewController = vc;
+}
+- (IBAction)submitButtonPress:(id)sender
+{
+}
+- (IBAction)HasReadButtonPress:(id)sender
+{
+}
+- (IBAction)temporaryButtonPress:(id)sender
+{
+}
+- (IBAction)fallbackButtonPress:(id)sender
+{
+}
+
 #pragma - mark Private
 
 - (UIViewController *)viewControllerForSelectedSegment
@@ -48,15 +91,15 @@
             break;
             
         case 1:
-            vc = [self.storyboard instantiateViewControllerWithIdentifier:@"xxx"];
+            vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMatterAttachmentListViewController"];
             break;
             
         case 2:
-            vc = [self.storyboard instantiateViewControllerWithIdentifier:@"xxx"];
+            vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMatterFlowListViewController"];
             break;
             
         case 3:
-            vc = [self.storyboard instantiateViewControllerWithIdentifier:@"xxx"];
+            vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMatterOperationViewController"];
             break;
         default:
             break;

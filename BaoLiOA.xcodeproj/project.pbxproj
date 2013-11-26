@@ -40,6 +40,8 @@
 		036C0FF5183D05AD00C61808 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 036C0FEC183D05AD00C61808 /* AFURLSessionManager.m */; };
 		03BD17F71844DC44002F2C38 /* BLMatterAttachmentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BD17F61844DC44002F2C38 /* BLMatterAttachmentListViewController.m */; };
 		03BD17FA1844DC8F002F2C38 /* BLMatterAttachmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BD17F91844DC8F002F2C38 /* BLMatterAttachmentCell.m */; };
+		03BD17FD1844EF77002F2C38 /* BLMatterFlowListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BD17FC1844EF77002F2C38 /* BLMatterFlowListViewController.m */; };
+		03BD18001844F2FF002F2C38 /* BLMatterOpinionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BD17FF1844F2FF002F2C38 /* BLMatterOpinionViewController.m */; };
 		03D2E929183FB6350096E463 /* BLMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03D2E928183FB6350096E463 /* BLMasterViewController.m */; };
 		03DECA461842434D007F6F40 /* BLMatterOperationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DECA451842434D007F6F40 /* BLMatterOperationViewController.m */; };
 		03DECA49184247D0007F6F40 /* BLGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DECA48184247D0007F6F40 /* BLGlobal.m */; };
@@ -116,6 +118,10 @@
 		03BD17F61844DC44002F2C38 /* BLMatterAttachmentListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterAttachmentListViewController.m; sourceTree = "<group>"; };
 		03BD17F81844DC8F002F2C38 /* BLMatterAttachmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterAttachmentCell.h; sourceTree = "<group>"; };
 		03BD17F91844DC8F002F2C38 /* BLMatterAttachmentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterAttachmentCell.m; sourceTree = "<group>"; };
+		03BD17FB1844EF77002F2C38 /* BLMatterFlowListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterFlowListViewController.h; sourceTree = "<group>"; };
+		03BD17FC1844EF77002F2C38 /* BLMatterFlowListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterFlowListViewController.m; sourceTree = "<group>"; };
+		03BD17FE1844F2FF002F2C38 /* BLMatterOpinionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterOpinionViewController.h; sourceTree = "<group>"; };
+		03BD17FF1844F2FF002F2C38 /* BLMatterOpinionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterOpinionViewController.m; sourceTree = "<group>"; };
 		03D2E927183FB6350096E463 /* BLMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMasterViewController.h; sourceTree = "<group>"; };
 		03D2E928183FB6350096E463 /* BLMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMasterViewController.m; sourceTree = "<group>"; };
 		03DECA441842434D007F6F40 /* BLMatterOperationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterOperationViewController.h; sourceTree = "<group>"; };
@@ -178,6 +184,10 @@
 				035C2D371843AA660090E5BA /* BLMainBodyViewController.m */,
 				03BD17F51844DC44002F2C38 /* BLMatterAttachmentListViewController.h */,
 				03BD17F61844DC44002F2C38 /* BLMatterAttachmentListViewController.m */,
+				03BD17FB1844EF77002F2C38 /* BLMatterFlowListViewController.h */,
+				03BD17FC1844EF77002F2C38 /* BLMatterFlowListViewController.m */,
+				03BD17FE1844F2FF002F2C38 /* BLMatterOpinionViewController.h */,
+				03BD17FF1844F2FF002F2C38 /* BLMatterOpinionViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -456,7 +466,9 @@
 				03DECA4C184250B8007F6F40 /* BLMatterFormViewController.m in Sources */,
 				03D2E929183FB6350096E463 /* BLMasterViewController.m in Sources */,
 				03588FDE183E4AED0067F5D0 /* BLBaseMatterCell.m in Sources */,
+				03BD18001844F2FF002F2C38 /* BLMatterOpinionViewController.m in Sources */,
 				036C0FED183D05AD00C61808 /* AFHTTPRequestOperation.m in Sources */,
+				03BD17FD1844EF77002F2C38 /* BLMatterFlowListViewController.m in Sources */,
 				03DECA461842434D007F6F40 /* BLMatterOperationViewController.m in Sources */,
 				036C0FF5183D05AD00C61808 /* AFURLSessionManager.m in Sources */,
 				036C0FF4183D05AD00C61808 /* AFURLResponseSerialization.m in Sources */,
