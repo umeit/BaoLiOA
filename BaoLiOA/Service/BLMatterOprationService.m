@@ -29,4 +29,9 @@
 {
     
 }
+
+- (void)folloDepartmentWithBlock:(BLMatterOprationServiceGeneralListBlock)block
+{
+    block(@[@"商务部", @"人事部"], nil);
+}
 @end

@@ -7,21 +7,15 @@
 //
 
 #import "BLMatterOpinionViewController.h"
+#import "BLOpinionViewController.h"
 
-@interface BLMatterOpinionViewController ()
-
+@interface BLMatterOpinionViewController () <BLOpinionViewControllerDelegate>
+@property (weak, nonatomic) IBOutlet UITextField *opinionTextField;
+@property (weak, nonatomic) IBOutlet UITextView *opinionTextView;
+@property (weak, nonatomic) UIPopoverController *opinionPopover;
 @end
 
 @implementation BLMatterOpinionViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -29,10 +23,23 @@
 	// Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    BLOpinionViewController *vc = segue.destinationViewController;
+    vc.delegate = self;
+    
+    self.opinionPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
+}
+
+#pragma mark - BLOpinionViewControllerDelegate
+
+- (void)opinionDidSelecte:(NSString *)opinion
+{
+    self.opinionTextField.text = opinion;
+    
+    [self.opinionPopover dismissPopoverAnimated:YES];
 }
 
 @end

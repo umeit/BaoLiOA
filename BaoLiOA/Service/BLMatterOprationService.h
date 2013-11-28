@@ -22,4 +22,6 @@ typedef void(^BLMatterOprationServiceDownloadFileBlock)(NSString *localFilePath,
 
 - (void)matterAttachmentListWithBlock:(BLMatterOprationServiceGeneralListBlock)block;
 
+- (void)folloDepartmentWithBlock:(BLMatterOprationServiceGeneralListBlock)block;
+
 @end

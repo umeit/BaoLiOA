@@ -7,8 +7,10 @@
 //
 
 #import "BLMatterOperationViewController.h"
+#import "BLMatterOprationService.h"
+#import "BLManageFollowViewController.h"
 
-@interface BLMatterOperationViewController ()
+@interface BLMatterOperationViewController () <BLManageFollowViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *SegmentView;
 
@@ -16,9 +18,20 @@
 
 @property (strong, nonatomic) UIViewController *currentViewController;
 
+@property (strong, nonatomic) BLMatterOprationService *matterOprationService;
+
 @end
 
 @implementation BLMatterOperationViewController
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        self.matterOprationService = [[BLMatterOprationService alloc] init];
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -41,6 +54,8 @@
 {
     UIViewController *vc = [self viewControllerForSelectedSegment];
     [self addChildViewController:vc];
+    
+    // 动画
 //    [self transitionFromViewController:self.currentViewController
 //                      toViewController:vc
 //                              duration:0.5
@@ -65,17 +80,76 @@
     [self.currentViewController removeFromParentViewController];
     self.currentViewController = vc;
 }
+
+// 提交
 - (IBAction)submitButtonPress:(id)sender
 {
+    [self.matterOprationService folloDepartmentWithBlock:^(NSArray *list, NSError *error) {
+        
+        if (error) {
+            
+        }
+        else if ([list count] > 0) {
+              UINavigationController *navigation = [self.storyboard instantiateViewControllerWithIdentifier:@"FollowNavigation"];
+            BLManageFollowViewController *manageFollowViewController = (BLManageFollowViewController *)[navigation topViewController];
+            manageFollowViewController.followList = list;
+            manageFollowViewController.delegate = self;
+            manageFollowViewController.title = @"办理路由";
+            
+            [navigation setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+            [navigation setModalPresentationStyle:UIModalPresentationFormSheet];
+            
+            [self presentViewController:navigation animated:YES completion:nil];
+        }
+        else {
+            // 提交服务器
+        }
+    }];
 }
+
+// 已阅
 - (IBAction)HasReadButtonPress:(id)sender
 {
+    
 }
+
+// 暂存
 - (IBAction)temporaryButtonPress:(id)sender
 {
+    
 }
+
+// 回退
 - (IBAction)fallbackButtonPress:(id)sender
 {
+    
+}
+
+#pragma - mark BLManageFollowViewControllerDelegate
+
+- (void)FollowDidSelected:(NSArray *)followList
+{
+    [self.matterOprationService folloDepartmentWithBlock:^(NSArray *list, NSError *error) {
+        
+        if (error) {
+            
+        }
+        else if ([list count] > 0) {
+            UINavigationController *navigation = [self.storyboard instantiateViewControllerWithIdentifier:@"FollowNavigation"];
+            BLManageFollowViewController *manageFollowViewController = (BLManageFollowViewController *)[navigation topViewController];
+            manageFollowViewController.followList = list;
+            manageFollowViewController.delegate = self;
+            manageFollowViewController.title = @"办理路由";
+            
+            [navigation setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+            [navigation setModalPresentationStyle:UIModalPresentationFormSheet];
+            
+            [self presentViewController:navigation animated:YES completion:nil];
+        }
+        else {
+            // 提交服务器
+        }
+    }];
 }
 
 #pragma - mark Private
