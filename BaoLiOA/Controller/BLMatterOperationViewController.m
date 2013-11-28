@@ -20,6 +20,8 @@
 
 @property (strong, nonatomic) BLMatterOprationService *matterOprationService;
 
+@property (nonatomic) BOOL isSelectionPersonnel;
+
 @end
 
 @implementation BLMatterOperationViewController
@@ -84,6 +86,7 @@
 // 提交
 - (IBAction)submitButtonPress:(id)sender
 {
+    self.isSelectionPersonnel = NO;
     [self.matterOprationService folloDepartmentWithBlock:^(NSArray *list, NSError *error) {
         
         if (error) {
@@ -129,27 +132,37 @@
 
 - (void)FollowDidSelected:(NSArray *)followList
 {
-    [self.matterOprationService folloDepartmentWithBlock:^(NSArray *list, NSError *error) {
+    if (self.isSelectionPersonnel) {
         
-        if (error) {
+        // 提交服务器
+    }
+    else {
+        
+        
+        [self.matterOprationService folloDepartmentWithBlock:^(NSArray *list, NSError *error) {
             
-        }
-        else if ([list count] > 0) {
-            UINavigationController *navigation = [self.storyboard instantiateViewControllerWithIdentifier:@"FollowNavigation"];
-            BLManageFollowViewController *manageFollowViewController = (BLManageFollowViewController *)[navigation topViewController];
-            manageFollowViewController.followList = list;
-            manageFollowViewController.delegate = self;
-            manageFollowViewController.title = @"办理路由";
-            
-            [navigation setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
-            [navigation setModalPresentationStyle:UIModalPresentationFormSheet];
-            
-            [self presentViewController:navigation animated:YES completion:nil];
-        }
-        else {
-            // 提交服务器
-        }
-    }];
+            if (error) {
+                
+            }
+            else if ([list count] > 0) {
+                self.isSelectionPersonnel = YES;
+                
+                UINavigationController *navigation = [self.storyboard instantiateViewControllerWithIdentifier:@"FollowNavigation"];
+                BLManageFollowViewController *manageFollowViewController = (BLManageFollowViewController *)[navigation topViewController];
+                manageFollowViewController.followList = list;
+                manageFollowViewController.delegate = self;
+                manageFollowViewController.title = @"办理人员";
+                
+                [navigation setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+                [navigation setModalPresentationStyle:UIModalPresentationFormSheet];
+                
+                [self presentViewController:navigation animated:YES completion:nil];
+            }
+            else {
+                // 提交服务器
+            }
+        }];
+    }
 }
 
 #pragma - mark Private
