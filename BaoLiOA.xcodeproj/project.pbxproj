@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		030CD00C1841B91B005A9B58 /* BLSplitViewControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 030CD00B1841B91B005A9B58 /* BLSplitViewControllerManager.m */; };
+		030D3C621849B0A000E844EA /* BLLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 030D3C611849B0A000E844EA /* BLLoginViewController.m */; };
+		030D3C651849B2F000E844EA /* BLUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 030D3C641849B2F000E844EA /* BLUserService.m */; };
+		030D3C681849B30A00E844EA /* BLUserHTTPLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 030D3C671849B30A00E844EA /* BLUserHTTPLogic.m */; };
 		03588FDA183E4A780067F5D0 /* BLBaseMatterListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03588FD9183E4A780067F5D0 /* BLBaseMatterListViewController.m */; };
 		03588FDE183E4AED0067F5D0 /* BLBaseMatterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03588FDD183E4AED0067F5D0 /* BLBaseMatterCell.m */; };
 		03588FE1183E4B620067F5D0 /* BLMatterService.m in Sources */ = {isa = PBXBuildFile; fileRef = 03588FE0183E4B620067F5D0 /* BLMatterService.m */; };
@@ -64,6 +67,12 @@
 /* Begin PBXFileReference section */
 		030CD00A1841B91B005A9B58 /* BLSplitViewControllerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLSplitViewControllerManager.h; sourceTree = "<group>"; };
 		030CD00B1841B91B005A9B58 /* BLSplitViewControllerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLSplitViewControllerManager.m; sourceTree = "<group>"; };
+		030D3C601849B0A000E844EA /* BLLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLLoginViewController.h; sourceTree = "<group>"; };
+		030D3C611849B0A000E844EA /* BLLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLLoginViewController.m; sourceTree = "<group>"; };
+		030D3C631849B2F000E844EA /* BLUserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLUserService.h; sourceTree = "<group>"; };
+		030D3C641849B2F000E844EA /* BLUserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLUserService.m; sourceTree = "<group>"; };
+		030D3C661849B30A00E844EA /* BLUserHTTPLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLUserHTTPLogic.h; sourceTree = "<group>"; };
+		030D3C671849B30A00E844EA /* BLUserHTTPLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLUserHTTPLogic.m; sourceTree = "<group>"; };
 		03588FD8183E4A780067F5D0 /* BLBaseMatterListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLBaseMatterListViewController.h; sourceTree = "<group>"; };
 		03588FD9183E4A780067F5D0 /* BLBaseMatterListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLBaseMatterListViewController.m; sourceTree = "<group>"; };
 		03588FDC183E4AED0067F5D0 /* BLBaseMatterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLBaseMatterCell.h; sourceTree = "<group>"; };
@@ -198,6 +207,8 @@
 				0381BC5418478BDF00DB661D /* BLOpinionViewController.m */,
 				0381BC561847985400DB661D /* BLManageFollowViewController.h */,
 				0381BC571847985400DB661D /* BLManageFollowViewController.m */,
+				030D3C601849B0A000E844EA /* BLLoginViewController.h */,
+				030D3C611849B0A000E844EA /* BLLoginViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -216,6 +227,8 @@
 			children = (
 				03588FE2183E4B830067F5D0 /* BLMatterHTTPLogic.h */,
 				03588FE3183E4B830067F5D0 /* BLMatterHTTPLogic.m */,
+				030D3C661849B30A00E844EA /* BLUserHTTPLogic.h */,
+				030D3C671849B30A00E844EA /* BLUserHTTPLogic.m */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -227,6 +240,8 @@
 				03588FE0183E4B620067F5D0 /* BLMatterService.m */,
 				03DECA4D18425154007F6F40 /* BLMatterOprationService.h */,
 				03DECA4E18425154007F6F40 /* BLMatterOprationService.m */,
+				030D3C631849B2F000E844EA /* BLUserService.h */,
+				030D3C641849B2F000E844EA /* BLUserService.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -476,6 +491,7 @@
 				036C0FF1183D05AD00C61808 /* AFSecurityPolicy.m in Sources */,
 				03DECA4C184250B8007F6F40 /* BLMatterFormViewController.m in Sources */,
 				03D2E929183FB6350096E463 /* BLMasterViewController.m in Sources */,
+				030D3C681849B30A00E844EA /* BLUserHTTPLogic.m in Sources */,
 				03588FDE183E4AED0067F5D0 /* BLBaseMatterCell.m in Sources */,
 				03BD18001844F2FF002F2C38 /* BLMatterOpinionViewController.m in Sources */,
 				036C0FED183D05AD00C61808 /* AFHTTPRequestOperation.m in Sources */,
@@ -487,6 +503,8 @@
 				036C0FB8183D02AB00C61808 /* BLAppDelegate.m in Sources */,
 				03588FE4183E4B830067F5D0 /* BLMatterHTTPLogic.m in Sources */,
 				036C0FEF183D05AD00C61808 /* AFHTTPSessionManager.m in Sources */,
+				030D3C621849B0A000E844EA /* BLLoginViewController.m in Sources */,
+				030D3C651849B2F000E844EA /* BLUserService.m in Sources */,
 				036C0FEE183D05AD00C61808 /* AFHTTPRequestOperationManager.m in Sources */,
 				03588FDA183E4A780067F5D0 /* BLBaseMatterListViewController.m in Sources */,
 				030CD00C1841B91B005A9B58 /* BLSplitViewControllerManager.m in Sources */,

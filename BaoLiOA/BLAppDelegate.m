@@ -13,11 +13,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
+//    UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
     
     // 用于保留 BLSplitViewControllerManager 的引用
-    self.splitViewControllerManager = [[BLSplitViewControllerManager alloc] initWithSplitViewController:splitViewController];
-    splitViewController.delegate = (id)self.splitViewControllerManager;
+//    self.splitViewControllerManager = [[BLSplitViewControllerManager alloc] initWithSplitViewController:splitViewController];
+//    splitViewController.delegate = (id)self.splitViewControllerManager;
+    
+    // 登录
+    self.window.rootViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"BLLoginViewController"];
     
     return YES;
 }

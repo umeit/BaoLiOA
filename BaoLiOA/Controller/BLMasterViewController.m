@@ -7,14 +7,13 @@
 //
 
 #import "BLMasterViewController.h"
-//#import "BLBaseMatterNavigationController.h"
 #import "BLSplitViewControllerManager.h"
 
 #define BacklogCellTag 30
 #define TakenCellTag   31
 
 @interface BLMasterViewController ()
-
+@property (strong, nonatomic) BLSplitViewControllerManager *splitViewControllerManager;
 @end
 
 @implementation BLMasterViewController
@@ -22,21 +21,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.splitViewControllerManager = [[BLSplitViewControllerManager alloc] initWithSplitViewController:self.splitViewController];
+    self.splitViewController.delegate = (id)self.splitViewControllerManager;
 }
 
 // 根据选择的 cell 切换 Detail 视图
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BLSplitViewControllerManager *splitViewControllerManager = (BLSplitViewControllerManager *)self.splitViewController.delegate;
+//    BLSplitViewControllerManager *splitViewControllerManager = (BLSplitViewControllerManager *)self.splitViewController.delegate;
     
     switch ([tableView cellForRowAtIndexPath:indexPath].tag) {
         case BacklogCellTag:
-            [splitViewControllerManager switchDetaiViewToBackogMatterList];
+            [self.splitViewControllerManager switchDetaiViewToBackogMatterList];
 
             break;
             
         case TakenCellTag:
-            [splitViewControllerManager switchDetaiViewToTakenMatterList];
+            [self.splitViewControllerManager switchDetaiViewToTakenMatterList];
             break;
             
         default:
