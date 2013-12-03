@@ -10,12 +10,15 @@
 #import "BLMatterOprationService.h"
 #import "BLMatterMainBodyCell.h"
 #import "BLMainBodyViewController.h"
+#import "BLMatterService.h"
 
 @interface BLMatterFormViewController () <UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) NSArray *matterFormList;
+
+@property (strong, nonatomic) BLMatterService *matterService;
 
 @property (strong, nonatomic) BLMatterOprationService *matterOprationService;
 
@@ -31,6 +34,7 @@
     
     if (self) {
         self.matterOprationService = [[BLMatterOprationService alloc] init];
+        self.matterService = [[BLMatterService alloc] init];
     }
     return self;
 }
@@ -40,7 +44,8 @@
     [super viewDidLoad];
     
     // 获取表单数据
-    [self.matterOprationService matterFormListWithBlock:^(NSArray *list, NSError *error) {
+    [self.matterService matterFormListWithMatterID:self.matterID block:^(NSArray *list, NSError *error) {
+        
         self.matterFormList = list;
         [self.tableView reloadData];
     }];

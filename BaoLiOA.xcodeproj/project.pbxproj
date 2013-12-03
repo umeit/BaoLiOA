@@ -13,6 +13,8 @@
 		030D3C681849B30A00E844EA /* BLUserHTTPLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 030D3C671849B30A00E844EA /* BLUserHTTPLogic.m */; };
 		030D3C6B1849DE7700E844EA /* BLAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 030D3C6A1849DE7700E844EA /* BLAppSettingsViewController.m */; };
 		033EA7F3184E1A5D009E29C7 /* RXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 033EA7F2184E1A5D009E29C7 /* RXMLElement.m */; };
+		033EA7F5184E2E15009E29C7 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 033EA7F4184E2E15009E29C7 /* libz.dylib */; };
+		033EA7F7184E2E1D009E29C7 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 033EA7F6184E2E1D009E29C7 /* libxml2.dylib */; };
 		03588FDA183E4A780067F5D0 /* BLBaseMatterListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03588FD9183E4A780067F5D0 /* BLBaseMatterListViewController.m */; };
 		03588FDE183E4AED0067F5D0 /* BLBaseMatterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03588FDD183E4AED0067F5D0 /* BLBaseMatterCell.m */; };
 		03588FE1183E4B620067F5D0 /* BLMatterService.m in Sources */ = {isa = PBXBuildFile; fileRef = 03588FE0183E4B620067F5D0 /* BLMatterService.m */; };
@@ -79,6 +81,8 @@
 		030D3C6A1849DE7700E844EA /* BLAppSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLAppSettingsViewController.m; sourceTree = "<group>"; };
 		033EA7F1184E1A5D009E29C7 /* RXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RXMLElement.h; sourceTree = "<group>"; };
 		033EA7F2184E1A5D009E29C7 /* RXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RXMLElement.m; sourceTree = "<group>"; };
+		033EA7F4184E2E15009E29C7 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		033EA7F6184E2E1D009E29C7 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		03588FD8183E4A780067F5D0 /* BLBaseMatterListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLBaseMatterListViewController.h; sourceTree = "<group>"; };
 		03588FD9183E4A780067F5D0 /* BLBaseMatterListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLBaseMatterListViewController.m; sourceTree = "<group>"; };
 		03588FDC183E4AED0067F5D0 /* BLBaseMatterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLBaseMatterCell.h; sourceTree = "<group>"; };
@@ -160,6 +164,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				033EA7F7184E2E1D009E29C7 /* libxml2.dylib in Frameworks */,
+				033EA7F5184E2E15009E29C7 /* libz.dylib in Frameworks */,
 				036C0FAA183D02AB00C61808 /* CoreGraphics.framework in Frameworks */,
 				036C0FAC183D02AB00C61808 /* UIKit.framework in Frameworks */,
 				036C0FA8183D02AB00C61808 /* Foundation.framework in Frameworks */,
@@ -307,6 +313,8 @@
 		036C0FA6183D02AB00C61808 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				033EA7F6184E2E1D009E29C7 /* libxml2.dylib */,
+				033EA7F4184E2E15009E29C7 /* libz.dylib */,
 				036C0FA7183D02AB00C61808 /* Foundation.framework */,
 				036C0FA9183D02AB00C61808 /* CoreGraphics.framework */,
 				036C0FAB183D02AB00C61808 /* UIKit.framework */,
@@ -654,6 +662,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BaoLiOA/BaoLiOA-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SDK_DIR)\"/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = "BaoLiOA/BaoLiOA-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -667,6 +680,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BaoLiOA/BaoLiOA-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SDK_DIR)\"/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = "BaoLiOA/BaoLiOA-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

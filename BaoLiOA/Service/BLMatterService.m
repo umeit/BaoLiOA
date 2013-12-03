@@ -13,17 +13,8 @@
 
 @implementation BLMatterService
 
-- (void)todoListWithBlock:(BLMatterServiceBaseListBlock)block
+- (void)todoListWithBlock:(BLMatterServiceGeneralListBlock)block
 {
-//    #warning 测试代码
-//    BLMatterEntity *matterEntity = [[BLMatterEntity alloc] init];
-//    matterEntity.title = @"asdf";
-//    matterEntity.receivedDate = [NSDate date];
-//    matterEntity.matterType = @"收文文";
-//    matterEntity.flowTimes = 3;
-//    
-//    block(@[matterEntity, matterEntity], nil);
-    
     [BLMatterHTTPLogic matterListWithMatterType:TodoMatterType withBlock:^(id responseData, NSError *error) {
         if (error) {
             block(nil, error);
@@ -54,7 +45,7 @@
     }];
 }
 
-- (void)takenMatterWithBlock:(BLMatterServiceBaseListBlock)block
+- (void)takenMatterWithBlock:(BLMatterServiceGeneralListBlock)block
 {
     [BLMatterHTTPLogic matterListWithMatterType:TakenMatter withBlock:^(id responseData, NSError *error) {
         if (error) {
@@ -66,4 +57,11 @@
     }];
 }
 
+- (void)matterFormListWithMatterID:(NSString *)matterID block:(BLMatterServiceGeneralListBlock)block;
+{
+    [BLMatterHTTPLogic matterFormListWithMatterID:matterID block:^(id responselist, NSError *error) {
+        
+    }];
+    block(@[@""], nil);
+}
 @end

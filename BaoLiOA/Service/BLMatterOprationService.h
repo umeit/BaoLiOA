@@ -14,7 +14,7 @@ typedef void(^BLMatterOprationServiceDownloadFileBlock)(NSString *localFilePath,
 
 @interface BLMatterOprationService : NSObject
 
-- (void)matterFormListWithBlock:(BLMatterOprationServiceGeneralListBlock)block;
+
 
 - (void)downloadMatterMainBodyFileFromURL:(NSString *)urlString withBlock:(BLMatterOprationServiceDownloadFileBlock)block;
 

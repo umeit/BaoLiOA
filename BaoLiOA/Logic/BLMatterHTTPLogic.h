@@ -15,10 +15,11 @@ typedef enum MatterType : NSInteger{
     ApproveMatter
 }MatterType;
 
-typedef void(^BLMatterHTTPLogicBaseListBlock)(id responselist, NSError *error);
+typedef void(^BLMatterHTTPLogicGeneralListBlock)(id responselist, NSError *error);
 
 @interface BLMatterHTTPLogic : NSObject
 
-+ (void)matterListWithMatterType:(MatterType)matterType withBlock:(BLMatterHTTPLogicBaseListBlock)block;
++ (void)matterListWithMatterType:(MatterType)matterType withBlock:(BLMatterHTTPLogicGeneralListBlock)block;
 
++ (void)matterFormListWithMatterID:(NSString *)matterID block:(BLMatterHTTPLogicGeneralListBlock)block;
 @end

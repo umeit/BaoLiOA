@@ -44,6 +44,12 @@
 	
     // 为默认第一个被选中的 segment 获取对应的 view controller
     UIViewController *vc = [self viewControllerForSelectedSegment];
+    
+    // 将当前正在操作的「事项」的 ID 传给有需要的子视图控制器
+    if ([vc respondsToSelector:@selector(setMatterID:)]) {
+        [vc performSelector:@selector(setMatterID:) withObject:self.matterID];
+    }
+    
     [self addChildViewController:vc];
     
     // 修改新加入的的视图的尺寸，可以刚好放在预留好的地方

@@ -10,10 +10,7 @@
 
 @implementation BLMatterOprationService
 
-- (void)matterFormListWithBlock:(BLMatterOprationServiceGeneralListBlock)block
-{
-    block(@[@""], nil);
-}
+
 
 - (void)downloadMatterMainBodyFileFromURL:(NSString *)urlString withBlock:(BLMatterOprationServiceDownloadFileBlock)block
 {
