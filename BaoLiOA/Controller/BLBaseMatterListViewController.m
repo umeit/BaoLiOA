@@ -2,6 +2,10 @@
 //  BLBaseListViewController.m
 //  BaoLiOA
 //
+//  通用的列表视图，如：待办事项、已办事项
+//
+//
+//
 //  Created by Liu Feng on 13-11-21.
 //  Copyright (c) 2013年 Liu Feng. All rights reserved.
 //
@@ -11,7 +15,6 @@
 #import "UIViewController+BLViewController.h"
 #import "BLBaseMatterCell.h"
 #import "BLMatterEntity.h"
-//#import "BLBaseMatterNavigationController.h"
 
 @interface BLBaseMatterListViewController ()
 
@@ -37,8 +40,9 @@
     [super viewDidLoad];
     
     // 设置标题
-    switch (self.matterType) {
-        case BacklogMatterList:
+    switch (self.currentMatterType) {
+            
+        case TodoMatterList:
             self.title = @"待办事宜";
             break;
             
@@ -50,16 +54,20 @@
             break;
     }
     
-    // 取得数据后刷新表格
-    [self.matterService backlogListWithBlock:^(NSArray *list, NSError *error) {
-        if (error) {
-            [self showNetworkingErrorAlert];
-        }
-        else {
-            self.matterList = list;
-            [self.tableView reloadData];
-        }
-    }];
+    // 获取数据
+    if (self.currentMatterType == TodoMatterList) {
+        
+        // 取得数据后刷新表格
+        [self.matterService todoListWithBlock:^(NSArray *list, NSError *error) {
+            if (error) {
+                [self showNetworkingErrorAlert];
+            }
+            else {
+                self.matterList = list;
+                [self.tableView reloadData];
+            }
+        }];
+    }
 }
 
 #pragma mark - Table view data source
@@ -84,64 +92,25 @@
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+#pragma mark - Navigation
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    NSLog(@"asdf");
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-//#pragma mark - Navigation
-//
-//// In a story board-based application, you will often want to do a little preparation before navigation
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    NSLog(@"asdf");
-//}
 
 
 #pragma mark - Private
+
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     BLBaseMatterCell *matterCell = (BLBaseMatterCell *)cell;
+    
     BLMatterEntity *matterEntity = self.matterList[0];
     
     matterCell.matterTitleLabel.text = matterEntity.title;
-    matterCell.receivedDateLabel.text = matterEntity.receivedDate.description;
+    matterCell.receivedDateLabel.text = matterEntity.sendTime;
     matterCell.matterTypeLabel.text = matterEntity.matterType;
-    #warning 设置流转次数
 }
 
 @end

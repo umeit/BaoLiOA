@@ -12,6 +12,7 @@
 		030D3C651849B2F000E844EA /* BLUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 030D3C641849B2F000E844EA /* BLUserService.m */; };
 		030D3C681849B30A00E844EA /* BLUserHTTPLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 030D3C671849B30A00E844EA /* BLUserHTTPLogic.m */; };
 		030D3C6B1849DE7700E844EA /* BLAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 030D3C6A1849DE7700E844EA /* BLAppSettingsViewController.m */; };
+		033EA7F3184E1A5D009E29C7 /* RXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 033EA7F2184E1A5D009E29C7 /* RXMLElement.m */; };
 		03588FDA183E4A780067F5D0 /* BLBaseMatterListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03588FD9183E4A780067F5D0 /* BLBaseMatterListViewController.m */; };
 		03588FDE183E4AED0067F5D0 /* BLBaseMatterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03588FDD183E4AED0067F5D0 /* BLBaseMatterCell.m */; };
 		03588FE1183E4B620067F5D0 /* BLMatterService.m in Sources */ = {isa = PBXBuildFile; fileRef = 03588FE0183E4B620067F5D0 /* BLMatterService.m */; };
@@ -76,6 +77,8 @@
 		030D3C671849B30A00E844EA /* BLUserHTTPLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLUserHTTPLogic.m; sourceTree = "<group>"; };
 		030D3C691849DE7700E844EA /* BLAppSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLAppSettingsViewController.h; sourceTree = "<group>"; };
 		030D3C6A1849DE7700E844EA /* BLAppSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLAppSettingsViewController.m; sourceTree = "<group>"; };
+		033EA7F1184E1A5D009E29C7 /* RXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RXMLElement.h; sourceTree = "<group>"; };
+		033EA7F2184E1A5D009E29C7 /* RXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RXMLElement.m; sourceTree = "<group>"; };
 		03588FD8183E4A780067F5D0 /* BLBaseMatterListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLBaseMatterListViewController.h; sourceTree = "<group>"; };
 		03588FD9183E4A780067F5D0 /* BLBaseMatterListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLBaseMatterListViewController.m; sourceTree = "<group>"; };
 		03588FDC183E4AED0067F5D0 /* BLBaseMatterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLBaseMatterCell.h; sourceTree = "<group>"; };
@@ -183,6 +186,15 @@
 				030CD00B1841B91B005A9B58 /* BLSplitViewControllerManager.m */,
 			);
 			path = ControllerManager;
+			sourceTree = "<group>";
+		};
+		033EA7F0184E1A5D009E29C7 /* RaptureXML */ = {
+			isa = PBXGroup;
+			children = (
+				033EA7F1184E1A5D009E29C7 /* RXMLElement.h */,
+				033EA7F2184E1A5D009E29C7 /* RXMLElement.m */,
+			);
+			path = RaptureXML;
 			sourceTree = "<group>";
 		};
 		03588FD3183E4A340067F5D0 /* Controller */ = {
@@ -355,6 +367,7 @@
 		036C0FD8183D05AD00C61808 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				033EA7F0184E1A5D009E29C7 /* RaptureXML */,
 				036C0FD9183D05AD00C61808 /* AFNetworking */,
 			);
 			path = Lib;
@@ -496,6 +509,7 @@
 				03588FE7183E4F7B0067F5D0 /* BLMatterEntity.m in Sources */,
 				036C0FF1183D05AD00C61808 /* AFSecurityPolicy.m in Sources */,
 				03DECA4C184250B8007F6F40 /* BLMatterFormViewController.m in Sources */,
+				033EA7F3184E1A5D009E29C7 /* RXMLElement.m in Sources */,
 				03D2E929183FB6350096E463 /* BLMasterViewController.m in Sources */,
 				030D3C681849B30A00E844EA /* BLUserHTTPLogic.m in Sources */,
 				03588FDE183E4AED0067F5D0 /* BLBaseMatterCell.m in Sources */,

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 typedef enum MatterType : NSInteger{
-    BacklogMatter,
+    TodoMatterType,
     TakenMatter,
     CollectMatter,
     ApproveMatter

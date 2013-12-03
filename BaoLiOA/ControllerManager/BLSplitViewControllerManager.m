@@ -32,7 +32,7 @@
 
 - (void)switchDetaiViewToBackogMatterList
 {
-    [self switchDetaiViewToBaseMatterListWithMaterType:BacklogMatterList];
+    [self switchDetaiViewToBaseMatterListWithMaterType:TodoMatterList];
 }
 
 - (void)switchDetaiViewToTakenMatterList
@@ -47,7 +47,7 @@
     UINavigationController *navigationControllerForDetailView = [self.splitViewController.storyboard instantiateViewControllerWithIdentifier:@"BLBaseMatterListViewController"];
     BLBaseMatterListViewController *baseMatterListViewController = (BLBaseMatterListViewController *)navigationControllerForDetailView.topViewController;
     
-    baseMatterListViewController.matterType = matterType;
+    baseMatterListViewController.currentMatterType = matterType;
     
     self.splitViewController.viewControllers = @[self.splitViewController.viewControllers[0], navigationControllerForDetailView];
 }

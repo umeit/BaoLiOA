@@ -12,7 +12,7 @@ typedef void(^BLMatterServiceBaseListBlock)(NSArray *list, NSError *error);
 
 @interface BLMatterService : NSObject
 
-- (void)backlogListWithBlock:(BLMatterServiceBaseListBlock)block;
+- (void)todoListWithBlock:(BLMatterServiceBaseListBlock)block;
 
 - (void)takenMatterWithBlock:(BLMatterServiceBaseListBlock)block;
 @end

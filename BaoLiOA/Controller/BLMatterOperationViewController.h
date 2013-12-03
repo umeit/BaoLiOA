@@ -10,4 +10,6 @@
 
 @interface BLMatterOperationViewController : UIViewController
 
+@property (strong, nonatomic) NSString *matterID;
+
 @end
