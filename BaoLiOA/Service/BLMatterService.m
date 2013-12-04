@@ -20,7 +20,7 @@
             block(nil, error);
         }
         else {
-            NSLog(@"Response [Todo List] Data: %@", [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
+            NSLog(@"Response [Todo Data] Data: %@", [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
 
             NSMutableArray *todoList = [[NSMutableArray alloc] init];
             
@@ -64,7 +64,7 @@
             block(nil, error);
         }
         else {
-            NSLog(@"Response [Todo List] Data: %@", [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
+            NSLog(@"Response [Region Data] Data: %@", [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
             
             // 存储 FieldItems 和 Percents
             NSMutableDictionary *regionInfo = [[NSMutableDictionary alloc] init];

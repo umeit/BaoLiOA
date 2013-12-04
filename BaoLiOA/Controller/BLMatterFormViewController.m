@@ -93,8 +93,12 @@
         else {
             aLabel.text = fieldItem.value;
         }
+        
+        // 将 Label 添加到 cell 中
+        [cell.contentView addSubview:aLabel];
     }
 
+    
     
 //    static NSString *matterMainBodyCell = @"BLMatterMainBodyCell";
 //    static NSString *matterFormBaseCell = @"BLMatterFormBaseCell";
