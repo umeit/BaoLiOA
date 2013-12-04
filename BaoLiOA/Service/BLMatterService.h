@@ -8,13 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void(^BLMatterServiceGeneralListBlock)(NSArray *list, NSError *error);
+typedef void(^BLMatterServiceGeneralBlock)(id obj, NSError *error);
 
 @interface BLMatterService : NSObject
 
-- (void)todoListWithBlock:(BLMatterServiceGeneralListBlock)block;
+- (void)todoListWithBlock:(BLMatterServiceGeneralBlock)block;
 
-- (void)takenMatterWithBlock:(BLMatterServiceGeneralListBlock)block;
+- (void)takenMatterWithBlock:(BLMatterServiceGeneralBlock)block;
 
-- (void)matterFormListWithMatterID:(NSString *)matterID block:(BLMatterServiceGeneralListBlock)block;
+- (void)matterFormListWithMatterID:(NSString *)matterID block:(BLMatterServiceGeneralBlock)block;
+
 @end

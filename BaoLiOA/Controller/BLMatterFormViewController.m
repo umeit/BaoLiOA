@@ -11,6 +11,7 @@
 #import "BLMatterMainBodyCell.h"
 #import "BLMainBodyViewController.h"
 #import "BLMatterService.h"
+#import "BLFromFieldItemEntity.h"
 
 @interface BLMatterFormViewController () <UITableViewDataSource>
 
@@ -45,7 +46,6 @@
     
     // 获取表单数据
     [self.matterService matterFormListWithMatterID:self.matterID block:^(NSArray *list, NSError *error) {
-        
         self.matterFormList = list;
         [self.tableView reloadData];
     }];
@@ -66,19 +66,49 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *matterMainBodyCell = @"BLMatterMainBodyCell";
     static NSString *matterFormBaseCell = @"BLMatterFormBaseCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:matterFormBaseCell forIndexPath:indexPath];
     
-    UITableViewCell *cell;
+    NSDictionary *regionInfo = self.matterFormList[indexPath.row];
+    NSArray *itemListInLine = regionInfo[@"FieldItems"];
+    NSArray *itemPercents = regionInfo[@"Percents"];
     
-    if ([self isMainBodyIndex]) {
-        cell = [tableView dequeueReusableCellWithIdentifier:matterMainBodyCell forIndexPath:indexPath];
-        [self configureMatterMainBodyCell:(BLMatterMainBodyCell *)cell atIndexPath:indexPath];
+    CGFloat currentX = 0;
+    CGFloat cellWidth = cell.contentView.bounds.size.width; // cell 的宽度
+    
+    for (NSInteger i=0; i<[itemListInLine count]; i++) {
+        BLFromFieldItemEntity *fieldItem = itemListInLine[i];
+        
+        // 计算当前 Label 的宽度
+        CGFloat percent = [itemPercents[i] integerValue] / 100;
+        CGFloat labelWidth = cellWidth * percent;
+        
+        UILabel *aLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 0, labelWidth, 15)];
+        currentX += labelWidth;  // 左移 x 值，供后续 Label 使用
+        
+        // 配置 Label 的显示内容
+        if (fieldItem.nameVisible) {
+            aLabel.text = [NSString stringWithFormat:@"%@%@", fieldItem.name, fieldItem.value];
+        }
+        else {
+            aLabel.text = fieldItem.value;
+        }
     }
-    else {
-        cell = [tableView dequeueReusableCellWithIdentifier:matterFormBaseCell forIndexPath:indexPath];
-        [self configureMatterFormBaseCell:cell atIndexPath:indexPath];
-    }
+
+    
+//    static NSString *matterMainBodyCell = @"BLMatterMainBodyCell";
+//    static NSString *matterFormBaseCell = @"BLMatterFormBaseCell";
+//    
+//    UITableViewCell *cell;
+//    
+//    if ([self isMainBodyIndex]) {
+//        cell = [tableView dequeueReusableCellWithIdentifier:matterMainBodyCell forIndexPath:indexPath];
+//        [self configureMatterMainBodyCell:(BLMatterMainBodyCell *)cell atIndexPath:indexPath];
+//    }
+//    else {
+//        cell = [tableView dequeueReusableCellWithIdentifier:matterFormBaseCell forIndexPath:indexPath];
+//        [self configureMatterFormBaseCell:cell atIndexPath:indexPath];
+//    }
     
 
     return cell;
@@ -88,6 +118,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    // 导航到正文视图
     BLMainBodyViewController *mainBodyViewController = (BLMainBodyViewController *)segue.destinationViewController;
     BLMatterMainBodyCell *matterMainBodyCell = (BLMatterMainBodyCell *)sender;
     
