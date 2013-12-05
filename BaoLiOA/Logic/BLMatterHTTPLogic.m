@@ -9,7 +9,9 @@
 #import "BLMatterHTTPLogic.h"
 #import "AFHTTPRequestOperation.h"
 
-#define SOAP_URL(s) [NSURL URLWithString:[NSString stringWithFormat:@"http://210.51.191.244:8081/OAWebService/BL_WebService.asmx?op=%@", s]];
+//#define SOAP_URL(s) [NSURL URLWithString:[NSString stringWithFormat:@"http://210.51.191.244:8081/OAWebService/BL_WebService.asmx?op=%@", s]];
+// 测试地址
+#define SOAP_URL(s) [NSURL URLWithString:[NSString stringWithFormat:@"http://210.51.191.244:8081/OAWebService/DemoData_WebService.asmx?op=%@", s]];
 
 @implementation BLMatterHTTPLogic
 
@@ -53,16 +55,18 @@
     "xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">" \
         "<soap:Body>" \
             "<GetDocInfo xmlns=\"http://tempuri.org/\">"\
-                "<docID>string</docID>"\
+                "<docID>%@</docID>"\
                 "<userID>admin</userID>"\
                 "<userName>管理员</userName>"\
             "</GetDocInfo>"\
         "</soap:Body>"\
     "</soap:Envelope>";
     
+    NSString *soapBodyComplete = [NSString stringWithFormat:soapBody, matterID];
+    
     NSMutableURLRequest *request = [BLMatterHTTPLogic soapRequestWithURLParam:@"GetDocInfo"
                                                                    soapAction:@"http://tempuri.org/GetDocInfo"
-                                                                     soapBody:soapBody];
+                                                                     soapBody:soapBodyComplete];
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     

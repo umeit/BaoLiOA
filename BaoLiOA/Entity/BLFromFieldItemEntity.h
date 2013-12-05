@@ -20,4 +20,8 @@
 
 @property (strong, nonatomic) NSString *mode;
 
+@property (nonatomic) BOOL sign;
+
+@property (nonatomic) NSInteger percent;
+
 @end

@@ -96,7 +96,12 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSLog(@"asdf");
+    UIViewController *vc = segue.destinationViewController;
+    
+    if ([vc respondsToSelector:@selector(setMatterID:)]) {
+        NSString *matterID = ((BLMatterEntity *)self.matterList[[self.tableView indexPathForSelectedRow].row]).matterID;
+        [vc performSelector:@selector(setMatterID:) withObject:matterID];
+    }
 }
 
 
