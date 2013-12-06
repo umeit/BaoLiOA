@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-//#define @""
+#define kBLMatterInfoServiceFormInfo @"kBLMatterInfoServiceFormInfo"
+#define kBLMatterInfoServiceOperationInfo @"kBLMatterInfoServiceOperationInfo"
+#define kBLMatterInfoServiceAttachInfo @"kBLMatterInfoServiceAttachInfo"
 
 typedef void(^BLMatterInfoServiceGeneralBlock)(id obj, NSError *error);
 
@@ -18,8 +20,8 @@ typedef void(^BLMatterInfoServiceGeneralBlock)(id obj, NSError *error);
 
 - (void)takenMatterWithBlock:(BLMatterInfoServiceGeneralBlock)block;
 
-- (void)matterFormListWithMatterID:(NSString *)matterID
-                             block:(BLMatterInfoServiceGeneralBlock)block;
+//- (void)matterFormListWithMatterID:(NSString *)matterID
+//                             block:(BLMatterInfoServiceGeneralBlock)block;
 /**
  *  获取「事项」的详细信息：表单信息、可用操作、附件
  *

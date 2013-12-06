@@ -21,5 +21,9 @@ typedef void(^BLMatterHTTPLogicGeneralListBlock)(id responselist, NSError *error
 
 + (void)matterListWithMatterType:(MatterType)matterType withBlock:(BLMatterHTTPLogicGeneralListBlock)block;
 
-+ (void)matterFormListWithMatterID:(NSString *)matterID block:(BLMatterHTTPLogicGeneralListBlock)block;
+//+ (void)matterFormListWithMatterID:(NSString *)matterID block:(BLMatterHTTPLogicGeneralListBlock)block;
+
++ (void)matterDetailWithMatterID:(NSString *)matterID block:(BLMatterHTTPLogicGeneralListBlock)block;
+
+
 @end

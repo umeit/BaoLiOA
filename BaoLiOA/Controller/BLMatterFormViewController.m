@@ -17,7 +17,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (strong, nonatomic) NSArray *matterFormList;
+//@property (strong, nonatomic) NSArray *matterFormList;
 
 @property (strong, nonatomic) BLMatterInfoService *matterService;
 
@@ -45,15 +45,15 @@
     [super viewDidLoad];
     
     // 获取表单数据
-    [self.matterService matterFormListWithMatterID:self.matterID block:^(NSArray *list, NSError *error) {
-        if (error) {
-            
-        }
-        else {
-            self.matterFormList = list;
-            [self.tableView reloadData];
-        }
-    }];
+//    [self.matterService matterFormListWithMatterID:self.matterID block:^(NSArray *list, NSError *error) {
+//        if (error) {
+//            
+//        }
+//        else {
+//            self.matterFormList = list;
+//            [self.tableView reloadData];
+//        }
+//    }];
 }
 
 
@@ -66,7 +66,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.matterFormList count];
+    return [self.matterFormInfoList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -105,7 +105,7 @@
 //        [cell.contentView addSubview:aLabel];
 //    }
     
-    NSArray *itemListInLine = self.matterFormList[indexPath.row];
+    NSArray *itemListInLine = self.matterFormInfoList[indexPath.row];
     
     CGFloat currentX = 15;
     CGFloat cellWidth = cell.contentView.bounds.size.width; // cell 的宽度

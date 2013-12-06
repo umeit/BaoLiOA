@@ -47,19 +47,53 @@
     [[NSOperationQueue mainQueue] addOperation:operation];
 }
 
-+ (void)matterFormListWithMatterID:(NSString *)matterID block:(BLMatterHTTPLogicGeneralListBlock)block
+//+ (void)matterFormListWithMatterID:(NSString *)matterID block:(BLMatterHTTPLogicGeneralListBlock)block
+//{
+//    NSString *soapBody =
+//    @"<?xml version=\"1.0\" encoding=\"utf-8\"?>" \
+//    "<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" "\
+//    "xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">" \
+//        "<soap:Body>" \
+//            "<GetDocInfo xmlns=\"http://tempuri.org/\">"\
+//                "<docID>%@</docID>"\
+//                "<userID>admin</userID>"\
+//                "<userName>管理员</userName>"\
+//            "</GetDocInfo>"\
+//        "</soap:Body>"\
+//    "</soap:Envelope>";
+//    
+//    NSString *soapBodyComplete = [NSString stringWithFormat:soapBody, matterID];
+//    
+//    NSMutableURLRequest *request = [BLMatterHTTPLogic soapRequestWithURLParam:@"GetDocInfo"
+//                                                                   soapAction:@"http://tempuri.org/GetDocInfo"
+//                                                                     soapBody:soapBodyComplete];
+//    
+//    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+//    
+//    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        block(responseObject, nil);
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        block(nil, error);
+//    }];
+//    
+//    [[NSOperationQueue mainQueue] addOperation:operation];
+//
+//}
+
++ (void)matterDetailWithMatterID:(NSString *)matterID block:(BLMatterHTTPLogicGeneralListBlock)block
 {
     NSString *soapBody =
     @"<?xml version=\"1.0\" encoding=\"utf-8\"?>" \
     "<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" "\
     "xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">" \
-        "<soap:Body>" \
-            "<GetDocInfo xmlns=\"http://tempuri.org/\">"\
-                "<docID>%@</docID>"\
-                "<userID>admin</userID>"\
-                "<userName>管理员</userName>"\
-            "</GetDocInfo>"\
-        "</soap:Body>"\
+    "<soap:Body>" \
+    "<GetDocInfo xmlns=\"http://tempuri.org/\">"\
+    "<docID>%@</docID>"\
+    "<userID>admin</userID>"\
+    "<userName>管理员</userName>"\
+    "</GetDocInfo>"\
+    "</soap:Body>"\
     "</soap:Envelope>";
     
     NSString *soapBodyComplete = [NSString stringWithFormat:soapBody, matterID];
@@ -78,7 +112,6 @@
     }];
     
     [[NSOperationQueue mainQueue] addOperation:operation];
-
 }
 
 #pragma mark - Private

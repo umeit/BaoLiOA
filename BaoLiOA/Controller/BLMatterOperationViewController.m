@@ -79,11 +79,28 @@
 {
     [super viewDidLoad];
     
-    [self loadDefualtVC];
+//    [self loadDefualtVC];
     
-	[self.matterInfoService matterDetailInfoWithMatterID:self.matterID block:^(id obj, NSError *error) {
-        
+	[self.matterInfoService matterDetailInfoWithMatterID:self.matterID block:^(NSDictionary *dic, NSError *error) {
+        self.matterFormInfoList = dic[kBLMatterInfoServiceFormInfo];
+        self.matterOperationList = dic[kBLMatterInfoServiceOperationInfo];
+        self.matterAttachList = dic[kBLMatterInfoServiceAttachInfo];
     }];
+    
+    // 为默认第一个被选中的 segment 获取对应的 view controller
+    UIViewController *vc = [self viewControllerForSelectedSegment];
+    if ([vc respondsToSelector:@selector(setMatterFormInfoList:)]) {
+        [vc performSelector:@selector(setMatterFormInfoList:) withObject:self.matterFormInfoList];
+    }
+    
+    [self switchVC:vc];
+    
+    // 将当前正在操作的「事项」的 ID 传给有需要的子视图控制器
+    //    if ([vc respondsToSelector:@selector(setMatterID:)]) {
+    //        [vc performSelector:@selector(setMatterID:) withObject:self.matterID];
+    //    }
+    //
+    
 }
 
 #pragma - mark Action
@@ -211,16 +228,27 @@
 
 #pragma - mark Private
 
-- (void)loadDefualtVC
+//- (void)loadDefualtVC
+//{
+//    // 为默认第一个被选中的 segment 获取对应的 view controller
+//    UIViewController *vc = [self viewControllerForSelectedSegment];
+//    
+//    // 将当前正在操作的「事项」的 ID 传给有需要的子视图控制器
+//    //    if ([vc respondsToSelector:@selector(setMatterID:)]) {
+//    //        [vc performSelector:@selector(setMatterID:) withObject:self.matterID];
+//    //    }
+//    //
+//    [self addChildViewController:vc];
+//    
+//    // 修改新加入的的视图的尺寸，可以刚好放在预留好的地方
+//    vc.view.frame = self.contentView.bounds;
+//    [self.contentView addSubview:vc.view];
+//    
+//    self.currentViewController = vc;
+//}
+
+- (void)switchVC:(UIViewController *)vc
 {
-    // 为默认第一个被选中的 segment 获取对应的 view controller
-    UIViewController *vc = [self viewControllerForSelectedSegment];
-    
-    // 将当前正在操作的「事项」的 ID 传给有需要的子视图控制器
-    //    if ([vc respondsToSelector:@selector(setMatterID:)]) {
-    //        [vc performSelector:@selector(setMatterID:) withObject:self.matterID];
-    //    }
-    //
     [self addChildViewController:vc];
     
     // 修改新加入的的视图的尺寸，可以刚好放在预留好的地方

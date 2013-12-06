@@ -10,6 +10,11 @@
 
 @interface BLMatterFormViewController : UIViewController
 
-@property (strong, nonatomic) NSString *matterID;
+//@property (strong, nonatomic) NSString *matterID;
+
+/**
+ *  Form 信息
+ */
+@property (strong, nonatomic) NSArray *matterFormInfoList;
 
 @end
