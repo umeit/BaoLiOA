@@ -14,6 +14,8 @@
 #import "BLManageFollowViewController.h"
 #import "BLMatterInfoService.h"
 
+#define OperationButtonParentViewTag 30
+
 @interface BLMatterOperationViewController () <BLManageFollowViewControllerDelegate>
 
 /**
@@ -85,6 +87,8 @@
         self.matterFormInfoList = dic[kBLMatterInfoServiceFormInfo];
         self.matterOperationList = dic[kBLMatterInfoServiceOperationInfo];
         self.matterAttachList = dic[kBLMatterInfoServiceAttachInfo];
+        
+        [self initOperationButton];
         
         // 默认被选中的 view controller
         UIViewController *vc = [self viewControllerForSelectedSegment];
@@ -248,6 +252,25 @@
 }
 
 #pragma - mark Private
+
+- (void)initOperationButton
+{
+    // 结算每个 Button 的宽度
+    CGFloat buttonWidth = 703.f / [self.matterOperationList count];
+    
+    CGFloat x = 0;
+    
+    for (NSDictionary *buttonInfo in self.matterOperationList) {
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(x, 0, buttonWidth, 70)];
+        [button setTitle:buttonInfo[@"ActionName"] forState:UIControlStateNormal];
+        [button setBackgroundColor:[UIColor grayColor]];
+        
+        [[self.view viewWithTag:OperationButtonParentViewTag] addSubview:button];
+        
+        x += buttonWidth;
+    }
+    
+}
 
 //- (void)loadDefualtVC
 //{
