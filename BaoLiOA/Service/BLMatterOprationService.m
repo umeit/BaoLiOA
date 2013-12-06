@@ -22,10 +22,10 @@
     
 }
 
-- (void)matterAttachmentListWithBlock:(BLMatterOprationServiceGeneralListBlock)block
-{
-    
-}
+//- (void)matterAttachmentListWithBlock:(BLMatterOprationServiceGeneralListBlock)block
+//{
+//    
+//}
 
 - (void)folloDepartmentWithBlock:(BLMatterOprationServiceGeneralListBlock)block
 {

@@ -10,4 +10,6 @@
 
 @interface BLMatterAttachmentListViewController : UITableViewController
 
+@property (strong, nonatomic) NSArray *matterAttachList;
+
 @end
