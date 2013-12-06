@@ -804,7 +804,7 @@
         <!--Matter Opinion View Controller-->
         <scene sceneID="6c4-VK-Yvf">
             <objects>
-                <viewController storyboardIdentifier="BLMatterOperationViewController" id="Q4M-ID-sbx" customClass="BLMatterOpinionViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BLMatterOpinionViewController" id="Q4M-ID-sbx" customClass="BLMatterOpinionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mg0-ol-Vjp"/>
                         <viewControllerLayoutGuide type="bottom" id="O5L-3C-dH7"/>

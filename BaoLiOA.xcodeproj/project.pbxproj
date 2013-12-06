@@ -17,7 +17,7 @@
 		033EA7F7184E2E1D009E29C7 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 033EA7F6184E2E1D009E29C7 /* libxml2.dylib */; };
 		03588FDA183E4A780067F5D0 /* BLBaseMatterListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03588FD9183E4A780067F5D0 /* BLBaseMatterListViewController.m */; };
 		03588FDE183E4AED0067F5D0 /* BLBaseMatterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03588FDD183E4AED0067F5D0 /* BLBaseMatterCell.m */; };
-		03588FE1183E4B620067F5D0 /* BLMatterService.m in Sources */ = {isa = PBXBuildFile; fileRef = 03588FE0183E4B620067F5D0 /* BLMatterService.m */; };
+		03588FE1183E4B620067F5D0 /* BLMatterInfoService.m in Sources */ = {isa = PBXBuildFile; fileRef = 03588FE0183E4B620067F5D0 /* BLMatterInfoService.m */; };
 		03588FE4183E4B830067F5D0 /* BLMatterHTTPLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 03588FE3183E4B830067F5D0 /* BLMatterHTTPLogic.m */; };
 		03588FE7183E4F7B0067F5D0 /* BLMatterEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 03588FE6183E4F7B0067F5D0 /* BLMatterEntity.m */; };
 		03588FEA183E52440067F5D0 /* UIViewController+BLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03588FE9183E52440067F5D0 /* UIViewController+BLViewController.m */; };
@@ -88,8 +88,8 @@
 		03588FD9183E4A780067F5D0 /* BLBaseMatterListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLBaseMatterListViewController.m; sourceTree = "<group>"; };
 		03588FDC183E4AED0067F5D0 /* BLBaseMatterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLBaseMatterCell.h; sourceTree = "<group>"; };
 		03588FDD183E4AED0067F5D0 /* BLBaseMatterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLBaseMatterCell.m; sourceTree = "<group>"; };
-		03588FDF183E4B620067F5D0 /* BLMatterService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterService.h; sourceTree = "<group>"; };
-		03588FE0183E4B620067F5D0 /* BLMatterService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterService.m; sourceTree = "<group>"; };
+		03588FDF183E4B620067F5D0 /* BLMatterInfoService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterInfoService.h; sourceTree = "<group>"; };
+		03588FE0183E4B620067F5D0 /* BLMatterInfoService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterInfoService.m; sourceTree = "<group>"; };
 		03588FE2183E4B830067F5D0 /* BLMatterHTTPLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterHTTPLogic.h; sourceTree = "<group>"; };
 		03588FE3183E4B830067F5D0 /* BLMatterHTTPLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterHTTPLogic.m; sourceTree = "<group>"; };
 		03588FE5183E4F7B0067F5D0 /* BLMatterEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterEntity.h; sourceTree = "<group>"; };
@@ -264,8 +264,8 @@
 		03588FD6183E4A340067F5D0 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				03588FDF183E4B620067F5D0 /* BLMatterService.h */,
-				03588FE0183E4B620067F5D0 /* BLMatterService.m */,
+				03588FDF183E4B620067F5D0 /* BLMatterInfoService.h */,
+				03588FE0183E4B620067F5D0 /* BLMatterInfoService.m */,
 				03DECA4D18425154007F6F40 /* BLMatterOprationService.h */,
 				03DECA4E18425154007F6F40 /* BLMatterOprationService.m */,
 				030D3C631849B2F000E844EA /* BLUserService.h */,
@@ -512,7 +512,7 @@
 				03BD17F71844DC44002F2C38 /* BLMatterAttachmentListViewController.m in Sources */,
 				03588FEA183E52440067F5D0 /* UIViewController+BLViewController.m in Sources */,
 				035C2D381843AA660090E5BA /* BLMainBodyViewController.m in Sources */,
-				03588FE1183E4B620067F5D0 /* BLMatterService.m in Sources */,
+				03588FE1183E4B620067F5D0 /* BLMatterInfoService.m in Sources */,
 				03DECA4F18425154007F6F40 /* BLMatterOprationService.m in Sources */,
 				036C0FF3183D05AD00C61808 /* AFURLRequestSerialization.m in Sources */,
 				03DECA49184247D0007F6F40 /* BLGlobal.m in Sources */,

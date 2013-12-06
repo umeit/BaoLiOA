@@ -6,15 +6,15 @@
 //  Copyright (c) 2013年 Liu Feng. All rights reserved.
 //
 
-#import "BLMatterService.h"
+#import "BLMatterInfoService.h"
 #import "BLMatterHTTPLogic.h"
 #import "BLMatterEntity.h"
 #import "BLFromFieldItemEntity.h"
 #import "RXMLElement.h"
 
-@implementation BLMatterService
+@implementation BLMatterInfoService
 
-- (void)todoListWithBlock:(BLMatterServiceGeneralBlock)block
+- (void)todoListWithBlock:(BLMatterInfoServiceGeneralBlock)block
 {
     [BLMatterHTTPLogic matterListWithMatterType:TodoMatterType withBlock:^(id responseData, NSError *error) {
         if (error) {
@@ -46,7 +46,7 @@
     }];
 }
 
-- (void)takenMatterWithBlock:(BLMatterServiceGeneralBlock)block
+- (void)takenMatterWithBlock:(BLMatterInfoServiceGeneralBlock)block
 {
     [BLMatterHTTPLogic matterListWithMatterType:TakenMatter withBlock:^(id responseData, NSError *error) {
         if (error) {
@@ -58,7 +58,7 @@
     }];
 }
 
-- (void)matterFormListWithMatterID:(NSString *)matterID block:(BLMatterServiceGeneralBlock)block;
+- (void)matterFormListWithMatterID:(NSString *)matterID block:(BLMatterInfoServiceGeneralBlock)block;
 {
     [BLMatterHTTPLogic matterFormListWithMatterID:matterID block:^(id responseData, NSError *error) {
         if (error) {

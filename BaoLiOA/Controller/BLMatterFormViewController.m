@@ -10,7 +10,7 @@
 #import "BLMatterOprationService.h"
 #import "BLMatterMainBodyCell.h"
 #import "BLMainBodyViewController.h"
-#import "BLMatterService.h"
+#import "BLMatterInfoService.h"
 #import "BLFromFieldItemEntity.h"
 
 @interface BLMatterFormViewController () <UITableViewDataSource>
@@ -19,7 +19,7 @@
 
 @property (strong, nonatomic) NSArray *matterFormList;
 
-@property (strong, nonatomic) BLMatterService *matterService;
+@property (strong, nonatomic) BLMatterInfoService *matterService;
 
 @property (strong, nonatomic) BLMatterOprationService *matterOprationService;
 
@@ -35,7 +35,7 @@
     
     if (self) {
         self.matterOprationService = [[BLMatterOprationService alloc] init];
-        self.matterService = [[BLMatterService alloc] init];
+        self.matterService = [[BLMatterInfoService alloc] init];
     }
     return self;
 }

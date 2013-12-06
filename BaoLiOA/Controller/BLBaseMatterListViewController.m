@@ -11,7 +11,7 @@
 //
 
 #import "BLBaseMatterListViewController.h"
-#import "BLMatterService.h"
+#import "BLMatterInfoService.h"
 #import "UIViewController+BLViewController.h"
 #import "BLBaseMatterCell.h"
 #import "BLMatterEntity.h"
@@ -20,7 +20,7 @@
 
 @property (strong, nonatomic) NSArray *matterList;
 
-@property (strong, nonatomic) BLMatterService *matterService;
+@property (strong, nonatomic) BLMatterInfoService *matterService;
 
 @end
 
@@ -30,7 +30,7 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        self.matterService = [[BLMatterService alloc] init];
+        self.matterService = [[BLMatterInfoService alloc] init];
     }
     return self;
 }
