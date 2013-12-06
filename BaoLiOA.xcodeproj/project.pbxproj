@@ -12,6 +12,7 @@
 		030D3C651849B2F000E844EA /* BLUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 030D3C641849B2F000E844EA /* BLUserService.m */; };
 		030D3C681849B30A00E844EA /* BLUserHTTPLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 030D3C671849B30A00E844EA /* BLUserHTTPLogic.m */; };
 		030D3C6B1849DE7700E844EA /* BLAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 030D3C6A1849DE7700E844EA /* BLAppSettingsViewController.m */; };
+		0323EAD51851E2EA00752172 /* BLAttachEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 0323EAD41851E2EA00752172 /* BLAttachEntity.m */; };
 		033EA7F3184E1A5D009E29C7 /* RXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 033EA7F2184E1A5D009E29C7 /* RXMLElement.m */; };
 		033EA7F5184E2E15009E29C7 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 033EA7F4184E2E15009E29C7 /* libz.dylib */; };
 		033EA7F7184E2E1D009E29C7 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 033EA7F6184E2E1D009E29C7 /* libxml2.dylib */; };
@@ -80,6 +81,8 @@
 		030D3C671849B30A00E844EA /* BLUserHTTPLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLUserHTTPLogic.m; sourceTree = "<group>"; };
 		030D3C691849DE7700E844EA /* BLAppSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLAppSettingsViewController.h; sourceTree = "<group>"; };
 		030D3C6A1849DE7700E844EA /* BLAppSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLAppSettingsViewController.m; sourceTree = "<group>"; };
+		0323EAD31851E2EA00752172 /* BLAttachEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLAttachEntity.h; sourceTree = "<group>"; };
+		0323EAD41851E2EA00752172 /* BLAttachEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLAttachEntity.m; sourceTree = "<group>"; };
 		033EA7F1184E1A5D009E29C7 /* RXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RXMLElement.h; sourceTree = "<group>"; };
 		033EA7F2184E1A5D009E29C7 /* RXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RXMLElement.m; sourceTree = "<group>"; };
 		033EA7F4184E2E15009E29C7 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -246,6 +249,8 @@
 				03588FE6183E4F7B0067F5D0 /* BLMatterEntity.m */,
 				0361DE16184F7EF700D33CE6 /* BLFromFieldItemEntity.h */,
 				0361DE17184F7EF700D33CE6 /* BLFromFieldItemEntity.m */,
+				0323EAD31851E2EA00752172 /* BLAttachEntity.h */,
+				0323EAD41851E2EA00752172 /* BLAttachEntity.m */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -534,6 +539,7 @@
 				036C0FF5183D05AD00C61808 /* AFURLSessionManager.m in Sources */,
 				036C0FF4183D05AD00C61808 /* AFURLResponseSerialization.m in Sources */,
 				035C2D351843A0EF0090E5BA /* BLMatterMainBodyCell.m in Sources */,
+				0323EAD51851E2EA00752172 /* BLAttachEntity.m in Sources */,
 				036C0FB8183D02AB00C61808 /* BLAppDelegate.m in Sources */,
 				03588FE4183E4B830067F5D0 /* BLMatterHTTPLogic.m in Sources */,
 				036C0FEF183D05AD00C61808 /* AFHTTPSessionManager.m in Sources */,
