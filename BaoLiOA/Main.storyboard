@@ -656,7 +656,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="附件标题" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yeN-9v-ROo">
-                                            <rect key="frame" x="20" y="11" width="606" height="21"/>
+                                            <rect key="frame" x="20" y="11" width="524" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -672,6 +672,10 @@
                                                 <action selector="downloadOrOpenFileButtonPress:" destination="SHX-lk-6Pm" eventType="touchUpInside" id="UO2-L2-sEL"/>
                                             </connections>
                                         </button>
+                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QfY-yu-Y7z">
+                                            <rect key="frame" x="552" y="21" width="86" height="2"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </progressView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>

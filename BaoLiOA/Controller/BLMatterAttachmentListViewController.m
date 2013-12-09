@@ -76,7 +76,10 @@
         
         [self showPreviewViewControllerWithFilePath:attachmentFileLocalPath];
     }
+    // 点击下载
     else {
+        [sender setTitle:@"停止" forState:UIControlStateNormal];
+        
         // 下载正文文件
         [self.matterOprationService
          downloadMatterAttachmentFileFromURL:[self attachmentFileRemotePathWithAttach:self.matterAttachList[row]]
