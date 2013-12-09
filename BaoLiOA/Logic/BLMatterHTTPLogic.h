@@ -22,7 +22,7 @@ typedef void(^BLMatterHTTPLogicGeneralBlock)(id responseData, NSError *error);
 
 + (void)matterListWithMatterType:(MatterType)matterType withBlock:(BLMatterHTTPLogicGeneralListBlock)block;
 
-+ (void)downloadFileFromURL:(NSString *)filePath withBlock:(BLMatterHTTPLogicGeneralBlock)block;
++ (void)downloadFileFromURL:(NSString *)filePath toPath:(NSString *)localPath withBlock:(BLMatterHTTPLogicGeneralBlock)block;
 
 + (void)matterDetailWithMatterID:(NSString *)matterID block:(BLMatterHTTPLogicGeneralListBlock)block;
 

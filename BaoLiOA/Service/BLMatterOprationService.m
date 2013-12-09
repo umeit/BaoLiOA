@@ -7,10 +7,9 @@
 //
 
 #import "BLMatterOprationService.h"
+#import "BLMatterHTTPLogic.h"
 
 @implementation BLMatterOprationService
-
-
 
 - (void)downloadMatterMainBodyFileFromURL:(NSString *)urlString withBlock:(BLMatterOprationServiceDownloadFileBlock)block
 {
@@ -20,6 +19,12 @@
 - (void)downloadMatterAttachmentFileFromURL:(NSString *)urlString withBlock:(BLMatterOprationServiceDownloadFileBlock)block
 {
     
+    NSURL *documentsDirectoryPath = [NSURL fileURLWithPath:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                                                                NSUserDomainMask,
+                                                                                                YES) firstObject]];
+    [BLMatterHTTPLogic downloadFileFromURL:urlString toPath:(NSString *)documentsDirectoryPath  withBlock:^(id responseData, NSError *error) {
+        block([documentsDirectoryPath path], nil);
+    }];
 }
 
 //- (void)matterAttachmentListWithBlock:(BLMatterOprationServiceGeneralListBlock)block

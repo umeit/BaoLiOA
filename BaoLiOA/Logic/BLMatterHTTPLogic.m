@@ -16,7 +16,7 @@
 
 @implementation BLMatterHTTPLogic
 
-+ (void)downloadFileFromURL:(NSString *)filePath withBlock:(BLMatterHTTPLogicGeneralBlock)block
++ (void)downloadFileFromURL:(NSString *)filePath toPath:(NSString *)localPath  withBlock:(BLMatterHTTPLogicGeneralBlock)block
 {
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
@@ -27,11 +27,10 @@
     // 保存路径
     NSURL * (^DestinationBlock)(NSURL *__strong, NSURLResponse *__strong) =
     ^NSURL *(NSURL *targetPath, NSURLResponse *response) {
-        NSURL *documentsDirectoryPath = [NSURL fileURLWithPath:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                                                                    NSUserDomainMask,
-                                                                                                    YES) firstObject]];
+        NSURL *savePath = [NSURL URLWithString:localPath];
+
         
-        return [documentsDirectoryPath URLByAppendingPathComponent:[response suggestedFilename]];
+        return [savePath URLByAppendingPathComponent:[response suggestedFilename]];
     };
     
     // 下载完成
