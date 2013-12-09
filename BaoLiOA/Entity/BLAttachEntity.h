@@ -20,4 +20,6 @@
 
 @property (nonatomic) BOOL encrypt;
 
+@property (strong, nonatomic) NSString *localPath;
+
 @end

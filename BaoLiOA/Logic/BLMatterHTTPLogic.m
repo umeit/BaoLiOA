@@ -8,12 +8,50 @@
 
 #import "BLMatterHTTPLogic.h"
 #import "AFHTTPRequestOperation.h"
+#import "AFURLSessionManager.h"
 
 //#define SOAP_URL(s) [NSURL URLWithString:[NSString stringWithFormat:@"http://210.51.191.244:8081/OAWebService/BL_WebService.asmx?op=%@", s]];
 // 测试地址
 #define SOAP_URL(s) [NSURL URLWithString:[NSString stringWithFormat:@"http://210.51.191.244:8081/OAWebService/DemoData_WebService.asmx?op=%@", s]];
 
 @implementation BLMatterHTTPLogic
+
++ (void)downloadFileFromURL:(NSString *)filePath withBlock:(BLMatterHTTPLogicGeneralBlock)block
+{
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    
+    NSURL *URL = [NSURL URLWithString:filePath];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    
+    // 保存路径
+    NSURL * (^DestinationBlock)(NSURL *__strong, NSURLResponse *__strong) =
+    ^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+        NSURL *documentsDirectoryPath = [NSURL fileURLWithPath:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                                                                    NSUserDomainMask,
+                                                                                                    YES) firstObject]];
+        
+        return [documentsDirectoryPath URLByAppendingPathComponent:[response suggestedFilename]];
+    };
+    
+    // 下载完成
+    void (^completionHandlerBlock)(NSURLResponse *__strong, NSURL *__strong, NSError *__strong) =
+    ^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+        NSLog(@"File downloaded to: %@", filePath);
+        if (error) {
+            block(nil, error);
+        }
+        else {
+            block([filePath path], nil);
+        }
+    };
+    
+    NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request
+                                                                     progress:nil
+                                                                  destination:DestinationBlock
+                                                            completionHandler:completionHandlerBlock];
+    [downloadTask resume];
+}
 
 + (void)matterListWithMatterType:(MatterType)matterType withBlock:(BLMatterHTTPLogicGeneralListBlock)block
 {
@@ -116,7 +154,9 @@
 
 #pragma mark - Private
 
-+ (NSMutableURLRequest *)soapRequestWithURLParam:(NSString *)urlParam soapAction:(NSString *)actionName soapBody:(NSString *)body
++ (NSMutableURLRequest *)soapRequestWithURLParam:(NSString *)urlParam
+                                      soapAction:(NSString *)actionName
+                                        soapBody:(NSString *)body
 {
     NSURL *url = SOAP_URL(urlParam);
     

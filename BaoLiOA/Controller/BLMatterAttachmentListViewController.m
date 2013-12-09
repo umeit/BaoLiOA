@@ -7,6 +7,7 @@
 //
 
 #import "BLMatterAttachmentListViewController.h"
+#import "BLAttachPreviewViewController.h"
 #import "BLMatterOprationService.h"
 #import "BLMatterAttachmentCell.h"
 #import "BLAttachEntity.h"
@@ -68,27 +69,37 @@
 - (IBAction)downloadOrOpenFileButtonPress:(UIButton *)sender
 {
     NSInteger row = sender.tag;
-    
-    // 判断是否已经下载到了本地
-//    NSString *attachmentFileLocalPath = [self attachmentFileLocalPathAtIndex:self.matterAttachList[row]];
-//    if (attachmentFileLocalPath && [attachmentFileLocalPath length] > 0) {
-//        // 使用第三放 app 打开正文文件
-//        
-//    }
+
     if ([sender.titleLabel.text isEqualToString:@"打开"]) {
-        // 使用第三放 app 打开正文文件
+        // 使用 web view 打开附件文件
+        NSString *attachmentFileLocalPath = [self attachmentFileLocalPathWithAttach:self.matterAttachList[row]];
+        
+        [self showPreviewViewControllerWithFilePath:attachmentFileLocalPath];
     }
     else {
         // 下载正文文件
-        [self.matterOprationService downloadMatterAttachmentFileFromURL:[self attachmentFileRemotePathAtIndex:self.matterAttachList[row]]
-                                                              withBlock:^(NSString *localFilePath, NSError *error) {
-//                                                                  self.mainbodyFileLocalPath = localFilePath;
-                                                                  [sender setTitle:@"打开" forState:UIControlStateNormal];
-                                                              }];
+        [self.matterOprationService
+         downloadMatterAttachmentFileFromURL:[self attachmentFileRemotePathWithAttach:self.matterAttachList[row]]
+                                   withBlock:^(NSString *localFilePath, NSError *error) {
+                                       
+                                       BLAttachEntity *attachEntity = self.matterAttachList[row];
+                                       attachEntity.localPath = localFilePath;
+                                       
+                                       [sender setTitle:@"打开" forState:UIControlStateNormal];
+                                   }];
     }
 }
 
 #pragma mark - Private
+
+- (void)showPreviewViewControllerWithFilePath:(NSString *)filePath
+{
+    BLAttachPreviewViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BLAttachPreviewViewController"];
+    
+    vc.filePath = filePath;
+    
+    [self presentViewController:vc animated:YES completion:nil];
+}
 
 // 配置正文 cell 的标题与按钮的标题
 - (void)configureMatterAttachmentCell:(BLMatterAttachmentCell *)cell atIndexPath:(NSIndexPath *)indexPath
@@ -98,7 +109,7 @@
     cell.attachmentTitleLabel.text = attachEntity.attachTitle;
     
     // 检查本地是否有下载过
-    NSString *attachmentFileLocalPath = [self attachmentFileLocalPathAtIndex:attachEntity];
+    NSString *attachmentFileLocalPath = [self attachmentFileLocalPathWithAttach:attachEntity];
     if (attachmentFileLocalPath && [attachmentFileLocalPath length] > 0) {
         [cell.downloadButton setTitle:@"打开" forState:UIControlStateNormal];
     }
@@ -108,13 +119,13 @@
 }
 
 // 附件的本地路径
-- (NSString *)attachmentFileLocalPathAtIndex:(BLAttachEntity *)attachEntity
+- (NSString *)attachmentFileLocalPathWithAttach:(BLAttachEntity *)attachEntity
 {
     return nil;
 }
 
 // 附件的服务器端地址
-- (NSString *)attachmentFileRemotePathAtIndex:(BLAttachEntity *)attachEntity
+- (NSString *)attachmentFileRemotePathWithAttach:(BLAttachEntity *)attachEntity
 {
     return nil;
 }

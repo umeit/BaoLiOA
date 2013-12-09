@@ -16,12 +16,13 @@ typedef enum MatterType : NSInteger{
 }MatterType;
 
 typedef void(^BLMatterHTTPLogicGeneralListBlock)(id responselist, NSError *error);
+typedef void(^BLMatterHTTPLogicGeneralBlock)(id responseData, NSError *error);
 
 @interface BLMatterHTTPLogic : NSObject
 
 + (void)matterListWithMatterType:(MatterType)matterType withBlock:(BLMatterHTTPLogicGeneralListBlock)block;
 
-//+ (void)matterFormListWithMatterID:(NSString *)matterID block:(BLMatterHTTPLogicGeneralListBlock)block;
++ (void)downloadFileFromURL:(NSString *)filePath withBlock:(BLMatterHTTPLogicGeneralBlock)block;
 
 + (void)matterDetailWithMatterID:(NSString *)matterID block:(BLMatterHTTPLogicGeneralListBlock)block;
 
