@@ -84,11 +84,15 @@
 //    [self loadDefualtVC];
     
 	[self.matterInfoService matterDetailInfoWithMatterID:self.matterID block:^(NSDictionary *dic, NSError *error) {
+        // 获取到表单列表
         self.matterFormInfoList = dic[kBLMatterInfoServiceFormInfo];
+        // 获取到操作列表
         self.matterOperationList = dic[kBLMatterInfoServiceOperationInfo];
+        // 获取到附件列表
         self.matterAttachList = dic[kBLMatterInfoServiceAttachInfo];
         
-        [self initOperationButton];
+        // 放置操作按钮到界面上
+        [self initOperationButton:self.matterOperationList];
         
         // 默认被选中的 view controller
         UIViewController *vc = [self viewControllerForSelectedSegment];
@@ -170,7 +174,7 @@
 }
 
 // 提交
-- (IBAction)submitButtonPress:(id)sender
+- (void)submitButtonPress:(id)sender
 {
     self.isSelectionPersonnel = NO;
     [self.matterOprationService folloDepartmentWithBlock:^(NSArray *list, NSError *error) {
@@ -197,21 +201,21 @@
 }
 
 // 已阅
-- (IBAction)HasReadButtonPress:(id)sender
+- (void)HasReadButtonPress:(id)sender
 {
-    
+    NSLog(@"HasRead!");
 }
 
 // 暂存
-- (IBAction)temporaryButtonPress:(id)sender
+- (void)temporaryButtonPress:(id)sender
 {
-    
+    NSLog(@"temporary!");
 }
 
 // 回退
-- (IBAction)fallbackButtonPress:(id)sender
+- (void)fallbackButtonPress:(id)sender
 {
-    
+    NSLog(@"fallback!");
 }
 
 #pragma - mark BLManageFollowViewControllerDelegate
@@ -253,15 +257,33 @@
 
 #pragma - mark Private
 
-- (void)initOperationButton
+- (void)initOperationButton:(NSArray *)buttonList
 {
-    // 结算每个 Button 的宽度
-    CGFloat buttonWidth = 703.f / [self.matterOperationList count];
+    // 计算每个 Button 的宽度
+    CGFloat buttonWidth = 703.f / [buttonList count];
     
     CGFloat x = 0;
     
-    for (NSDictionary *buttonInfo in self.matterOperationList) {
+    for (NSDictionary *buttonInfo in buttonList) {
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(x, 0, buttonWidth, 70)];
+        
+        SEL action = NULL;
+        
+        // 设置点击对应的方法
+        if ([buttonInfo[@"ActionID"] isEqualToString:@"Submit"]) {
+            action = @selector(submitButtonPress:);
+        }
+        else if ([buttonInfo[@"ActionID"] isEqualToString:@"Save"]) {
+            action = @selector(temporaryButtonPress:);
+        }
+        else if ([buttonInfo[@"ActionID"] isEqualToString:@"Back"]) {
+            action = @selector(fallbackButtonPress:);
+        }
+        else {
+            action = @selector(HasReadButtonPress:);
+        }
+        
+        [button addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
         [button setTitle:buttonInfo[@"ActionName"] forState:UIControlStateNormal];
         [button setBackgroundColor:[UIColor grayColor]];
         
