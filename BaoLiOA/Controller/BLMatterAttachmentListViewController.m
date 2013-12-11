@@ -8,13 +8,13 @@
 
 #import "BLMatterAttachmentListViewController.h"
 #import "BLAttachPreviewViewController.h"
-#import "BLMatterOprationService.h"
+#import "BLMatterOperationService.h"
 #import "BLMatterAttachmentCell.h"
 #import "BLAttachEntity.h"
 
 @interface BLMatterAttachmentListViewController ()
 
-@property (strong, nonatomic) BLMatterOprationService *matterOprationService;
+@property (strong, nonatomic) BLMatterOperationService *matterOprationService;
 
 @end
 
@@ -25,7 +25,7 @@
     self = [super initWithCoder:aDecoder];
     
     if (self) {
-        self.matterOprationService = [[BLMatterOprationService alloc] init];
+        self.matterOprationService = [[BLMatterOperationService alloc] init];
     }
     return self;
 }

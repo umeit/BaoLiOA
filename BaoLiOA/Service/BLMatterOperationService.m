@@ -6,10 +6,10 @@
 //  Copyright (c) 2013年 Liu Feng. All rights reserved.
 //
 
-#import "BLMatterOprationService.h"
+#import "BLMatterOperationService.h"
 #import "BLMatterHTTPLogic.h"
 
-@implementation BLMatterOprationService
+@implementation BLMatterOperationService
 
 - (void)downloadMatterMainBodyFileFromURL:(NSString *)urlString withBlock:(BLMatterOprationServiceDownloadFileBlock)block
 {

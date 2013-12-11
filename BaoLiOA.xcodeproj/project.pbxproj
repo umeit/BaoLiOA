@@ -58,7 +58,7 @@
 		03DECA461842434D007F6F40 /* BLMatterOperationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DECA451842434D007F6F40 /* BLMatterOperationViewController.m */; };
 		03DECA49184247D0007F6F40 /* BLGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DECA48184247D0007F6F40 /* BLGlobal.m */; };
 		03DECA4C184250B8007F6F40 /* BLMatterFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DECA4B184250B8007F6F40 /* BLMatterFormViewController.m */; };
-		03DECA4F18425154007F6F40 /* BLMatterOprationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DECA4E18425154007F6F40 /* BLMatterOprationService.m */; };
+		03DECA4F18425154007F6F40 /* BLMatterOperationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DECA4E18425154007F6F40 /* BLMatterOperationService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -164,8 +164,8 @@
 		03DECA48184247D0007F6F40 /* BLGlobal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLGlobal.m; sourceTree = "<group>"; };
 		03DECA4A184250B8007F6F40 /* BLMatterFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterFormViewController.h; sourceTree = "<group>"; };
 		03DECA4B184250B8007F6F40 /* BLMatterFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterFormViewController.m; sourceTree = "<group>"; };
-		03DECA4D18425154007F6F40 /* BLMatterOprationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterOprationService.h; sourceTree = "<group>"; };
-		03DECA4E18425154007F6F40 /* BLMatterOprationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterOprationService.m; sourceTree = "<group>"; };
+		03DECA4D18425154007F6F40 /* BLMatterOperationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterOperationService.h; sourceTree = "<group>"; };
+		03DECA4E18425154007F6F40 /* BLMatterOperationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterOperationService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,8 +276,8 @@
 			children = (
 				03588FDF183E4B620067F5D0 /* BLMatterInfoService.h */,
 				03588FE0183E4B620067F5D0 /* BLMatterInfoService.m */,
-				03DECA4D18425154007F6F40 /* BLMatterOprationService.h */,
-				03DECA4E18425154007F6F40 /* BLMatterOprationService.m */,
+				03DECA4D18425154007F6F40 /* BLMatterOperationService.h */,
+				03DECA4E18425154007F6F40 /* BLMatterOperationService.m */,
 				030D3C631849B2F000E844EA /* BLUserService.h */,
 				030D3C641849B2F000E844EA /* BLUserService.m */,
 			);
@@ -523,7 +523,7 @@
 				03588FEA183E52440067F5D0 /* UIViewController+BLViewController.m in Sources */,
 				035C2D381843AA660090E5BA /* BLMainBodyViewController.m in Sources */,
 				03588FE1183E4B620067F5D0 /* BLMatterInfoService.m in Sources */,
-				03DECA4F18425154007F6F40 /* BLMatterOprationService.m in Sources */,
+				03DECA4F18425154007F6F40 /* BLMatterOperationService.m in Sources */,
 				0390A01A1855BC6B00EEEEBB /* BLAttachPreviewViewController.m in Sources */,
 				036C0FF3183D05AD00C61808 /* AFURLRequestSerialization.m in Sources */,
 				03DECA49184247D0007F6F40 /* BLGlobal.m in Sources */,

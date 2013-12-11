@@ -10,7 +10,7 @@
 //
 
 #import "BLMatterOperationViewController.h"
-#import "BLMatterOprationService.h"
+#import "BLMatterOperationService.h"
 #import "BLManageFollowViewController.h"
 #import "BLMatterInfoService.h"
 
@@ -36,7 +36,7 @@
 /**
  *  操作「事项」服务
  */
-@property (strong, nonatomic) BLMatterOprationService *matterOprationService;
+@property (strong, nonatomic) BLMatterOperationService *matterOprationService;
 
 /**
  *  获取「事项」信息的服务
@@ -81,7 +81,7 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        self.matterOprationService = [[BLMatterOprationService alloc] init];
+        self.matterOprationService = [[BLMatterOperationService alloc] init];
         self.matterInfoService = [[BLMatterInfoService alloc] init];
     }
     return self;

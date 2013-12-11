@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 
 /** Returns Codes **/
-typedef enum BLMatterOprationServiceRetCode : NSInteger {
+typedef enum BLMatterOperationServiceRetCode : NSInteger {
     kHasRoute,      // 有待选择的部门
     kHasEmployee    // 有待选择的人员
-}BLMatterOprationServiceRetCode;
+}BLMatterOperationServiceRetCode;
 
 
 /** Blocks **/
@@ -24,7 +24,7 @@ typedef void(^BLMOSSubmitCallBackBlock)(NSInteger retCode, NSArray *list, NSStri
 
 
 /** Interface **/
-@interface BLMatterOprationService : NSObject
+@interface BLMatterOperationService : NSObject
 
 - (void)submitMatterWithComment:(NSString *)comment
                     commentText:(NSString *)commentText

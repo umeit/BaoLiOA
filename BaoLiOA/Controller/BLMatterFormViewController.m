@@ -7,7 +7,7 @@
 //
 
 #import "BLMatterFormViewController.h"
-#import "BLMatterOprationService.h"
+#import "BLMatterOperationService.h"
 #import "BLMatterMainBodyCell.h"
 #import "BLMainBodyViewController.h"
 #import "BLMatterInfoService.h"
@@ -21,7 +21,7 @@
 
 @property (strong, nonatomic) BLMatterInfoService *matterService;
 
-@property (strong, nonatomic) BLMatterOprationService *matterOprationService;
+@property (strong, nonatomic) BLMatterOperationService *matterOprationService;
 
 @property (strong, nonatomic) NSString *mainbodyFileLocalPath;
 
@@ -34,7 +34,7 @@
     self = [super initWithCoder:aDecoder];
     
     if (self) {
-        self.matterOprationService = [[BLMatterOprationService alloc] init];
+        self.matterOprationService = [[BLMatterOperationService alloc] init];
         self.matterService = [[BLMatterInfoService alloc] init];
     }
     return self;
