@@ -10,7 +10,7 @@
 
 @protocol BLManageFollowViewControllerDelegate <NSObject>
 
-- (void)FollowDidSelected:(NSArray *)followList;
+- (void)followDidSelected:(NSArray *)followList;
 
 @end
 

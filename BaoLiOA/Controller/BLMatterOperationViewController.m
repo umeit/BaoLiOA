@@ -63,6 +63,16 @@
  */
 @property (strong, nonatomic) NSArray *matterAttachList;
 
+/**
+ *  保存用户的意见
+ */
+@property (strong, nonatomic) NSString *comment;
+
+/**
+ *  保存用户意见的正文
+ */
+@property (strong, nonatomic) NSString *commentText;
+
 @end
 
 @implementation BLMatterOperationViewController
@@ -176,15 +186,19 @@
 // 提交
 - (void)submitButtonPress:(id)sender
 {
-    self.isSelectionPersonnel = NO;
-    [self.matterOprationService folloDepartmentWithBlock:^(NSArray *list, NSError *error) {
+//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    
+//    NSString *userID = [userDefaults stringForKey:@"CurrentUserID"];
+//    NSString *password = [userDefaults stringForKey:@"CurrentPassword"];
+    
+    [self.matterOprationService submitMatterWithComment:self.comment commentText:self.commentText block:^(NSInteger retCode, NSArray *list, NSString *title) {
         
-        if (error) {
-            
-        }
-        else if ([list count] > 0) {
-              UINavigationController *navigation = [self.storyboard instantiateViewControllerWithIdentifier:@"FollowNavigation"];
+        if (retCode == kHasRoute && [list count] > 0) {
+            // 有待选择的部门
+            UINavigationController *navigation = [self.storyboard instantiateViewControllerWithIdentifier:@"FollowNavigation"];
             BLManageFollowViewController *manageFollowViewController = (BLManageFollowViewController *)[navigation topViewController];
+            
+            manageFollowViewController.title = title;
             manageFollowViewController.followList = list;
             manageFollowViewController.delegate = self;
             manageFollowViewController.title = @"办理路由";
@@ -194,10 +208,30 @@
             
             [self presentViewController:navigation animated:YES completion:nil];
         }
-        else {
-            // 提交服务器
-        }
     }];
+    
+//    self.isSelectionPersonnel = NO;
+//    [self.matterOprationService folloDepartmentWithBlock:^(NSArray *list, NSError *error) {
+//        
+//        if (error) {
+//            
+//        }
+//        else if ([list count] > 0) {
+//            UINavigationController *navigation = [self.storyboard instantiateViewControllerWithIdentifier:@"FollowNavigation"];
+//            BLManageFollowViewController *manageFollowViewController = (BLManageFollowViewController *)[navigation topViewController];
+//            manageFollowViewController.followList = list;
+//            manageFollowViewController.delegate = self;
+//            manageFollowViewController.title = @"办理路由";
+//            
+//            [navigation setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+//            [navigation setModalPresentationStyle:UIModalPresentationFormSheet];
+//            
+//            [self presentViewController:navigation animated:YES completion:nil];
+//        }
+//        else {
+//            // 提交服务器
+//        }
+//    }];
 }
 
 // 已阅
@@ -220,39 +254,40 @@
 
 #pragma - mark BLManageFollowViewControllerDelegate
 
-- (void)FollowDidSelected:(NSArray *)followList
+- (void)followDidSelected:(NSArray *)followList
 {
-    if (self.isSelectionPersonnel) {
-        
-        // 提交服务器
-    }
-    else {
-        
-        
-        [self.matterOprationService folloDepartmentWithBlock:^(NSArray *list, NSError *error) {
-            
-            if (error) {
-                
-            }
-            else if ([list count] > 0) {
-                self.isSelectionPersonnel = YES;
-                
-                UINavigationController *navigation = [self.storyboard instantiateViewControllerWithIdentifier:@"FollowNavigation"];
-                BLManageFollowViewController *manageFollowViewController = (BLManageFollowViewController *)[navigation topViewController];
-                manageFollowViewController.followList = list;
-                manageFollowViewController.delegate = self;
-                manageFollowViewController.title = @"办理人员";
-                
-                [navigation setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
-                [navigation setModalPresentationStyle:UIModalPresentationFormSheet];
-                
-                [self presentViewController:navigation animated:YES completion:nil];
-            }
-            else {
-                // 提交服务器
-            }
-        }];
-    }
+    
+//    if (self.isSelectionPersonnel) {
+//        
+//        // 提交服务器
+//    }
+//    else {
+//        
+//        
+//        [self.matterOprationService folloDepartmentWithBlock:^(NSArray *list, NSError *error) {
+//            
+//            if (error) {
+//                
+//            }
+//            else if ([list count] > 0) {
+//                self.isSelectionPersonnel = YES;
+//                
+//                UINavigationController *navigation = [self.storyboard instantiateViewControllerWithIdentifier:@"FollowNavigation"];
+//                BLManageFollowViewController *manageFollowViewController = (BLManageFollowViewController *)[navigation topViewController];
+//                manageFollowViewController.followList = list;
+//                manageFollowViewController.delegate = self;
+//                manageFollowViewController.title = @"办理人员";
+//                
+//                [navigation setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+//                [navigation setModalPresentationStyle:UIModalPresentationFormSheet];
+//                
+//                [self presentViewController:navigation animated:YES completion:nil];
+//            }
+//            else {
+//                // 提交服务器
+//            }
+//        }];
+//    }
 }
 
 #pragma - mark Private

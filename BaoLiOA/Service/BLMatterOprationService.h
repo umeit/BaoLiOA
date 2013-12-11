@@ -8,13 +8,38 @@
 
 #import <Foundation/Foundation.h>
 
+/** Returns Codes **/
+typedef enum BLMatterOprationServiceRetCode : NSInteger {
+    kHasRoute,      // 有待选择的部门
+    kHasEmployee    // 有待选择的人员
+}BLMatterOprationServiceRetCode;
+
+
+/** Blocks **/
 typedef void(^BLMatterOprationServiceGeneralListBlock)(NSArray *list, NSError *error);
 
 typedef void(^BLMatterOprationServiceDownloadFileBlock)(NSString *localFilePath, NSError *error);
 
+typedef void(^BLMOSSubmitCallBackBlock)(NSInteger retCode, NSArray *list, NSString *title);
+
+
+/** Interface **/
 @interface BLMatterOprationService : NSObject
 
+- (void)submitMatterWithComment:(NSString *)comment
+                    commentText:(NSString *)commentText
+                          block:(BLMOSSubmitCallBackBlock)block;
 
+- (void)submitMatterWithComment:(NSString *)comment
+                    commentText:(NSString *)commentText
+                      routeList:(NSArray *)routList
+                          block:(BLMOSSubmitCallBackBlock)block;
+
+- (void)submitMatterWithComment:(NSString *)comment
+                    commentText:(NSString *)commentText
+                      routeList:(NSArray *)routList
+                   employeeList:(NSArray *)employeeList
+                          block:(BLMOSSubmitCallBackBlock)block;
 
 - (void)downloadMatterMainBodyFileFromURL:(NSString *)urlString withBlock:(BLMatterOprationServiceDownloadFileBlock)block;
 
