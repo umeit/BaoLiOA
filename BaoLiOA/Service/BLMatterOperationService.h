@@ -10,6 +10,7 @@
 
 /** Returns Codes **/
 typedef enum BLMatterOperationServiceRetCode : NSInteger {
+    kSuccess,
     kHasRoute,      // 有待选择的部门
     kHasEmployee    // 有待选择的人员
 }BLMatterOperationServiceRetCode;
@@ -26,17 +27,17 @@ typedef void(^BLMOSSubmitCallBackBlock)(NSInteger retCode, NSArray *list, NSStri
 /** Interface **/
 @interface BLMatterOperationService : NSObject
 
-- (void)submitMatterWithComment:(NSString *)comment
-                    commentText:(NSString *)commentText
-                          block:(BLMOSSubmitCallBackBlock)block;
+//- (void)submitMatterWithComment:(NSString *)comment
+//                    commentList:(NSArray *)commentList
+//                          block:(BLMOSSubmitCallBackBlock)block;
+
+//- (void)submitMatterWithComment:(NSString *)comment
+//                    commentList:(NSArray *)commentList
+//                      routeList:(NSArray *)routList
+//                          block:(BLMOSSubmitCallBackBlock)block;
 
 - (void)submitMatterWithComment:(NSString *)comment
-                    commentText:(NSString *)commentText
-                      routeList:(NSArray *)routList
-                          block:(BLMOSSubmitCallBackBlock)block;
-
-- (void)submitMatterWithComment:(NSString *)comment
-                    commentText:(NSString *)commentText
+                    commentList:(NSArray *)commentList
                       routeList:(NSArray *)routList
                    employeeList:(NSArray *)employeeList
                           block:(BLMOSSubmitCallBackBlock)block;

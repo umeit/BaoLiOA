@@ -16,10 +16,11 @@
 		033EA7F3184E1A5D009E29C7 /* RXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 033EA7F2184E1A5D009E29C7 /* RXMLElement.m */; };
 		033EA7F5184E2E15009E29C7 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 033EA7F4184E2E15009E29C7 /* libz.dylib */; };
 		033EA7F7184E2E1D009E29C7 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 033EA7F6184E2E1D009E29C7 /* libxml2.dylib */; };
+		0341733C185A1637003597D4 /* BLMatterOperationHTTPLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 0341733B185A1637003597D4 /* BLMatterOperationHTTPLogic.m */; };
 		03588FDA183E4A780067F5D0 /* BLBaseMatterListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03588FD9183E4A780067F5D0 /* BLBaseMatterListViewController.m */; };
 		03588FDE183E4AED0067F5D0 /* BLBaseMatterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03588FDD183E4AED0067F5D0 /* BLBaseMatterCell.m */; };
 		03588FE1183E4B620067F5D0 /* BLMatterInfoService.m in Sources */ = {isa = PBXBuildFile; fileRef = 03588FE0183E4B620067F5D0 /* BLMatterInfoService.m */; };
-		03588FE4183E4B830067F5D0 /* BLMatterHTTPLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 03588FE3183E4B830067F5D0 /* BLMatterHTTPLogic.m */; };
+		03588FE4183E4B830067F5D0 /* BLMatterInfoHTTPLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 03588FE3183E4B830067F5D0 /* BLMatterInfoHTTPLogic.m */; };
 		03588FE7183E4F7B0067F5D0 /* BLMatterEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 03588FE6183E4F7B0067F5D0 /* BLMatterEntity.m */; };
 		03588FEA183E52440067F5D0 /* UIViewController+BLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03588FE9183E52440067F5D0 /* UIViewController+BLViewController.m */; };
 		035C2D351843A0EF0090E5BA /* BLMatterMainBodyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 035C2D341843A0EF0090E5BA /* BLMatterMainBodyCell.m */; };
@@ -88,14 +89,16 @@
 		033EA7F2184E1A5D009E29C7 /* RXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RXMLElement.m; sourceTree = "<group>"; };
 		033EA7F4184E2E15009E29C7 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		033EA7F6184E2E1D009E29C7 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		0341733A185A1637003597D4 /* BLMatterOperationHTTPLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterOperationHTTPLogic.h; sourceTree = "<group>"; };
+		0341733B185A1637003597D4 /* BLMatterOperationHTTPLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterOperationHTTPLogic.m; sourceTree = "<group>"; };
 		03588FD8183E4A780067F5D0 /* BLBaseMatterListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLBaseMatterListViewController.h; sourceTree = "<group>"; };
 		03588FD9183E4A780067F5D0 /* BLBaseMatterListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLBaseMatterListViewController.m; sourceTree = "<group>"; };
 		03588FDC183E4AED0067F5D0 /* BLBaseMatterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLBaseMatterCell.h; sourceTree = "<group>"; };
 		03588FDD183E4AED0067F5D0 /* BLBaseMatterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLBaseMatterCell.m; sourceTree = "<group>"; };
 		03588FDF183E4B620067F5D0 /* BLMatterInfoService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterInfoService.h; sourceTree = "<group>"; };
 		03588FE0183E4B620067F5D0 /* BLMatterInfoService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterInfoService.m; sourceTree = "<group>"; };
-		03588FE2183E4B830067F5D0 /* BLMatterHTTPLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterHTTPLogic.h; sourceTree = "<group>"; };
-		03588FE3183E4B830067F5D0 /* BLMatterHTTPLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterHTTPLogic.m; sourceTree = "<group>"; };
+		03588FE2183E4B830067F5D0 /* BLMatterInfoHTTPLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterInfoHTTPLogic.h; sourceTree = "<group>"; };
+		03588FE3183E4B830067F5D0 /* BLMatterInfoHTTPLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterInfoHTTPLogic.m; sourceTree = "<group>"; };
 		03588FE5183E4F7B0067F5D0 /* BLMatterEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterEntity.h; sourceTree = "<group>"; };
 		03588FE6183E4F7B0067F5D0 /* BLMatterEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterEntity.m; sourceTree = "<group>"; };
 		03588FE8183E52440067F5D0 /* UIViewController+BLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BLViewController.h"; sourceTree = "<group>"; };
@@ -263,10 +266,12 @@
 		03588FD5183E4A340067F5D0 /* Logic */ = {
 			isa = PBXGroup;
 			children = (
-				03588FE2183E4B830067F5D0 /* BLMatterHTTPLogic.h */,
-				03588FE3183E4B830067F5D0 /* BLMatterHTTPLogic.m */,
+				03588FE2183E4B830067F5D0 /* BLMatterInfoHTTPLogic.h */,
+				03588FE3183E4B830067F5D0 /* BLMatterInfoHTTPLogic.m */,
 				030D3C661849B30A00E844EA /* BLUserHTTPLogic.h */,
 				030D3C671849B30A00E844EA /* BLUserHTTPLogic.m */,
+				0341733A185A1637003597D4 /* BLMatterOperationHTTPLogic.h */,
+				0341733B185A1637003597D4 /* BLMatterOperationHTTPLogic.m */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -520,6 +525,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03BD17F71844DC44002F2C38 /* BLMatterAttachmentListViewController.m in Sources */,
+				0341733C185A1637003597D4 /* BLMatterOperationHTTPLogic.m in Sources */,
 				03588FEA183E52440067F5D0 /* UIViewController+BLViewController.m in Sources */,
 				035C2D381843AA660090E5BA /* BLMainBodyViewController.m in Sources */,
 				03588FE1183E4B620067F5D0 /* BLMatterInfoService.m in Sources */,
@@ -547,7 +553,7 @@
 				035C2D351843A0EF0090E5BA /* BLMatterMainBodyCell.m in Sources */,
 				0323EAD51851E2EA00752172 /* BLAttachEntity.m in Sources */,
 				036C0FB8183D02AB00C61808 /* BLAppDelegate.m in Sources */,
-				03588FE4183E4B830067F5D0 /* BLMatterHTTPLogic.m in Sources */,
+				03588FE4183E4B830067F5D0 /* BLMatterInfoHTTPLogic.m in Sources */,
 				036C0FEF183D05AD00C61808 /* AFHTTPSessionManager.m in Sources */,
 				030D3C621849B0A000E844EA /* BLLoginViewController.m in Sources */,
 				030D3C651849B2F000E844EA /* BLUserService.m in Sources */,

@@ -6,7 +6,7 @@
 //  Copyright (c) 2013年 Liu Feng. All rights reserved.
 //
 
-#import "BLMatterHTTPLogic.h"
+#import "BLMatterInfoHTTPLogic.h"
 #import "AFHTTPRequestOperation.h"
 #import "AFURLSessionManager.h"
 
@@ -14,7 +14,7 @@
 // 测试地址
 #define SOAP_URL(s) [NSURL URLWithString:[NSString stringWithFormat:@"http://210.51.191.244:8081/OAWebService/DemoData_WebService.asmx?op=%@", s]];
 
-@implementation BLMatterHTTPLogic
+@implementation BLMatterInfoHTTPLogic
 
 + (void)downloadFileFromURL:(NSString *)filePath toPath:(NSString *)localPath  withBlock:(BLMatterHTTPLogicGeneralBlock)block
 {
@@ -68,7 +68,7 @@
         "</soap:Body>"\
     "</soap:Envelope>";
     
-    NSMutableURLRequest *request = [BLMatterHTTPLogic soapRequestWithURLParam:@"GetDocTodolist"
+    NSMutableURLRequest *request = [BLMatterInfoHTTPLogic soapRequestWithURLParam:@"GetDocTodolist"
                                                                    soapAction:@"http://tempuri.org/GetDocTodolist"
                                                                      soapBody:soapBody];
     
@@ -135,7 +135,7 @@
     
     NSString *soapBodyComplete = [NSString stringWithFormat:soapBody, matterID];
     
-    NSMutableURLRequest *request = [BLMatterHTTPLogic soapRequestWithURLParam:@"GetDocInfo"
+    NSMutableURLRequest *request = [BLMatterInfoHTTPLogic soapRequestWithURLParam:@"GetDocInfo"
                                                                    soapAction:@"http://tempuri.org/GetDocInfo"
                                                                      soapBody:soapBodyComplete];
     

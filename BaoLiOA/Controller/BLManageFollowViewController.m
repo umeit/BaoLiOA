@@ -45,7 +45,7 @@
     return cell;
 }
 
-#pragma - mark UITablewViewDelegate
+#pragma - mark - UITablewViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

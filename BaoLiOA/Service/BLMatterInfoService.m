@@ -7,7 +7,7 @@
 //
 
 #import "BLMatterInfoService.h"
-#import "BLMatterHTTPLogic.h"
+#import "BLMatterInfoHTTPLogic.h"
 #import "BLMatterEntity.h"
 #import "BLFromFieldItemEntity.h"
 #import "BLAttachEntity.h"
@@ -17,7 +17,7 @@
 
 - (void)todoListWithBlock:(BLMatterInfoServiceGeneralBlock)block
 {
-    [BLMatterHTTPLogic matterListWithMatterType:TodoMatterType withBlock:^(id responseData, NSError *error) {
+    [BLMatterInfoHTTPLogic matterListWithMatterType:TodoMatterType withBlock:^(id responseData, NSError *error) {
         if (error) {
             block(nil, error);
         }
@@ -49,7 +49,7 @@
 
 - (void)takenMatterWithBlock:(BLMatterInfoServiceGeneralBlock)block
 {
-    [BLMatterHTTPLogic matterListWithMatterType:TakenMatter withBlock:^(id responseData, NSError *error) {
+    [BLMatterInfoHTTPLogic matterListWithMatterType:TakenMatter withBlock:^(id responseData, NSError *error) {
         if (error) {
             block(nil, error);
         }
@@ -115,7 +115,7 @@
 
 - (void)matterDetailInfoWithMatterID:(NSString *)matterID block:(BLMatterInfoServiceGeneralBlock)block
 {
-    [BLMatterHTTPLogic matterDetailWithMatterID:matterID block:^(id responseData, NSError *error) {
+    [BLMatterInfoHTTPLogic matterDetailWithMatterID:matterID block:^(id responseData, NSError *error) {
         if (error) {
             block(nil, error);
         }

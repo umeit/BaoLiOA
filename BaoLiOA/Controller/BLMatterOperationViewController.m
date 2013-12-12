@@ -16,6 +16,9 @@
 
 #define OperationButtonParentViewTag 30
 
+#define Route    0
+#define Employee 1
+
 @interface BLMatterOperationViewController () <BLManageFollowViewControllerDelegate>
 
 /**
@@ -71,7 +74,27 @@
 /**
  *  保存用户意见的正文
  */
-@property (strong, nonatomic) NSString *commentText;
+//@property (strong, nonatomic) NSString *commentText;
+
+/**
+ *  用于回传的字段
+ */
+@property (strong, nonatomic) NSArray *commentList;
+
+/**
+ *  代表当前是在选择部门路由还是在选择人员
+ */
+@property (nonatomic) NSInteger currentSelectRoute;
+
+/**
+ *  选择的部门路由
+ */
+@property (nonatomic) NSArray *routeList;
+
+/**
+ *  选择的办理人员
+ */
+@property (strong, nonatomic) NSArray *employeeList;
 
 @end
 
@@ -191,17 +214,29 @@
 //    NSString *userID = [userDefaults stringForKey:@"CurrentUserID"];
 //    NSString *password = [userDefaults stringForKey:@"CurrentPassword"];
     
-    [self.matterOprationService submitMatterWithComment:self.comment commentText:self.commentText block:^(NSInteger retCode, NSArray *list, NSString *title) {
+    // 将用户的「意见」和「意见正文」提交
+    [self.matterOprationService submitMatterWithComment:self.comment commentList:self.commentList routeList:self.routeList employeeList:self.employeeList block:^(NSInteger retCode, NSArray *list, NSString *title) {
         
-        if (retCode == kHasRoute && [list count] > 0) {
-            // 有待选择的部门
+        if (retCode == kSuccess) {
+#warning 提示成功
+        }
+        else if ((retCode == kHasRoute || retCode == kHasEmployee)
+            && [list count] > 0) {
+            
+            if (retCode == kHasRoute) {
+                self.currentSelectRoute = Route;
+            }
+            else if (retCode == kHasEmployee) {
+                self.currentSelectRoute = Employee;
+            }
+            
+            // 有待选择的部门或待选择的办理人员
             UINavigationController *navigation = [self.storyboard instantiateViewControllerWithIdentifier:@"FollowNavigation"];
             BLManageFollowViewController *manageFollowViewController = (BLManageFollowViewController *)[navigation topViewController];
             
             manageFollowViewController.title = title;
             manageFollowViewController.followList = list;
             manageFollowViewController.delegate = self;
-            manageFollowViewController.title = @"办理路由";
             
             [navigation setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
             [navigation setModalPresentationStyle:UIModalPresentationFormSheet];
@@ -256,6 +291,46 @@
 
 - (void)followDidSelected:(NSArray *)followList
 {
+    if (self.currentSelectRoute == Route) {
+        self.routeList = followList;
+    }
+    else if (self.currentSelectRoute == Employee) {
+        self.employeeList = followList;
+    }
+    
+    [self.matterOprationService submitMatterWithComment:self.comment
+                                            commentList:self.commentList
+                                              routeList:self.routeList
+                                           employeeList:self.employeeList
+                                                  block:^(NSInteger retCode, NSArray *list, NSString *title) {
+                                                      if (retCode == kSuccess) {
+#warning 提示成功
+                                                      }
+                                                      else if ((retCode == kHasRoute || retCode == kHasEmployee)
+                                                               && [list count] > 0) {
+                                                          
+                                                          if (retCode == kHasRoute) {
+                                                              self.currentSelectRoute = Route;
+                                                          }
+                                                          else if (retCode == kHasEmployee) {
+                                                              self.currentSelectRoute = Employee;
+                                                          }
+                                                          
+                                                          // 有待选择的部门或待选择的办理人员
+                                                          UINavigationController *navigation = [self.storyboard instantiateViewControllerWithIdentifier:@"FollowNavigation"];
+                                                          BLManageFollowViewController *manageFollowViewController = (BLManageFollowViewController *)[navigation topViewController];
+                                                          
+                                                          manageFollowViewController.title = title;
+                                                          manageFollowViewController.followList = list;
+                                                          manageFollowViewController.delegate = self;
+                                                          
+                                                          [navigation setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+                                                          [navigation setModalPresentationStyle:UIModalPresentationFormSheet];
+                                                          
+                                                          [self presentViewController:navigation animated:YES completion:nil];
+                                                      }
+                                                  }];
+
     
 //    if (self.isSelectionPersonnel) {
 //        

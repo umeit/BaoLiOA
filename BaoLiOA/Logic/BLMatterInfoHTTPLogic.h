@@ -18,7 +18,7 @@ typedef enum MatterType : NSInteger{
 typedef void(^BLMatterHTTPLogicGeneralListBlock)(id responselist, NSError *error);
 typedef void(^BLMatterHTTPLogicGeneralBlock)(id responseData, NSError *error);
 
-@interface BLMatterHTTPLogic : NSObject
+@interface BLMatterInfoHTTPLogic : NSObject
 
 + (void)matterListWithMatterType:(MatterType)matterType withBlock:(BLMatterHTTPLogicGeneralListBlock)block;
 
