@@ -52,7 +52,7 @@
     [downloadTask resume];
 }
 
-+ (void)matterListWithMatterType:(MatterType)matterType withBlock:(BLMatterHTTPLogicGeneralListBlock)block
++ (void)matterListWithMatterType:(MatterType)matterType withBlock:(BLMatterHTTPLogicGeneralBlock)block
 {
     NSString *soapBody =
     @"<?xml version=\"1.0\" encoding=\"utf-8\"?>" \
@@ -118,7 +118,7 @@
 //
 //}
 
-+ (void)matterDetailWithMatterID:(NSString *)matterID block:(BLMatterHTTPLogicGeneralListBlock)block
++ (void)matterDetailWithMatterID:(NSString *)matterID block:(BLMatterHTTPLogicGeneralBlock)block
 {
     NSString *soapBody =
     @"<?xml version=\"1.0\" encoding=\"utf-8\"?>" \

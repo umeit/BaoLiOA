@@ -8,6 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
+/** BLocks **/
+typedef void(^BLMatterOperationHTTPLogicGeneralBlock)(id responseData, NSError *error);
+
+
+/** Interface **/
 @interface BLMatterOperationHTTPLogic : NSObject
+
++ (void)submitMatterWithUserID:(NSString *)userID
+                      userName:(NSString *)userName
+                      matterID:(NSString *)matterID
+                        flowID:(NSString *)flowID
+                     operation:(NSString *)operation
+                       Comment:(NSString *)comment
+                    commentList:(NSArray *)commentList
+                      routeList:(NSArray *)routList
+                   employeeList:(NSArray *)employeeList
+                          block:(BLMatterOperationHTTPLogicGeneralBlock)block;
 
 @end
