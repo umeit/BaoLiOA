@@ -51,6 +51,30 @@
 		0381BC5518478BDF00DB661D /* BLOpinionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0381BC5418478BDF00DB661D /* BLOpinionViewController.m */; };
 		0381BC581847985400DB661D /* BLManageFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0381BC571847985400DB661D /* BLManageFollowViewController.m */; };
 		0390A01A1855BC6B00EEEEBB /* BLAttachPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0390A0191855BC6B00EEEEBB /* BLAttachPreviewViewController.m */; };
+		039BF60C185E077F00985B17 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 039BF5DB185E077E00985B17 /* CHANGELOG.md */; };
+		039BF60D185E077F00985B17 /* Doxyfile in Resources */ = {isa = PBXBuildFile; fileRef = 039BF5DC185E077E00985B17 /* Doxyfile */; };
+		039BF60E185E077F00985B17 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 039BF5DD185E077E00985B17 /* LICENSE */; };
+		039BF60F185E077F00985B17 /* ChangeLogUnzip in Resources */ = {isa = PBXBuildFile; fileRef = 039BF5DF185E077E00985B17 /* ChangeLogUnzip */; };
+		039BF610185E077F00985B17 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 039BF5E1185E077E00985B17 /* ioapi.c */; };
+		039BF611185E077F00985B17 /* make_vms.com in Resources */ = {isa = PBXBuildFile; fileRef = 039BF5E3185E077E00985B17 /* make_vms.com */; };
+		039BF612185E077F00985B17 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 039BF5E4185E077E00985B17 /* Makefile */; };
+		039BF615185E077F00985B17 /* MiniZip64_Changes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 039BF5E7185E077E00985B17 /* MiniZip64_Changes.txt */; };
+		039BF616185E077F00985B17 /* MiniZip64_info.txt in Resources */ = {isa = PBXBuildFile; fileRef = 039BF5E8185E077E00985B17 /* MiniZip64_info.txt */; };
+		039BF617185E077F00985B17 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 039BF5E9185E077E00985B17 /* mztools.c */; };
+		039BF618185E077F00985B17 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 039BF5EB185E077E00985B17 /* unzip.c */; };
+		039BF619185E077F00985B17 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 039BF5ED185E077E00985B17 /* zip.c */; };
+		039BF61A185E077F00985B17 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 039BF5EF185E077E00985B17 /* README.md */; };
+		039BF61B185E077F00985B17 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 039BF5F2185E077F00985B17 /* InfoPlist.strings */; };
+		039BF61C185E077F00985B17 /* V3.png in Resources */ = {isa = PBXBuildFile; fileRef = 039BF5F5185E077F00985B17 /* V3.png */; };
+		039BF61D185E077F00985B17 /* V3.xml in Resources */ = {isa = PBXBuildFile; fileRef = 039BF5F6185E077F00985B17 /* V3.xml */; };
+		039BF61E185E077F00985B17 /* tests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 039BF5F7185E077F00985B17 /* tests-Info.plist */; };
+		039BF620185E077F00985B17 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 039BF5FC185E077F00985B17 /* InfoPlist.strings */; };
+		039BF621185E077F00985B17 /* ZipArchive ios Tests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 039BF5FE185E077F00985B17 /* ZipArchive ios Tests-Info.plist */; };
+		039BF622185E077F00985B17 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 039BF601185E077F00985B17 /* InfoPlist.strings */; };
+		039BF623185E077F00985B17 /* ZipArchive mac Tests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 039BF603185E077F00985B17 /* ZipArchive mac Tests-Info.plist */; };
+		039BF624185E077F00985B17 /* ZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 039BF60A185E077F00985B17 /* ZipArchive.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		039BF625185E077F00985B17 /* ZipArchive.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 039BF60B185E077F00985B17 /* ZipArchive.podspec */; };
+		039BF635185E080A00985B17 /* libZipArchive-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 039BF62C185E077F00985B17 /* libZipArchive-ios.a */; };
 		03BD17F71844DC44002F2C38 /* BLMatterAttachmentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BD17F61844DC44002F2C38 /* BLMatterAttachmentListViewController.m */; };
 		03BD17FA1844DC8F002F2C38 /* BLMatterAttachmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BD17F91844DC8F002F2C38 /* BLMatterAttachmentCell.m */; };
 		03BD17FD1844EF77002F2C38 /* BLMatterFlowListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BD17FC1844EF77002F2C38 /* BLMatterFlowListViewController.m */; };
@@ -69,6 +93,41 @@
 			proxyType = 1;
 			remoteGlobalIDString = 036C0FA3183D02AB00C61808;
 			remoteInfo = BaoLiOA;
+		};
+		039BF62B185E077F00985B17 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 039BF605185E077F00985B17 /* ZipArchive.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = "ZipArchive ios";
+		};
+		039BF62D185E077F00985B17 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 039BF605185E077F00985B17 /* ZipArchive.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C908A96F160AC26D000395DB;
+			remoteInfo = "ZipArchive mac";
+		};
+		039BF62F185E077F00985B17 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 039BF605185E077F00985B17 /* ZipArchive.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C95AB35817E1C37700120861;
+			remoteInfo = "ZipArchive ios Tests";
+		};
+		039BF631185E077F00985B17 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 039BF605185E077F00985B17 /* ZipArchive.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C95AB37417E1C47D00120861;
+			remoteInfo = "ZipArchive mac Tests";
+		};
+		039BF633185E07F200985B17 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 039BF605185E077F00985B17 /* ZipArchive.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
+			remoteInfo = "ZipArchive ios";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -151,6 +210,44 @@
 		0381BC571847985400DB661D /* BLManageFollowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLManageFollowViewController.m; sourceTree = "<group>"; };
 		0390A0181855BC6B00EEEEBB /* BLAttachPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLAttachPreviewViewController.h; sourceTree = "<group>"; };
 		0390A0191855BC6B00EEEEBB /* BLAttachPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLAttachPreviewViewController.m; sourceTree = "<group>"; };
+		039BF5DB185E077E00985B17 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
+		039BF5DC185E077E00985B17 /* Doxyfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Doxyfile; sourceTree = "<group>"; };
+		039BF5DD185E077E00985B17 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		039BF5DF185E077E00985B17 /* ChangeLogUnzip */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChangeLogUnzip; sourceTree = "<group>"; };
+		039BF5E0185E077E00985B17 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		039BF5E1185E077E00985B17 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		039BF5E2185E077E00985B17 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		039BF5E3185E077E00985B17 /* make_vms.com */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = make_vms.com; sourceTree = "<group>"; };
+		039BF5E4185E077E00985B17 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		039BF5E5185E077E00985B17 /* miniunz.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = miniunz.c; sourceTree = "<group>"; };
+		039BF5E6185E077E00985B17 /* minizip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = minizip.c; sourceTree = "<group>"; };
+		039BF5E7185E077E00985B17 /* MiniZip64_Changes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MiniZip64_Changes.txt; sourceTree = "<group>"; };
+		039BF5E8185E077E00985B17 /* MiniZip64_info.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MiniZip64_info.txt; sourceTree = "<group>"; };
+		039BF5E9185E077E00985B17 /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		039BF5EA185E077E00985B17 /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		039BF5EB185E077E00985B17 /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		039BF5EC185E077E00985B17 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		039BF5ED185E077E00985B17 /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		039BF5EE185E077E00985B17 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		039BF5EF185E077E00985B17 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		039BF5F3185E077F00985B17 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		039BF5F5185E077F00985B17 /* V3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = V3.png; sourceTree = "<group>"; };
+		039BF5F6185E077F00985B17 /* V3.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = V3.xml; sourceTree = "<group>"; };
+		039BF5F7185E077F00985B17 /* tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "tests-Info.plist"; sourceTree = "<group>"; };
+		039BF5F8185E077F00985B17 /* tests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "tests-Prefix.pch"; sourceTree = "<group>"; };
+		039BF5F9185E077F00985B17 /* tests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tests.h; sourceTree = "<group>"; };
+		039BF5FA185E077F00985B17 /* tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tests.m; sourceTree = "<group>"; };
+		039BF5FD185E077F00985B17 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		039BF5FE185E077F00985B17 /* ZipArchive ios Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ZipArchive ios Tests-Info.plist"; sourceTree = "<group>"; };
+		039BF5FF185E077F00985B17 /* ZipArchive ios Tests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZipArchive ios Tests-Prefix.pch"; sourceTree = "<group>"; };
+		039BF602185E077F00985B17 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		039BF603185E077F00985B17 /* ZipArchive mac Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ZipArchive mac Tests-Info.plist"; sourceTree = "<group>"; };
+		039BF604185E077F00985B17 /* ZipArchive mac Tests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZipArchive mac Tests-Prefix.pch"; sourceTree = "<group>"; };
+		039BF605185E077F00985B17 /* ZipArchive.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = ZipArchive.xcodeproj; sourceTree = "<group>"; };
+		039BF608185E077F00985B17 /* ZipArchive_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive_Prefix.pch; sourceTree = "<group>"; };
+		039BF609185E077F00985B17 /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
+		039BF60A185E077F00985B17 /* ZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipArchive.m; sourceTree = "<group>"; };
+		039BF60B185E077F00985B17 /* ZipArchive.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ZipArchive.podspec; sourceTree = "<group>"; };
 		03BD17F51844DC44002F2C38 /* BLMatterAttachmentListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterAttachmentListViewController.h; sourceTree = "<group>"; };
 		03BD17F61844DC44002F2C38 /* BLMatterAttachmentListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterAttachmentListViewController.m; sourceTree = "<group>"; };
 		03BD17F81844DC8F002F2C38 /* BLMatterAttachmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterAttachmentCell.h; sourceTree = "<group>"; };
@@ -176,6 +273,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				039BF635185E080A00985B17 /* libZipArchive-ios.a in Frameworks */,
 				033EA7F7184E2E1D009E29C7 /* libxml2.dylib in Frameworks */,
 				033EA7F5184E2E15009E29C7 /* libz.dylib in Frameworks */,
 				036C0FAA183D02AB00C61808 /* CoreGraphics.framework in Frameworks */,
@@ -395,6 +493,7 @@
 		036C0FD8183D05AD00C61808 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				039BF5B7185DF9B900985B17 /* ZipArchive */,
 				033EA7F0184E1A5D009E29C7 /* RaptureXML */,
 				036C0FD9183D05AD00C61808 /* AFNetworking */,
 			);
@@ -427,6 +526,118 @@
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
+		039BF5B7185DF9B900985B17 /* ZipArchive */ = {
+			isa = PBXGroup;
+			children = (
+				039BF5DA185E077E00985B17 /* ZipArchive */,
+			);
+			path = ZipArchive;
+			sourceTree = "<group>";
+		};
+		039BF5DA185E077E00985B17 /* ZipArchive */ = {
+			isa = PBXGroup;
+			children = (
+				039BF5DB185E077E00985B17 /* CHANGELOG.md */,
+				039BF5DC185E077E00985B17 /* Doxyfile */,
+				039BF5DD185E077E00985B17 /* LICENSE */,
+				039BF5DE185E077E00985B17 /* minizip */,
+				039BF5EF185E077E00985B17 /* README.md */,
+				039BF5F0185E077E00985B17 /* ZipArchive */,
+				039BF609185E077F00985B17 /* ZipArchive.h */,
+				039BF60A185E077F00985B17 /* ZipArchive.m */,
+				039BF60B185E077F00985B17 /* ZipArchive.podspec */,
+			);
+			name = ZipArchive;
+			sourceTree = "<group>";
+		};
+		039BF5DE185E077E00985B17 /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				039BF5DF185E077E00985B17 /* ChangeLogUnzip */,
+				039BF5E0185E077E00985B17 /* crypt.h */,
+				039BF5E1185E077E00985B17 /* ioapi.c */,
+				039BF5E2185E077E00985B17 /* ioapi.h */,
+				039BF5E3185E077E00985B17 /* make_vms.com */,
+				039BF5E4185E077E00985B17 /* Makefile */,
+				039BF5E5185E077E00985B17 /* miniunz.c */,
+				039BF5E6185E077E00985B17 /* minizip.c */,
+				039BF5E7185E077E00985B17 /* MiniZip64_Changes.txt */,
+				039BF5E8185E077E00985B17 /* MiniZip64_info.txt */,
+				039BF5E9185E077E00985B17 /* mztools.c */,
+				039BF5EA185E077E00985B17 /* mztools.h */,
+				039BF5EB185E077E00985B17 /* unzip.c */,
+				039BF5EC185E077E00985B17 /* unzip.h */,
+				039BF5ED185E077E00985B17 /* zip.c */,
+				039BF5EE185E077E00985B17 /* zip.h */,
+			);
+			path = minizip;
+			sourceTree = "<group>";
+		};
+		039BF5F0185E077E00985B17 /* ZipArchive */ = {
+			isa = PBXGroup;
+			children = (
+				039BF5F1185E077F00985B17 /* tests */,
+				039BF5FB185E077F00985B17 /* ZipArchive ios Tests */,
+				039BF600185E077F00985B17 /* ZipArchive mac Tests */,
+				039BF605185E077F00985B17 /* ZipArchive.xcodeproj */,
+				039BF608185E077F00985B17 /* ZipArchive_Prefix.pch */,
+			);
+			path = ZipArchive;
+			sourceTree = "<group>";
+		};
+		039BF5F1185E077F00985B17 /* tests */ = {
+			isa = PBXGroup;
+			children = (
+				039BF5F2185E077F00985B17 /* InfoPlist.strings */,
+				039BF5F4185E077F00985B17 /* test-files */,
+				039BF5F7185E077F00985B17 /* tests-Info.plist */,
+				039BF5F8185E077F00985B17 /* tests-Prefix.pch */,
+				039BF5F9185E077F00985B17 /* tests.h */,
+				039BF5FA185E077F00985B17 /* tests.m */,
+			);
+			path = tests;
+			sourceTree = "<group>";
+		};
+		039BF5F4185E077F00985B17 /* test-files */ = {
+			isa = PBXGroup;
+			children = (
+				039BF5F5185E077F00985B17 /* V3.png */,
+				039BF5F6185E077F00985B17 /* V3.xml */,
+			);
+			path = "test-files";
+			sourceTree = "<group>";
+		};
+		039BF5FB185E077F00985B17 /* ZipArchive ios Tests */ = {
+			isa = PBXGroup;
+			children = (
+				039BF5FC185E077F00985B17 /* InfoPlist.strings */,
+				039BF5FE185E077F00985B17 /* ZipArchive ios Tests-Info.plist */,
+				039BF5FF185E077F00985B17 /* ZipArchive ios Tests-Prefix.pch */,
+			);
+			path = "ZipArchive ios Tests";
+			sourceTree = "<group>";
+		};
+		039BF600185E077F00985B17 /* ZipArchive mac Tests */ = {
+			isa = PBXGroup;
+			children = (
+				039BF601185E077F00985B17 /* InfoPlist.strings */,
+				039BF603185E077F00985B17 /* ZipArchive mac Tests-Info.plist */,
+				039BF604185E077F00985B17 /* ZipArchive mac Tests-Prefix.pch */,
+			);
+			path = "ZipArchive mac Tests";
+			sourceTree = "<group>";
+		};
+		039BF606185E077F00985B17 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				039BF62C185E077F00985B17 /* libZipArchive-ios.a */,
+				039BF62E185E077F00985B17 /* libZipArchive-mac.a */,
+				039BF630185E077F00985B17 /* ZipArchive ios Tests.xctest */,
+				039BF632185E077F00985B17 /* ZipArchive mac Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -441,6 +652,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				039BF634185E07F200985B17 /* PBXTargetDependency */,
 			);
 			name = BaoLiOA;
 			productName = BaoLiOA;
@@ -490,6 +702,12 @@
 			mainGroup = 036C0F9B183D02AB00C61808;
 			productRefGroup = 036C0FA5183D02AB00C61808 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 039BF606185E077F00985B17 /* Products */;
+					ProjectRef = 039BF605185E077F00985B17 /* ZipArchive.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				036C0FA3183D02AB00C61808 /* BaoLiOA */,
@@ -498,14 +716,62 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		039BF62C185E077F00985B17 /* libZipArchive-ios.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libZipArchive-ios.a";
+			remoteRef = 039BF62B185E077F00985B17 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		039BF62E185E077F00985B17 /* libZipArchive-mac.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libZipArchive-mac.a";
+			remoteRef = 039BF62D185E077F00985B17 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		039BF630185E077F00985B17 /* ZipArchive ios Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "ZipArchive ios Tests.xctest";
+			remoteRef = 039BF62F185E077F00985B17 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		039BF632185E077F00985B17 /* ZipArchive mac Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "ZipArchive mac Tests.xctest";
+			remoteRef = 039BF631185E077F00985B17 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		036C0FA2183D02AB00C61808 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				039BF61C185E077F00985B17 /* V3.png in Resources */,
+				039BF620185E077F00985B17 /* InfoPlist.strings in Resources */,
+				039BF60E185E077F00985B17 /* LICENSE in Resources */,
+				039BF61B185E077F00985B17 /* InfoPlist.strings in Resources */,
+				039BF60D185E077F00985B17 /* Doxyfile in Resources */,
 				036C0FD7183D031200C61808 /* Main.storyboard in Resources */,
+				039BF616185E077F00985B17 /* MiniZip64_info.txt in Resources */,
+				039BF622185E077F00985B17 /* InfoPlist.strings in Resources */,
 				036C0FB2183D02AB00C61808 /* InfoPlist.strings in Resources */,
+				039BF611185E077F00985B17 /* make_vms.com in Resources */,
+				039BF615185E077F00985B17 /* MiniZip64_Changes.txt in Resources */,
+				039BF625185E077F00985B17 /* ZipArchive.podspec in Resources */,
 				036C0FBA183D02AB00C61808 /* Images.xcassets in Resources */,
+				039BF60F185E077F00985B17 /* ChangeLogUnzip in Resources */,
+				039BF61A185E077F00985B17 /* README.md in Resources */,
+				039BF61D185E077F00985B17 /* V3.xml in Resources */,
+				039BF60C185E077F00985B17 /* CHANGELOG.md in Resources */,
+				039BF621185E077F00985B17 /* ZipArchive ios Tests-Info.plist in Resources */,
+				039BF623185E077F00985B17 /* ZipArchive mac Tests-Info.plist in Resources */,
+				039BF61E185E077F00985B17 /* tests-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,12 +796,15 @@
 				035C2D381843AA660090E5BA /* BLMainBodyViewController.m in Sources */,
 				03588FE1183E4B620067F5D0 /* BLMatterInfoService.m in Sources */,
 				03DECA4F18425154007F6F40 /* BLMatterOperationService.m in Sources */,
+				039BF619185E077F00985B17 /* zip.c in Sources */,
 				0390A01A1855BC6B00EEEEBB /* BLAttachPreviewViewController.m in Sources */,
 				036C0FF3183D05AD00C61808 /* AFURLRequestSerialization.m in Sources */,
 				03DECA49184247D0007F6F40 /* BLGlobal.m in Sources */,
+				039BF624185E077F00985B17 /* ZipArchive.m in Sources */,
 				0381BC581847985400DB661D /* BLManageFollowViewController.m in Sources */,
 				036C0FF2183D05AD00C61808 /* AFURLConnectionOperation.m in Sources */,
 				030D3C6B1849DE7700E844EA /* BLAppSettingsViewController.m in Sources */,
+				039BF612185E077F00985B17 /* Makefile in Sources */,
 				03588FE7183E4F7B0067F5D0 /* BLMatterEntity.m in Sources */,
 				036C0FF1183D05AD00C61808 /* AFSecurityPolicy.m in Sources */,
 				03DECA4C184250B8007F6F40 /* BLMatterFormViewController.m in Sources */,
@@ -545,11 +814,13 @@
 				03588FDE183E4AED0067F5D0 /* BLBaseMatterCell.m in Sources */,
 				03BD18001844F2FF002F2C38 /* BLMatterOpinionViewController.m in Sources */,
 				036C0FED183D05AD00C61808 /* AFHTTPRequestOperation.m in Sources */,
+				039BF610185E077F00985B17 /* ioapi.c in Sources */,
 				0361DE18184F7EF700D33CE6 /* BLFromFieldItemEntity.m in Sources */,
 				03BD17FD1844EF77002F2C38 /* BLMatterFlowListViewController.m in Sources */,
 				03DECA461842434D007F6F40 /* BLMatterOperationViewController.m in Sources */,
 				036C0FF5183D05AD00C61808 /* AFURLSessionManager.m in Sources */,
 				036C0FF4183D05AD00C61808 /* AFURLResponseSerialization.m in Sources */,
+				039BF617185E077F00985B17 /* mztools.c in Sources */,
 				035C2D351843A0EF0090E5BA /* BLMatterMainBodyCell.m in Sources */,
 				0323EAD51851E2EA00752172 /* BLAttachEntity.m in Sources */,
 				036C0FB8183D02AB00C61808 /* BLAppDelegate.m in Sources */,
@@ -563,6 +834,7 @@
 				036C0FF0183D05AD00C61808 /* AFNetworkReachabilityManager.m in Sources */,
 				036C0FB4183D02AB00C61808 /* main.m in Sources */,
 				03BD17FA1844DC8F002F2C38 /* BLMatterAttachmentCell.m in Sources */,
+				039BF618185E077F00985B17 /* unzip.c in Sources */,
 				0381BC5518478BDF00DB661D /* BLOpinionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -583,6 +855,11 @@
 			target = 036C0FA3183D02AB00C61808 /* BaoLiOA */;
 			targetProxy = 036C0FC4183D02AB00C61808 /* PBXContainerItemProxy */;
 		};
+		039BF634185E07F200985B17 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "ZipArchive ios";
+			targetProxy = 039BF633185E07F200985B17 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -598,6 +875,30 @@
 			isa = PBXVariantGroup;
 			children = (
 				036C0FCA183D02AB00C61808 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		039BF5F2185E077F00985B17 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				039BF5F3185E077F00985B17 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		039BF5FC185E077F00985B17 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				039BF5FD185E077F00985B17 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		039BF601185E077F00985B17 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				039BF602185E077F00985B17 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -692,6 +993,10 @@
 					"\"$(SDK_DIR)\"/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = "BaoLiOA/BaoLiOA-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/liufeng/Documents/Build/BaoLiOA/BaoLiOA/Lib/ZipArchive,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -710,6 +1015,10 @@
 					"\"$(SDK_DIR)\"/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = "BaoLiOA/BaoLiOA-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/liufeng/Documents/Build/BaoLiOA/BaoLiOA/Lib/ZipArchive,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

@@ -10,6 +10,7 @@
 #import "BLMatterInfoHTTPLogic.h"
 #import "BLMatterOperationHTTPLogic.h"
 #import "RXMLElement.h"
+#import "ZipArchive.h"
 
 @implementation BLMatterOperationService
 
@@ -103,13 +104,23 @@
                                                                             NSUserDomainMask,
                                                                             YES) firstObject];
     
-    // 下载附件成功后返回下载的 zip 文件的绝对路径
+    // 下载附件成功后得到下载的 zip 文件的绝对路径
     [BLMatterInfoHTTPLogic downloadFileWithAttachID:attachID fileType:fileType savePath:documentsDirectoryPath block:^(NSString *zipFileLocalPath, NSError *error) {
         if (error) {
             block(nil, error);
         }
         else {
-            
+            // 解压 zip 文件
+            zipFileLocalPath = [zipFileLocalPath substringFromIndex:7];
+            zipFileLocalPath = [zipFileLocalPath stringByReplacingOccurrencesOfString:@"%20" withString:@" "];
+            ZipArchive *zipArchive = [[ZipArchive alloc] init];
+            if ([zipArchive UnzipOpenFile:zipFileLocalPath Password:@"password"]) {
+                
+//                NSString *unzipPath = [NSString stringWithFormat:@"%@/%@.%@", documentsDirectoryPath, attachID, fileType];
+                if ([zipArchive UnzipFileTo:documentsDirectoryPath overWrite:YES]) {
+                    NSArray *contents = [zipArchive getZipFileContents];
+                }
+            }
         }
     }];
 }
