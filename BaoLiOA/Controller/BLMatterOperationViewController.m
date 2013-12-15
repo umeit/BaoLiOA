@@ -87,14 +87,24 @@
 @property (nonatomic) NSInteger currentSelectRoute;
 
 /**
- *  选择的部门路由
+ *  待选择的部门路由
  */
-@property (nonatomic) NSArray *routeList;
+@property (strong, nonatomic) NSArray *routeList;
 
 /**
- *  选择的办理人员
+ *  已选择的部门路由
+ */
+@property (strong, nonatomic) NSMutableArray *selectedRouteList;
+
+/**
+ *  待选择的办理人员
  */
 @property (strong, nonatomic) NSArray *employeeList;
+
+/**
+ *  已选择的办理人员
+ */
+@property (strong, nonatomic) NSMutableArray *selectedEmployeeList;
 
 @end
 
@@ -113,8 +123,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-//    [self loadDefualtVC];
     
 	[self.matterInfoService matterDetailInfoWithMatterID:self.matterID block:^(NSDictionary *dic, NSError *error) {
         // 获取到表单列表
@@ -136,21 +144,6 @@
         
         [self switchVC:vc];
     }];
-    
-//    // 为默认第一个被选中的 segment 获取对应的 view controller
-//    UIViewController *vc = [self viewControllerForSelectedSegment];
-//    if ([vc respondsToSelector:@selector(setMatterFormInfoList:)]) {
-//        [vc performSelector:@selector(setMatterFormInfoList:) withObject:self.matterFormInfoList];
-//    }
-//    
-//    [self switchVC:vc];
-    
-    // 将当前正在操作的「事项」的 ID 传给有需要的子视图控制器
-    //    if ([vc respondsToSelector:@selector(setMatterID:)]) {
-    //        [vc performSelector:@selector(setMatterID:) withObject:self.matterID];
-    //    }
-    //
-    
 }
 
 #pragma - mark Action
@@ -175,98 +168,17 @@
     }
     
     [self switchVC:vc];
-    
-//    [self addChildViewController:vc];
-//    
-//    [self.currentViewController.view removeFromSuperview];
-//    
-//    vc.view.frame = self.contentView.bounds;
-//    [self.contentView addSubview:vc.view];
-//    
-//    [vc didMoveToParentViewController:self];
-//    [self.currentViewController removeFromParentViewController];
-//    
-//    self.currentViewController = vc;
-    
-    // 动画
-    //    [self transitionFromViewController:self.currentViewController
-    //                      toViewController:vc
-    //                              duration:0.5
-    //                               options:UIViewAnimationOptionOverrideInheritedOptions
-    //                            animations:^{
-    //                                [self.currentViewController.view removeFromSuperview];
-    //                                vc.view.frame =self.contentView.bounds;
-    //                                [self.contentView addSubview:vc.view];
-    //                            }
-    //                            completion:^(BOOL finished){
-    //                                [vc didMoveToParentViewController:self];
-    //                                [self.currentViewController removeFromParentViewController];
-    //                                self.currentViewController = vc;
-    //                            }
-    //    ];
 }
 
 // 提交
 - (void)submitButtonPress:(id)sender
 {
-//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//    
-//    NSString *userID = [userDefaults stringForKey:@"CurrentUserID"];
-//    NSString *password = [userDefaults stringForKey:@"CurrentPassword"];
-    
-    // 将用户的「意见」和「意见正文」提交
-    [self.matterOprationService submitMatterWithComment:self.comment commentList:self.commentList routeList:self.routeList employeeList:self.employeeList block:^(NSInteger retCode, NSArray *list, NSString *title) {
-        
-        if (retCode == kSuccess) {
-#warning 提示成功
-        }
-        else if ((retCode == kHasRoute || retCode == kHasEmployee)
-            && [list count] > 0) {
-            
-            if (retCode == kHasRoute) {
-                self.currentSelectRoute = Route;
-            }
-            else if (retCode == kHasEmployee) {
-                self.currentSelectRoute = Employee;
-            }
-            
-            // 有待选择的部门或待选择的办理人员
-            UINavigationController *navigation = [self.storyboard instantiateViewControllerWithIdentifier:@"FollowNavigation"];
-            BLManageFollowViewController *manageFollowViewController = (BLManageFollowViewController *)[navigation topViewController];
-            
-            manageFollowViewController.title = title;
-            manageFollowViewController.followList = list;
-            manageFollowViewController.delegate = self;
-            
-            [navigation setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
-            [navigation setModalPresentationStyle:UIModalPresentationFormSheet];
-            
-            [self presentViewController:navigation animated:YES completion:nil];
-        }
-    }];
-    
-//    self.isSelectionPersonnel = NO;
-//    [self.matterOprationService folloDepartmentWithBlock:^(NSArray *list, NSError *error) {
-//        
-//        if (error) {
-//            
-//        }
-//        else if ([list count] > 0) {
-//            UINavigationController *navigation = [self.storyboard instantiateViewControllerWithIdentifier:@"FollowNavigation"];
-//            BLManageFollowViewController *manageFollowViewController = (BLManageFollowViewController *)[navigation topViewController];
-//            manageFollowViewController.followList = list;
-//            manageFollowViewController.delegate = self;
-//            manageFollowViewController.title = @"办理路由";
-//            
-//            [navigation setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
-//            [navigation setModalPresentationStyle:UIModalPresentationFormSheet];
-//            
-//            [self presentViewController:navigation animated:YES completion:nil];
-//        }
-//        else {
-//            // 提交服务器
-//        }
-//    }];
+    [self submitMatterWithComment:@"同意"
+                      commentList:nil
+                        routeList:nil
+                     employeeList:nil
+                         matterID:self.matterID
+                           flowID:@""];
 }
 
 // 已阅
@@ -291,17 +203,41 @@
 
 - (void)followDidSelected:(NSArray *)followList
 {
+    // 本次返回的是「部门路由」
     if (self.currentSelectRoute == Route) {
-        self.routeList = followList;
+        self.selectedRouteList = [[NSMutableArray alloc] init];
+        for (NSNumber *selectedIndex in followList) {
+            [self.selectedRouteList addObject:self.routeList[[selectedIndex integerValue]][@"RouteID"]];
+        }
     }
+    // 本次返回的是「办理人员」
     else if (self.currentSelectRoute == Employee) {
-        self.employeeList = followList;
+        self.selectedEmployeeList = [[NSMutableArray alloc] init];
+        for (NSNumber *selectedIndex in followList) {
+            [self.selectedEmployeeList addObject:self.employeeList[[selectedIndex integerValue]][@"UserID"]];
+        }
     }
     
-    [self.matterOprationService submitMatterWithComment:self.comment
-                                            commentList:self.commentList
-                                              routeList:self.routeList
-                                           employeeList:self.employeeList
+    [self submitMatterWithComment:@"同意" commentList:nil routeList:self.selectedRouteList employeeList:self.selectedEmployeeList matterID:self.matterID flowID:@""];
+}
+
+
+#pragma - mark Private
+
+- (void)submitMatterWithComment:(NSString *)comment
+                    commentList:(NSArray *)commentList
+                      routeList:(NSArray *)routList
+                   employeeList:(NSArray *)employeeList
+                       matterID:(NSString *)matterID
+                         flowID:(NSString *)flowID
+{
+    // 将用户的「意见」和「意见正文」提交
+    [self.matterOprationService submitMatterWithComment:comment
+                                            commentList:commentList
+                                              routeList:routList
+                                           employeeList:employeeList
+                                               matterID:matterID
+                                                 flowID:flowID
                                                   block:^(NSInteger retCode, NSArray *list, NSString *title) {
                                                       if (retCode == kSuccess) {
 #warning 提示成功
@@ -309,11 +245,17 @@
                                                       else if ((retCode == kHasRoute || retCode == kHasEmployee)
                                                                && [list count] > 0) {
                                                           
+                                                          NSArray *itemList;
+                                                          
                                                           if (retCode == kHasRoute) {
                                                               self.currentSelectRoute = Route;
+                                                              self.routeList = list;
+                                                              itemList = [list valueForKey:@"RouteName"];
                                                           }
                                                           else if (retCode == kHasEmployee) {
                                                               self.currentSelectRoute = Employee;
+                                                              self.employeeList = list;
+                                                              itemList = [list valueForKey:@"UserName"];
                                                           }
                                                           
                                                           // 有待选择的部门或待选择的办理人员
@@ -321,7 +263,8 @@
                                                           BLManageFollowViewController *manageFollowViewController = (BLManageFollowViewController *)[navigation topViewController];
                                                           
                                                           manageFollowViewController.title = title;
-                                                          manageFollowViewController.followList = list;
+                                                          
+                                                          manageFollowViewController.followList = itemList;
                                                           manageFollowViewController.delegate = self;
                                                           
                                                           [navigation setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
@@ -330,42 +273,7 @@
                                                           [self presentViewController:navigation animated:YES completion:nil];
                                                       }
                                                   }];
-
-    
-//    if (self.isSelectionPersonnel) {
-//        
-//        // 提交服务器
-//    }
-//    else {
-//        
-//        
-//        [self.matterOprationService folloDepartmentWithBlock:^(NSArray *list, NSError *error) {
-//            
-//            if (error) {
-//                
-//            }
-//            else if ([list count] > 0) {
-//                self.isSelectionPersonnel = YES;
-//                
-//                UINavigationController *navigation = [self.storyboard instantiateViewControllerWithIdentifier:@"FollowNavigation"];
-//                BLManageFollowViewController *manageFollowViewController = (BLManageFollowViewController *)[navigation topViewController];
-//                manageFollowViewController.followList = list;
-//                manageFollowViewController.delegate = self;
-//                manageFollowViewController.title = @"办理人员";
-//                
-//                [navigation setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
-//                [navigation setModalPresentationStyle:UIModalPresentationFormSheet];
-//                
-//                [self presentViewController:navigation animated:YES completion:nil];
-//            }
-//            else {
-//                // 提交服务器
-//            }
-//        }];
-//    }
 }
-
-#pragma - mark Private
 
 - (void)initOperationButton:(NSArray *)buttonList
 {
@@ -404,38 +312,9 @@
     
 }
 
-//- (void)loadDefualtVC
-//{
-//    // 为默认第一个被选中的 segment 获取对应的 view controller
-//    UIViewController *vc = [self viewControllerForSelectedSegment];
-//    
-//    // 将当前正在操作的「事项」的 ID 传给有需要的子视图控制器
-//    //    if ([vc respondsToSelector:@selector(setMatterID:)]) {
-//    //        [vc performSelector:@selector(setMatterID:) withObject:self.matterID];
-//    //    }
-//    //
-//    [self addChildViewController:vc];
-//    
-//    // 修改新加入的的视图的尺寸，可以刚好放在预留好的地方
-//    vc.view.frame = self.contentView.bounds;
-//    [self.contentView addSubview:vc.view];
-//    
-//    self.currentViewController = vc;
-//}
 
 - (void)switchVC:(UIViewController *)vc
 {
-//    [self addChildViewController:vc];
-//    
-//    // 修改新加入的的视图的尺寸，可以刚好放在预留好的地方
-//    vc.view.frame = self.contentView.bounds;
-//    [self.contentView addSubview:vc.view];
-//    
-//    self.currentViewController = vc;
-    
-    
-    
-
     [self addChildViewController:vc];
     
     [self.currentViewController.view removeFromSuperview];

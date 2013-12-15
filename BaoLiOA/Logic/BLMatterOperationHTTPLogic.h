@@ -19,11 +19,11 @@ typedef void(^BLMatterOperationHTTPLogicGeneralBlock)(id responseData, NSError *
                       userName:(NSString *)userName
                       matterID:(NSString *)matterID
                         flowID:(NSString *)flowID
-                     operation:(NSString *)operation
+                     operation:(NSString *)operationType
                        Comment:(NSString *)comment
                     commentList:(NSArray *)commentList
-                      routeList:(NSArray *)routList
-                   employeeList:(NSArray *)employeeList
+                      routeList:(NSString *)routIDs
+                   employeeList:(NSArray *)employeeIDs
                           block:(BLMatterOperationHTTPLogicGeneralBlock)block;
 
 @end

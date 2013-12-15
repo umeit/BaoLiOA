@@ -19,6 +19,7 @@
     [super viewDidLoad];
 }
 
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -36,14 +37,15 @@
     static NSString *CellIdentifier = @"BLManageFollowViewControllerCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    cell.textLabel.text = [self.followList[indexPath.row] objectForKey:@"name"];
+    cell.textLabel.text = self.followList[indexPath.row];
     
-    if ([self isFollowMarked:self.followList[indexPath.row]]) {
+    if ([self isFollowMarked:@(indexPath.row)]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     
     return cell;
 }
+
 
 #pragma - mark - UITablewViewDelegate
 
@@ -54,11 +56,11 @@
     if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
         cell.accessoryType = UITableViewCellAccessoryNone;
         
-        [self removeMarkedItem:self.followList[indexPath.row]];
+        [self removeMarkedItem:@(indexPath.row)];
     }
     else {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        [self addMarkedItem:self.followList[indexPath.row]];
+        [self addMarkedItem:@(indexPath.row)];
         
     }
 }
