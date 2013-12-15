@@ -33,12 +33,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-//    // 获取附件列表数据
-//    [self.matterOprationService matterAttachmentListWithBlock:^(NSArray *list, NSError *error) {
-//        self.attachmentList = list;
-//        [self.tableView reloadData];
-//    }];
 }
 
 #pragma mark - Table view data source
@@ -70,6 +64,7 @@
 {
     NSInteger row = sender.tag;
 
+    // 点击打开
     if ([sender.titleLabel.text isEqualToString:@"打开"]) {
         // 使用 web view 打开附件文件
         NSString *attachmentFileLocalPath = [self attachmentFileLocalPathWithAttach:self.matterAttachList[row]];
@@ -80,16 +75,19 @@
     else {
         [sender setTitle:@"停止" forState:UIControlStateNormal];
         
+        BLAttachEntity *attachEntity = self.matterAttachList[row];
+        
         // 下载正文文件
         [self.matterOprationService
-         downloadMatterAttachmentFileFromURL:[self attachmentFileRemotePathWithAttach:self.matterAttachList[row]]
-                                   withBlock:^(NSString *localFilePath, NSError *error) {
+         downloadMatterAttachmentFileWithAttachID:attachEntity.attachID
+                                         fileType:@"zip"
+                                            block:^(NSString *localFilePath, NSError *error) {
                                        
-                                       BLAttachEntity *attachEntity = self.matterAttachList[row];
-                                       attachEntity.localPath = localFilePath;
+                                                BLAttachEntity *attachEntity = self.matterAttachList[row];
+                                                attachEntity.localPath = localFilePath;
                                        
-                                       [sender setTitle:@"打开" forState:UIControlStateNormal];
-                                   }];
+                                                [sender setTitle:@"打开" forState:UIControlStateNormal];
+                                            }];
     }
 }
 
@@ -127,10 +125,10 @@
     return nil;
 }
 
-// 附件的服务器端地址
-- (NSString *)attachmentFileRemotePathWithAttach:(BLAttachEntity *)attachEntity
-{
-    return nil;
-}
+//// 附件的服务器端地址
+//- (NSString *)attachmentFileRemotePathWithAttach:(BLAttachEntity *)attachEntity
+//{
+//    return nil;
+//}
 
 @end

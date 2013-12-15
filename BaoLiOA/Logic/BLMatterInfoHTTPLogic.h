@@ -15,14 +15,18 @@ typedef enum MatterType : NSInteger{
     ApproveMatter
 }MatterType;
 
-//typedef void(^BLMatterHTTPLogicGeneralListBlock)(id responselist, NSError *error);
+
 typedef void(^BLMatterHTTPLogicGeneralBlock)(id responseData, NSError *error);
+typedef void(^BLMatterHTTPLogicAttachDownloadBlock)(NSString *zipFileLocalPath, NSError *error);
 
 @interface BLMatterInfoHTTPLogic : NSObject
 
-+ (void)matterListWithMatterType:(MatterType)matterType withBlock:(BLMatterHTTPLogicGeneralBlock)block;
++ (void)downloadFileWithAttachID:(NSString *)attachID
+                        fileType:(NSString *)fileType
+                        savePath:(NSString *)savePath
+                           block:(BLMatterHTTPLogicAttachDownloadBlock)block;
 
-+ (void)downloadFileFromURL:(NSString *)filePath toPath:(NSString *)localPath withBlock:(BLMatterHTTPLogicGeneralBlock)block;
++ (void)matterListWithMatterType:(MatterType)matterType withBlock:(BLMatterHTTPLogicGeneralBlock)block;
 
 + (void)matterDetailWithMatterID:(NSString *)matterID block:(BLMatterHTTPLogicGeneralBlock)block;
 

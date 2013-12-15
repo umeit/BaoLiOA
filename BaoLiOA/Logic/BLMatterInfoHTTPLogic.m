@@ -14,37 +14,42 @@
 // 测试地址
 #define SOAP_URL(s) [NSURL URLWithString:[NSString stringWithFormat:@"http://210.51.191.244:8081/OAWebService/DemoData_WebService.asmx?op=%@", s]];
 
+// 测试文件下载地址
+#define Attach_File_URL(id, type) [NSURL URLWithString:[NSString stringWithFormat:@"http://210.51.191.244:8081/OAWebService/Files/%@.%@", id, type]];
 @implementation BLMatterInfoHTTPLogic
 
-+ (void)downloadFileFromURL:(NSString *)filePath toPath:(NSString *)localPath  withBlock:(BLMatterHTTPLogicGeneralBlock)block
++ (void)downloadFileWithAttachID:(NSString *)attachID
+                        fileType:(NSString *)fileType
+                        savePath:(NSString *)savePath
+                           block:(BLMatterHTTPLogicAttachDownloadBlock)block
 {
+    // http://210.51.191.244:XX/OAWebService/Files/HZ456b4132133680014249e86fad23d1.zip
+    
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     
-    NSURL *URL = [NSURL URLWithString:filePath];
-    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    NSURL *attachFileRemoteURL = Attach_File_URL(attachID, fileType);
+    NSURLRequest *request = [NSURLRequest requestWithURL:attachFileRemoteURL];
     
-    // 保存路径
+    // 保存文件
     NSURL * (^DestinationBlock)(NSURL *__strong, NSURLResponse *__strong) =
     ^NSURL *(NSURL *targetPath, NSURLResponse *response) {
-        NSURL *savePath = [NSURL URLWithString:localPath];
-
-        
-        return [savePath URLByAppendingPathComponent:[response suggestedFilename]];
+        NSURL *attachFileLocalURL = [NSURL fileURLWithPath:savePath];
+        return [attachFileLocalURL URLByAppendingPathComponent:[response suggestedFilename]];
     };
     
     // 下载完成
     void (^completionHandlerBlock)(NSURLResponse *__strong, NSURL *__strong, NSError *__strong) =
     ^(NSURLResponse *response, NSURL *filePath, NSError *error) {
-        NSLog(@"File downloaded to: %@", filePath);
         if (error) {
             block(nil, error);
         }
         else {
-            block([filePath path], nil);
+            block([filePath absoluteString], nil);
         }
     };
     
+    // 开始下载
     NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request
                                                                      progress:nil
                                                                   destination:DestinationBlock

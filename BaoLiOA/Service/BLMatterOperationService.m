@@ -96,21 +96,23 @@
     block(@"path", nil);
 }
 
-- (void)downloadMatterAttachmentFileFromURL:(NSString *)urlString withBlock:(BLMatterOprationServiceDownloadFileBlock)block
+- (void)downloadMatterAttachmentFileWithAttachID:(NSString *)attachID fileType:(NSString *)fileType block:(BLMatterOprationServiceDownloadFileBlock)block
 {
+    // 附件下载到该文件夹
+    NSString *documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                                            NSUserDomainMask,
+                                                                            YES) firstObject];
     
-    NSURL *documentsDirectoryPath = [NSURL fileURLWithPath:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                                                                NSUserDomainMask,
-                                                                                                YES) firstObject]];
-    [BLMatterInfoHTTPLogic downloadFileFromURL:urlString toPath:(NSString *)documentsDirectoryPath  withBlock:^(id responseData, NSError *error) {
-        block([documentsDirectoryPath path], nil);
+    // 下载附件成功后返回下载的 zip 文件的绝对路径
+    [BLMatterInfoHTTPLogic downloadFileWithAttachID:attachID fileType:fileType savePath:documentsDirectoryPath block:^(NSString *zipFileLocalPath, NSError *error) {
+        if (error) {
+            block(nil, error);
+        }
+        else {
+            
+        }
     }];
 }
-
-//- (void)matterAttachmentListWithBlock:(BLMatterOprationServiceGeneralListBlock)block
-//{
-//    
-//}
 
 - (void)folloDepartmentWithBlock:(BLMatterOprationServiceGeneralListBlock)block
 {

@@ -46,9 +46,7 @@ typedef void(^BLMOSSubmitCallBackBlock)(NSInteger retCode, NSArray *list, NSStri
 
 - (void)downloadMatterMainBodyFileFromURL:(NSString *)urlString withBlock:(BLMatterOprationServiceDownloadFileBlock)block;
 
-- (void)downloadMatterAttachmentFileFromURL:(NSString *)urlString withBlock:(BLMatterOprationServiceDownloadFileBlock)block;
-
-//- (void)matterAttachmentListWithBlock:(BLMatterOprationServiceGeneralListBlock)block;
+- (void)downloadMatterAttachmentFileWithAttachID:(NSString *)attachID fileType:(NSString *)fileType block:(BLMatterOprationServiceDownloadFileBlock)block;
 
 - (void)folloDepartmentWithBlock:(BLMatterOprationServiceGeneralListBlock)block;
 
