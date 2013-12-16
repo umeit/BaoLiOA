@@ -67,9 +67,7 @@
     // 点击打开
     if ([sender.titleLabel.text isEqualToString:@"打开"]) {
         // 使用 web view 打开附件文件
-        NSString *attachmentFileLocalPath = [self attachmentFileLocalPathWithAttach:self.matterAttachList[row]];
-        
-        [self showPreviewViewControllerWithFilePath:attachmentFileLocalPath];
+        [self showPreviewViewControllerWithFilePath:((BLAttachEntity *)self.matterAttachList[row]).localPath];
     }
     // 点击下载
     else {
@@ -80,11 +78,10 @@
         // 下载正文文件
         [self.matterOprationService
          downloadMatterAttachmentFileWithAttachID:attachEntity.attachID
-                                         fileType:@"zip"
                                             block:^(NSString *localFilePath, NSError *error) {
                                        
                                                 BLAttachEntity *attachEntity = self.matterAttachList[row];
-                                                attachEntity.localPath = localFilePath;
+                                                attachEntity.localPath = [NSString stringWithFormat:@"%@/%@", localFilePath, attachEntity.attachTitle];
                                        
                                                 [sender setTitle:@"打开" forState:UIControlStateNormal];
                                             }];
@@ -110,20 +107,24 @@
     cell.attachmentTitleLabel.text = attachEntity.attachTitle;
     
     // 检查本地是否有下载过
-    NSString *attachmentFileLocalPath = [self attachmentFileLocalPathWithAttach:attachEntity];
-    if (attachmentFileLocalPath && [attachmentFileLocalPath length] > 0) {
+    NSString *documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                                            NSUserDomainMask,
+                                                                            YES) firstObject];
+    NSString *attachmentFileLocalPath = [NSString stringWithFormat:@"%@/%@", documentsDirectoryPath, attachEntity.attachTitle];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:attachmentFileLocalPath]) {
         [cell.downloadButton setTitle:@"打开" forState:UIControlStateNormal];
+        attachEntity.localPath = attachmentFileLocalPath;
     }
     
     // 使用 tag 记录「下载按钮」是属于哪一行的
     cell.downloadButton.tag = indexPath.row;
 }
 
-// 附件的本地路径
-- (NSString *)attachmentFileLocalPathWithAttach:(BLAttachEntity *)attachEntity
-{
-    return nil;
-}
+//// 附件的本地路径
+//- (NSString *)attachmentFileLocalPathWithAttach:(BLAttachEntity *)attachEntity
+//{
+//    return nil;
+//}
 
 //// 附件的服务器端地址
 //- (NSString *)attachmentFileRemotePathWithAttach:(BLAttachEntity *)attachEntity

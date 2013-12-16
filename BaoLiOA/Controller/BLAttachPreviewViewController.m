@@ -20,7 +20,7 @@
 {
     [super viewDidLoad];
 	
-    NSURL *fileURL = [NSURL URLWithString:self.filePath];
+    NSURL *fileURL = [NSURL fileURLWithPath:self.filePath];
     [self.webView loadRequest:[NSURLRequest requestWithURL:fileURL]];
 }
 
