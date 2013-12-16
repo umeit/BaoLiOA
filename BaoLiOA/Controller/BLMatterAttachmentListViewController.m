@@ -16,6 +16,8 @@
 
 @property (strong, nonatomic) BLMatterOperationService *matterOprationService;
 
+@property (strong, nonatomic) NSMutableArray *progressList;
+
 @end
 
 @implementation BLMatterAttachmentListViewController
@@ -75,9 +77,12 @@
         
         BLAttachEntity *attachEntity = self.matterAttachList[row];
         
+        NSProgress *progress;
+        
         // 下载正文文件
         [self.matterOprationService
          downloadMatterAttachmentFileWithAttachID:attachEntity.attachID
+                                         progress:&progress
                                             block:^(NSString *localFilePath, NSError *error) {
                                        
                                                 BLAttachEntity *attachEntity = self.matterAttachList[row];
@@ -85,6 +90,19 @@
                                        
                                                 [sender setTitle:@"打开" forState:UIControlStateNormal];
                                             }];
+        [progress addObserver:self forKeyPath:@"fractionCompleted" options:NSKeyValueObservingOptionNew context:NULL];
+        [self.progressList addObject:progress];
+    }
+}
+
+
+
+#pragma mark - Observe
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"fractionCompleted"]) {
+        NSProgress *progress = object;
     }
 }
 

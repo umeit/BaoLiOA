@@ -681,6 +681,7 @@
                                 <connections>
                                     <outlet property="attachmentTitleLabel" destination="yeN-9v-ROo" id="MLI-6N-rJx"/>
                                     <outlet property="downloadButton" destination="4VD-A5-WKF" id="2Sx-1S-AfP"/>
+                                    <outlet property="progress" destination="QfY-yu-Y7z" id="Bmj-AE-rX1"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

@@ -21,6 +21,7 @@
 + (void)downloadFileWithAttachID:(NSString *)attachID
                         fileType:(NSString *)fileType
                         savePath:(NSString *)savePath
+                        progress:(NSProgress **)progress
                            block:(BLMatterHTTPLogicAttachDownloadBlock)block
 {
     // http://210.51.191.244:XX/OAWebService/Files/HZ456b4132133680014249e86fad23d1.zip
@@ -51,7 +52,7 @@
     
     // 开始下载
     NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request
-                                                                     progress:nil
+                                                                     progress:&progress
                                                                   destination:DestinationBlock
                                                             completionHandler:completionHandlerBlock];
     [downloadTask resume];

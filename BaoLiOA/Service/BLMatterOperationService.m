@@ -97,7 +97,7 @@
     block(@"path", nil);
 }
 
-- (void)downloadMatterAttachmentFileWithAttachID:(NSString *)attachID block:(BLMatterOprationServiceDownloadFileBlock)block
+- (void)downloadMatterAttachmentFileWithAttachID:(NSString *)attachID progress:(NSProgress **)progress block:(BLMatterOprationServiceDownloadFileBlock)block
 {
     // 附件下载到该文件夹
     NSString *documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
@@ -105,7 +105,7 @@
                                                                             YES) firstObject];
     
     // 下载附件成功后得到下载的 zip 文件的绝对路径
-    [BLMatterInfoHTTPLogic downloadFileWithAttachID:attachID fileType:@"zip" savePath:documentsDirectoryPath block:^(NSString *zipFileLocalPath, NSError *error) {
+    [BLMatterInfoHTTPLogic downloadFileWithAttachID:attachID fileType:@"zip" savePath:documentsDirectoryPath progress:progress block:^(NSString *zipFileLocalPath, NSError *error) {
         if (error) {
             block(nil, error);
         }

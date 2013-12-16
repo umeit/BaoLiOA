@@ -24,6 +24,7 @@ typedef void(^BLMatterHTTPLogicAttachDownloadBlock)(NSString *zipFileLocalPath, 
 + (void)downloadFileWithAttachID:(NSString *)attachID
                         fileType:(NSString *)fileType
                         savePath:(NSString *)savePath
+                        progress:(NSProgress **)progress
                            block:(BLMatterHTTPLogicAttachDownloadBlock)block;
 
 + (void)matterListWithMatterType:(MatterType)matterType withBlock:(BLMatterHTTPLogicGeneralBlock)block;
