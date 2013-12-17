@@ -48,7 +48,7 @@
 		036C0FF3183D05AD00C61808 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 036C0FE8183D05AD00C61808 /* AFURLRequestSerialization.m */; };
 		036C0FF4183D05AD00C61808 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 036C0FEA183D05AD00C61808 /* AFURLResponseSerialization.m */; };
 		036C0FF5183D05AD00C61808 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 036C0FEC183D05AD00C61808 /* AFURLSessionManager.m */; };
-		0381BC5518478BDF00DB661D /* BLOpinionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0381BC5418478BDF00DB661D /* BLOpinionViewController.m */; };
+		0381BC5518478BDF00DB661D /* BLCommonOpinionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0381BC5418478BDF00DB661D /* BLCommonOpinionViewController.m */; };
 		0381BC581847985400DB661D /* BLManageFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0381BC571847985400DB661D /* BLManageFollowViewController.m */; };
 		0390A01A1855BC6B00EEEEBB /* BLAttachPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0390A0191855BC6B00EEEEBB /* BLAttachPreviewViewController.m */; };
 		039BF60C185E077F00985B17 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 039BF5DB185E077E00985B17 /* CHANGELOG.md */; };
@@ -204,8 +204,8 @@
 		036C0FEA183D05AD00C61808 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		036C0FEB183D05AD00C61808 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		036C0FEC183D05AD00C61808 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
-		0381BC5318478BDF00DB661D /* BLOpinionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLOpinionViewController.h; sourceTree = "<group>"; };
-		0381BC5418478BDF00DB661D /* BLOpinionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLOpinionViewController.m; sourceTree = "<group>"; };
+		0381BC5318478BDF00DB661D /* BLCommonOpinionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCommonOpinionViewController.h; sourceTree = "<group>"; };
+		0381BC5418478BDF00DB661D /* BLCommonOpinionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCommonOpinionViewController.m; sourceTree = "<group>"; };
 		0381BC561847985400DB661D /* BLManageFollowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLManageFollowViewController.h; sourceTree = "<group>"; };
 		0381BC571847985400DB661D /* BLManageFollowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLManageFollowViewController.m; sourceTree = "<group>"; };
 		0390A0181855BC6B00EEEEBB /* BLAttachPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLAttachPreviewViewController.h; sourceTree = "<group>"; };
@@ -334,8 +334,8 @@
 				03BD17FC1844EF77002F2C38 /* BLMatterFlowListViewController.m */,
 				03BD17FE1844F2FF002F2C38 /* BLMatterOpinionViewController.h */,
 				03BD17FF1844F2FF002F2C38 /* BLMatterOpinionViewController.m */,
-				0381BC5318478BDF00DB661D /* BLOpinionViewController.h */,
-				0381BC5418478BDF00DB661D /* BLOpinionViewController.m */,
+				0381BC5318478BDF00DB661D /* BLCommonOpinionViewController.h */,
+				0381BC5418478BDF00DB661D /* BLCommonOpinionViewController.m */,
 				0381BC561847985400DB661D /* BLManageFollowViewController.h */,
 				0381BC571847985400DB661D /* BLManageFollowViewController.m */,
 				030D3C601849B0A000E844EA /* BLLoginViewController.h */,
@@ -835,7 +835,7 @@
 				036C0FB4183D02AB00C61808 /* main.m in Sources */,
 				03BD17FA1844DC8F002F2C38 /* BLMatterAttachmentCell.m in Sources */,
 				039BF618185E077F00985B17 /* unzip.c in Sources */,
-				0381BC5518478BDF00DB661D /* BLOpinionViewController.m in Sources */,
+				0381BC5518478BDF00DB661D /* BLCommonOpinionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

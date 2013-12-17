@@ -52,7 +52,7 @@
     
     // 开始下载
     NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request
-                                                                     progress:&progress
+                                                                     progress:progress
                                                                   destination:DestinationBlock
                                                             completionHandler:completionHandlerBlock];
     [downloadTask resume];

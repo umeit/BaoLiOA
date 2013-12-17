@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol BLOpinionViewControllerDelegate <NSObject>
+@protocol BLCommonOpinionViewControllerDelegate <NSObject>
 
 - (void)opinionDidSelecte:(NSString *)opinion;
 
 @end
 
-@interface BLOpinionViewController : UITableViewController
+@interface BLCommonOpinionViewController : UITableViewController
 
-@property (weak, nonatomic) id<BLOpinionViewControllerDelegate> delegate;
+@property (weak, nonatomic) id<BLCommonOpinionViewControllerDelegate> delegate;
 
 @end

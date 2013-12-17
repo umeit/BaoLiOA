@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol BLMatterOpinionViewControllerDelegate <NSObject>
+
+- (void)opinionDidSelect:(NSString *)opinion;
+
+@end
+
+
 @interface BLMatterOpinionViewController : UIViewController
+
+@property (weak, nonatomic) id<BLMatterOpinionViewControllerDelegate> delegate;
 
 @end

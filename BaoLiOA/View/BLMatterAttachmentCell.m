@@ -26,4 +26,15 @@
     // Configure the view for the selected state
 }
 
+#pragma mark - Observe
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"fractionCompleted"]) {
+        NSProgress *progress = object;
+        self.progress.progress = progress.fractionCompleted;
+        NSLog(@"Progress is %f", progress.fractionCompleted);
+    }
+}
+
 @end

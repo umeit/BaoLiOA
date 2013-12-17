@@ -6,15 +6,15 @@
 //  Copyright (c) 2013年 Liu Feng. All rights reserved.
 //
 
-#import "BLOpinionViewController.h"
+#import "BLCommonOpinionViewController.h"
 
-@interface BLOpinionViewController ()
+@interface BLCommonOpinionViewController ()
 
 @property (strong, nonatomic) NSArray *opinionList;
 
 @end
 
-@implementation BLOpinionViewController
+@implementation BLCommonOpinionViewController
 
 - (void)viewDidLoad
 {

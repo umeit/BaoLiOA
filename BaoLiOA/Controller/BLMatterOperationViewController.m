@@ -12,6 +12,7 @@
 #import "BLMatterOperationViewController.h"
 #import "BLMatterOperationService.h"
 #import "BLManageFollowViewController.h"
+#import "BLMatterOpinionViewController.h"
 #import "BLMatterInfoService.h"
 
 #define OperationButtonParentViewTag 30
@@ -19,7 +20,7 @@
 #define Route    0
 #define Employee 1
 
-@interface BLMatterOperationViewController () <BLManageFollowViewControllerDelegate>
+@interface BLMatterOperationViewController () <BLManageFollowViewControllerDelegate, BLMatterOpinionViewControllerDelegate>
 
 /**
  *  切换控件
@@ -199,6 +200,7 @@
     NSLog(@"fallback!");
 }
 
+
 #pragma - mark BLManageFollowViewControllerDelegate
 
 - (void)followDidSelected:(NSArray *)followList
@@ -218,7 +220,16 @@
         }
     }
     
+#该用真实的意见
     [self submitMatterWithComment:@"同意" commentList:nil routeList:self.selectedRouteList employeeList:self.selectedEmployeeList matterID:self.matterID flowID:@""];
+}
+
+
+#pragma - mark BLMatterOpinionViewControllerDelegate
+// 保存用户选择的意见
+- (void)opinionDidSelect:(NSString *)opinion
+{
+    self.comment = opinion;
 }
 
 
@@ -312,7 +323,6 @@
     
 }
 
-
 - (void)switchVC:(UIViewController *)vc
 {
     [self addChildViewController:vc];
@@ -327,6 +337,10 @@
     [self.currentViewController removeFromParentViewController];
     
     self.currentViewController = vc;
+    
+    if ([vc respondsToSelector:@selector(setDelegate:)]) {
+        [vc performSelector:@selector(setDelegate:) withObject:self];
+    }
 }
 
 - (UIViewController *)viewControllerForSelectedSegment

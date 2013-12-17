@@ -7,12 +7,12 @@
 //
 
 #import "BLMatterOpinionViewController.h"
-#import "BLOpinionViewController.h"
+#import "BLCommonOpinionViewController.h"
 
-@interface BLMatterOpinionViewController () <BLOpinionViewControllerDelegate>
+@interface BLMatterOpinionViewController () <BLCommonOpinionViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *opinionTextField;
 @property (weak, nonatomic) IBOutlet UITextView *opinionTextView;
-@property (weak, nonatomic) UIPopoverController *opinionPopover;
+@property (weak, nonatomic) UIPopoverController *commonOpinionPopover;
 @end
 
 @implementation BLMatterOpinionViewController
@@ -27,19 +27,21 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    BLOpinionViewController *vc = segue.destinationViewController;
+    BLCommonOpinionViewController *vc = segue.destinationViewController;
     vc.delegate = self;
     
-    self.opinionPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
+    self.commonOpinionPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
 }
 
-#pragma mark - BLOpinionViewControllerDelegate
+#pragma mark - BLCommonOpinionViewControllerDelegate
 
 - (void)opinionDidSelecte:(NSString *)opinion
 {
     self.opinionTextField.text = opinion;
     
-    [self.opinionPopover dismissPopoverAnimated:YES];
+    [self.delegate opinionDidSelect:opinion];
+    
+    [self.commonOpinionPopover dismissPopoverAnimated:YES];
 }
 
 @end

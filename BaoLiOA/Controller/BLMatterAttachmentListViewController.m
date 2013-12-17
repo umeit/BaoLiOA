@@ -90,8 +90,11 @@
                                        
                                                 [sender setTitle:@"打开" forState:UIControlStateNormal];
                                             }];
-        [progress addObserver:self forKeyPath:@"fractionCompleted" options:NSKeyValueObservingOptionNew context:NULL];
-        [self.progressList addObject:progress];
+        [progress addObserver:[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]]
+                   forKeyPath:@"fractionCompleted"
+                      options:NSKeyValueObservingOptionNew
+                      context:NULL];
+//        [self.progressList insertObject:progress atIndex:row];
     }
 }
 
@@ -101,8 +104,14 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
+//    [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+
     if ([keyPath isEqualToString:@"fractionCompleted"]) {
         NSProgress *progress = object;
+        NSUInteger index = [self.progressList indexOfObject:progress];
+        BLMatterAttachmentCell *cell = (BLMatterAttachmentCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+        cell.progress.progress = progress.fractionCompleted;
+//        NSLog(@"Progress is %f", progress.fractionCompleted);
     }
 }
 
