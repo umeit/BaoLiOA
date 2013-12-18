@@ -10,4 +10,6 @@
 
 @interface BLMatterFlowListViewController : UITableViewController
 
+@property (strong, nonatomic) NSString *matterID;
+
 @end

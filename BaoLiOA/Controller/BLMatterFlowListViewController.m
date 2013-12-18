@@ -7,18 +7,23 @@
 //
 
 #import "BLMatterFlowListViewController.h"
+#import "BLMatterInfoService.h"
 
 @interface BLMatterFlowListViewController ()
+
+@property (strong, nonatomic) BLMatterInfoService *matterInfoService;
+
+@property (strong, nonatomic) NSArray *flowList;
 
 @end
 
 @implementation BLMatterFlowListViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super initWithStyle:style];
+    self = [super initWithCoder:aDecoder];
     if (self) {
-        // Custom initialization
+        self.matterInfoService = [[BLMatterInfoService alloc] init];
     }
     return self;
 }
@@ -27,11 +32,17 @@
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self.matterInfoService matterFlowWithMatterID:self.matterID block:^(id obj, NSError *error) {
+        if (error) {
+            
+            
+        }
+        else {
+            self.flowList = obj;
+            
+            [self.tableView reloadData];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,7 +67,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"BLMatterFlowCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...

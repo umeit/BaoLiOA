@@ -31,4 +31,6 @@ typedef void(^BLMatterInfoServiceGeneralBlock)(id obj, NSError *error);
 - (void)matterDetailInfoWithMatterID:(NSString *)matterID
                                block:(BLMatterInfoServiceGeneralBlock)block;
 
+- (void)matterFlowWithMatterID:(NSString *)matterID
+                         block:(BLMatterInfoServiceGeneralBlock)block;
 @end

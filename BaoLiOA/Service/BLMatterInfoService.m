@@ -9,9 +9,11 @@
 #import "BLMatterInfoService.h"
 #import "BLMatterInfoHTTPLogic.h"
 #import "BLMatterEntity.h"
+#import "BLMatterFlowEntity.h"
 #import "BLFromFieldItemEntity.h"
 #import "BLAttachEntity.h"
 #import "RXMLElement.h"
+
 
 @implementation BLMatterInfoService
 
@@ -22,8 +24,6 @@
             block(nil, error);
         }
         else {
-//            NSLog(@"Response [Todo Data] Data: %@", [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
-
             NSMutableArray *todoList = [[NSMutableArray alloc] init];
             
             RXMLElement *rootElement = [RXMLElement elementFromXMLData:responseData];
@@ -38,7 +38,7 @@
                 matterEntity.sendTime = [e child:@"SendDate"].text;
 //                matterEntity.matterSubType = @"控股公司发文";
 //                matterEntity.flag = 1;
-                
+
                 [todoList addObject:matterEntity];
             }];
             
@@ -58,60 +58,6 @@
         }
     }];
 }
-
-//- (void)matterFormListWithMatterID:(NSString *)matterID block:(BLMatterInfoServiceGeneralBlock)block;
-//{
-//    [BLMatterHTTPLogic matterFormListWithMatterID:matterID block:^(id responseData, NSError *error) {
-//        if (error) {
-//            block(nil, error);
-//        }
-//        else {
-//            NSLog(@"Response [Region Data] Data: %@", [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
-//            
-////            // 存储 FieldItems 和 Percents
-////            NSMutableDictionary *regionInfo = [[NSMutableDictionary alloc] init];
-//            
-//            // 存储 field item 列表的列表
-//            NSMutableArray *regionList = [[NSMutableArray alloc] init];
-//            
-//            RXMLElement *rootElement = [RXMLElement elementFromXMLData:responseData];
-//            
-//            // 开始解析数据
-//            [rootElement iterate:@"Body.GetDocInfoResponse.GetDocInfoResult.RegionItems.InfoRegion" usingBlock:^(RXMLElement *regionInfoElement) {
-//                
-//                // 解析一个 Region 中的所有 Field 数据
-//                NSMutableArray *fieldItemList = [[NSMutableArray alloc] init];
-//                [regionInfoElement iterate:@"FieldItems.FieldItem" usingBlock:^(RXMLElement *fieldItemElement) {
-//                    BLFromFieldItemEntity *fieldItemEntity = [[BLFromFieldItemEntity alloc] init];
-//                    
-//                    fieldItemEntity.name = [fieldItemElement child:@"Name"].text;
-//                    fieldItemEntity.nameVisible = [[fieldItemElement child:@"NameVisible"].text isEqualToString:@"true"] ? YES : NO;
-//                    fieldItemEntity.Value = [fieldItemElement child:@"Value"].text;
-//                    fieldItemEntity.itemID = [fieldItemElement child:@"Key"].text;
-//                    fieldItemEntity.sign = [[fieldItemElement child:@"Sign"].text isEqualToString:@"true"] ? YES : NO;
-//                    fieldItemEntity.percent = [[fieldItemElement child:@"Percent"].text integerValue];
-//                    
-//                    [fieldItemList addObject:fieldItemEntity];
-//                }];
-//                
-//                [regionList addObject:fieldItemList];
-//                
-////                // 解析一个 Region 中的所有 Percents 数据
-////                NSMutableArray *percentsList = [[NSMutableArray alloc] init];
-////                [regionInfoElement iterate:@"FieldItems" usingBlock:^(RXMLElement *fieldItemElement) {
-////                    NSNumber *percents = @(0);
-////                    [percentsList addObject:percents];
-////                }];
-////                
-////                [regionInfo setObject:@"FieldItems" forKey:fieldItemList];
-////                [regionInfo setObject:@"Percents" forKey:fieldItemList];
-//            }];
-//            
-////            block(regionInfo, nil);
-//            block(regionList, Nil);
-//        }
-//    }];
-//}
 
 - (void)matterDetailInfoWithMatterID:(NSString *)matterID block:(BLMatterInfoServiceGeneralBlock)block
 {
@@ -142,11 +88,37 @@
     }];
 }
 
+- (void)matterFlowWithMatterID:(NSString *)matterID block:(BLMatterInfoServiceGeneralBlock)block
+{
+    [BLMatterInfoHTTPLogic matterFlowWithMatterID:matterID block:^(id responseData, NSError *error) {
+        if (error) {
+            block(nil, error);
+        }
+        else {
+            NSLog(@"Response [Matter Flow Data]: %@", [[NSString alloc] initWithData:responseData
+                                                                              encoding:NSUTF8StringEncoding]);
+            RXMLElement *rootElement = [RXMLElement elementFromXMLData:responseData];
+            if (!rootElement) {
+                // 获取的数据不合法
+                block(nil, error);
+                return;
+            }
+
+            NSArray *flowList = [self parseMatterFlowData:rootElement];
+            
+            block(flowList, nil);
+        }
+    }];
+}
+
+
 #pragma mark - Private
+
 // 解析表单数据
 - (NSArray *)parseFormData:(RXMLElement *)rootElement
 {
     NSMutableArray *regionList = [[NSMutableArray alloc] init];
+    
     [rootElement iterate:@"Body.GetDocInfoResponse.GetDocInfoResult.RegionItems.InfoRegion"
               usingBlock:^(RXMLElement *regionInfoElement) {
                   
@@ -178,6 +150,7 @@
 - (NSArray *)parseOperationData:(RXMLElement *)rootElement
 {
     NSMutableArray *operationList = [[NSMutableArray alloc] init];
+    
     [rootElement iterate:@"Body.GetDocInfoResponse.GetDocInfoResult.listActionInfo.ActionInfo"
               usingBlock:^(RXMLElement *actinoInfoElement) {
                   
@@ -194,6 +167,7 @@
 - (NSArray *)parseAttachData:(RXMLElement *)rootElement
 {
     NSMutableArray *attachList = [[NSMutableArray alloc] init];
+    
     [rootElement iterate:@"Body.GetDocInfoResponse.GetDocInfoResult.listAttInfo.AttachmentInfo"
               usingBlock:^(RXMLElement *attachmentInfoElement) {
                   
@@ -209,6 +183,27 @@
               }];
     
     return attachList;
+}
+
+// 解析办理流程数据
+- (NSArray *)parseMatterFlowData:(RXMLElement *)rootElement
+{
+    NSMutableArray *flowList = [[NSMutableArray alloc] init];
+    
+    [rootElement iterate:@"Body.GetDocFlowResponse.GetDocFlowResult.stepdes.StepDes"
+              usingBlock:^(RXMLElement *flowElement) {
+                  
+                  BLMatterFlowEntity *flow = [[BLMatterFlowEntity alloc] init];
+                  
+                  flow.stepName = [flowElement child:@"StepName"].text;
+                  flow.stepOrder = [flowElement child:@"StepOrder"].text;
+                  flow.action = [flowElement child:@"Action"].text;
+                  flow.actinoTime = [flowElement child:@"Actiontime"].text;
+                  
+                  [flowList addObject:flow];
+    }];
+    
+    return flowList;
 }
 
 @end

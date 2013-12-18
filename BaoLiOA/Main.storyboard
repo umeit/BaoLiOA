@@ -754,7 +754,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="PbI-mA-3WI">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BLMatterFlowCell" id="PbI-mA-3WI" customClass="BLMatterFlowCell">
                                 <rect key="frame" x="0.0" y="22" width="703" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PbI-mA-3WI" id="PA4-Ao-s2q">
@@ -789,6 +789,11 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="actionLabel" destination="rHu-Kw-RIF" id="dSr-mq-b4p"/>
+                                    <outlet property="actionTimeLabel" destination="vKh-wq-Zir" id="Rat-fI-LAd"/>
+                                    <outlet property="stepNameLabel" destination="kXG-k8-s6R" id="bHT-Zk-bLq"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

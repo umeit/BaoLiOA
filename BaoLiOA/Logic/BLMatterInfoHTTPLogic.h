@@ -27,9 +27,13 @@ typedef void(^BLMatterHTTPLogicAttachDownloadBlock)(NSString *zipFileLocalPath, 
                         progress:(NSProgress **)progress
                            block:(BLMatterHTTPLogicAttachDownloadBlock)block;
 
-+ (void)matterListWithMatterType:(MatterType)matterType withBlock:(BLMatterHTTPLogicGeneralBlock)block;
++ (void)matterListWithMatterType:(MatterType)matterType
+                       withBlock:(BLMatterHTTPLogicGeneralBlock)block;
 
-+ (void)matterDetailWithMatterID:(NSString *)matterID block:(BLMatterHTTPLogicGeneralBlock)block;
++ (void)matterDetailWithMatterID:(NSString *)matterID
+                           block:(BLMatterHTTPLogicGeneralBlock)block;
 
++ (void)matterFlowWithMatterID:(NSString *)matterID
+                         block:(BLMatterHTTPLogicGeneralBlock)block;
 
 @end

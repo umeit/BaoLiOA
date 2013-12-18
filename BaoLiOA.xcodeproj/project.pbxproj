@@ -51,6 +51,8 @@
 		0381BC5518478BDF00DB661D /* BLCommonOpinionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0381BC5418478BDF00DB661D /* BLCommonOpinionViewController.m */; };
 		0381BC581847985400DB661D /* BLManageFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0381BC571847985400DB661D /* BLManageFollowViewController.m */; };
 		0390A01A1855BC6B00EEEEBB /* BLAttachPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0390A0191855BC6B00EEEEBB /* BLAttachPreviewViewController.m */; };
+		039155FD1861F24800BBFCB2 /* BLMatterFlowEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 039155FC1861F24800BBFCB2 /* BLMatterFlowEntity.m */; };
+		039156041861F6B900BBFCB2 /* BLMatterFlowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 039156031861F6B900BBFCB2 /* BLMatterFlowCell.m */; };
 		039BF60C185E077F00985B17 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 039BF5DB185E077E00985B17 /* CHANGELOG.md */; };
 		039BF60D185E077F00985B17 /* Doxyfile in Resources */ = {isa = PBXBuildFile; fileRef = 039BF5DC185E077E00985B17 /* Doxyfile */; };
 		039BF60E185E077F00985B17 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 039BF5DD185E077E00985B17 /* LICENSE */; };
@@ -210,6 +212,10 @@
 		0381BC571847985400DB661D /* BLManageFollowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLManageFollowViewController.m; sourceTree = "<group>"; };
 		0390A0181855BC6B00EEEEBB /* BLAttachPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLAttachPreviewViewController.h; sourceTree = "<group>"; };
 		0390A0191855BC6B00EEEEBB /* BLAttachPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLAttachPreviewViewController.m; sourceTree = "<group>"; };
+		039155FB1861F24800BBFCB2 /* BLMatterFlowEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterFlowEntity.h; sourceTree = "<group>"; };
+		039155FC1861F24800BBFCB2 /* BLMatterFlowEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterFlowEntity.m; sourceTree = "<group>"; };
+		039156021861F6B900BBFCB2 /* BLMatterFlowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterFlowCell.h; sourceTree = "<group>"; };
+		039156031861F6B900BBFCB2 /* BLMatterFlowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterFlowCell.m; sourceTree = "<group>"; };
 		039BF5DB185E077E00985B17 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
 		039BF5DC185E077E00985B17 /* Doxyfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Doxyfile; sourceTree = "<group>"; };
 		039BF5DD185E077E00985B17 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -357,6 +363,8 @@
 				0361DE17184F7EF700D33CE6 /* BLFromFieldItemEntity.m */,
 				0323EAD31851E2EA00752172 /* BLAttachEntity.h */,
 				0323EAD41851E2EA00752172 /* BLAttachEntity.m */,
+				039155FB1861F24800BBFCB2 /* BLMatterFlowEntity.h */,
+				039155FC1861F24800BBFCB2 /* BLMatterFlowEntity.m */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -405,6 +413,8 @@
 				035C2D341843A0EF0090E5BA /* BLMatterMainBodyCell.m */,
 				03BD17F81844DC8F002F2C38 /* BLMatterAttachmentCell.h */,
 				03BD17F91844DC8F002F2C38 /* BLMatterAttachmentCell.m */,
+				039156021861F6B900BBFCB2 /* BLMatterFlowCell.h */,
+				039156031861F6B900BBFCB2 /* BLMatterFlowCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -798,6 +808,7 @@
 				03DECA4F18425154007F6F40 /* BLMatterOperationService.m in Sources */,
 				039BF619185E077F00985B17 /* zip.c in Sources */,
 				0390A01A1855BC6B00EEEEBB /* BLAttachPreviewViewController.m in Sources */,
+				039155FD1861F24800BBFCB2 /* BLMatterFlowEntity.m in Sources */,
 				036C0FF3183D05AD00C61808 /* AFURLRequestSerialization.m in Sources */,
 				03DECA49184247D0007F6F40 /* BLGlobal.m in Sources */,
 				039BF624185E077F00985B17 /* ZipArchive.m in Sources */,
@@ -805,6 +816,7 @@
 				036C0FF2183D05AD00C61808 /* AFURLConnectionOperation.m in Sources */,
 				030D3C6B1849DE7700E844EA /* BLAppSettingsViewController.m in Sources */,
 				039BF612185E077F00985B17 /* Makefile in Sources */,
+				039156041861F6B900BBFCB2 /* BLMatterFlowCell.m in Sources */,
 				03588FE7183E4F7B0067F5D0 /* BLMatterEntity.m in Sources */,
 				036C0FF1183D05AD00C61808 /* AFSecurityPolicy.m in Sources */,
 				03DECA4C184250B8007F6F40 /* BLMatterFormViewController.m in Sources */,
