@@ -16,6 +16,9 @@
 
 @interface BLManageFollowViewController : UIViewController
 
+// 是否可多选
+@property (nonatomic) BOOL multipleSelect;
+
 @property (strong, nonatomic) NSArray *followList;
 
 @property (weak, nonatomic) id<BLManageFollowViewControllerDelegate> delegate;

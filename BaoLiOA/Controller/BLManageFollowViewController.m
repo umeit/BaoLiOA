@@ -10,6 +10,8 @@
 
 @interface BLManageFollowViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) NSMutableArray *selectedFollow;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @end
 
 @implementation BLManageFollowViewController
@@ -42,6 +44,9 @@
     if ([self isFollowMarked:@(indexPath.row)]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
+    else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     
     return cell;
 }
@@ -53,15 +58,27 @@
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
-    if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        
-        [self removeMarkedItem:@(indexPath.row)];
+    if (self.multipleSelect) {
+        if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            
+            [self removeMarkedItem:@(indexPath.row)];
+        }
+        else {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            [self addMarkedItem:@(indexPath.row)];
+            
+        }
     }
     else {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        [self addMarkedItem:@(indexPath.row)];
-        
+        if (cell.accessoryType != UITableViewCellAccessoryCheckmark) {
+            
+            [self removeAllMarkedItems];
+            
+            [self addMarkedItem:@(indexPath.row)];
+            
+            [self.tableView reloadData];
+        }
     }
 }
 
@@ -92,6 +109,11 @@
 - (void)removeMarkedItem:(id)item
 {
     [self.selectedFollow removeObject:item];
+}
+
+- (void)removeAllMarkedItems
+{
+    [self.selectedFollow removeAllObjects];
 }
 
 - (BOOL)isFollowMarked:(id)item
