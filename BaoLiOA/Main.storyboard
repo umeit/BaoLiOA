@@ -929,7 +929,7 @@
         <!--Main Body View Controller-->
         <scene sceneID="0aN-tY-deE">
             <objects>
-                <viewController id="dSB-iV-uM4" customClass="BLMainBodyViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BLMainBodyViewController" id="dSB-iV-uM4" customClass="BLMainBodyViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RLI-ae-xtL"/>
                         <viewControllerLayoutGuide type="bottom" id="NGh-KD-1y8"/>

@@ -13,4 +13,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *downloadButton;
 @property (weak, nonatomic) IBOutlet UILabel *mainBodyLabel;
 @property (strong, nonatomic) NSString *mainBodyFilePath;
+
+@property (strong, nonatomic) NSString *bodyDocID;
 @end

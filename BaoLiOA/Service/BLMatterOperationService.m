@@ -14,6 +14,21 @@
 
 @implementation BLMatterOperationService
 
+- (void)matterBodyTextWithBodyDocID:(NSString *)docID block:(BLMatterOprationServiceGeneralBlock)block
+{
+    [BLMatterOperationHTTPLogic matterBodyTextWithBodyDocID:docID blcok:^(id responseData, NSError *error) {
+        if (error) {
+            block(nil, error);
+        }
+        else {
+            NSString *bodyText = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+            if (bodyText) {
+                block(bodyText, nil);
+            }
+        }
+    }];
+}
+
 - (void)submitMatterWithComment:(NSString *)comment
                     commentList:(NSArray *)commentList
                       routeList:(NSArray *)routList

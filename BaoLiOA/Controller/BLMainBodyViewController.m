@@ -7,18 +7,22 @@
 //
 
 #import "BLMainBodyViewController.h"
+#import "BLMatterOperationService.h"
 
 @interface BLMainBodyViewController ()
+
+@property (strong, nonatomic) BLMatterOperationService *matterOprationService;
 
 @end
 
 @implementation BLMainBodyViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithCoder:aDecoder];
+    
     if (self) {
-        // Custom initialization
+        _matterOprationService = [[BLMatterOperationService alloc] init];
     }
     return self;
 }
@@ -26,14 +30,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.matterOprationService matterBodyTextWithBodyDocID:self.bodyDocID block:^(id obj, NSError *error) {
+        self.mainBodyTextView.text = obj;
+    }];
 }
 
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 @end

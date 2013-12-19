@@ -23,6 +23,7 @@ typedef void(^BLMatterOprationServiceDownloadFileBlock)(NSString *localFilePath,
 
 typedef void(^BLMOSSubmitCallBackBlock)(NSInteger retCode, NSArray *list, NSString *title);
 
+typedef void(^BLMatterOprationServiceGeneralBlock)(id obj, NSError *error);
 
 /** Interface **/
 @interface BLMatterOperationService : NSObject
@@ -35,6 +36,8 @@ typedef void(^BLMOSSubmitCallBackBlock)(NSInteger retCode, NSArray *list, NSStri
 //                    commentList:(NSArray *)commentList
 //                      routeList:(NSArray *)routList
 //                          block:(BLMOSSubmitCallBackBlock)block;
+
+- (void)matterBodyTextWithBodyDocID:(NSString *)docID block:(BLMatterOprationServiceGeneralBlock)block;
 
 - (void)submitMatterWithComment:(NSString *)comment
                     commentList:(NSArray *)commentList
