@@ -17,4 +17,9 @@
  */
 @property (strong, nonatomic) NSArray *matterFormInfoList;
 
+/**
+ *  正文附件 ID
+ */
+@property (strong, nonatomic) NSString *matterBodyDocID;
+
 @end

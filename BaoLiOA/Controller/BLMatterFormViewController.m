@@ -17,8 +17,6 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-//@property (strong, nonatomic) NSArray *matterFormList;
-
 @property (strong, nonatomic) BLMatterInfoService *matterService;
 
 @property (strong, nonatomic) BLMatterOperationService *matterOprationService;
@@ -34,26 +32,10 @@
     self = [super initWithCoder:aDecoder];
     
     if (self) {
-        self.matterOprationService = [[BLMatterOperationService alloc] init];
-        self.matterService = [[BLMatterInfoService alloc] init];
+        _matterOprationService = [[BLMatterOperationService alloc] init];
+        _matterService = [[BLMatterInfoService alloc] init];
     }
     return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    // 获取表单数据
-//    [self.matterService matterFormListWithMatterID:self.matterID block:^(NSArray *list, NSError *error) {
-//        if (error) {
-//            
-//        }
-//        else {
-//            self.matterFormList = list;
-//            [self.tableView reloadData];
-//        }
-//    }];
 }
 
 
@@ -73,37 +55,6 @@
 {
     static NSString *matterFormBaseCell = @"BLMatterFormBaseCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:matterFormBaseCell forIndexPath:indexPath];
-    
-    // 两种不同数据结构的解析方式
-    
-//    NSDictionary *regionInfo = self.matterFormList[indexPath.row];
-//    NSArray *itemListInLine = regionInfo[@"FieldItems"];
-//    NSArray *itemPercents = regionInfo[@"Percents"];
-//    
-//    CGFloat currentX = 0;
-//    CGFloat cellWidth = cell.contentView.bounds.size.width; // cell 的宽度
-//    
-//    for (NSInteger i=0; i<[itemListInLine count]; i++) {
-//        BLFromFieldItemEntity *fieldItem = itemListInLine[i];
-//        
-//        // 计算当前 Label 的宽度
-//        CGFloat percent = [itemPercents[i] integerValue] / 100.f;
-//        CGFloat labelWidth = cellWidth * percent;
-//        
-//        UILabel *aLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 0, labelWidth, 44)];
-//        currentX += labelWidth;  // 左移 x 值，供后续 Label 使用
-//        
-//        // 配置 Label 的显示内容
-//        if (fieldItem.nameVisible) {
-//            aLabel.text = [NSString stringWithFormat:@"%@%@", fieldItem.name, fieldItem.value];
-//        }
-//        else {
-//            aLabel.text = fieldItem.value;
-//        }
-//        
-//        // 将 Label 添加到 cell 中
-//        [cell.contentView addSubview:aLabel];
-//    }
     
     NSArray *itemListInLine = self.matterFormInfoList[indexPath.row];
     
@@ -131,21 +82,6 @@
         // 将 Label 添加到 cell 中
         [cell.contentView addSubview:aLabel];
     }
-    
-//    static NSString *matterMainBodyCell = @"BLMatterMainBodyCell";
-//    static NSString *matterFormBaseCell = @"BLMatterFormBaseCell";
-//    
-//    UITableViewCell *cell;
-//    
-//    if ([self isMainBodyIndex]) {
-//        cell = [tableView dequeueReusableCellWithIdentifier:matterMainBodyCell forIndexPath:indexPath];
-//        [self configureMatterMainBodyCell:(BLMatterMainBodyCell *)cell atIndexPath:indexPath];
-//    }
-//    else {
-//        cell = [tableView dequeueReusableCellWithIdentifier:matterFormBaseCell forIndexPath:indexPath];
-//        [self configureMatterFormBaseCell:cell atIndexPath:indexPath];
-//    }
-    
 
     return cell;
 }

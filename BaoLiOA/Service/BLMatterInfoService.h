@@ -11,6 +11,7 @@
 #define kBLMatterInfoServiceFormInfo @"kBLMatterInfoServiceFormInfo"
 #define kBLMatterInfoServiceOperationInfo @"kBLMatterInfoServiceOperationInfo"
 #define kBLMatterInfoServiceAttachInfo @"kBLMatterInfoServiceAttachInfo"
+#define kBLMatterInfoServiceBodyDocID @"kBLMatterInfoServiceBodyDocID"
 
 typedef void(^BLMatterInfoServiceGeneralBlock)(id obj, NSError *error);
 

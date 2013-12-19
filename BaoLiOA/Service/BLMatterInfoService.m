@@ -82,6 +82,11 @@
             [dic setObject:[self parseOperationData:rootElement] forKey:kBLMatterInfoServiceOperationInfo];
             // 附件数据
             [dic setObject:[self parseAttachData:rootElement] forKey:kBLMatterInfoServiceAttachInfo];
+            // 正文附件ID，没有为 nil
+            NSString *bodyDocID = [self parseBodyDocID:rootElement];
+            if (bodyDocID) {
+                [dic setObject:bodyDocID forKey:kBLMatterInfoServiceBodyDocID];
+            }
             
             block(dic, nil);
         }
@@ -161,6 +166,13 @@
               }];
     
     return operationList;
+}
+
+// 解析正文附件 ID
+- (NSString *)parseBodyDocID:(RXMLElement *)rootElement
+{
+    NSString *bodyDocID = [rootElement child:@"Body.GetDocInfoResponse.GetDocInfoResult.DocAttachmentID"].text;
+    return bodyDocID;
 }
 
 // 解析附件数据

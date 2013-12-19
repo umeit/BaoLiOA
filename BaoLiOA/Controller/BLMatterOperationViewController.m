@@ -107,6 +107,11 @@
  */
 @property (strong, nonatomic) NSMutableArray *selectedEmployeeList;
 
+/**
+ *  正文附件 ID
+ */
+@property (strong, nonatomic) NSString *matterBodyDocID;
+
 @end
 
 @implementation BLMatterOperationViewController
@@ -132,16 +137,19 @@
         self.matterOperationList = dic[kBLMatterInfoServiceOperationInfo];
         // 获取到附件列表
         self.matterAttachList = dic[kBLMatterInfoServiceAttachInfo];
+        // 获取正文附件 ID
+        self.matterBodyDocID = dic[kBLMatterInfoServiceBodyDocID];
+        
         
         // 放置操作按钮到界面上
         [self initOperationButton:self.matterOperationList];
         
-        // 默认被选中的 view controller
+        // 默认被选中的 view controller，为 表单 controller
         UIViewController *vc = [self viewControllerForSelectedSegment];
         // 设置表单列表
-        if ([vc respondsToSelector:@selector(setMatterFormInfoList:)]) {
-            [vc performSelector:@selector(setMatterFormInfoList:) withObject:self.matterFormInfoList];
-        }
+//        if ([vc respondsToSelector:@selector(setMatterFormInfoList:)]) {
+//            [vc performSelector:@selector(setMatterFormInfoList:) withObject:self.matterFormInfoList];
+//        }
         
         [self switchVC:vc];
     }];
@@ -152,21 +160,6 @@
 - (IBAction)segmentChanged:(UISegmentedControl *)segmentedControl
 {
     UIViewController *vc = [self viewControllerForSelectedSegment];
-    
-    // 设置事项 ID
-    if ([vc respondsToSelector:@selector(setMatterID:)]) {
-        [vc performSelector:@selector(setMatterID:) withObject:self.matterID];
-    }
-    
-    // 设置表单列表
-    if ([vc respondsToSelector:@selector(setMatterFormInfoList:)]) {
-        [vc performSelector:@selector(setMatterFormInfoList:) withObject:self.matterFormInfoList];
-    }
-    
-    // 设置附件列表
-    if ([vc respondsToSelector:@selector(setMatterAttachList:)]) {
-        [vc performSelector:@selector(setMatterAttachList:) withObject:self.matterAttachList];
-    }
     
     [self switchVC:vc];
 }
@@ -338,8 +331,34 @@
     
     self.currentViewController = vc;
     
+    // 设置事项 ID
+    if ([vc respondsToSelector:@selector(setMatterID:)]) {
+        [vc performSelector:@selector(setMatterID:) withObject:self.matterID];
+    }
+    
+    // 设置表单列表
+    if ([vc respondsToSelector:@selector(setMatterFormInfoList:)]) {
+        [vc performSelector:@selector(setMatterFormInfoList:) withObject:self.matterFormInfoList];
+    }
+    
+    // 设置附件列表
+    if ([vc respondsToSelector:@selector(setMatterAttachList:)]) {
+        [vc performSelector:@selector(setMatterAttachList:) withObject:self.matterAttachList];
+    }
+    
+    // 设置 delegate
     if ([vc respondsToSelector:@selector(setDelegate:)]) {
         [vc performSelector:@selector(setDelegate:) withObject:self];
+    }
+    
+    // 设置 MatterID
+    if ([vc respondsToSelector:@selector(setMatterID:)]) {
+        [vc performSelector:@selector(setMatterID:) withObject:self.matterID];
+    }
+    
+    // 设置正文附件ID
+    if ([vc respondsToSelector:@selector(setMatterBodyDocID:)]) {
+        [vc performSelector:@selector(setMatterBodyDocID:) withObject:self.matterBodyDocID];
     }
 }
 
