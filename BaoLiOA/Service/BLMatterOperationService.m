@@ -22,6 +22,11 @@
         }
         else {
             NSString *bodyText = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+            
+            RXMLElement *rootElement = [RXMLElement elementFromXMLData:responseData];
+            
+            bodyText = [rootElement child:@"Body.GetWord_TextResponse.GetWord_TextResult"].text;
+            
             if (bodyText) {
                 block(bodyText, nil);
             }
