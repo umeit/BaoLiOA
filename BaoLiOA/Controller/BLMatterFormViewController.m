@@ -66,22 +66,22 @@
 
 #pragma mark - Navigation
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // 导航到正文视图
-    BLMainBodyViewController *mainBodyViewController = (BLMainBodyViewController *)segue.destinationViewController;
-    BLMatterMainBodyCell *matterMainBodyCell = (BLMatterMainBodyCell *)sender;
-    
-    mainBodyViewController.mainBodyLabel.text = matterMainBodyCell.mainBodyTitleLabel.text;
-    mainBodyViewController.mainBodyTextView.text = [self mainBodyText];
-    mainBodyViewController.mainBodyFilePath = self.mainbodyFileLocalPath;
-}
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//    // 导航到正文视图
+//    BLMainBodyViewController *mainBodyViewController = (BLMainBodyViewController *)segue.destinationViewController;
+//    BLMatterMainBodyCell *matterMainBodyCell = (BLMatterMainBodyCell *)sender;
+//    
+//    mainBodyViewController.mainBodyLabel.text = matterMainBodyCell.mainBodyTitleLabel.text;
+//    mainBodyViewController.mainBodyTextView.text = [self mainBodyText];
+//    mainBodyViewController.mainBodyFilePath = self.mainbodyFileLocalPath;
+//}
 
 - (void)toBodyViewController
 {
     BLMainBodyViewController *mainBodyViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMainBodyViewController"];
     mainBodyViewController.bodyDocID = self.matterBodyDocID;
-    mainBodyViewController.mainBodyLabel.text = self.bodyTitle;
+    mainBodyViewController.docTtitle = self.bodyTitle;
     
     [self.navigationController pushViewController:mainBodyViewController animated:YES];
 }
@@ -134,6 +134,7 @@
         CGFloat labelWidth = cellWidth * percent;
         
         UILabel *aLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 0, labelWidth, 44)];
+        aLabel.tag = 1;
         currentX += labelWidth;  // 左移 x 值，供后续 Label 使用
         
         // 配置 Label 的显示内容
@@ -150,18 +151,20 @@
     
     // 对于第一行做特殊处理：判断是否有正文附件，如果有，在第一行的行尾放一个按钮，用于导航到正文页面
     if (indexPath.row == 0 && self.matterBodyDocID) {
-        CGRect cellBounds = cell.bounds;
-        UIButton *bodyButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+        UIButton *bodyButton = [[UIButton alloc] initWithFrame:CGRectMake(cellWidth - 90, 8, 80, 30)];
         [cell.contentView addSubview:bodyButton];
-//        [cell.contentView bringSubviewToFront:bodyButton];
         
         bodyButton.titleLabel.text = @"查看正文";
         [bodyButton addTarget:self action:@selector(toBodyViewController) forControlEvents:UIControlEventTouchUpInside];
-        
+        [bodyButton setTitle:@"查看正文" forState:UIControlStateNormal];
+        [bodyButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
         BLFromFieldItemEntity *fieldItem = itemListInLine[0];
         self.bodyTitle = fieldItem.value;
         
-//        cell.contentView.subviews;
+        UIView *aLabel = [cell viewWithTag:1];
+        CGSize labelSize = aLabel.frame.size;
+        CGSize newSize = CGSizeMake(cellWidth - 90, labelSize.height);
+        aLabel.frame = CGRectMake(aLabel.frame.origin.x, aLabel.frame.origin.y, newSize.width, newSize.height);
     }
 }
 

@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface BLMainBodyViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UITextView *mainBodyTextView;
-@property (weak, nonatomic) IBOutlet UIButton *downloadButton;
-@property (weak, nonatomic) IBOutlet UILabel *mainBodyLabel;
+
 @property (strong, nonatomic) NSString *mainBodyFilePath;
 
 @property (strong, nonatomic) NSString *bodyDocID;
+
+@property (strong, nonatomic) NSString *docTtitle;
+
 @end
