@@ -83,13 +83,13 @@
             }
             else {
                 BLAttachEntity *attachEntity = self.matterAttachList[row];
-//                attachEntity.localPath = [NSString stringWithFormat:@"%@/%@", localFilePath, attachEntity.attachTitle];
                 attachEntity.localPath = localFilePath;
                 
                 // 保存附件的本地路径
                 [self saveAttchLocalPath:localFilePath withAttachID:attachEntity.attachID];
-
+                
                 [sender setTitle:@"打开" forState:UIControlStateNormal];
+                [sender setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
             }
         }];
         
@@ -134,6 +134,7 @@
     [self presentViewController:vc animated:YES completion:nil];
 }
 
+// 配置 cell
 - (void)configureMatterAttachmentCell:(BLMatterAttachmentCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     BLAttachEntity *attachEntity = self.matterAttachList[indexPath.row];
@@ -144,7 +145,16 @@
     if (localPath) {
         // 该附件已下载
         [cell.downloadButton setTitle:@"打开" forState:UIControlStateNormal];
+        [cell.downloadButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+        cell.progress.hidden = YES;
+        
         attachEntity.localPath = localPath;
+    }
+    else {
+        // 该附件未下载
+        [cell.downloadButton setTitle:@"下载" forState:UIControlStateNormal];
+        [cell.downloadButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        cell.progress.hidden = NO;
     }
     
     // 使用 tag 记录「下载按钮」是属于哪一行的
@@ -164,7 +174,7 @@
 - (void)saveAttchLocalPath:(NSString *)localPath withAttachID:(NSString *)attachID
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSMutableDictionary *savedAttachLocalPaths = (NSMutableDictionary *)[userDefaults dictionaryForKey:@"kSavedAttachLocalPaths"];
+    NSMutableDictionary *savedAttachLocalPaths = [(NSMutableDictionary *)[userDefaults dictionaryForKey:@"kSavedAttachLocalPaths"] mutableCopy];
     
     if (!savedAttachLocalPaths) {
         savedAttachLocalPaths = [[NSMutableDictionary alloc] init];
