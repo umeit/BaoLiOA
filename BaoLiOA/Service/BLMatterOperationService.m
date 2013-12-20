@@ -127,19 +127,16 @@
     }];
 }
 
-- (void)downloadMatterMainBodyFileFromURL:(NSString *)urlString withBlock:(BLMatterOprationServiceDownloadFileBlock)block
-{
-    block(@"path", nil);
-}
-
-- (void)downloadMatterAttachmentFileWithAttachID:(NSString *)attachID progress:(NSProgress **)progress block:(BLMatterOprationServiceDownloadFileBlock)block
+- (void)downloadMatterAttachmentFileWithAttachID:(NSString *)attachID
+                                        progress:(NSProgress **)progress
+                                           block:(BLMatterOprationServiceDownloadFileBlock)block
 {
     // 附件下载到该文件夹
     NSString *documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                                             NSUserDomainMask,
                                                                             YES) firstObject];
     
-    // 下载附件成功后得到下载的 zip 文件的绝对路径
+    // 下载附件成功后解压 zip 文件，返回解压出的文件的本地路径
     NSURLSessionDownloadTask *downloadTask = [BLMatterInfoHTTPLogic downloadFileWithAttachID:attachID fileType:@"zip" savePath:documentsDirectoryPath progress:progress block:^(NSString *zipFileLocalPath, NSError *error) {
         if (error) {
             block(nil, error);
@@ -149,10 +146,11 @@
             zipFileLocalPath = [zipFileLocalPath substringFromIndex:7];
             zipFileLocalPath = [zipFileLocalPath stringByReplacingOccurrencesOfString:@"%20" withString:@" "];
             ZipArchive *zipArchive = [[ZipArchive alloc] init];
+            
             if ([zipArchive UnzipOpenFile:zipFileLocalPath Password:@"password"]) {
-                
                 if ([zipArchive UnzipFileTo:documentsDirectoryPath overWrite:YES]) {
-                    block(documentsDirectoryPath, nil);
+                    // 返回解压文件的本地路径
+                    block([zipArchive.unzippedFiles firstObject], nil);
                 }
             }
         }
@@ -163,7 +161,6 @@
 
 - (void)stopDownloadWithAttachID:(NSString *)attachID
 {
-    NSLog(@"Stop!!!");
     NSURLSessionDownloadTask *downloadTask = self.downloadDictionary[attachID];
     [downloadTask cancel];
 }

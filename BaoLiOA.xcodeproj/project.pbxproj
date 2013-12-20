@@ -23,7 +23,6 @@
 		03588FE4183E4B830067F5D0 /* BLMatterInfoHTTPLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 03588FE3183E4B830067F5D0 /* BLMatterInfoHTTPLogic.m */; };
 		03588FE7183E4F7B0067F5D0 /* BLMatterEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 03588FE6183E4F7B0067F5D0 /* BLMatterEntity.m */; };
 		03588FEA183E52440067F5D0 /* UIViewController+BLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03588FE9183E52440067F5D0 /* UIViewController+BLViewController.m */; };
-		035C2D351843A0EF0090E5BA /* BLMatterMainBodyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 035C2D341843A0EF0090E5BA /* BLMatterMainBodyCell.m */; };
 		035C2D381843AA660090E5BA /* BLMainBodyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 035C2D371843AA660090E5BA /* BLMainBodyViewController.m */; };
 		0361DE18184F7EF700D33CE6 /* BLFromFieldItemEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 0361DE17184F7EF700D33CE6 /* BLFromFieldItemEntity.m */; };
 		036C0FA8183D02AB00C61808 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 036C0FA7183D02AB00C61808 /* Foundation.framework */; };
@@ -164,8 +163,6 @@
 		03588FE6183E4F7B0067F5D0 /* BLMatterEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterEntity.m; sourceTree = "<group>"; };
 		03588FE8183E52440067F5D0 /* UIViewController+BLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BLViewController.h"; sourceTree = "<group>"; };
 		03588FE9183E52440067F5D0 /* UIViewController+BLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BLViewController.m"; sourceTree = "<group>"; };
-		035C2D331843A0EF0090E5BA /* BLMatterMainBodyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterMainBodyCell.h; sourceTree = "<group>"; };
-		035C2D341843A0EF0090E5BA /* BLMatterMainBodyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterMainBodyCell.m; sourceTree = "<group>"; };
 		035C2D361843AA660090E5BA /* BLMainBodyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMainBodyViewController.h; sourceTree = "<group>"; };
 		035C2D371843AA660090E5BA /* BLMainBodyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMainBodyViewController.m; sourceTree = "<group>"; };
 		0361DE16184F7EF700D33CE6 /* BLFromFieldItemEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLFromFieldItemEntity.h; sourceTree = "<group>"; };
@@ -409,8 +406,6 @@
 			children = (
 				03588FDC183E4AED0067F5D0 /* BLBaseMatterCell.h */,
 				03588FDD183E4AED0067F5D0 /* BLBaseMatterCell.m */,
-				035C2D331843A0EF0090E5BA /* BLMatterMainBodyCell.h */,
-				035C2D341843A0EF0090E5BA /* BLMatterMainBodyCell.m */,
 				03BD17F81844DC8F002F2C38 /* BLMatterAttachmentCell.h */,
 				03BD17F91844DC8F002F2C38 /* BLMatterAttachmentCell.m */,
 				039156021861F6B900BBFCB2 /* BLMatterFlowCell.h */,
@@ -833,7 +828,6 @@
 				036C0FF5183D05AD00C61808 /* AFURLSessionManager.m in Sources */,
 				036C0FF4183D05AD00C61808 /* AFURLResponseSerialization.m in Sources */,
 				039BF617185E077F00985B17 /* mztools.c in Sources */,
-				035C2D351843A0EF0090E5BA /* BLMatterMainBodyCell.m in Sources */,
 				0323EAD51851E2EA00752172 /* BLAttachEntity.m in Sources */,
 				036C0FB8183D02AB00C61808 /* BLAppDelegate.m in Sources */,
 				03588FE4183E4B830067F5D0 /* BLMatterInfoHTTPLogic.m in Sources */,

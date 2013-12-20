@@ -27,15 +27,11 @@
     self = [super initWithCoder:aDecoder];
     
     if (self) {
-        self.matterOprationService = [[BLMatterOperationService alloc] init];
+        _matterOprationService = [[BLMatterOperationService alloc] init];
     }
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
 
 #pragma mark - Table view data source
 
@@ -65,36 +61,46 @@
 - (IBAction)downloadOrOpenFileButtonPress:(UIButton *)sender
 {
     NSInteger row = sender.tag;
+    BLAttachEntity *attachEntity = self.matterAttachList[row];
     NSString *buttonTitle = sender.titleLabel.text;
     NSProgress *progress;
-    BLAttachEntity *attachEntity = self.matterAttachList[row];
     
     // 点击打开
     if ([buttonTitle isEqualToString:@"打开"]) {
-        // 使用 web view 打开附件文件
+        // 打开附件文件
         [self showPreviewViewControllerWithFilePath:((BLAttachEntity *)self.matterAttachList[row]).localPath];
     }
+    
     // 点击下载
     else if ([buttonTitle isEqualToString:@"下载"]) {
         [sender setTitle:@"停止" forState:UIControlStateNormal];
         
         // 下载正文文件
-        [self.matterOprationService
-         downloadMatterAttachmentFileWithAttachID:attachEntity.attachID
-                                         progress:&progress
-                                            block:^(NSString *localFilePath, NSError *error) {
-                                       
-                                                BLAttachEntity *attachEntity = self.matterAttachList[row];
-                                                attachEntity.localPath = [NSString stringWithFormat:@"%@/%@", localFilePath, attachEntity.attachTitle];
-                                       
-                                                [sender setTitle:@"打开" forState:UIControlStateNormal];
-                                            }];
+        [self.matterOprationService downloadMatterAttachmentFileWithAttachID:attachEntity.attachID progress:&progress
+        block:^(NSString *localFilePath, NSError *error) {
+            if (error) {
+
+            }
+            else {
+                BLAttachEntity *attachEntity = self.matterAttachList[row];
+//                attachEntity.localPath = [NSString stringWithFormat:@"%@/%@", localFilePath, attachEntity.attachTitle];
+                attachEntity.localPath = localFilePath;
+                
+                // 保存附件的本地路径
+                [self saveAttchLocalPath:localFilePath withAttachID:attachEntity.attachID];
+
+                [sender setTitle:@"打开" forState:UIControlStateNormal];
+            }
+        }];
+        
+        // 监听下载进度
         [progress addObserver:[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]]
                    forKeyPath:@"fractionCompleted"
                       options:NSKeyValueObservingOptionNew
                       context:NULL];
-//        [self.progressList insertObject:progress atIndex:row];
     }
+    
+    // 点击停止
     else if ([buttonTitle isEqualToString:@"停止"]) {
         [sender setTitle:@"下载" forState:UIControlStateNormal];
         [self.matterOprationService stopDownloadWithAttachID:attachEntity.attachID];
@@ -128,37 +134,43 @@
     [self presentViewController:vc animated:YES completion:nil];
 }
 
-// 配置正文 cell 的标题与按钮的标题
 - (void)configureMatterAttachmentCell:(BLMatterAttachmentCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     BLAttachEntity *attachEntity = self.matterAttachList[indexPath.row];
     
     cell.attachmentTitleLabel.text = attachEntity.attachTitle;
     
-    // 检查本地是否有下载过
-    NSString *documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                                            NSUserDomainMask,
-                                                                            YES) firstObject];
-    NSString *attachmentFileLocalPath = [NSString stringWithFormat:@"%@/%@", documentsDirectoryPath, attachEntity.attachTitle];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:attachmentFileLocalPath]) {
+    NSString *localPath = [self attachLocalPathWithAttachID:attachEntity.attachID];
+    if (localPath) {
+        // 该附件已下载
         [cell.downloadButton setTitle:@"打开" forState:UIControlStateNormal];
-        attachEntity.localPath = attachmentFileLocalPath;
+        attachEntity.localPath = localPath;
     }
     
     // 使用 tag 记录「下载按钮」是属于哪一行的
     cell.downloadButton.tag = indexPath.row;
 }
 
-//// 附件的本地路径
-//- (NSString *)attachmentFileLocalPathWithAttach:(BLAttachEntity *)attachEntity
-//{
-//    return nil;
-//}
+// 获取附件的本地地址，如果已下载，否则返回 nil
+- (NSString *)attachLocalPathWithAttachID:(NSString *)attachID
+{
+    NSDictionary *savedAttachLocalPaths = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"kSavedAttachLocalPaths"];
+    NSString *localPath = savedAttachLocalPaths[attachID];
+    
+    return localPath;
+}
 
-//// 附件的服务器端地址
-//- (NSString *)attachmentFileRemotePathWithAttach:(BLAttachEntity *)attachEntity
-//{
-//    return nil;
-//}
-
+// 将下载附件的本地路径保存，下次可直接打开
+- (void)saveAttchLocalPath:(NSString *)localPath withAttachID:(NSString *)attachID
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSMutableDictionary *savedAttachLocalPaths = (NSMutableDictionary *)[userDefaults dictionaryForKey:@"kSavedAttachLocalPaths"];
+    
+    if (!savedAttachLocalPaths) {
+        savedAttachLocalPaths = [[NSMutableDictionary alloc] init];
+    }
+    
+    savedAttachLocalPaths[attachID] = localPath;
+    [userDefaults setObject:savedAttachLocalPaths forKey:@"kSavedAttachLocalPaths"];
+}
 @end

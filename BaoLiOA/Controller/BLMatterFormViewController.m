@@ -8,7 +8,6 @@
 
 #import "BLMatterFormViewController.h"
 #import "BLMatterOperationService.h"
-#import "BLMatterMainBodyCell.h"
 #import "BLMainBodyViewController.h"
 #import "BLMatterInfoService.h"
 #import "BLFromFieldItemEntity.h"
@@ -66,17 +65,6 @@
 
 #pragma mark - Navigation
 
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    // 导航到正文视图
-//    BLMainBodyViewController *mainBodyViewController = (BLMainBodyViewController *)segue.destinationViewController;
-//    BLMatterMainBodyCell *matterMainBodyCell = (BLMatterMainBodyCell *)sender;
-//    
-//    mainBodyViewController.mainBodyLabel.text = matterMainBodyCell.mainBodyTitleLabel.text;
-//    mainBodyViewController.mainBodyTextView.text = [self mainBodyText];
-//    mainBodyViewController.mainBodyFilePath = self.mainbodyFileLocalPath;
-//}
-
 - (void)toBodyViewController
 {
     BLMainBodyViewController *mainBodyViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMainBodyViewController"];
@@ -87,37 +75,7 @@
 }
 
 
-#pragma mark - Action
-
-- (IBAction)downloadMainBodyFileOrOpenButtonPress:(UIButton *)button
-{
-    // 判断是否已经下载到了本地
-    if (self.mainbodyFileLocalPath && [self.mainbodyFileLocalPath length] > 0) {
-        // 使用第三放 app 打开正文文件
-        
-    }
-    else {
-        // 下载正文文件
-        [self.matterOprationService downloadMatterMainBodyFileFromURL:@"remote file path"
-                                                            withBlock:^(NSString *localFilePath, NSError *error) {
-                                                                self.mainbodyFileLocalPath = localFilePath;
-                                                                [button setTitle:@"打开" forState:UIControlStateNormal];
-        }];
-    }
-}
-
 #pragma mark - Private
-
-// 配置正文 cell 的标题与按钮的标题
-- (void)configureMatterMainBodyCell:(BLMatterMainBodyCell *)cell atIndexPath:(NSIndexPath *)indexPath
-{
-    cell.mainBodyTitleLabel.text = @"测试";
-    
-    // 检查本地是否有下载过
-    if (self.mainbodyFileLocalPath && [self.mainbodyFileLocalPath length] > 0) {
-        [cell.downloadButton setTitle:@"打开" forState:UIControlStateNormal];
-    }
-}
 
 - (void)configureMatterFormBaseCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
@@ -166,17 +124,5 @@
         CGSize newSize = CGSizeMake(cellWidth - 90, labelSize.height);
         aLabel.frame = CGRectMake(aLabel.frame.origin.x, aLabel.frame.origin.y, newSize.width, newSize.height);
     }
-}
-
-// 获取正文预览文本
-- (NSString *)mainBodyText
-{
-    #warning 从实体类读 或 从服务器读
-    return @"test, test main body Text";
-}
-
-- (BOOL)isMainBodyIndex
-{
-    return YES;
 }
 @end
