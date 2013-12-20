@@ -65,19 +65,18 @@
 - (IBAction)downloadOrOpenFileButtonPress:(UIButton *)sender
 {
     NSInteger row = sender.tag;
-
+    NSString *buttonTitle = sender.titleLabel.text;
+    NSProgress *progress;
+    BLAttachEntity *attachEntity = self.matterAttachList[row];
+    
     // 点击打开
-    if ([sender.titleLabel.text isEqualToString:@"打开"]) {
+    if ([buttonTitle isEqualToString:@"打开"]) {
         // 使用 web view 打开附件文件
         [self showPreviewViewControllerWithFilePath:((BLAttachEntity *)self.matterAttachList[row]).localPath];
     }
     // 点击下载
-    else {
+    else if ([buttonTitle isEqualToString:@"下载"]) {
         [sender setTitle:@"停止" forState:UIControlStateNormal];
-        
-        BLAttachEntity *attachEntity = self.matterAttachList[row];
-        
-        NSProgress *progress;
         
         // 下载正文文件
         [self.matterOprationService
@@ -96,8 +95,11 @@
                       context:NULL];
 //        [self.progressList insertObject:progress atIndex:row];
     }
+    else if ([buttonTitle isEqualToString:@"停止"]) {
+        [sender setTitle:@"下载" forState:UIControlStateNormal];
+        [self.matterOprationService stopDownloadWithAttachID:attachEntity.attachID];
+    }
 }
-
 
 
 #pragma mark - Observe
@@ -105,15 +107,15 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
 //    [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-
+    
     if ([keyPath isEqualToString:@"fractionCompleted"]) {
         NSProgress *progress = object;
         NSUInteger index = [self.progressList indexOfObject:progress];
         BLMatterAttachmentCell *cell = (BLMatterAttachmentCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
         cell.progress.progress = progress.fractionCompleted;
-//        NSLog(@"Progress is %f", progress.fractionCompleted);
     }
 }
+
 
 #pragma mark - Private
 

@@ -950,7 +950,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Smj-ix-xjt">
-                                        <rect key="frame" x="113" y="16" width="516" height="21"/>
+                                        <rect key="frame" x="113" y="16" width="407" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
@@ -961,7 +961,14 @@
                                         <state key="normal" title="下载">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="downloadButtonPress:" destination="dSB-iV-uM4" eventType="touchUpInside" id="zua-vE-fTU"/>
+                                        </connections>
                                     </button>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="GTo-Hb-zzD">
+                                        <rect key="frame" x="528" y="25" width="101" height="2"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </progressView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.80000000000000004" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -996,6 +1003,7 @@
                         <outlet property="downloadButton" destination="9T7-uF-4Q8" id="nuw-1Z-pIo"/>
                         <outlet property="mainBodyLabel" destination="Smj-ix-xjt" id="pAT-st-gLg"/>
                         <outlet property="mainBodyTextView" destination="YaJ-Pd-Pu2" id="tbx-81-zmO"/>
+                        <outlet property="progressView" destination="GTo-Hb-zzD" id="UFF-DI-EzC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="plU-hf-UcK" userLabel="First Responder" sceneMemberID="firstResponder"/>

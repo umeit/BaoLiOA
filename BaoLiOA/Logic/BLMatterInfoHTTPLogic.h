@@ -21,7 +21,7 @@ typedef void(^BLMatterHTTPLogicAttachDownloadBlock)(NSString *zipFileLocalPath, 
 
 @interface BLMatterInfoHTTPLogic : NSObject
 
-+ (void)downloadFileWithAttachID:(NSString *)attachID
++ (NSURLSessionDownloadTask *)downloadFileWithAttachID:(NSString *)attachID
                         fileType:(NSString *)fileType
                         savePath:(NSString *)savePath
                         progress:(NSProgress **)progress

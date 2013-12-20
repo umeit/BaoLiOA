@@ -12,7 +12,22 @@
 #import "RXMLElement.h"
 #import "ZipArchive.h"
 
+@interface BLMatterOperationService ()
+
+@property (strong, nonatomic) NSMutableDictionary *downloadDictionary;
+
+@end
+
 @implementation BLMatterOperationService
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _downloadDictionary = [[NSMutableDictionary alloc] init];
+    }
+    return self;
+}
 
 - (void)matterBodyTextWithBodyDocID:(NSString *)docID block:(BLMatterOprationServiceGeneralBlock)block
 {
@@ -125,7 +140,7 @@
                                                                             YES) firstObject];
     
     // 下载附件成功后得到下载的 zip 文件的绝对路径
-    [BLMatterInfoHTTPLogic downloadFileWithAttachID:attachID fileType:@"zip" savePath:documentsDirectoryPath progress:progress block:^(NSString *zipFileLocalPath, NSError *error) {
+    NSURLSessionDownloadTask *downloadTask = [BLMatterInfoHTTPLogic downloadFileWithAttachID:attachID fileType:@"zip" savePath:documentsDirectoryPath progress:progress block:^(NSString *zipFileLocalPath, NSError *error) {
         if (error) {
             block(nil, error);
         }
@@ -142,6 +157,15 @@
             }
         }
     }];
+    
+    self.downloadDictionary[attachID] = downloadTask;
+}
+
+- (void)stopDownloadWithAttachID:(NSString *)attachID
+{
+    NSLog(@"Stop!!!");
+    NSURLSessionDownloadTask *downloadTask = self.downloadDictionary[attachID];
+    [downloadTask cancel];
 }
 
 - (void)folloDepartmentWithBlock:(BLMatterOprationServiceGeneralListBlock)block

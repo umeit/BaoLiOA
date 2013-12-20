@@ -10,8 +10,6 @@
 
 @interface BLMainBodyViewController : UIViewController
 
-@property (strong, nonatomic) NSString *mainBodyFilePath;
-
 @property (strong, nonatomic) NSString *bodyDocID;
 
 @property (strong, nonatomic) NSString *docTtitle;

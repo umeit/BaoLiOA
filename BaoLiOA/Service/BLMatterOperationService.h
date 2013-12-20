@@ -53,4 +53,5 @@ typedef void(^BLMatterOprationServiceGeneralBlock)(id obj, NSError *error);
 
 - (void)folloDepartmentWithBlock:(BLMatterOprationServiceGeneralListBlock)block;
 
+- (void)stopDownloadWithAttachID:(NSString *)attachID;
 @end

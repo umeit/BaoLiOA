@@ -18,11 +18,11 @@
 #define Attach_File_URL(id, type) [NSURL URLWithString:[NSString stringWithFormat:@"http://210.51.191.244:8081/OAWebService/Files/%@.%@", id, type]];
 @implementation BLMatterInfoHTTPLogic
 
-+ (void)downloadFileWithAttachID:(NSString *)attachID
-                        fileType:(NSString *)fileType
-                        savePath:(NSString *)savePath
-                        progress:(NSProgress **)progress
-                           block:(BLMatterHTTPLogicAttachDownloadBlock)block
++ (NSURLSessionDownloadTask *)downloadFileWithAttachID:(NSString *)attachID
+                                              fileType:(NSString *)fileType
+                                              savePath:(NSString *)savePath
+                                              progress:(NSProgress **)progress
+                                                 block:(BLMatterHTTPLogicAttachDownloadBlock)block
 {
     // http://210.51.191.244:XX/OAWebService/Files/HZ456b4132133680014249e86fad23d1.zip
     
@@ -56,6 +56,7 @@
                                                                   destination:DestinationBlock
                                                             completionHandler:completionHandlerBlock];
     [downloadTask resume];
+    return downloadTask;
 }
 
 + (void)matterListWithMatterType:(MatterType)matterType withBlock:(BLMatterHTTPLogicGeneralBlock)block
