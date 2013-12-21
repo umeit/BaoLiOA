@@ -39,6 +39,8 @@
 {
     [super viewDidLoad];
     
+    BLMatterInfoServiceListType listType;
+    
     // 设置标题
     switch (self.currentMatterType) {
             
@@ -46,57 +48,50 @@
         case TodoMatterList:
         {
             self.title = @"待办事宜";
-            
-            // 取得数据后刷新表格
-            [self.matterService todoListWithBlock:^(NSArray *list, NSError *error) {
-                if (error) {
-                    [self showNetworkingErrorAlert];
-                }
-                else {
-                    self.matterList = list;
-                    [self.tableView reloadData];
-                }
-            }];
+            listType = BLMatterInfoServiceTodoList;
         }
-            break;
+        break;
             
         // 已办列表
         case TakenMatterList:
         {
             self.title = @"已办事宜";
-            
-            // 取得数据后刷新表格
-            [self.matterService takenMatterWithBlock:^(NSArray *list, NSError *error) {
-                if (error) {
-                    [self showNetworkingErrorAlert];
-                }
-                else {
-                    self.matterList = list;
-                    [self.tableView reloadData];
-                }
-            }];
+            listType = BLMatterInfoServiceTakenList;
         }
-            break;
+        break;
+            
+        // 待阅列表
+        case ToReadMatterList:
+        {
+            self.title = @"已阅事宜";
+            listType = BLMatterInfoServiceToReadList;
+        }
+        break;
+            
+        // 待阅列表
+        case ReadMatterList:
+        {
+            self.title = @"已阅事宜";
+            listType = BLMatterInfoServiceReadList;
+        }
+        break;
             
         default:
             break;
     }
     
-//    // 获取数据
-//    if (self.currentMatterType == TodoMatterList) {
-//        
-//        // 取得数据后刷新表格
-//        [self.matterService todoListWithBlock:^(NSArray *list, NSError *error) {
-//            if (error) {
-//                [self showNetworkingErrorAlert];
-//            }
-//            else {
-//                self.matterList = list;
-//                [self.tableView reloadData];
-//            }
-//        }];
-//    }
+    // 取得数据后刷新表格
+    [self.matterService matterListWithType:listType block:^(NSArray *list, NSError *error) {
+        if (error) {
+            [self showNetworkingErrorAlert];
+        }
+        else {
+            self.matterList = list;
+            [self.tableView reloadData];
+        }
+    }];
 }
+
 
 #pragma mark - Table view data source
 
@@ -119,6 +114,7 @@
     
     return cell;
 }
+
 
 #pragma mark - Navigation
 

@@ -9,8 +9,10 @@
 #import <Foundation/Foundation.h>
 
 typedef enum MatterType : NSInteger{
-    TodoMatterType, // 待办
-    TakenMatter,    // 已办
+    TodoMatterType,    // 待办
+    TakenMatter,       // 已办
+    ToReadMaaterType,  // 待阅
+    ReadMatterType,    // 已阅
     CollectMatter,
     ApproveMatter
 }MatterType;
@@ -28,7 +30,8 @@ typedef void(^BLMatterHTTPLogicAttachDownloadBlock)(NSString *zipFileLocalPath, 
                            block:(BLMatterHTTPLogicAttachDownloadBlock)block;
 
 /**
- *  获取事项列表，类别支持：待办、已办
+ *  获取事项列表
+ *  类别支持：待办、已办、待阅
  *
  *  @param matterType 类别
  *  @param block      返回响应数据 NSData

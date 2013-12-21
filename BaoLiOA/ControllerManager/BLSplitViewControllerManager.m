@@ -40,6 +40,17 @@
     [self switchDetaiViewToBaseMatterListWithMaterType:TakenMatterList];
 }
 
+- (void)switchDetaiViewToToReadMatterList
+{
+    [self switchDetaiViewToBaseMatterListWithMaterType:ToReadMatterList];
+}
+
+- (void)switchDetaiViewToReadMatterList
+{
+    [self switchDetaiViewToBaseMatterListWithMaterType:ReadMatterList];
+}
+
+
 #pragma mark - Private
 
 - (void)switchDetaiViewToBaseMatterListWithMaterType:(MatterTypeOfBaseMatterList)matterType

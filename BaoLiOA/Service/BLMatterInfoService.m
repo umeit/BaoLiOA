@@ -17,9 +17,135 @@
 
 @implementation BLMatterInfoService
 
-- (void)todoListWithBlock:(BLMatterInfoServiceGeneralBlock)block
+//- (void)todoListWithBlock:(BLMatterInfoServiceGeneralBlock)block
+//{
+//    [BLMatterInfoHTTPLogic matterListWithMatterType:TodoMatterType withBlock:^(id responseData, NSError *error) {
+//        if (error) {
+//            block(nil, error);
+//        }
+//        else {
+//            NSMutableArray *todoList = [[NSMutableArray alloc] init];
+//            
+//            RXMLElement *rootElement = [RXMLElement elementFromXMLData:responseData];
+//            
+//            [rootElement iterate:@"Body.GetDocTodolistResponse.GetDocTodolistResult.Doc" usingBlock:^(RXMLElement *e) {
+//                BLMatterEntity *matterEntity = [[BLMatterEntity alloc] init];
+//                
+//                matterEntity.matterID = [e child:@"DocID"].text;
+//                matterEntity.title = [e child:@"DocTitle"].text;
+//                matterEntity.matterType = [e child:@"DocType"].text;
+//                matterEntity.from = [e child:@"SendFrom"].text;
+//                matterEntity.sendTime = [e child:@"SendDate"].text;
+////                matterEntity.matterSubType = @"控股公司发文";
+////                matterEntity.flag = 1;
+//
+//                [todoList addObject:matterEntity];
+//            }];
+//            
+//            block(todoList, nil);
+//        }
+//    }];
+//}
+//
+//- (void)takenMatterWithBlock:(BLMatterInfoServiceGeneralBlock)block
+//{
+//    [BLMatterInfoHTTPLogic matterListWithMatterType:TakenMatter withBlock:^(id responseData, NSError *error) {
+//        if (error) {
+//            block(nil, error);
+//        }
+//        else {
+//            NSMutableArray *todoList = [[NSMutableArray alloc] init];
+//            
+//            RXMLElement *rootElement = [RXMLElement elementFromXMLData:responseData];
+//            
+//            [rootElement iterate:@"Body.GetDocHasdolistResponse.GetDocHasdolistResult.Doc" usingBlock:^(RXMLElement *e) {
+//                BLMatterEntity *matterEntity = [[BLMatterEntity alloc] init];
+//                
+//                matterEntity.matterID = [e child:@"DocID"].text;
+//                matterEntity.title = [e child:@"DocTitle"].text;
+//                matterEntity.matterType = [e child:@"DocType"].text;
+//                matterEntity.from = [e child:@"SendFrom"].text;
+//                matterEntity.sendTime = [e child:@"SendDate"].text;
+//                //                matterEntity.matterSubType = @"控股公司发文";
+//                //                matterEntity.flag = 1;
+//                
+//                [todoList addObject:matterEntity];
+//            }];
+//            
+//            block(todoList, nil);
+//        }
+//    }];
+//}
+//
+//- (void)toReadMatterWithBlock:(BLMatterInfoServiceGeneralBlock)block
+//{
+//    [BLMatterInfoHTTPLogic matterListWithMatterType:ToReadMaaterType withBlock:^(id responseData, NSError *error) {
+//        if (error) {
+//            block(nil, error);
+//        }
+//        else {
+//            NSMutableArray *todoList = [[NSMutableArray alloc] init];
+//            
+//            RXMLElement *rootElement = [RXMLElement elementFromXMLData:responseData];
+//            
+//            [rootElement iterate:@"Body.GetDocToReadlistResponse.GetDocToReadlistResult.Doc" usingBlock:^(RXMLElement *e) {
+//                BLMatterEntity *matterEntity = [[BLMatterEntity alloc] init];
+//                
+//                matterEntity.matterID = [e child:@"DocID"].text;
+//                matterEntity.title = [e child:@"DocTitle"].text;
+//                matterEntity.matterType = [e child:@"DocType"].text;
+//                matterEntity.from = [e child:@"SendFrom"].text;
+//                matterEntity.sendTime = [e child:@"SendDate"].text;
+//                //                matterEntity.matterSubType = @"控股公司发文";
+//                //                matterEntity.flag = 1;
+//                
+//                [todoList addObject:matterEntity];
+//            }];
+//            
+//            block(todoList, nil);
+//        }
+//    }];
+//}
+
+- (void)matterListWithType:(BLMatterInfoServiceListType)type block:(BLMatterInfoServiceGeneralBlock)block
 {
-    [BLMatterInfoHTTPLogic matterListWithMatterType:TodoMatterType withBlock:^(id responseData, NSError *error) {
+    NSString *elementIteratePath;
+    MatterType matterType;
+    
+    switch (type) {
+        case BLMatterInfoServiceTodoList:
+        {
+            elementIteratePath = @"Body.GetDocTodolistResponse.GetDocTodolistResult.Doc";
+            matterType = TodoMatterType;
+        }
+        break;
+            
+        case BLMatterInfoServiceTakenList:
+        {
+            elementIteratePath = @"Body.GetDocHasdolistResponse.GetDocHasdolistResult.Doc";
+            matterType = TakenMatter;
+        }
+        break;
+            
+        case BLMatterInfoServiceToReadList:
+        {
+            elementIteratePath = @"Body.GetDocToReadlistResponse.GetDocToReadlistResult.Doc";
+            matterType = ToReadMaaterType;
+        }
+        break;
+            
+        case BLMatterInfoServiceReadList:
+        {
+            elementIteratePath = @"Body.GetDocHasReadlistResponse.GetDocHasReadlistResult.Doc";
+            matterType = ReadMatterType;
+        }
+        break;
+            
+        default:
+            break;
+    }
+    
+    [BLMatterInfoHTTPLogic matterListWithMatterType:matterType withBlock:^(id responseData, NSError *error) {
         if (error) {
             block(nil, error);
         }
@@ -28,39 +154,7 @@
             
             RXMLElement *rootElement = [RXMLElement elementFromXMLData:responseData];
             
-            [rootElement iterate:@"Body.GetDocTodolistResponse.GetDocTodolistResult.Doc" usingBlock:^(RXMLElement *e) {
-                BLMatterEntity *matterEntity = [[BLMatterEntity alloc] init];
-                
-                matterEntity.matterID = [e child:@"DocID"].text;
-                matterEntity.title = [e child:@"DocTitle"].text;
-                matterEntity.matterType = [e child:@"DocType"].text;
-                matterEntity.from = [e child:@"SendFrom"].text;
-                matterEntity.sendTime = [e child:@"SendDate"].text;
-//                matterEntity.matterSubType = @"控股公司发文";
-//                matterEntity.flag = 1;
-
-                [todoList addObject:matterEntity];
-            }];
-            
-            block(todoList, nil);
-        }
-    }];
-}
-
-- (void)takenMatterWithBlock:(BLMatterInfoServiceGeneralBlock)block
-{
-    [BLMatterInfoHTTPLogic matterListWithMatterType:TakenMatter withBlock:^(id responseData, NSError *error) {
-        if (error) {
-            block(nil, error);
-        }
-        else {
-            
-            NSString *s = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-            NSMutableArray *todoList = [[NSMutableArray alloc] init];
-            
-            RXMLElement *rootElement = [RXMLElement elementFromXMLData:responseData];
-            
-            [rootElement iterate:@"Body.GetDocHasdolistResponse.GetDocHasdolistResult.Doc" usingBlock:^(RXMLElement *e) {
+            [rootElement iterate:elementIteratePath usingBlock:^(RXMLElement *e) {
                 BLMatterEntity *matterEntity = [[BLMatterEntity alloc] init];
                 
                 matterEntity.matterID = [e child:@"DocID"].text;

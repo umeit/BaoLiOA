@@ -20,4 +20,8 @@
 - (void)switchDetaiViewToBackogMatterList;
 
 - (void)switchDetaiViewToTakenMatterList;
+
+- (void)switchDetaiViewToToReadMatterList;
+
+- (void)switchDetaiViewToReadMatterList;
 @end

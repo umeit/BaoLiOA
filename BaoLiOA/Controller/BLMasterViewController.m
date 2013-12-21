@@ -11,6 +11,8 @@
 
 #define BacklogCellTag 30
 #define TakenCellTag   31
+#define ToReadCellTag  32
+#define ReadCellTag    33
 
 @interface BLMasterViewController ()
 @property (strong, nonatomic) BLSplitViewControllerManager *splitViewControllerManager;
@@ -28,17 +30,22 @@
 
 // 根据选择的 cell 切换 Detail 视图
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-//    BLSplitViewControllerManager *splitViewControllerManager = (BLSplitViewControllerManager *)self.splitViewController.delegate;
-    
+{    
     switch ([tableView cellForRowAtIndexPath:indexPath].tag) {
         case BacklogCellTag:
             [self.splitViewControllerManager switchDetaiViewToBackogMatterList];
-
             break;
             
         case TakenCellTag:
             [self.splitViewControllerManager switchDetaiViewToTakenMatterList];
+            break;
+            
+        case ToReadCellTag:
+            [self.splitViewControllerManager switchDetaiViewToToReadMatterList];
+            break;
+            
+        case ReadCellTag:
+            [self.splitViewControllerManager switchDetaiViewToReadMatterList];
             break;
             
         default:

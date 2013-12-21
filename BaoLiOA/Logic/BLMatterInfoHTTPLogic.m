@@ -73,6 +73,14 @@
             listType = @"GetDocHasdolist";
             break;
             
+        case ToReadMaaterType:
+            listType = @"GetDocToReadlist";
+            break;
+            
+        case ReadMatterType:
+            listType = @"GetDocHasReadlist";
+            break;
+            
         default:
             break;
     }

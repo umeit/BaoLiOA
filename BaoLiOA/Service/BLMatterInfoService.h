@@ -13,16 +13,25 @@
 #define kBLMatterInfoServiceAttachInfo @"kBLMatterInfoServiceAttachInfo"
 #define kBLMatterInfoServiceBodyDocID @"kBLMatterInfoServiceBodyDocID"
 
+typedef enum BLMatterInfoServiceListType : NSUInteger {
+    BLMatterInfoServiceTodoList,
+    BLMatterInfoServiceTakenList,
+    BLMatterInfoServiceToReadList,
+    BLMatterInfoServiceReadList
+}BLMatterInfoServiceListType;
+
 typedef void(^BLMatterInfoServiceGeneralBlock)(id obj, NSError *error);
 
 @interface BLMatterInfoService : NSObject
 
-- (void)todoListWithBlock:(BLMatterInfoServiceGeneralBlock)block;
+//- (void)todoListWithBlock:(BLMatterInfoServiceGeneralBlock)block;
+//
+//- (void)takenMatterWithBlock:(BLMatterInfoServiceGeneralBlock)block;
+//
+//- (void)toReadMatterWithBlock:(BLMatterInfoServiceGeneralBlock)block;
 
-- (void)takenMatterWithBlock:(BLMatterInfoServiceGeneralBlock)block;
+- (void)matterListWithType:(BLMatterInfoServiceListType)type block:(BLMatterInfoServiceGeneralBlock)block;
 
-//- (void)matterFormListWithMatterID:(NSString *)matterID
-//                             block:(BLMatterInfoServiceGeneralBlock)block;
 /**
  *  获取「事项」的详细信息：表单信息、可用操作、附件
  *
