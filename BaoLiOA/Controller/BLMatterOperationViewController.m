@@ -151,10 +151,6 @@
         
         // 默认被选中的 view controller，为 表单 controller
         UIViewController *vc = [self viewControllerForSelectedSegment];
-        // 设置表单列表
-//        if ([vc respondsToSelector:@selector(setMatterFormInfoList:)]) {
-//            [vc performSelector:@selector(setMatterFormInfoList:) withObject:self.matterFormInfoList];
-//        }
         
         [self switchVC:vc];
     }];
@@ -208,8 +204,6 @@
     }
     
 #warning 改用用真实的意见
-//    [self submitMatterWithComment:@"同意" commentList:nil routeList:self.selectedRouteList employeeList:self.selectedEmployeeList matterID:self.matterID flowID:@""];
-    
     [self operationMatterWithAction:self.currentActionID comment:@"同意" commentList:nil routeList:self.selectedRouteList employeeList:self.selectedEmployeeList matterID:self.matterID flowID:@""];
 }
 

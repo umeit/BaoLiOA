@@ -15,12 +15,6 @@ typedef enum BLMatterOperationServiceRetCode : NSUInteger {
     kHasEmployee    // 有待选择的人员
 }BLMatterOperationServiceRetCode;
 
-//typedef enum BLMatterOperationServiceActionName : NSUInteger {
-//    kMOSActionSubmit,
-//    kMOSActionSave,
-//    kMOSActionReject,
-//    kMOSAction
-//}BLMatterOperationServiceActionName;
 
 /** Blocks **/
 typedef void(^BLMatterOprationServiceGeneralListBlock)(NSArray *list, NSError *error);
@@ -32,14 +26,6 @@ typedef void(^BLMatterOprationServiceGeneralBlock)(id obj, NSError *error);
 
 /** Interface **/
 @interface BLMatterOperationService : NSObject
-
-/**
- *  根据正文（附件）ID，获取正文的文字内容
- *
- *  @param docID 正文（附件）ID
- *  @param block 返回文字内容
- */
-- (void)matterBodyTextWithBodyDocID:(NSString *)docID block:(BLMatterOprationServiceGeneralBlock)block;
 
 /**
  *  对事项操作：提交、暂存、回调等
@@ -62,11 +48,11 @@ typedef void(^BLMatterOprationServiceGeneralBlock)(id obj, NSError *error);
                            flowID:(NSString *)flowID
                             block:(BLMOSSubmitCallBackBlock)block;
 
-///**
-// *  待填写
-// *
-// *  @param block 回调
-// */
-//- (void)folloDepartmentWithBlock:(BLMatterOprationServiceGeneralListBlock)block;
-
+/**
+ *  根据正文（附件）ID，获取正文的文字内容
+ *
+ *  @param docID 正文（附件）ID
+ *  @param block 返回文字内容
+ */
+- (void)matterBodyTextWithBodyDocID:(NSString *)docID block:(BLMatterOprationServiceGeneralBlock)block;
 @end
