@@ -42,32 +42,60 @@
     // 设置标题
     switch (self.currentMatterType) {
             
+        // 待办列表
         case TodoMatterList:
+        {
             self.title = @"待办事宜";
+            
+            // 取得数据后刷新表格
+            [self.matterService todoListWithBlock:^(NSArray *list, NSError *error) {
+                if (error) {
+                    [self showNetworkingErrorAlert];
+                }
+                else {
+                    self.matterList = list;
+                    [self.tableView reloadData];
+                }
+            }];
+        }
             break;
             
+        // 已办列表
         case TakenMatterList:
+        {
             self.title = @"已办事宜";
+            
+            // 取得数据后刷新表格
+            [self.matterService takenMatterWithBlock:^(NSArray *list, NSError *error) {
+                if (error) {
+                    [self showNetworkingErrorAlert];
+                }
+                else {
+                    self.matterList = list;
+                    [self.tableView reloadData];
+                }
+            }];
+        }
             break;
             
         default:
             break;
     }
     
-    // 获取数据
-    if (self.currentMatterType == TodoMatterList) {
-        
-        // 取得数据后刷新表格
-        [self.matterService todoListWithBlock:^(NSArray *list, NSError *error) {
-            if (error) {
-                [self showNetworkingErrorAlert];
-            }
-            else {
-                self.matterList = list;
-                [self.tableView reloadData];
-            }
-        }];
-    }
+//    // 获取数据
+//    if (self.currentMatterType == TodoMatterList) {
+//        
+//        // 取得数据后刷新表格
+//        [self.matterService todoListWithBlock:^(NSArray *list, NSError *error) {
+//            if (error) {
+//                [self showNetworkingErrorAlert];
+//            }
+//            else {
+//                self.matterList = list;
+//                [self.tableView reloadData];
+//            }
+//        }];
+//    }
 }
 
 #pragma mark - Table view data source

@@ -61,23 +61,39 @@
 
 + (void)matterListWithMatterType:(MatterType)matterType withBlock:(BLMatterHTTPLogicGeneralBlock)block
 {
-    NSString *soapBody =
+    NSString *userID = @"action";
+    
+    NSString *listType;
+    switch (matterType) {
+        case TodoMatterType:
+            listType = @"GetDocTodolist";
+            break;
+            
+        case TakenMatter:
+            listType = @"GetDocHasdolist";
+            break;
+            
+        default:
+            break;
+    }
+    
+    NSString *soapBody = [NSString stringWithFormat:
     @"<?xml version=\"1.0\" encoding=\"utf-8\"?>" \
     "<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" "\
     "xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">" \
         "<soap:Body>" \
-            "<GetDocTodolist xmlns=\"http://tempuri.org/\">"\
-                "<userID>admin</userID>"\
+            "<%@ xmlns=\"http://tempuri.org/\">"\
+                "<userID>%@</userID>"\
                 "<orderString></orderString>"\
                 "<recordStartIndex>0</recordStartIndex>"\
                 "<recordEndIndex>9</recordEndIndex>"\
-            "</GetDocTodolist>"\
+            "</%@>"\
         "</soap:Body>"\
-    "</soap:Envelope>";
+    "</soap:Envelope>", listType, userID, listType];
     
-    NSMutableURLRequest *request = [BLMatterInfoHTTPLogic soapRequestWithURLParam:@"GetDocTodolist"
-                                                                   soapAction:@"http://tempuri.org/GetDocTodolist"
-                                                                     soapBody:soapBody];
+    NSMutableURLRequest *request = [BLMatterInfoHTTPLogic soapRequestWithURLParam:listType
+                                                          soapAction:[NSString stringWithFormat:@"http://tempuri.org/%@", listType]
+                                                          soapBody:soapBody];
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     

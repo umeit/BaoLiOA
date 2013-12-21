@@ -105,7 +105,6 @@
                    forKeyPath:@"fractionCompleted"
                       options:NSKeyValueObservingOptionNew
                       context:NULL];
-
     }
     
     // 点击打开
@@ -134,7 +133,6 @@
         //        NSLog(@"Progress is %f", progress.fractionCompleted);
     }
 }
-
 
 
 #pragma mark - Private

@@ -54,7 +54,27 @@
             block(nil, error);
         }
         else {
-            block(responseData, nil);
+            
+            NSString *s = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+            NSMutableArray *todoList = [[NSMutableArray alloc] init];
+            
+            RXMLElement *rootElement = [RXMLElement elementFromXMLData:responseData];
+            
+            [rootElement iterate:@"Body.GetDocHasdolistResponse.GetDocHasdolistResult.Doc" usingBlock:^(RXMLElement *e) {
+                BLMatterEntity *matterEntity = [[BLMatterEntity alloc] init];
+                
+                matterEntity.matterID = [e child:@"DocID"].text;
+                matterEntity.title = [e child:@"DocTitle"].text;
+                matterEntity.matterType = [e child:@"DocType"].text;
+                matterEntity.from = [e child:@"SendFrom"].text;
+                matterEntity.sendTime = [e child:@"SendDate"].text;
+                //                matterEntity.matterSubType = @"控股公司发文";
+                //                matterEntity.flag = 1;
+                
+                [todoList addObject:matterEntity];
+            }];
+            
+            block(todoList, nil);
         }
     }];
 }
