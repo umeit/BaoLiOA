@@ -65,19 +65,19 @@
     
     NSString *listType;
     switch (matterType) {
-        case TodoMatterType:
+        case kTodoMatterType:
             listType = @"GetDocTodolist";
             break;
             
-        case TakenMatter:
+        case kTakenMatterType:
             listType = @"GetDocHasdolist";
             break;
             
-        case ToReadMaaterType:
+        case kToReadMatterType:
             listType = @"GetDocToReadlist";
             break;
             
-        case ReadMatterType:
+        case kReadMatterType:
             listType = @"GetDocHasReadlist";
             break;
             

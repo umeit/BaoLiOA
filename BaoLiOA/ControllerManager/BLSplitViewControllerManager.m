@@ -32,22 +32,22 @@
 
 - (void)switchDetaiViewToBackogMatterList
 {
-    [self switchDetaiViewToBaseMatterListWithMaterType:TodoMatterList];
+    [self switchDetaiViewToBaseMatterListWithMaterType:kTodoMatterList];
 }
 
 - (void)switchDetaiViewToTakenMatterList
 {
-    [self switchDetaiViewToBaseMatterListWithMaterType:TakenMatterList];
+    [self switchDetaiViewToBaseMatterListWithMaterType:kTakenMatterList];
 }
 
 - (void)switchDetaiViewToToReadMatterList
 {
-    [self switchDetaiViewToBaseMatterListWithMaterType:ToReadMatterList];
+    [self switchDetaiViewToBaseMatterListWithMaterType:kToReadMatterList];
 }
 
 - (void)switchDetaiViewToReadMatterList
 {
-    [self switchDetaiViewToBaseMatterListWithMaterType:ReadMatterList];
+    [self switchDetaiViewToBaseMatterListWithMaterType:kReadMatterList];
 }
 
 

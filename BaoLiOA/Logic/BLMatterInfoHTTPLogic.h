@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum MatterType : NSInteger{
-    TodoMatterType,    // 待办
-    TakenMatter,       // 已办
-    ToReadMaaterType,  // 待阅
-    ReadMatterType,    // 已阅
+typedef enum BLMatterInfoHTTPLogicMatterType : NSUInteger{
+    kTodoMatterType,    // 待办
+    kTakenMatterType,   // 已办
+    kToReadMatterType,  // 待阅
+    kReadMatterType,    // 已阅
     CollectMatter,
     ApproveMatter
 }MatterType;

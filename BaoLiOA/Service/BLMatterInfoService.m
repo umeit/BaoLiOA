@@ -116,28 +116,28 @@
         case BLMatterInfoServiceTodoList:
         {
             elementIteratePath = @"Body.GetDocTodolistResponse.GetDocTodolistResult.Doc";
-            matterType = TodoMatterType;
+            matterType = kTodoMatterType;
         }
         break;
             
         case BLMatterInfoServiceTakenList:
         {
             elementIteratePath = @"Body.GetDocHasdolistResponse.GetDocHasdolistResult.Doc";
-            matterType = TakenMatter;
+            matterType = kTakenMatterType;
         }
         break;
             
         case BLMatterInfoServiceToReadList:
         {
             elementIteratePath = @"Body.GetDocToReadlistResponse.GetDocToReadlistResult.Doc";
-            matterType = ToReadMaaterType;
+            matterType = kToReadMatterType;
         }
         break;
             
         case BLMatterInfoServiceReadList:
         {
             elementIteratePath = @"Body.GetDocHasReadlistResponse.GetDocHasReadlistResult.Doc";
-            matterType = ReadMatterType;
+            matterType = kReadMatterType;
         }
         break;
             

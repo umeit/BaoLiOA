@@ -45,7 +45,7 @@
     switch (self.currentMatterType) {
             
         // 待办列表
-        case TodoMatterList:
+        case kTodoMatterList:
         {
             self.title = @"待办事宜";
             listType = BLMatterInfoServiceTodoList;
@@ -53,7 +53,7 @@
         break;
             
         // 已办列表
-        case TakenMatterList:
+        case kTakenMatterList:
         {
             self.title = @"已办事宜";
             listType = BLMatterInfoServiceTakenList;
@@ -61,7 +61,7 @@
         break;
             
         // 待阅列表
-        case ToReadMatterList:
+        case kToReadMatterList:
         {
             self.title = @"已阅事宜";
             listType = BLMatterInfoServiceToReadList;
@@ -69,7 +69,7 @@
         break;
             
         // 待阅列表
-        case ReadMatterList:
+        case kReadMatterList:
         {
             self.title = @"已阅事宜";
             listType = BLMatterInfoServiceReadList;

@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum MatterTypeOfBaseMatterList : NSInteger {
-    TodoMatterList   = 1,
-    TakenMatterList  = 2,
-    ToReadMatterList = 3,
-    ReadMatterList   = 4
+typedef enum MatterTypeOfBaseMatterList : NSUInteger {
+    kTodoMatterList,
+    kTakenMatterList,
+    kToReadMatterList,
+    kReadMatterList
 } MatterTypeOfBaseMatterList;
 
 @interface BLBaseMatterListViewController : UITableViewController
