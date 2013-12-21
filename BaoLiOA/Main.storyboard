@@ -928,7 +928,7 @@
                                             <action selector="downloadButtonPress:" destination="dSB-iV-uM4" eventType="touchUpInside" id="zua-vE-fTU"/>
                                         </connections>
                                     </button>
-                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="GTo-Hb-zzD">
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GTo-Hb-zzD">
                                         <rect key="frame" x="528" y="25" width="101" height="2"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </progressView>

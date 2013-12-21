@@ -12,22 +12,22 @@
 #import "RXMLElement.h"
 #import "ZipArchive.h"
 
-@interface BLMatterOperationService ()
-
-@property (strong, nonatomic) NSMutableDictionary *downloadDictionary;
-
-@end
+//@interface BLMatterOperationService ()
+//
+//@property (strong, nonatomic) NSMutableDictionary *downloadDictionary;
+//
+//@end
 
 @implementation BLMatterOperationService
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        _downloadDictionary = [[NSMutableDictionary alloc] init];
-    }
-    return self;
-}
+//- (id)init
+//{
+//    self = [super init];
+//    if (self) {
+//        _downloadDictionary = [[NSMutableDictionary alloc] init];
+//    }
+//    return self;
+//}
 
 - (void)matterBodyTextWithBodyDocID:(NSString *)docID block:(BLMatterOprationServiceGeneralBlock)block
 {
@@ -127,43 +127,43 @@
     }];
 }
 
-- (void)downloadMatterAttachmentFileWithAttachID:(NSString *)attachID
-                                        progress:(NSProgress **)progress
-                                           block:(BLMatterOprationServiceDownloadFileBlock)block
-{
-    // 附件下载到该文件夹
-    NSString *documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                                            NSUserDomainMask,
-                                                                            YES) firstObject];
-    
-    // 下载附件成功后解压 zip 文件，返回解压出的文件的本地路径
-    NSURLSessionDownloadTask *downloadTask = [BLMatterInfoHTTPLogic downloadFileWithAttachID:attachID fileType:@"zip" savePath:documentsDirectoryPath progress:progress block:^(NSString *zipFileLocalPath, NSError *error) {
-        if (error) {
-            block(nil, error);
-        }
-        else {
-            // 解压 zip 文件
-            zipFileLocalPath = [zipFileLocalPath substringFromIndex:7];
-            zipFileLocalPath = [zipFileLocalPath stringByReplacingOccurrencesOfString:@"%20" withString:@" "];
-            ZipArchive *zipArchive = [[ZipArchive alloc] init];
-            
-            if ([zipArchive UnzipOpenFile:zipFileLocalPath Password:@"password"]) {
-                if ([zipArchive UnzipFileTo:documentsDirectoryPath overWrite:YES]) {
-                    // 返回解压文件的本地路径
-                    block([zipArchive.unzippedFiles firstObject], nil);
-                }
-            }
-        }
-    }];
-    
-    self.downloadDictionary[attachID] = downloadTask;
-}
+//- (void)downloadMatterAttachmentFileWithAttachID:(NSString *)attachID
+//                                        progress:(NSProgress **)progress
+//                                           block:(BLAttchManageServiceDownloadAttachBlock)block
+//{
+//    // 附件下载到该文件夹
+//    NSString *documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+//                                                                            NSUserDomainMask,
+//                                                                            YES) firstObject];
+//    
+//    // 下载附件成功后解压 zip 文件，返回解压出的文件的本地路径
+//    NSURLSessionDownloadTask *downloadTask = [BLMatterInfoHTTPLogic downloadFileWithAttachID:attachID fileType:@"zip" savePath:documentsDirectoryPath progress:progress block:^(NSString *zipFileLocalPath, NSError *error) {
+//        if (error) {
+//            block(nil, error);
+//        }
+//        else {
+//            // 解压 zip 文件
+//            zipFileLocalPath = [zipFileLocalPath substringFromIndex:7];
+//            zipFileLocalPath = [zipFileLocalPath stringByReplacingOccurrencesOfString:@"%20" withString:@" "];
+//            ZipArchive *zipArchive = [[ZipArchive alloc] init];
+//            
+//            if ([zipArchive UnzipOpenFile:zipFileLocalPath Password:@"password"]) {
+//                if ([zipArchive UnzipFileTo:documentsDirectoryPath overWrite:YES]) {
+//                    // 返回解压文件的本地路径
+//                    block([zipArchive.unzippedFiles firstObject], nil);
+//                }
+//            }
+//        }
+//    }];
+//    
+//    self.downloadDictionary[attachID] = downloadTask;
+//}
 
-- (void)stopDownloadWithAttachID:(NSString *)attachID
-{
-    NSURLSessionDownloadTask *downloadTask = self.downloadDictionary[attachID];
-    [downloadTask cancel];
-}
+//- (void)stopDownloadWithAttachID:(NSString *)attachID
+//{
+//    NSURLSessionDownloadTask *downloadTask = self.downloadDictionary[attachID];
+//    [downloadTask cancel];
+//}
 
 - (void)folloDepartmentWithBlock:(BLMatterOprationServiceGeneralListBlock)block
 {

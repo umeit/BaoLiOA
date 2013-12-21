@@ -49,6 +49,7 @@
 		036C0FF5183D05AD00C61808 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 036C0FEC183D05AD00C61808 /* AFURLSessionManager.m */; };
 		0381BC5518478BDF00DB661D /* BLCommonOpinionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0381BC5418478BDF00DB661D /* BLCommonOpinionViewController.m */; };
 		0381BC581847985400DB661D /* BLManageFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0381BC571847985400DB661D /* BLManageFollowViewController.m */; };
+		03844F97186456610028BF80 /* BLAttachManageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 03844F96186456610028BF80 /* BLAttachManageService.m */; };
 		0390A01A1855BC6B00EEEEBB /* BLAttachPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0390A0191855BC6B00EEEEBB /* BLAttachPreviewViewController.m */; };
 		039155FD1861F24800BBFCB2 /* BLMatterFlowEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 039155FC1861F24800BBFCB2 /* BLMatterFlowEntity.m */; };
 		039156041861F6B900BBFCB2 /* BLMatterFlowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 039156031861F6B900BBFCB2 /* BLMatterFlowCell.m */; };
@@ -207,6 +208,8 @@
 		0381BC5418478BDF00DB661D /* BLCommonOpinionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCommonOpinionViewController.m; sourceTree = "<group>"; };
 		0381BC561847985400DB661D /* BLManageFollowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLManageFollowViewController.h; sourceTree = "<group>"; };
 		0381BC571847985400DB661D /* BLManageFollowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLManageFollowViewController.m; sourceTree = "<group>"; };
+		03844F95186456610028BF80 /* BLAttachManageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLAttachManageService.h; sourceTree = "<group>"; };
+		03844F96186456610028BF80 /* BLAttachManageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLAttachManageService.m; sourceTree = "<group>"; };
 		0390A0181855BC6B00EEEEBB /* BLAttachPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLAttachPreviewViewController.h; sourceTree = "<group>"; };
 		0390A0191855BC6B00EEEEBB /* BLAttachPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLAttachPreviewViewController.m; sourceTree = "<group>"; };
 		039155FB1861F24800BBFCB2 /* BLMatterFlowEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterFlowEntity.h; sourceTree = "<group>"; };
@@ -388,6 +391,8 @@
 				03DECA4E18425154007F6F40 /* BLMatterOperationService.m */,
 				030D3C631849B2F000E844EA /* BLUserService.h */,
 				030D3C641849B2F000E844EA /* BLUserService.m */,
+				03844F95186456610028BF80 /* BLAttachManageService.h */,
+				03844F96186456610028BF80 /* BLAttachManageService.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -826,6 +831,7 @@
 				03BD17FD1844EF77002F2C38 /* BLMatterFlowListViewController.m in Sources */,
 				03DECA461842434D007F6F40 /* BLMatterOperationViewController.m in Sources */,
 				036C0FF5183D05AD00C61808 /* AFURLSessionManager.m in Sources */,
+				03844F97186456610028BF80 /* BLAttachManageService.m in Sources */,
 				036C0FF4183D05AD00C61808 /* AFURLResponseSerialization.m in Sources */,
 				039BF617185E077F00985B17 /* mztools.c in Sources */,
 				0323EAD51851E2EA00752172 /* BLAttachEntity.m in Sources */,

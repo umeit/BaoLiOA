@@ -8,6 +8,7 @@
 
 #import "BLMainBodyViewController.h"
 #import "BLMatterOperationService.h"
+#import "BLAttachManageService.h"
 #import "BLAttachPreviewViewController.h"
 
 @interface BLMainBodyViewController ()
@@ -20,7 +21,7 @@
 @property (strong, nonatomic) NSString *mainBodyFilePath;
 
 @property (strong, nonatomic) BLMatterOperationService *matterOprationService;
-
+@property (strong, nonatomic) BLAttachManageService *attchManageService;
 @end
 
 @implementation BLMainBodyViewController
@@ -31,6 +32,7 @@
     
     if (self) {
         _matterOprationService = [[BLMatterOperationService alloc] init];
+        _attchManageService = [[BLAttachManageService alloc] init];
     }
     return self;
 }
@@ -41,15 +43,27 @@
     
     self.mainBodyLabel.text = self.docTtitle;
     
-    // 检查本地是否有下载过
-    NSString *documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                                            NSUserDomainMask,
-                                                                            YES) firstObject];
-    NSString *attachmentFileLocalPath = [NSString stringWithFormat:@"%@/%@", documentsDirectoryPath, self.docTtitle];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:attachmentFileLocalPath]) {
+    // 获取附件的本地路径，如果已下载
+    NSString *localPath = [self.attchManageService attachLocalPathWithAttachID:self.bodyDocID];
+    if (localPath) {
+        
         [self.downloadButton setTitle:@"打开" forState:UIControlStateNormal];
-        self.mainBodyFilePath = attachmentFileLocalPath;
+        [self.downloadButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+        
+        self.progressView.hidden = YES;
+        
+        self.mainBodyFilePath = localPath;
     }
+    
+//    // 检查本地是否有下载过
+//    NSString *documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+//                                                                            NSUserDomainMask,
+//                                                                            YES) firstObject];
+//    NSString *attachmentFileLocalPath = [NSString stringWithFormat:@"%@/%@", documentsDirectoryPath, self.docTtitle];
+//    if ([[NSFileManager defaultManager] fileExistsAtPath:attachmentFileLocalPath]) {
+//        [self.downloadButton setTitle:@"打开" forState:UIControlStateNormal];
+//        self.mainBodyFilePath = attachmentFileLocalPath;
+//    }
     
     // 获取正文内容
     [self.matterOprationService matterBodyTextWithBodyDocID:self.bodyDocID block:^(id obj, NSError *error) {
@@ -63,32 +77,47 @@
 - (IBAction)downloadButtonPress:(UIButton *)button
 {
     NSString *buttonTitle = button.titleLabel.text;
+    
+    // 点击下载
     if ([buttonTitle isEqualToString:@"下载"]) {
         [button setTitle:@"停止" forState:UIControlStateNormal];
         
         NSProgress *progress;
         
         // 下载正文文件
-        [self.matterOprationService
-         downloadMatterAttachmentFileWithAttachID:self.bodyDocID
-         progress:&progress
-         block:^(NSString *localFilePath, NSError *error) {
-             
-             self.mainBodyFilePath = [NSString stringWithFormat:@"%@/%@", localFilePath, self.docTtitle];
-             
-             [button setTitle:@"打开" forState:UIControlStateNormal];
-         }];
+        [self.attchManageService downloadMatterAttachmentFileWithAttachID:self.bodyDocID progress:&progress
+        block:^(NSString *localFilePath, NSError *error) {
+            
+            if (error) {
+                NSLog(@"下载失败！");
+            }
+            else {
+                self.mainBodyFilePath = localFilePath;
+                
+                // 保存附件的本地路径
+                [self.attchManageService saveAttchLocalPath:localFilePath withAttachID:self.bodyDocID];
+                
+                [button setTitle:@"打开" forState:UIControlStateNormal];
+                [button setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+            }
+        }];
         [progress addObserver:self
                    forKeyPath:@"fractionCompleted"
                       options:NSKeyValueObservingOptionNew
                       context:NULL];
 
     }
+    
+    // 点击打开
     else if ([buttonTitle isEqualToString:@"打开"]) {
-        
+        // 打开附件文件
+        [self showPreviewViewControllerWithFilePath:self.mainBodyFilePath];
     }
+    
+    // 点击停止
     else if ([buttonTitle isEqualToString:@"停止"]) {
-        
+        [button setTitle:@"下载" forState:UIControlStateNormal];
+        [self.attchManageService cancelDownloadAttachWithAttachID:self.bodyDocID];
     }
 }
 
