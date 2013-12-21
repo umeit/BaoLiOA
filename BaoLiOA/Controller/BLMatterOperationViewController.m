@@ -112,6 +112,11 @@
  */
 @property (strong, nonatomic) NSString *matterBodyDocID;
 
+/**
+ *  记录对事项当前的操作
+ */
+@property (strong, nonatomic) NSString *currentActionID;
+
 @end
 
 @implementation BLMatterOperationViewController
@@ -120,8 +125,8 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        self.matterOprationService = [[BLMatterOperationService alloc] init];
-        self.matterInfoService = [[BLMatterInfoService alloc] init];
+        _matterOprationService = [[BLMatterOperationService alloc] init];
+        _matterInfoService = [[BLMatterInfoService alloc] init];
     }
     return self;
 }
@@ -155,6 +160,7 @@
     }];
 }
 
+
 #pragma - mark Action
 
 - (IBAction)segmentChanged:(UISegmentedControl *)segmentedControl
@@ -164,33 +170,21 @@
     [self switchVC:vc];
 }
 
-// 提交
-- (void)submitButtonPress:(id)sender
+- (void)operationButtonPress:(UIButton *)button
 {
-    [self submitMatterWithComment:@"同意"
-                      commentList:nil
-                        routeList:nil
-                     employeeList:nil
-                         matterID:self.matterID
-                           flowID:@""];
-}
-
-// 已阅
-- (void)HasReadButtonPress:(id)sender
-{
-    NSLog(@"HasRead!");
-}
-
-// 暂存
-- (void)temporaryButtonPress:(id)sender
-{
-    NSLog(@"temporary!");
-}
-
-// 回退
-- (void)fallbackButtonPress:(id)sender
-{
-    NSLog(@"fallback!");
+    NSString *actionID = [self actionIDWithButtonName:button.titleLabel.text];
+    NSString *flowID = @"";
+    NSString *comment = @"同意";
+    
+    self.currentActionID = actionID;
+    
+    [self operationMatterWithAction:actionID
+                            comment:comment
+                        commentList:nil
+                          routeList:nil
+                       employeeList:nil
+                           matterID:self.matterID
+                             flowID:flowID];
 }
 
 
@@ -213,8 +207,10 @@
         }
     }
     
-#warning 该用真实的意见
-    [self submitMatterWithComment:@"同意" commentList:nil routeList:self.selectedRouteList employeeList:self.selectedEmployeeList matterID:self.matterID flowID:@""];
+#warning 改用用真实的意见
+//    [self submitMatterWithComment:@"同意" commentList:nil routeList:self.selectedRouteList employeeList:self.selectedEmployeeList matterID:self.matterID flowID:@""];
+    
+    [self operationMatterWithAction:self.currentActionID comment:@"同意" commentList:nil routeList:self.selectedRouteList employeeList:self.selectedEmployeeList matterID:self.matterID flowID:@""];
 }
 
 
@@ -227,22 +223,35 @@
 
 
 #pragma - mark Private
+// 通过操作的名称获取操作 ID
+- (NSString *)actionIDWithButtonName:(NSString *)name
+{
+    for (NSDictionary *operationInfo in self.matterOperationList) {
+        if ([operationInfo[@"ActionName"] isEqualToString:name]) {
+            return operationInfo[@"ActionID"];
+        }
+    }
+    return nil;
+}
 
-- (void)submitMatterWithComment:(NSString *)comment
-                    commentList:(NSArray *)commentList
-                      routeList:(NSArray *)routList
-                   employeeList:(NSArray *)employeeList
-                       matterID:(NSString *)matterID
-                         flowID:(NSString *)flowID
+// 提交对事项的操作
+- (void)operationMatterWithAction:(NSString *)actionID
+                          comment:(NSString *)comment
+                      commentList:(NSArray *)commentList
+                        routeList:(NSArray *)routList
+                     employeeList:(NSArray *)employeeList
+                         matterID:(NSString *)matterID
+                           flowID:(NSString *)flowID
 {
     // 将用户的「意见」和「意见正文」提交
-    [self.matterOprationService submitMatterWithComment:comment
-                                            commentList:commentList
-                                              routeList:routList
-                                           employeeList:employeeList
-                                               matterID:matterID
-                                                 flowID:flowID
-                                                  block:^(NSInteger retCode, NSArray *list, NSString *title) {
+    [self.matterOprationService operationMatterWithAction:actionID
+                                                  comment:comment
+                                              commentList:commentList
+                                                routeList:routList
+                                             employeeList:employeeList
+                                                 matterID:matterID
+                                                   flowID:flowID
+                                                    block:^(NSInteger retCode, NSArray *list, NSString *title) {
                                                       if (retCode == kSuccess) {
 #warning 提示成功
                                                       }
@@ -289,23 +298,7 @@
     for (NSDictionary *buttonInfo in buttonList) {
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(x, 0, buttonWidth, 70)];
         
-        SEL action = NULL;
-        
-        // 设置点击对应的方法
-        if ([buttonInfo[@"ActionID"] isEqualToString:@"Submit"]) {
-            action = @selector(submitButtonPress:);
-        }
-        else if ([buttonInfo[@"ActionID"] isEqualToString:@"Save"]) {
-            action = @selector(temporaryButtonPress:);
-        }
-        else if ([buttonInfo[@"ActionID"] isEqualToString:@"Back"]) {
-            action = @selector(fallbackButtonPress:);
-        }
-        else {
-            action = @selector(HasReadButtonPress:);
-        }
-        
-        [button addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(operationButtonPress:) forControlEvents:UIControlEventTouchUpInside];
         [button setTitle:buttonInfo[@"ActionName"] forState:UIControlStateNormal];
         [button setBackgroundColor:[UIColor grayColor]];
         
@@ -313,7 +306,6 @@
         
         x += buttonWidth;
     }
-    
 }
 
 - (void)switchVC:(UIViewController *)vc
