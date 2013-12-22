@@ -12,6 +12,7 @@
 #define kBLMatterInfoServiceOperationInfo @"kBLMatterInfoServiceOperationInfo"
 #define kBLMatterInfoServiceAttachInfo @"kBLMatterInfoServiceAttachInfo"
 #define kBLMatterInfoServiceBodyDocID @"kBLMatterInfoServiceBodyDocID"
+#define kBlMatterInfoServiceAppendInfo @"kBlMatterInfoServiceAppendInfo"
 
 typedef enum BLMatterInfoServiceListType : NSUInteger {
     BLMatterInfoServiceTodoList,
@@ -23,12 +24,6 @@ typedef enum BLMatterInfoServiceListType : NSUInteger {
 typedef void(^BLMatterInfoServiceGeneralBlock)(id obj, NSError *error);
 
 @interface BLMatterInfoService : NSObject
-
-//- (void)todoListWithBlock:(BLMatterInfoServiceGeneralBlock)block;
-//
-//- (void)takenMatterWithBlock:(BLMatterInfoServiceGeneralBlock)block;
-//
-//- (void)toReadMatterWithBlock:(BLMatterInfoServiceGeneralBlock)block;
 
 - (void)matterListWithType:(BLMatterInfoServiceListType)type block:(BLMatterInfoServiceGeneralBlock)block;
 

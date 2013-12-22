@@ -17,96 +17,6 @@
 
 @implementation BLMatterInfoService
 
-//- (void)todoListWithBlock:(BLMatterInfoServiceGeneralBlock)block
-//{
-//    [BLMatterInfoHTTPLogic matterListWithMatterType:TodoMatterType withBlock:^(id responseData, NSError *error) {
-//        if (error) {
-//            block(nil, error);
-//        }
-//        else {
-//            NSMutableArray *todoList = [[NSMutableArray alloc] init];
-//            
-//            RXMLElement *rootElement = [RXMLElement elementFromXMLData:responseData];
-//            
-//            [rootElement iterate:@"Body.GetDocTodolistResponse.GetDocTodolistResult.Doc" usingBlock:^(RXMLElement *e) {
-//                BLMatterEntity *matterEntity = [[BLMatterEntity alloc] init];
-//                
-//                matterEntity.matterID = [e child:@"DocID"].text;
-//                matterEntity.title = [e child:@"DocTitle"].text;
-//                matterEntity.matterType = [e child:@"DocType"].text;
-//                matterEntity.from = [e child:@"SendFrom"].text;
-//                matterEntity.sendTime = [e child:@"SendDate"].text;
-////                matterEntity.matterSubType = @"控股公司发文";
-////                matterEntity.flag = 1;
-//
-//                [todoList addObject:matterEntity];
-//            }];
-//            
-//            block(todoList, nil);
-//        }
-//    }];
-//}
-//
-//- (void)takenMatterWithBlock:(BLMatterInfoServiceGeneralBlock)block
-//{
-//    [BLMatterInfoHTTPLogic matterListWithMatterType:TakenMatter withBlock:^(id responseData, NSError *error) {
-//        if (error) {
-//            block(nil, error);
-//        }
-//        else {
-//            NSMutableArray *todoList = [[NSMutableArray alloc] init];
-//            
-//            RXMLElement *rootElement = [RXMLElement elementFromXMLData:responseData];
-//            
-//            [rootElement iterate:@"Body.GetDocHasdolistResponse.GetDocHasdolistResult.Doc" usingBlock:^(RXMLElement *e) {
-//                BLMatterEntity *matterEntity = [[BLMatterEntity alloc] init];
-//                
-//                matterEntity.matterID = [e child:@"DocID"].text;
-//                matterEntity.title = [e child:@"DocTitle"].text;
-//                matterEntity.matterType = [e child:@"DocType"].text;
-//                matterEntity.from = [e child:@"SendFrom"].text;
-//                matterEntity.sendTime = [e child:@"SendDate"].text;
-//                //                matterEntity.matterSubType = @"控股公司发文";
-//                //                matterEntity.flag = 1;
-//                
-//                [todoList addObject:matterEntity];
-//            }];
-//            
-//            block(todoList, nil);
-//        }
-//    }];
-//}
-//
-//- (void)toReadMatterWithBlock:(BLMatterInfoServiceGeneralBlock)block
-//{
-//    [BLMatterInfoHTTPLogic matterListWithMatterType:ToReadMaaterType withBlock:^(id responseData, NSError *error) {
-//        if (error) {
-//            block(nil, error);
-//        }
-//        else {
-//            NSMutableArray *todoList = [[NSMutableArray alloc] init];
-//            
-//            RXMLElement *rootElement = [RXMLElement elementFromXMLData:responseData];
-//            
-//            [rootElement iterate:@"Body.GetDocToReadlistResponse.GetDocToReadlistResult.Doc" usingBlock:^(RXMLElement *e) {
-//                BLMatterEntity *matterEntity = [[BLMatterEntity alloc] init];
-//                
-//                matterEntity.matterID = [e child:@"DocID"].text;
-//                matterEntity.title = [e child:@"DocTitle"].text;
-//                matterEntity.matterType = [e child:@"DocType"].text;
-//                matterEntity.from = [e child:@"SendFrom"].text;
-//                matterEntity.sendTime = [e child:@"SendDate"].text;
-//                //                matterEntity.matterSubType = @"控股公司发文";
-//                //                matterEntity.flag = 1;
-//                
-//                [todoList addObject:matterEntity];
-//            }];
-//            
-//            block(todoList, nil);
-//        }
-//    }];
-//}
-
 - (void)matterListWithType:(BLMatterInfoServiceListType)type block:(BLMatterInfoServiceGeneralBlock)block
 {
     NSString *elementIteratePath;
@@ -145,7 +55,8 @@
             break;
     }
     
-    [BLMatterInfoHTTPLogic matterListWithMatterType:matterType withBlock:^(id responseData, NSError *error) {
+    [BLMatterInfoHTTPLogic matterListWithMatterType:matterType order:@"" fromIndex:@"0" toIndex:@"5"
+    withBlock:^(id responseData, NSError *error) {
         if (error) {
             block(nil, error);
         }
@@ -162,8 +73,6 @@
                 matterEntity.matterType = [e child:@"DocType"].text;
                 matterEntity.from = [e child:@"SendFrom"].text;
                 matterEntity.sendTime = [e child:@"SendDate"].text;
-                //                matterEntity.matterSubType = @"控股公司发文";
-                //                matterEntity.flag = 1;
                 
                 [todoList addObject:matterEntity];
             }];
@@ -175,7 +84,8 @@
 
 - (void)matterDetailInfoWithMatterID:(NSString *)matterID block:(BLMatterInfoServiceGeneralBlock)block
 {
-    [BLMatterInfoHTTPLogic matterDetailWithMatterID:matterID block:^(id responseData, NSError *error) {
+    [BLMatterInfoHTTPLogic matterDetailWithMatterID:matterID userID:@"admin" userName:@"管理员"
+    block:^(id responseData, NSError *error) {
         if (error) {
             block(nil, error);
         }
@@ -201,6 +111,8 @@
             if (bodyDocID) {
                 [dic setObject:bodyDocID forKey:kBLMatterInfoServiceBodyDocID];
             }
+            // 附加数据：当前节点、办理人、跟踪ID等
+            [dic setObject:[self parseAppendData:rootElement] forKey:kBlMatterInfoServiceAppendInfo];
             
             block(dic, nil);
         }
@@ -239,28 +151,27 @@
     NSMutableArray *regionList = [[NSMutableArray alloc] init];
     
     [rootElement iterate:@"Body.GetDocInfoResponse.GetDocInfoResult.RegionItems.InfoRegion"
-              usingBlock:^(RXMLElement *regionInfoElement) {
-                  
-                  // 解析一个 Region 中的所有 Field 数据
-                  NSMutableArray *fieldItemList = [[NSMutableArray alloc] init];
-                  [regionInfoElement iterate:@"FieldItems.FieldItem"
-                                  usingBlock:^(RXMLElement *fieldItemElement) {
-                                      
-                                      BLFromFieldItemEntity *fieldItemEntity = [[BLFromFieldItemEntity alloc] init];
-                                      
-                                      fieldItemEntity.name = [fieldItemElement child:@"Name"].text;
-                                      fieldItemEntity.nameVisible =
-                                      [[fieldItemElement child:@"NameVisible"].text isEqualToString:@"true"] ? YES : NO;
-                                      fieldItemEntity.Value = [fieldItemElement child:@"Value"].text;
-                                      fieldItemEntity.itemID = [fieldItemElement child:@"Key"].text;
-                                      fieldItemEntity.sign =
-                                      [[fieldItemElement child:@"Sign"].text isEqualToString:@"true"] ? YES : NO;
-                                      fieldItemEntity.percent = [[fieldItemElement child:@"Percent"].text integerValue];
-                                      
-                                      [fieldItemList addObject:fieldItemEntity];
-                                  }];
-                  [regionList addObject:fieldItemList];
-              }];
+    usingBlock:^(RXMLElement *regionInfoElement) {
+      
+        // 解析一个 Region 中的所有 Field 数据
+        NSMutableArray *fieldItemList = [[NSMutableArray alloc] init];
+        
+        [regionInfoElement iterate:@"FieldItems.FieldItem"
+        usingBlock:^(RXMLElement *fieldItemElement) {
+          
+            BLFromFieldItemEntity *fieldItemEntity = [[BLFromFieldItemEntity alloc] init];
+          
+            fieldItemEntity.name = [fieldItemElement child:@"Name"].text;
+            fieldItemEntity.nameVisible = [[fieldItemElement child:@"NameVisible"].text isEqualToString:@"true"] ? YES : NO;
+            fieldItemEntity.Value = [fieldItemElement child:@"Value"].text;
+            fieldItemEntity.itemID = [fieldItemElement child:@"Key"].text;
+            fieldItemEntity.sign = [[fieldItemElement child:@"Sign"].text isEqualToString:@"true"] ? YES : NO;
+            fieldItemEntity.percent = [[fieldItemElement child:@"Percent"].text integerValue];
+          
+            [fieldItemList addObject:fieldItemEntity];
+        }];
+        [regionList addObject:fieldItemList];
+  }];
     
     return regionList;
 }
@@ -280,13 +191,6 @@
               }];
     
     return operationList;
-}
-
-// 解析正文附件 ID
-- (NSString *)parseBodyDocID:(RXMLElement *)rootElement
-{
-    NSString *bodyDocID = [rootElement child:@"Body.GetDocInfoResponse.GetDocInfoResult.DocAttachmentID"].text;
-    return bodyDocID;
 }
 
 // 解析附件数据
@@ -309,6 +213,37 @@
               }];
     
     return attachList;
+}
+
+// 解析正文附件 ID
+- (NSString *)parseBodyDocID:(RXMLElement *)rootElement
+{
+    NSString *bodyDocID = [rootElement child:@"Body.GetDocInfoResponse.GetDocInfoResult.DocAttachmentID"].text;
+    return bodyDocID;
+}
+
+// 解析附加数据
+- (NSDictionary *)parseAppendData:(RXMLElement *)rootElement
+{
+    NSString *flowID = [rootElement child:@"Body.GetDocInfoResponse.GetDocInfoResult.FlowId"].text;
+    NSString *flowName = [rootElement child:@"Body.GetDocInfoResponse.GetDocInfoResult.FlowName"].text;
+    NSString *currentAuthorId = [rootElement child:@"Body.GetDocInfoResponse.GetDocInfoResult.CurrentAuthorId"].text;
+    NSString *currentAuthor = [rootElement child:@"Body.GetDocInfoResponse.GetDocInfoResult.CurrentAuthor"].text;
+    NSString *currentNodeID = [rootElement child:@"Body.GetDocInfoResponse.GetDocInfoResult.CurrentNodeID"].text;
+    NSString *currentNodeName = [rootElement child:@"Body.GetDocInfoResponse.GetDocInfoResult.CurrentNodeName"].text;
+    NSString *currentUserId = [rootElement child:@"Body.GetDocInfoResponse.GetDocInfoResult.CurrentUserId"].text;
+    NSString *currentUsername = [rootElement child:@"Body.GetDocInfoResponse.GetDocInfoResult.CurrentUsername"].text;
+    NSString *currentTrackId = [rootElement child:@"Body.GetDocInfoResponse.GetDocInfoResult.CurrentTrackId"].text;
+    
+    return @{@"flowID": flowID ? flowID : @"",
+             @"flowName": flowName ? flowName : @"",
+             @"currentAuthorId": currentAuthorId ? currentAuthorId : @"",
+             @"currentAuthor": currentAuthor ? currentAuthor : @"",
+             @"currentNodeID": currentNodeID ? currentNodeID : @"",
+             @"currentNodeName": currentNodeName ? currentNodeName : @"",
+             @"currentUserId": currentUserId ? currentUserId : @"",
+             @"currentUsername": currentUsername ? currentUsername : @"",
+             @"currentTrackId": currentTrackId ? currentTrackId : @""};
 }
 
 // 解析办理流程数据

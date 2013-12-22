@@ -31,15 +31,20 @@ typedef void(^BLMatterHTTPLogicAttachDownloadBlock)(NSString *zipFileLocalPath, 
 
 /**
  *  获取事项列表
- *  类别支持：待办、已办、待阅
+ *  类别支持：待办、已办、待阅、已阅
  *
  *  @param matterType 类别
  *  @param block      返回响应数据 NSData
  */
 + (void)matterListWithMatterType:(MatterType)matterType
+                           order:(NSString *)order
+                       fromIndex:(NSString *)fromIndex
+                         toIndex:(NSString *)toIndex
                        withBlock:(BLMatterHTTPLogicGeneralBlock)block;
 
 + (void)matterDetailWithMatterID:(NSString *)matterID
+                          userID:(NSString *)userID
+                        userName:(NSString *)userName
                            block:(BLMatterHTTPLogicGeneralBlock)block;
 
 + (void)matterFlowWithMatterID:(NSString *)matterID

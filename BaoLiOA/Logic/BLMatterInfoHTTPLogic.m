@@ -59,7 +59,10 @@
     return downloadTask;
 }
 
-+ (void)matterListWithMatterType:(MatterType)matterType withBlock:(BLMatterHTTPLogicGeneralBlock)block
++ (void)matterListWithMatterType:(MatterType)matterType
+                           order:(NSString *)order
+                       fromIndex:(NSString *)fromIndex
+                         toIndex:(NSString *)toIndex withBlock:(BLMatterHTTPLogicGeneralBlock)block
 {
     NSString *userID = @"action";
     
@@ -92,12 +95,12 @@
         "<soap:Body>" \
             "<%@ xmlns=\"http://tempuri.org/\">"\
                 "<userID>%@</userID>"\
-                "<orderString></orderString>"\
-                "<recordStartIndex>0</recordStartIndex>"\
-                "<recordEndIndex>9</recordEndIndex>"\
+                "<orderString>%@</orderString>"\
+                "<recordStartIndex>%@</recordStartIndex>"\
+                "<recordEndIndex>%@</recordEndIndex>"\
             "</%@>"\
         "</soap:Body>"\
-    "</soap:Envelope>", listType, userID, listType];
+    "</soap:Envelope>", listType, userID, order, fromIndex, toIndex, listType];
     
     NSMutableURLRequest *request = [BLMatterInfoHTTPLogic soapRequestWithURLParam:listType
                                                           soapAction:[NSString stringWithFormat:@"http://tempuri.org/%@", listType]
@@ -147,26 +150,27 @@
 
 }
 
-+ (void)matterDetailWithMatterID:(NSString *)matterID block:(BLMatterHTTPLogicGeneralBlock)block
++ (void)matterDetailWithMatterID:(NSString *)matterID
+                          userID:(NSString *)userID
+                        userName:(NSString *)userName
+                           block:(BLMatterHTTPLogicGeneralBlock)block
 {
-    NSString *soapBody =
+    NSString *soapBody = [NSString stringWithFormat:
     @"<?xml version=\"1.0\" encoding=\"utf-8\"?>" \
-    "<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" "\
+    "<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" " \
     "xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">" \
         "<soap:Body>" \
-            "<GetDocInfo xmlns=\"http://tempuri.org/\">"\
-                "<docID>%@</docID>"\
-                "<userID>admin</userID>"\
-                "<userName>管理员</userName>"\
-            "</GetDocInfo>"\
-        "</soap:Body>"\
-    "</soap:Envelope>";
-    
-    NSString *soapBodyComplete = [NSString stringWithFormat:soapBody, matterID];
+            "<GetDocInfo xmlns=\"http://tempuri.org/\">" \
+                "<docID>%@</docID>" \
+                "<userID>%@</userID>" \
+                "<userName>%@</userName>" \
+            "</GetDocInfo>" \
+        "</soap:Body>" \
+    "</soap:Envelope>", matterID, userID, userName];
     
     NSMutableURLRequest *request = [BLMatterInfoHTTPLogic soapRequestWithURLParam:@"GetDocInfo"
                                                                    soapAction:@"http://tempuri.org/GetDocInfo"
-                                                                     soapBody:soapBodyComplete];
+                                                                     soapBody:soapBody];
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     
