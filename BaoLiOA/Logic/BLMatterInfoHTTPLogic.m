@@ -18,6 +18,57 @@
 #define Attach_File_URL(id, type) [NSURL URLWithString:[NSString stringWithFormat:@"http://210.51.191.244:8081/OAWebService/Files/%@.%@", id, type]];
 @implementation BLMatterInfoHTTPLogic
 
++ (NSDictionary *)isReadyForDownloadWithAttachID:(NSString *)attachID name:(NSString *)attachName
+{
+    NSMutableDictionary *resultDic = [[NSMutableDictionary alloc] init];
+    
+    NSCondition *condition = [[NSCondition alloc] init];
+    
+    NSString *soapBody = [NSString stringWithFormat:
+    @"<?xml version=\"1.0\" encoding=\"utf-8\"?>" \
+    "<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" "\
+    "xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">" \
+    "<soap:Body>" \
+        "<DownFileIsFinish xmlns=\"http://tempuri.org/\">"\
+            "<fileID>%@</fileID>"\
+            "<parafileName>%@</parafileName>"\
+        "</DownFileIsFinish>"\
+    "</soap:Body>"\
+    "</soap:Envelope>", attachID, attachName];
+    
+    NSMutableURLRequest *request = [BLMatterInfoHTTPLogic soapRequestWithURLParam:@"DownFileIsFinish"
+                                                                       soapAction:@"http://tempuri.org/DownFileIsFinish"
+                                                                         soapBody:soapBody];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        resultDic[@"kResponseObject"] = responseObject;
+        
+        // 发出信号，使线程继续
+        [condition lock];
+        [condition signal];
+        [condition unlock];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        resultDic[@"kError"] = error;
+        
+        // 发出信号，使线程继续
+        [condition lock];
+        [condition signal];
+        [condition unlock];
+    }];
+    
+    [[NSOperationQueue mainQueue] addOperation:operation];
+    
+    // 线程等待请求完成
+    [condition lock];
+    [condition wait];
+    [condition unlock];
+    
+    return resultDic;
+}
+
 + (NSURLSessionDownloadTask *)downloadFileWithAttachID:(NSString *)attachID
                                               fileType:(NSString *)fileType
                                               savePath:(NSString *)savePath
@@ -27,7 +78,7 @@
     // http://210.51.191.244:XX/OAWebService/Files/HZ456b4132133680014249e86fad23d1.zip
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    AFURLSessionManager *sessionManager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     
     NSURL *attachFileRemoteURL = Attach_File_URL(attachID, fileType);
     NSURLRequest *request = [NSURLRequest requestWithURL:attachFileRemoteURL];
@@ -51,7 +102,7 @@
     };
     
     // 开始下载
-    NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request
+    NSURLSessionDownloadTask *downloadTask = [sessionManager downloadTaskWithRequest:request
                                                                      progress:progress
                                                                   destination:DestinationBlock
                                                             completionHandler:completionHandlerBlock];

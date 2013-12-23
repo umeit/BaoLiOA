@@ -9,6 +9,7 @@
 #import "BLAttachManageService.h"
 #import "BLMatterInfoHTTPLogic.h"
 #import "ZipArchive.h"
+#import "RXMLElement.h"
 
 @interface BLAttachManageService ()
 
@@ -27,34 +28,64 @@
     return self;
 }
 
-- (void)downloadMatterAttachmentFileWithAttachID:(NSString *)attachID progress:(NSProgress *__autoreleasing *)progress block:(BLAttchManageServiceDownloadAttachBlock)block
+- (void)downloadMatterAttachmentFileWithAttachID:(NSString *)attachID
+                                      attachName:(NSString *)attachName
+                                        progress:(NSProgress *__autoreleasing *)progress
+                                           block:(BLAttchManageServiceDownloadAttachBlock)block
 {
-    // 附件下载到该文件夹
-    NSString *documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                                            NSUserDomainMask,
-                                                                            YES) firstObject];
+    // 首先查看服务端是否已生成对应的 zip 文件，如果没有生成则轮询10
+//    __block NSInteger i = 0;
+//    __block BOOL stop = NO;
+//    
+//    while (i < 10 || !stop) {
     
-    // 下载附件成功后解压 zip 文件，返回解压出的文件的本地路径
-    NSURLSessionDownloadTask *downloadTask = [BLMatterInfoHTTPLogic downloadFileWithAttachID:attachID fileType:@"zip" savePath:documentsDirectoryPath progress:progress block:^(NSString *zipFileLocalPath, NSError *error) {
-        if (error) {
-            block(nil, error);
-        }
-        else {
-            // 解压 zip 文件
-            zipFileLocalPath = [zipFileLocalPath substringFromIndex:7];
-            zipFileLocalPath = [zipFileLocalPath stringByReplacingOccurrencesOfString:@"%20" withString:@" "];
-            ZipArchive *zipArchive = [[ZipArchive alloc] init];
+//        [self isReadyForDownloadWithAttachID:attachID name:attachName block:^(BOOL isReady, NSError *error) {
+
+//            i ++;
             
-            if ([zipArchive UnzipOpenFile:zipFileLocalPath Password:@"password"]) {
-                if ([zipArchive UnzipFileTo:documentsDirectoryPath overWrite:YES]) {
-                    // 返回解压文件的本地路径
-                    block([zipArchive.unzippedFiles firstObject], nil);
-                }
-            }
-        }
-    }];
+//            if (error) {
+//                block(nil, error);
+////                stop = YES;
+//            }
+//            
+//           if (isReady) {
+//               stop = YES;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    [self isReadyForDownloadWithAttachID:attachID name:attachName];
+    });
+               // 附件下载到该文件夹
+               NSString *documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                                                       NSUserDomainMask,
+                                                                                       YES) firstObject];
+               // 下载附件成功后解压 zip 文件，返回解压出的文件的本地路径
+               NSURLSessionDownloadTask *downloadTask = [BLMatterInfoHTTPLogic downloadFileWithAttachID:attachID fileType:@"zip" savePath:documentsDirectoryPath progress:progress block:^(NSString *zipFileLocalPath, NSError *error) {
+                      // 任务结束
+                      // 删除保存的下载任务对象
+                      [self.downloadDictionary removeObjectForKey:attachID];
+                      
+                      if (error) {
+                          block(nil, error);
+                      }
+                      else {
+                          // 解压 zip 文件
+                          zipFileLocalPath = [zipFileLocalPath substringFromIndex:7];
+                          zipFileLocalPath = [zipFileLocalPath stringByReplacingOccurrencesOfString:@"%20" withString:@" "];
+                          ZipArchive *zipArchive = [[ZipArchive alloc] init];
+                          
+                          if ([zipArchive UnzipOpenFile:zipFileLocalPath Password:@"password"]) {
+                              if ([zipArchive UnzipFileTo:documentsDirectoryPath overWrite:YES]) {
+                                  // 返回解压文件的本地路径
+                                  block([zipArchive.unzippedFiles firstObject], nil);
+                              }
+                          }
+                      }
+                  }];
+               // 用附件 ID 为 key，保存下载任务对象
+               self.downloadDictionary[attachID] = downloadTask;
+//           }
+//       }];
+//    }
     
-    self.downloadDictionary[attachID] = downloadTask;
 }
 
 - (void)cancelDownloadAttachWithAttachID:(NSString *)attachID
@@ -83,4 +114,56 @@
     savedAttachLocalPaths[attachID] = localPath;
     [userDefaults setObject:savedAttachLocalPaths forKey:@"kSavedAttachLocalPaths"];
 }
+
+
+#pragma mark - Private
+
+- (NSDictionary *)isReadyForDownloadWithAttachID:(NSString *)attachID name:(NSString *)attachName
+{
+    NSInteger i = 0;
+    NSDictionary *resultDic;
+    while (i < 10) {
+        i ++;
+        
+        resultDic = [BLMatterInfoHTTPLogic isReadyForDownloadWithAttachID:attachID
+                                                                     name:attachName];
+        if (resultDic[@"kError"]) {
+            return @{@"kError": resultDic[@"kError"]};
+        }
+        
+        id responseData = resultDic[@"kResponseObject"];
+        RXMLElement *rootElement = [RXMLElement elementFromXMLData:responseData];
+        if (!rootElement) {
+            return @{@"kResult": @NO};
+        }
+        
+        NSString *boolString = [rootElement child:@"Body.DownFileIsFinishResponse.DownFileIsFinishResult.IsFinished"].text;
+
+        if ([boolString isEqualToString:@"true"]) {
+            return @{@"kResult": @YES};
+        }
+    }
+        
+    return @{@"kResult": @NO};
+    
+    
+//    [BLMatterInfoHTTPLogic isReadyForDownloadWithAttachID:attachID name:attachName block:^(id responseData, NSError *error) {
+//        if (error) {
+//            block(NO, error);
+//        }
+//        else {
+//            RXMLElement *rootElement = [RXMLElement elementFromXMLData:responseData];
+//            if (!rootElement) {
+//                // 获取的数据不合法
+//                block(NO, nil);
+//                return;
+//            }
+//            
+//            NSString *boolString = [rootElement child:@"Body.DownFileIsFinishResponse.DownFileIsFinishResult.IsFinished"].text;
+//            
+//            block([boolString isEqualToString:@"true"] ? YES : NO, nil);
+//        }
+//    }];
+}
+
 @end

@@ -85,7 +85,7 @@
         NSProgress *progress;
         
         // 下载正文文件
-        [self.attchManageService downloadMatterAttachmentFileWithAttachID:self.bodyDocID progress:&progress
+        [self.attchManageService downloadMatterAttachmentFileWithAttachID:self.bodyDocID attachName:@"" progress:&progress
         block:^(NSString *localFilePath, NSError *error) {
             
             if (error) {

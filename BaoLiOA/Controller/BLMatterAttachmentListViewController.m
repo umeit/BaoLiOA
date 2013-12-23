@@ -80,7 +80,7 @@
         [sender setTitle:@"停止" forState:UIControlStateNormal];
         
         // 下载附件
-        [self.attachManageService downloadMatterAttachmentFileWithAttachID:attachEntity.attachID progress:&progress
+        [self.attachManageService downloadMatterAttachmentFileWithAttachID:attachEntity.attachID attachName:attachEntity.attachTitle progress:&progress
         block:^(NSString *localFilePath, NSError *error) {
             if (error) {
                 NSLog(@"下载附件失败！");

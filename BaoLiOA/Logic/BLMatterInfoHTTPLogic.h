@@ -23,11 +23,23 @@ typedef void(^BLMatterHTTPLogicAttachDownloadBlock)(NSString *zipFileLocalPath, 
 
 @interface BLMatterInfoHTTPLogic : NSObject
 
+/**
+ *  判断服务器是否已准备好了待下载的文件（同步方法，阻塞当前线程）
+ *
+ *  @param attachID   附件 ID
+ *  @param attachName 附件文件名称
+ *
+ *  @return 是否有准备好
+ */
++ (NSDictionary *)isReadyForDownloadWithAttachID:(NSString *)attachID
+                                            name:(NSString *)attachName;
+//                                           block:(BLMatterHTTPLogicGeneralBlock)block;
+
 + (NSURLSessionDownloadTask *)downloadFileWithAttachID:(NSString *)attachID
-                        fileType:(NSString *)fileType
-                        savePath:(NSString *)savePath
-                        progress:(NSProgress **)progress
-                           block:(BLMatterHTTPLogicAttachDownloadBlock)block;
+                                              fileType:(NSString *)fileType
+                                              savePath:(NSString *)savePath
+                                              progress:(NSProgress **)progress
+                                                 block:(BLMatterHTTPLogicAttachDownloadBlock)block;
 
 /**
  *  获取事项列表
