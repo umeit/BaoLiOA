@@ -22,6 +22,8 @@
                    commentList:(NSArray *)commentList
                      routeList:(NSString *)routIDs
                   employeeList:(NSString *)employeeIDs
+                 currentNodeID:(NSString *)currentNodeID
+                currentTrackID:(NSString *)currentTrackID
                          block:(BLMatterOperationHTTPLogicGeneralBlock)block
 {
     NSString *soapBody = [NSString stringWithFormat:
@@ -34,6 +36,8 @@
                 "<userName>%@</userName>"\
                 "<docId>%@</docId>"\
                 "<flowId>%@</flowId>"\
+                "<currentNodeid>%@</currentNodeid>"\
+                "<currentTrackid>%@</currentTrackid>"\
                 "<ActionName>%@</ActionName>"\
                 "<NextNodeId>%@</NextNodeId>"\
                 "<SelectAuthorID>%@</SelectAuthorID>"\
@@ -46,10 +50,13 @@
                           userName,
                           matterID,
                           flowID,
+                          currentNodeID,
+                          currentTrackID,
                           operationType,
                           (routIDs ? routIDs : @""),
                           (employeeIDs ? employeeIDs : @""),
-                          comment, (commentList ? commentList : @"")];
+                          comment,
+                          (commentList ? commentList : @"")];
     
     NSMutableURLRequest *request = [BLMatterOperationHTTPLogic soapRequestWithURLParam:@"DoAction"
                                                                        soapAction:@"http://tempuri.org/DoAction"

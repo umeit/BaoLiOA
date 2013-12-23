@@ -237,13 +237,13 @@
     
     return @{@"flowID": flowID ? flowID : @"",
              @"flowName": flowName ? flowName : @"",
-             @"currentAuthorId": currentAuthorId ? currentAuthorId : @"",
+             @"currentAuthorID": currentAuthorId ? currentAuthorId : @"",
              @"currentAuthor": currentAuthor ? currentAuthor : @"",
              @"currentNodeID": currentNodeID ? currentNodeID : @"",
              @"currentNodeName": currentNodeName ? currentNodeName : @"",
-             @"currentUserId": currentUserId ? currentUserId : @"",
+             @"currentUserID": currentUserId ? currentUserId : @"",
              @"currentUsername": currentUsername ? currentUsername : @"",
-             @"currentTrackId": currentTrackId ? currentTrackId : @""};
+             @"currentTrackID": currentTrackId ? currentTrackId : @""};
 }
 
 // 解析办理流程数据

@@ -46,6 +46,8 @@ typedef void(^BLMatterOprationServiceGeneralBlock)(id obj, NSError *error);
                      employeeList:(NSArray *)employeeList
                          matterID:(NSString *)matterID
                            flowID:(NSString *)flowID
+                    currentNodeID:(NSString *)currentNodeID
+                   currentTrackID:(NSString *)currentTrackID
                             block:(BLMOSSubmitCallBackBlock)block;
 
 /**

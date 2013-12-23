@@ -68,6 +68,11 @@
 @property (strong, nonatomic) NSArray *matterAttachList;
 
 /**
+ * 附加信息
+ */
+@property (strong, nonatomic) NSDictionary *matterAppendInfo;
+
+/**
  *  保存用户的意见
  */
 @property (strong, nonatomic) NSString *comment;
@@ -144,7 +149,8 @@
         self.matterAttachList = dic[kBLMatterInfoServiceAttachInfo];
         // 获取正文附件 ID
         self.matterBodyDocID = dic[kBLMatterInfoServiceBodyDocID];
-        
+        // 获取附加信息
+        self.matterAppendInfo = dic[kBlMatterInfoServiceAppendInfo];
         
         // 放置操作按钮到界面上
         [self initOperationButton:self.matterOperationList];
@@ -204,7 +210,13 @@
     }
     
 #warning 改用用真实的意见
-    [self operationMatterWithAction:self.currentActionID comment:@"同意" commentList:nil routeList:self.selectedRouteList employeeList:self.selectedEmployeeList matterID:self.matterID flowID:@""];
+    [self operationMatterWithAction:self.currentActionID
+                            comment:@"同意"
+                        commentList:nil
+                          routeList:self.selectedRouteList
+                       employeeList:self.selectedEmployeeList
+                           matterID:self.matterID
+                             flowID:@""];
 }
 
 
@@ -237,49 +249,49 @@
                          matterID:(NSString *)matterID
                            flowID:(NSString *)flowID
 {
+    NSString *currentNodeID = self.matterAppendInfo[@"currentNodeID"];
+    NSString *currentTrackID = self.matterAppendInfo[@"currentTrackID"];
+    
     // 将用户的「意见」和「意见正文」提交
-    [self.matterOprationService operationMatterWithAction:actionID
-                                                  comment:comment
-                                              commentList:commentList
-                                                routeList:routList
-                                             employeeList:employeeList
-                                                 matterID:matterID
-                                                   flowID:flowID
-                                                    block:^(NSInteger retCode, NSArray *list, NSString *title) {
-                                                      if (retCode == kSuccess) {
+    [self.matterOprationService operationMatterWithAction:actionID comment:comment commentList:commentList
+    routeList:routList employeeList:employeeList matterID:matterID flowID:flowID
+    currentNodeID:currentNodeID currentTrackID:currentTrackID
+    block:^(NSInteger retCode, NSArray *list, NSString *title) {
+        
+        if (retCode == kSuccess) {
 #warning 提示成功
-                                                      }
-                                                      else if ((retCode == kHasRoute || retCode == kHasEmployee)
-                                                               && [list count] > 0) {
-                                                          
-                                                          NSArray *itemList;
-                                                          
-                                                          if (retCode == kHasRoute) {
-                                                              self.currentSelectRoute = Route;
-                                                              self.routeList = list;
-                                                              itemList = [list valueForKey:@"RouteName"];
-                                                          }
-                                                          else if (retCode == kHasEmployee) {
-                                                              self.currentSelectRoute = Employee;
-                                                              self.employeeList = list;
-                                                              itemList = [list valueForKey:@"UserName"];
-                                                          }
-                                                          
-                                                          // 有待选择的部门或待选择的办理人员
-                                                          UINavigationController *navigation = [self.storyboard instantiateViewControllerWithIdentifier:@"FollowNavigation"];
-                                                          BLManageFollowViewController *manageFollowViewController = (BLManageFollowViewController *)[navigation topViewController];
-                                                          
-                                                          manageFollowViewController.title = title;
-                                                          
-                                                          manageFollowViewController.followList = itemList;
-                                                          manageFollowViewController.delegate = self;
-                                                          
-                                                          [navigation setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
-                                                          [navigation setModalPresentationStyle:UIModalPresentationFormSheet];
-                                                          
-                                                          [self presentViewController:navigation animated:YES completion:nil];
-                                                      }
-                                                  }];
+        }
+        else if ((retCode == kHasRoute || retCode == kHasEmployee)
+                 && [list count] > 0) {
+      
+            NSArray *itemList;
+      
+            if (retCode == kHasRoute) {
+                self.currentSelectRoute = Route;
+                self.routeList = list;
+                itemList = [list valueForKey:@"RouteName"];
+            }
+            else if (retCode == kHasEmployee) {
+                self.currentSelectRoute = Employee;
+                self.employeeList = list;
+                itemList = [list valueForKey:@"UserName"];
+            }
+      
+            // 有待选择的部门或待选择的办理人员
+            UINavigationController *navigation = [self.storyboard instantiateViewControllerWithIdentifier:@"FollowNavigation"];
+            BLManageFollowViewController *manageFollowViewController = (BLManageFollowViewController *)[navigation topViewController];
+      
+            manageFollowViewController.title = title;
+      
+            manageFollowViewController.followList = itemList;
+            manageFollowViewController.delegate = self;
+      
+            [navigation setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+            [navigation setModalPresentationStyle:UIModalPresentationFormSheet];
+      
+            [self presentViewController:navigation animated:YES completion:nil];
+        }
+    }];
 }
 
 - (void)initOperationButton:(NSArray *)buttonList

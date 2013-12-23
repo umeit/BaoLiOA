@@ -21,6 +21,8 @@
                      employeeList:(NSArray *)employeeList
                          matterID:(NSString *)matterID
                            flowID:(NSString *)flowID
+                    currentNodeID:(NSString *)currentNodeID
+                   currentTrackID:(NSString *)currentTrackID
                             block:(BLMOSSubmitCallBackBlock)block
 {
     NSString *userID = @"admin";
@@ -52,6 +54,8 @@
                                            commentList:commentList
                                              routeList:[routIDStr substringToIndex:[routIDStr length] - 1]
                                           employeeList:[employeeIDStr substringToIndex:[employeeIDStr length] - 1]
+                                         currentNodeID:currentNodeID
+                                        currentTrackID:currentTrackID
                                                  block:^(id responseData, NSError *error) {
                                                      NSLog(@"Response Data: %@", [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
                                                      
