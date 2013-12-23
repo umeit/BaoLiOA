@@ -20,7 +20,7 @@
 
 @property (strong, nonatomic) BLAttachManageService *attachManageService;
 
-@property (strong, nonatomic) NSMutableArray *progressList;
+@property (strong, nonatomic) NSMutableDictionary *progressDictionary;
 
 @end
 
@@ -61,6 +61,18 @@
 }
 
 
+#pragma mark - UITableViewDelegate
+
+// cell 已经不在视图中显示，移除对下载进度的监听
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    BLAttachEntity *attachEntity = self.matterAttachList[indexPath.row];
+    NSProgress *progress = self.progressDictionary[attachEntity.attachID];
+    
+    [progress removeObserver:cell forKeyPath:@"fractionCompleted"];
+}
+
+
 #pragma mark - Action
 // 下载 / 打开 附件
 - (IBAction)downloadOrOpenFileButtonPress:(UIButton *)sender
@@ -68,7 +80,7 @@
     NSInteger row = sender.tag;
     BLAttachEntity *attachEntity = self.matterAttachList[row];
     NSString *buttonTitle = sender.titleLabel.text;
-    NSProgress *progress;
+    
     
     // 点击打开
     if ([buttonTitle isEqualToString:@"打开"]) {
@@ -78,35 +90,7 @@
     
     // 点击下载
     else if ([buttonTitle isEqualToString:@"下载"]) {
-        [self showLodingView];
-        
-        [sender setTitle:@"停止" forState:UIControlStateNormal];
-        
-        // 下载附件
-        [self.attachManageService downloadMatterAttachmentFileWithAttachID:attachEntity.attachID attachName:attachEntity.attachTitle progress:&progress
-        block:^(NSString *localFilePath, NSError *error) {
-            [self hideLodingView];
-            
-            if (error) {
-                NSLog(@"下载附件失败！");
-            }
-            else {
-                BLAttachEntity *attachEntity = self.matterAttachList[row];
-                attachEntity.localPath = localFilePath;
-                
-                // 保存附件的本地路径
-                [self.attachManageService saveAttchLocalPath:localFilePath withAttachID:attachEntity.attachID];
-                
-                [sender setTitle:@"打开" forState:UIControlStateNormal];
-                [sender setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
-            }
-        }];
-        
-        // 监听下载进度
-        [progress addObserver:[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]]
-                   forKeyPath:@"fractionCompleted"
-                      options:NSKeyValueObservingOptionNew
-                      context:NULL];
+        [self downloadAttch:attachEntity withButton:sender row:row];
     }
     
     // 点击停止
@@ -117,22 +101,45 @@
 }
 
 
-#pragma mark - Observe
-// 更新进度
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+#pragma mark - Private
+// 下载附件
+- (void)downloadAttch:(BLAttachEntity *)attachEntity withButton:(UIButton *)button row:(NSInteger)row
 {
-//    [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    [button setTitle:@"停止" forState:UIControlStateNormal];
     
-    if ([keyPath isEqualToString:@"fractionCompleted"]) {
-        NSProgress *progress = object;
-        NSUInteger index = [self.progressList indexOfObject:progress];
-        BLMatterAttachmentCell *cell = (BLMatterAttachmentCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
-        cell.progress.progress = progress.fractionCompleted;
+    [self showLodingView];
+    
+    NSProgress *progress;
+    
+    // 下载附件
+    [self.attachManageService downloadMatterAttachmentFileWithAttachID:attachEntity.attachID attachName:attachEntity.attachTitle progress:&progress
+                                                                 block:^(NSString *localFilePath, NSError *error) {
+                                                                     [self hideLodingView];
+                                                                     
+                                                                     if (error) {
+                                                                         [self showNetworkingErrorAlert];
+                                                                     }
+                                                                     else {
+                                                                         attachEntity.localPath = localFilePath;
+                                                                         
+                                                                         // 保存附件的本地路径
+                                                                         [self.attachManageService saveAttchLocalPath:localFilePath withAttachID:attachEntity.attachID];
+                                                                         
+                                                                         [button setTitle:@"打开" forState:UIControlStateNormal];
+                                                                         [button setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+                                                                     }
+                                                                 }];
+    
+    if (progress) {
+        self.progressDictionary[attachEntity.attachID] = progress;
     }
+    // 监听下载进度
+    [progress addObserver:[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]]
+               forKeyPath:@"fractionCompleted"
+                  options:NSKeyValueObservingOptionNew
+                  context:NULL];
 }
 
-
-#pragma mark - Private
 // 显示附件内容
 - (void)showPreviewViewControllerWithFilePath:(NSString *)filePath
 {
@@ -147,6 +154,10 @@
 - (void)configureMatterAttachmentCell:(BLMatterAttachmentCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     BLAttachEntity *attachEntity = self.matterAttachList[indexPath.row];
+    NSProgress *progress = self.progressDictionary[attachEntity.attachID];
+    
+    // 监听下载进度（如果有）
+    [progress addObserver:cell forKeyPath:@"fractionCompleted" options:NSKeyValueObservingOptionNew context:NULL];
     
     cell.attachmentTitleLabel.text = attachEntity.attachTitle;
     

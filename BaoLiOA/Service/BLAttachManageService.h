@@ -25,4 +25,7 @@ typedef void(^BLAttachManageServiceBOOLBlock)(BOOL b, NSError *e);
 
 // 保存下载附件的本地路径，下次可直接打开
 - (void)saveAttchLocalPath:(NSString *)localPath withAttachID:(NSString *)attachID;
+
+// 检测服务器端有没有准备好待下载的文件
+- (NSDictionary *)isReadyForDownloadWithAttachID:(NSString *)attachID name:(NSString *)attachName;
 @end

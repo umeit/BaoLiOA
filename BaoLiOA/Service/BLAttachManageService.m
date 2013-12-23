@@ -109,9 +109,6 @@
     [userDefaults setObject:savedAttachLocalPaths forKey:@"kSavedAttachLocalPaths"];
 }
 
-
-#pragma mark - Private
-
 - (NSDictionary *)isReadyForDownloadWithAttachID:(NSString *)attachID name:(NSString *)attachName
 {
     NSInteger i = 0;
