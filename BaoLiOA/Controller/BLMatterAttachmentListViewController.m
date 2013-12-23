@@ -12,6 +12,7 @@
 #import "BLAttachManageService.h"
 #import "BLMatterAttachmentCell.h"
 #import "BLAttachEntity.h"
+#import "UIViewController+GViewController.h"
 
 @interface BLMatterAttachmentListViewController ()
 
@@ -77,11 +78,15 @@
     
     // 点击下载
     else if ([buttonTitle isEqualToString:@"下载"]) {
+        [self showLodingView];
+        
         [sender setTitle:@"停止" forState:UIControlStateNormal];
         
         // 下载附件
         [self.attachManageService downloadMatterAttachmentFileWithAttachID:attachEntity.attachID attachName:attachEntity.attachTitle progress:&progress
         block:^(NSString *localFilePath, NSError *error) {
+            [self hideLodingView];
+            
             if (error) {
                 NSLog(@"下载附件失败！");
             }

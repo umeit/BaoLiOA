@@ -12,7 +12,7 @@
 
 #import "BLBaseMatterListViewController.h"
 #import "BLMatterInfoService.h"
-#import "UIViewController+BLViewController.h"
+#import "UIViewController+GViewController.h"
 #import "BLBaseMatterCell.h"
 #import "BLMatterEntity.h"
 
