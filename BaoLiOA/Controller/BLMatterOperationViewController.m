@@ -15,7 +15,7 @@
 #import "BLMatterOpinionViewController.h"
 #import "BLMatterInfoService.h"
 #import "UIViewController+GViewController.h"
-#import "NSArray+CICArray.h"
+#import "NSArray+GArray.h"
 
 #define OperationButtonParentViewTag 30
 

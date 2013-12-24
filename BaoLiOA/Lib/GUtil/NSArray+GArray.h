@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSArray (CICArray)
+@interface NSArray (GArray)
 
 - (NSString *)oneStringFormat;
 

@@ -6,9 +6,9 @@
 //  Copyright (c) 2013年 Liu Feng. All rights reserved.
 //
 
-#import "NSArray+CICArray.h"
+#import "NSArray+GArray.h"
 
-@implementation NSArray (CICArray)
+@implementation NSArray (GArray)
 
 - (NSString *)oneStringFormat;
 {

@@ -78,7 +78,7 @@
 		039BF624185E077F00985B17 /* ZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 039BF60A185E077F00985B17 /* ZipArchive.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		039BF625185E077F00985B17 /* ZipArchive.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 039BF60B185E077F00985B17 /* ZipArchive.podspec */; };
 		039BF635185E080A00985B17 /* libZipArchive-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 039BF62C185E077F00985B17 /* libZipArchive-ios.a */; };
-		03B0E0AE186995CF007B2C8E /* NSArray+CICArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B0E0AD186995CF007B2C8E /* NSArray+CICArray.m */; };
+		03B0E0AE186995CF007B2C8E /* NSArray+GArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B0E0AD186995CF007B2C8E /* NSArray+GArray.m */; };
 		03BD17F71844DC44002F2C38 /* BLMatterAttachmentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BD17F61844DC44002F2C38 /* BLMatterAttachmentListViewController.m */; };
 		03BD17FA1844DC8F002F2C38 /* BLMatterAttachmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BD17F91844DC8F002F2C38 /* BLMatterAttachmentCell.m */; };
 		03BD17FD1844EF77002F2C38 /* BLMatterFlowListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BD17FC1844EF77002F2C38 /* BLMatterFlowListViewController.m */; };
@@ -258,8 +258,8 @@
 		039BF609185E077F00985B17 /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
 		039BF60A185E077F00985B17 /* ZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipArchive.m; sourceTree = "<group>"; };
 		039BF60B185E077F00985B17 /* ZipArchive.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ZipArchive.podspec; sourceTree = "<group>"; };
-		03B0E0AC186995CF007B2C8E /* NSArray+CICArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CICArray.h"; sourceTree = "<group>"; };
-		03B0E0AD186995CF007B2C8E /* NSArray+CICArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CICArray.m"; sourceTree = "<group>"; };
+		03B0E0AC186995CF007B2C8E /* NSArray+GArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+GArray.h"; sourceTree = "<group>"; };
+		03B0E0AD186995CF007B2C8E /* NSArray+GArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+GArray.m"; sourceTree = "<group>"; };
 		03BD17F51844DC44002F2C38 /* BLMatterAttachmentListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterAttachmentListViewController.h; sourceTree = "<group>"; };
 		03BD17F61844DC44002F2C38 /* BLMatterAttachmentListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterAttachmentListViewController.m; sourceTree = "<group>"; };
 		03BD17F81844DC8F002F2C38 /* BLMatterAttachmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterAttachmentCell.h; sourceTree = "<group>"; };
@@ -676,8 +676,8 @@
 		03B0E0AB186995CF007B2C8E /* GUtil */ = {
 			isa = PBXGroup;
 			children = (
-				03B0E0AC186995CF007B2C8E /* NSArray+CICArray.h */,
-				03B0E0AD186995CF007B2C8E /* NSArray+CICArray.m */,
+				03B0E0AC186995CF007B2C8E /* NSArray+GArray.h */,
+				03B0E0AD186995CF007B2C8E /* NSArray+GArray.m */,
 			);
 			path = GUtil;
 			sourceTree = "<group>";
@@ -844,7 +844,7 @@
 				0390A01A1855BC6B00EEEEBB /* BLAttachPreviewViewController.m in Sources */,
 				039155FD1861F24800BBFCB2 /* BLMatterFlowEntity.m in Sources */,
 				036C0FF3183D05AD00C61808 /* AFURLRequestSerialization.m in Sources */,
-				03B0E0AE186995CF007B2C8E /* NSArray+CICArray.m in Sources */,
+				03B0E0AE186995CF007B2C8E /* NSArray+GArray.m in Sources */,
 				03DECA49184247D0007F6F40 /* BLGlobal.m in Sources */,
 				039BF624185E077F00985B17 /* ZipArchive.m in Sources */,
 				0381BC581847985400DB661D /* BLManageFollowViewController.m in Sources */,
