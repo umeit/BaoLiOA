@@ -10,6 +10,7 @@
 #import "BLMatterOperationService.h"
 #import "BLAttachManageService.h"
 #import "BLAttachPreviewViewController.h"
+#import "UIViewController+GViewController.h"
 
 @interface BLMainBodyViewController ()
 
@@ -55,16 +56,6 @@
         self.mainBodyFilePath = localPath;
     }
     
-//    // 检查本地是否有下载过
-//    NSString *documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-//                                                                            NSUserDomainMask,
-//                                                                            YES) firstObject];
-//    NSString *attachmentFileLocalPath = [NSString stringWithFormat:@"%@/%@", documentsDirectoryPath, self.docTtitle];
-//    if ([[NSFileManager defaultManager] fileExistsAtPath:attachmentFileLocalPath]) {
-//        [self.downloadButton setTitle:@"打开" forState:UIControlStateNormal];
-//        self.mainBodyFilePath = attachmentFileLocalPath;
-//    }
-    
     // 获取正文内容
     [self.matterOprationService matterBodyTextWithBodyDocID:self.bodyDocID block:^(id obj, NSError *error) {
         self.mainBodyTextView.text = obj;
@@ -82,29 +73,52 @@
     if ([buttonTitle isEqualToString:@"下载"]) {
         [button setTitle:@"停止" forState:UIControlStateNormal];
         
-        NSProgress *progress;
-        
-        // 下载正文文件
-        [self.attchManageService downloadMatterAttachmentFileWithAttachID:self.bodyDocID attachName:@"" progress:&progress
-        block:^(NSString *localFilePath, NSError *error) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             
+            // 首先查看服务端是否已生成对应的 zip 文件
+            NSDictionary *resultDic = [self.attchManageService isReadyForDownloadWithAttachID:self.bodyDocID
+                                                                                         name:self.docTtitle];
+            // 网络错误
+            NSError *error = resultDic[@"kError"];
             if (error) {
-                NSLog(@"下载失败！");
+                [self showNetworkingErrorAlert];
+                
+                return;
             }
+            
+            // 可以下载
+            if ([resultDic[@"kResult"] boolValue]) {
+                
+                NSProgress *progress;
+                // 下载正文文件
+                [self.attchManageService downloadMatterAttachmentFileWithAttachID:self.bodyDocID attachName:@"" progress:&progress
+                                                                            block:^(NSString *localFilePath, NSError *error) {
+                                                                                
+                                                                                if (error) {
+                                                                                    [self showNetworkingErrorAlert];
+                                                                                }
+                                                                                else {
+                                                                                    self.mainBodyFilePath = localFilePath;
+                                                                                    
+                                                                                    // 保存附件的本地路径
+                                                                                    [self.attchManageService saveAttchLocalPath:localFilePath withAttachID:self.bodyDocID];
+                                                                                    
+                                                                                    [button setTitle:@"打开" forState:UIControlStateNormal];
+                                                                                    [button setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+                                                                                }
+                                                                            }];
+                [progress addObserver:self
+                           forKeyPath:@"fractionCompleted"
+                              options:NSKeyValueObservingOptionNew
+                              context:NULL];
+                
+            }
+            
+            // 服务器端没有生成指定附件，暂不能下载
             else {
-                self.mainBodyFilePath = localFilePath;
-                
-                // 保存附件的本地路径
-                [self.attchManageService saveAttchLocalPath:localFilePath withAttachID:self.bodyDocID];
-                
-                [button setTitle:@"打开" forState:UIControlStateNormal];
-                [button setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+                [self showCustomTextAlert:@"网络不稳定，请稍后再试。"];
             }
-        }];
-        [progress addObserver:self
-                   forKeyPath:@"fractionCompleted"
-                      options:NSKeyValueObservingOptionNew
-                      context:NULL];
+        });
     }
     
     // 点击打开
@@ -125,12 +139,11 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    //    [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-    
     if ([keyPath isEqualToString:@"fractionCompleted"]) {
         NSProgress *progress = object;
-        self.progressView.progress = progress.fractionCompleted;
-        //        NSLog(@"Progress is %f", progress.fractionCompleted);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.progressView.progress = progress.fractionCompleted;
+        });
     }
 }
 
