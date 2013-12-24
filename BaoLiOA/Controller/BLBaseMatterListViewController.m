@@ -22,6 +22,8 @@
 
 @property (strong, nonatomic) BLMatterInfoService *matterService;
 
+@property (nonatomic) BLMatterInfoServiceListType listType;
+
 @end
 
 @implementation BLBaseMatterListViewController
@@ -39,8 +41,6 @@
 {
     [super viewDidLoad];
     
-    BLMatterInfoServiceListType listType;
-    
     // 设置标题
     switch (self.currentMatterType) {
             
@@ -48,7 +48,7 @@
         case kTodoMatterList:
         {
             self.title = @"待办事宜";
-            listType = BLMatterInfoServiceTodoList;
+            self.listType = BLMatterInfoServiceTodoList;
         }
         break;
             
@@ -56,7 +56,7 @@
         case kTakenMatterList:
         {
             self.title = @"已办事宜";
-            listType = BLMatterInfoServiceTakenList;
+            self.listType = BLMatterInfoServiceTakenList;
         }
         break;
             
@@ -64,7 +64,7 @@
         case kToReadMatterList:
         {
             self.title = @"已阅事宜";
-            listType = BLMatterInfoServiceToReadList;
+            self.listType = BLMatterInfoServiceToReadList;
         }
         break;
             
@@ -72,7 +72,7 @@
         case kReadMatterList:
         {
             self.title = @"已阅事宜";
-            listType = BLMatterInfoServiceReadList;
+            self.listType = BLMatterInfoServiceReadList;
         }
         break;
             
@@ -80,8 +80,13 @@
             break;
     }
     
+    [self showLodingView];
+    
     // 取得数据后刷新表格
-    [self.matterService matterListWithType:listType block:^(NSArray *list, NSError *error) {
+    [self.matterService matterListWithType:self.listType block:^(NSArray *list, NSError *error) {
+        
+        [self hideLodingView];
+        
         if (error) {
             [self showNetworkingErrorAlert];
         }
@@ -126,6 +131,32 @@
         NSString *matterID = ((BLMatterEntity *)self.matterList[[self.tableView indexPathForSelectedRow].row]).matterID;
         [vc performSelector:@selector(setMatterID:) withObject:matterID];
     }
+    
+    if ([vc respondsToSelector:@selector(setDelegate:)]) {
+        [vc performSelector:@selector(setDelegate:) withObject:self];
+    }
+}
+
+
+#pragma mark - Delegate
+
+- (void)matterOperationDidFinish
+{
+    [self showLodingView];
+    
+    // 取得数据后刷新表格
+    [self.matterService matterListWithType:self.listType block:^(NSArray *list, NSError *error) {
+        
+        [self hideLodingView];
+        
+        if (error) {
+            [self showNetworkingErrorAlert];
+        }
+        else {
+            self.matterList = list;
+            [self.tableView reloadData];
+        }
+    }];
 }
 
 

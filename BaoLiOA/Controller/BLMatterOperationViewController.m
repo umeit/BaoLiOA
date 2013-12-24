@@ -264,6 +264,9 @@
         [self hideLodingView];
         
         if (retCode == kSuccess) {
+            
+            [self.delegate matterOperationDidFinish];
+            
             [self showCustomTextAlert:@"操作成功！" withBlock:^{
                 [self.navigationController popViewControllerAnimated:YES];
             }];

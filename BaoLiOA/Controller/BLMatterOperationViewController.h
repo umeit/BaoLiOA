@@ -8,8 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol BLMatterOperationViewControllerDelegate <NSObject>
+
+- (void)matterOperationDidFinish;
+
+@end
+
 @interface BLMatterOperationViewController : UIViewController
 
 @property (strong, nonatomic) NSString *matterID;
+
+@property (weak, nonatomic) id<BLMatterOperationViewControllerDelegate> delegate;
 
 @end
