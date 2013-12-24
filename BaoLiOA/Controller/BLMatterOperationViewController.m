@@ -14,6 +14,7 @@
 #import "BLManageFollowViewController.h"
 #import "BLMatterOpinionViewController.h"
 #import "BLMatterInfoService.h"
+#import "UIViewController+GViewController.h"
 
 #define OperationButtonParentViewTag 30
 
@@ -175,7 +176,7 @@
 - (void)operationButtonPress:(UIButton *)button
 {
     NSString *actionID = [self actionIDWithButtonName:button.titleLabel.text];
-    NSString *flowID = @"";
+    NSString *flowID = self.matterAppendInfo[@"flowID"];
     NSString *comment = @"同意";
     
     self.currentActionID = actionID;
@@ -252,14 +253,20 @@
     NSString *currentNodeID = self.matterAppendInfo[@"currentNodeID"];
     NSString *currentTrackID = self.matterAppendInfo[@"currentTrackID"];
     
+    [self showLodingView];
+    
     // 将用户的「意见」和「意见正文」提交
     [self.matterOprationService operationMatterWithAction:actionID comment:comment commentList:commentList
     routeList:routList employeeList:employeeList matterID:matterID flowID:flowID
     currentNodeID:currentNodeID currentTrackID:currentTrackID
     block:^(NSInteger retCode, NSArray *list, NSString *title) {
         
+        [self hideLodingView];
+        
         if (retCode == kSuccess) {
-#warning 提示成功
+            [self showCustomTextAlert:@"操作成功！" withBlock:^{
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
         }
         else if ((retCode == kHasRoute || retCode == kHasEmployee)
                  && [list count] > 0) {
@@ -290,6 +297,9 @@
             [navigation setModalPresentationStyle:UIModalPresentationFormSheet];
       
             [self presentViewController:navigation animated:YES completion:nil];
+        }
+        else {
+            [self showCustomTextAlert:@"操作失败，请稍后再试。"];
         }
     }];
 }

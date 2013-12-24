@@ -7,6 +7,7 @@
 //
 
 #import "BLManageFollowViewController.h"
+#import "UIViewController+GViewController.h"
 
 @interface BLManageFollowViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) NSMutableArray *selectedFollow;
@@ -86,6 +87,12 @@
 
 - (IBAction)okButtonPress:(id)sender
 {
+    if (!self.selectedFollow || [self.selectedFollow count] < 1) {
+        [self showCustomTextAlert:@"您还未做选择。"];
+        
+        return;
+    }
+    
     [self dismissViewControllerAnimated:YES completion:^{
         [self.delegate followDidSelected:self.selectedFollow];
     }];

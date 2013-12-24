@@ -82,7 +82,6 @@
     BLAttachEntity *attachEntity = self.matterAttachList[row];
     NSString *buttonTitle = sender.titleLabel.text;
     
-    
     // 点击打开
     if ([buttonTitle isEqualToString:@"打开"]) {
         // 打开附件文件
@@ -108,62 +107,60 @@
 {
     [button setTitle:@"停止" forState:UIControlStateNormal];
     
-//    [self showLodingView]; // test main thread
-    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-    // 首先查看服务端是否已生成对应的 zip 文件
-    NSDictionary *resultDic = [self.attachManageService isReadyForDownloadWithAttachID:attachEntity.attachID name:attachEntity.attachTitle];
-    
-    // 网络错误
-    NSError *error = resultDic[@"kError"];
-    if (error) {
-        [self showNetworkingErrorAlert];
-        
-        return;
-    }
-    
-    // 可以下载
-    if ([resultDic[@"kResult"] boolValue]) {
-        
-        NSProgress *progress;
-        
-        // 下载附件
-        [self.attachManageService downloadMatterAttachmentFileWithAttachID:attachEntity.attachID attachName:attachEntity.attachTitle progress:&progress
-                                                                     block:^(NSString *localFilePath, NSError *error) {
-//                                                                         [self hideLodingView];
-                                                                         
-                                                                         if (error) {
-                                                                             [self showNetworkingErrorAlert];
-                                                                         }
-                                                                         else {
-                                                                             attachEntity.localPath = localFilePath;
-                                                                             
-                                                                             // 保存附件的本地路径
-                                                                             [self.attachManageService saveAttchLocalPath:localFilePath withAttachID:attachEntity.attachID];
-                                                                             
-                                                                             [button setTitle:@"打开" forState:UIControlStateNormal];
-                                                                             [button setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
-                                                                             
-                                                                             [self.progressDictionary removeObjectForKey:attachEntity.attachID];
-                                                                         }
-                                                                     }];
-        
-        if (progress) {
-            self.progressDictionary[attachEntity.attachID] = progress;
+        // 首先查看服务端是否已生成对应的 zip 文件
+        NSDictionary *resultDic = [self.attachManageService isReadyForDownloadWithAttachID:attachEntity.attachID
+                                                                                      name:attachEntity.attachTitle];
+        // 网络错误
+        NSError *error = resultDic[@"kError"];
+        if (error) {
+            [self showNetworkingErrorAlert];
+            
+            return;
         }
-        // 监听下载进度
-        [progress addObserver:[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]]
-                   forKeyPath:@"fractionCompleted"
-                      options:NSKeyValueObservingOptionNew
-                      context:NULL];
-    }
-    
-    // 服务器端没有生成指定附件，暂不能下载
-    else {
-        [self showCustomTextAlert:@"网络不稳定，请稍后再试。"];
-    }
-        });
+        
+        // 可以下载
+        if ([resultDic[@"kResult"] boolValue]) {
+            
+            NSProgress *progress;
+            
+            // 下载附件
+            [self.attachManageService downloadMatterAttachmentFileWithAttachID:attachEntity.attachID
+            attachName:attachEntity.attachTitle progress:&progress
+            block:^(NSString *localFilePath, NSError *error) {
+                                                                             
+                 if (error) {
+                     [self showNetworkingErrorAlert];
+                 }
+                 else {
+                     attachEntity.localPath = localFilePath;
+                     
+                     // 保存附件的本地路径
+                     [self.attachManageService saveAttchLocalPath:localFilePath withAttachID:attachEntity.attachID];
+                     
+                     [button setTitle:@"打开" forState:UIControlStateNormal];
+                     [button setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+                     
+                     [self.progressDictionary removeObjectForKey:attachEntity.attachID];
+                 }
+             }];
+            
+            if (progress) {
+                self.progressDictionary[attachEntity.attachID] = progress;
+            }
+            // 监听下载进度
+            [progress addObserver:[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]]
+                       forKeyPath:@"fractionCompleted"
+                          options:NSKeyValueObservingOptionNew
+                          context:NULL];
+        }
+        
+        // 服务器端没有生成指定附件，暂不能下载
+        else {
+            [self showCustomTextAlert:@"网络不稳定，请稍后再试。"];
+        }
+    });
 }
 
 // 显示附件内容
