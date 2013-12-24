@@ -13,6 +13,7 @@
 #define kBLMatterInfoServiceAttachInfo @"kBLMatterInfoServiceAttachInfo"
 #define kBLMatterInfoServiceBodyDocID @"kBLMatterInfoServiceBodyDocID"
 #define kBlMatterInfoServiceAppendInfo @"kBlMatterInfoServiceAppendInfo"
+#define kBlMatterInfoServiceReturnDataInfo @"kBlMatterInfoServiceReturnDataInfo"
 
 typedef enum BLMatterInfoServiceListType : NSUInteger {
     BLMatterInfoServiceTodoList,

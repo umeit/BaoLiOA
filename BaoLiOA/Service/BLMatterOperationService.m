@@ -16,7 +16,7 @@
 
 - (void)operationMatterWithAction:(NSString *)actionID
                           comment:(NSString *)comment
-                      commentList:(NSArray *)commentList
+                      commentList:(NSString *)commentList
                         routeList:(NSArray *)routList
                      employeeList:(NSArray *)employeeList
                          matterID:(NSString *)matterID

@@ -15,6 +15,7 @@
 #import "BLMatterOpinionViewController.h"
 #import "BLMatterInfoService.h"
 #import "UIViewController+GViewController.h"
+#import "NSArray+CICArray.h"
 
 #define OperationButtonParentViewTag 30
 
@@ -72,6 +73,8 @@
  * 附加信息
  */
 @property (strong, nonatomic) NSDictionary *matterAppendInfo;
+
+@property (strong, nonatomic) NSArray *matterReturnDataInfo;
 
 /**
  *  保存用户的意见
@@ -152,7 +155,8 @@
         self.matterBodyDocID = dic[kBLMatterInfoServiceBodyDocID];
         // 获取附加信息
         self.matterAppendInfo = dic[kBlMatterInfoServiceAppendInfo];
-        
+        // 获取回传信息
+        self.matterReturnDataInfo = dic[kBlMatterInfoServiceReturnDataInfo];
         // 放置操作按钮到界面上
         [self initOperationButton:self.matterOperationList];
         
@@ -176,18 +180,16 @@
 - (void)operationButtonPress:(UIButton *)button
 {
     NSString *actionID = [self actionIDWithButtonName:button.titleLabel.text];
-    NSString *flowID = self.matterAppendInfo[@"flowID"];
+    
     NSString *comment = @"同意";
     
     self.currentActionID = actionID;
     
     [self operationMatterWithAction:actionID
                             comment:comment
-                        commentList:nil
                           routeList:nil
                        employeeList:nil
-                           matterID:self.matterID
-                             flowID:flowID];
+                           matterID:self.matterID];
 }
 
 
@@ -213,11 +215,9 @@
 #warning 改用用真实的意见
     [self operationMatterWithAction:self.currentActionID
                             comment:@"同意"
-                        commentList:nil
                           routeList:self.selectedRouteList
                        employeeList:self.selectedEmployeeList
-                           matterID:self.matterID
-                             flowID:@""];
+                           matterID:self.matterID];
 }
 
 
@@ -244,19 +244,18 @@
 // 提交对事项的操作
 - (void)operationMatterWithAction:(NSString *)actionID
                           comment:(NSString *)comment
-                      commentList:(NSArray *)commentList
                         routeList:(NSArray *)routList
                      employeeList:(NSArray *)employeeList
                          matterID:(NSString *)matterID
-                           flowID:(NSString *)flowID
 {
     NSString *currentNodeID = self.matterAppendInfo[@"currentNodeID"];
     NSString *currentTrackID = self.matterAppendInfo[@"currentTrackID"];
-    
+    NSString *returnData = [self.matterReturnDataInfo oneStringFormat];
+    NSString *flowID = self.matterAppendInfo[@"flowID"];
     [self showLodingView];
     
     // 将用户的「意见」和「意见正文」提交
-    [self.matterOprationService operationMatterWithAction:actionID comment:comment commentList:commentList
+    [self.matterOprationService operationMatterWithAction:actionID comment:comment commentList:returnData
     routeList:routList employeeList:employeeList matterID:matterID flowID:flowID
     currentNodeID:currentNodeID currentTrackID:currentTrackID
     block:^(NSInteger retCode, NSArray *list, NSString *title) {

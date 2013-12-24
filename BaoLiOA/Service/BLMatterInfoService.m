@@ -102,17 +102,24 @@
             
             // 解析表单数据
             [dic setObject:[self parseFormData:rootElement] forKey:kBLMatterInfoServiceFormInfo];
+            
             // 操作数据
             [dic setObject:[self parseOperationData:rootElement] forKey:kBLMatterInfoServiceOperationInfo];
+            
             // 附件数据
             [dic setObject:[self parseAttachData:rootElement] forKey:kBLMatterInfoServiceAttachInfo];
+            
             // 正文附件ID，没有为 nil
             NSString *bodyDocID = [self parseBodyDocID:rootElement];
             if (bodyDocID) {
                 [dic setObject:bodyDocID forKey:kBLMatterInfoServiceBodyDocID];
             }
+            
             // 附加数据：当前节点、办理人、跟踪ID等
             [dic setObject:[self parseAppendData:rootElement] forKey:kBlMatterInfoServiceAppendInfo];
+            
+            // 回传数据
+            [dic setObject:[self parseReturnData:rootElement] forKey:kBlMatterInfoServiceReturnDataInfo];
             
             block(dic, nil);
         }
@@ -213,6 +220,19 @@
               }];
     
     return attachList;
+}
+
+// 解析回传数据
+- (NSArray *)parseReturnData:(RXMLElement *)rootElement
+{
+    NSMutableArray *returnValueList = [[NSMutableArray alloc] init];
+    
+    [rootElement iterate:@"Body.GetDocInfoResponse.GetDocInfoResult.EditFields.EditField"
+              usingBlock:^(RXMLElement *attachmentInfoElement) {
+                  [returnValueList addObject:[attachmentInfoElement child:@"Key"].text];
+              }];
+    
+    return returnValueList;
 }
 
 // 解析正文附件 ID

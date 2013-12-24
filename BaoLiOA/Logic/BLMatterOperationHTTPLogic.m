@@ -19,7 +19,7 @@
                         flowID:(NSString *)flowID
                      operation:(NSString *)operationType
                        Comment:(NSString *)comment
-                   commentList:(NSArray *)commentList
+                   commentList:(NSString *)commentList
                      routeList:(NSString *)routIDs
                   employeeList:(NSString *)employeeIDs
                  currentNodeID:(NSString *)currentNodeID
