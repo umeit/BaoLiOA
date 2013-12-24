@@ -250,7 +250,7 @@
 {
     NSString *currentNodeID = self.matterAppendInfo[@"currentNodeID"];
     NSString *currentTrackID = self.matterAppendInfo[@"currentTrackID"];
-    NSString *returnData = [self.matterReturnDataInfo oneStringFormat];
+    NSString *returnData = [self.matterReturnDataInfo oneStringFormat:@","];
     NSString *flowID = self.matterAppendInfo[@"flowID"];
     [self showLodingView];
     

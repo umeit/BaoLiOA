@@ -10,7 +10,7 @@
 
 @interface NSArray (GArray)
 
-- (NSString *)oneStringFormat;
+- (NSString *)oneStringFormat:(NSString *)separator;
 
 - (NSString *)jsonStringFormat;
 

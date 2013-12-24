@@ -10,7 +10,7 @@
 
 @implementation NSArray (GArray)
 
-- (NSString *)oneStringFormat;
+- (NSString *)oneStringFormat:(NSString *)separator
 {
     NSMutableString *str = [[NSMutableString alloc] init];
 //    for (NSString *s in self) {
@@ -22,7 +22,7 @@
             [str appendString:[NSString stringWithFormat:@"%@", obj]];
         }
         else {
-            [str appendString:[NSString stringWithFormat:@",%@", obj]];
+            [str appendString:[NSString stringWithFormat:@"%@%@", separator ,obj]];
         }
     }];
     return str;
