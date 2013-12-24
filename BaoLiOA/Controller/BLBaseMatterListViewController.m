@@ -76,25 +76,27 @@
         }
         break;
             
+        // 待阅列表
+        case kInDocMatterList:
+        {
+            self.title = @"收文";
+            self.listType = BLMatterInfoServiceReadList;
+        }
+        break;
+            
+        // 待阅列表
+        case kGiveRemarkMatterList:
+        {
+            self.title = @"呈批件";
+            self.listType = BLMatterInfoServiceReadList;
+        }
+        break;
+            
         default:
             break;
     }
     
-    [self showLodingView];
-    
-    // 取得数据后刷新表格
-    [self.matterService matterListWithType:self.listType block:^(NSArray *list, NSError *error) {
-        
-        [self hideLodingView];
-        
-        if (error) {
-            [self showNetworkingErrorAlert];
-        }
-        else {
-            self.matterList = list;
-            [self.tableView reloadData];
-        }
-    }];
+    [self updateData];
 }
 
 
@@ -142,6 +144,14 @@
 
 - (void)matterOperationDidFinish
 {
+    [self updateData];
+}
+
+
+#pragma mark - Private
+
+- (void)updateData
+{
     [self showLodingView];
     
     // 取得数据后刷新表格
@@ -158,9 +168,6 @@
         }
     }];
 }
-
-
-#pragma mark - Private
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
