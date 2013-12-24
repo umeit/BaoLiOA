@@ -33,6 +33,7 @@
     if (self) {
         _matterOprationService = [[BLMatterOperationService alloc] init];
         _attachManageService = [[BLAttachManageService alloc] init];
+        _progressDictionary = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -107,37 +108,62 @@
 {
     [button setTitle:@"停止" forState:UIControlStateNormal];
     
-    [self showLodingView];
+//    [self showLodingView]; // test main thread
     
-    NSProgress *progress;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+    // 首先查看服务端是否已生成对应的 zip 文件
+    NSDictionary *resultDic = [self.attachManageService isReadyForDownloadWithAttachID:attachEntity.attachID name:attachEntity.attachTitle];
     
-    // 下载附件
-    [self.attachManageService downloadMatterAttachmentFileWithAttachID:attachEntity.attachID attachName:attachEntity.attachTitle progress:&progress
-                                                                 block:^(NSString *localFilePath, NSError *error) {
-                                                                     [self hideLodingView];
-                                                                     
-                                                                     if (error) {
-                                                                         [self showNetworkingErrorAlert];
-                                                                     }
-                                                                     else {
-                                                                         attachEntity.localPath = localFilePath;
-                                                                         
-                                                                         // 保存附件的本地路径
-                                                                         [self.attachManageService saveAttchLocalPath:localFilePath withAttachID:attachEntity.attachID];
-                                                                         
-                                                                         [button setTitle:@"打开" forState:UIControlStateNormal];
-                                                                         [button setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
-                                                                     }
-                                                                 }];
-    
-    if (progress) {
-        self.progressDictionary[attachEntity.attachID] = progress;
+    // 网络错误
+    NSError *error = resultDic[@"kError"];
+    if (error) {
+        [self showNetworkingErrorAlert];
+        
+        return;
     }
-    // 监听下载进度
-    [progress addObserver:[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]]
-               forKeyPath:@"fractionCompleted"
-                  options:NSKeyValueObservingOptionNew
-                  context:NULL];
+    
+    // 可以下载
+    if ([resultDic[@"kResult"] boolValue]) {
+        
+        NSProgress *progress;
+        
+        // 下载附件
+        [self.attachManageService downloadMatterAttachmentFileWithAttachID:attachEntity.attachID attachName:attachEntity.attachTitle progress:&progress
+                                                                     block:^(NSString *localFilePath, NSError *error) {
+//                                                                         [self hideLodingView];
+                                                                         
+                                                                         if (error) {
+                                                                             [self showNetworkingErrorAlert];
+                                                                         }
+                                                                         else {
+                                                                             attachEntity.localPath = localFilePath;
+                                                                             
+                                                                             // 保存附件的本地路径
+                                                                             [self.attachManageService saveAttchLocalPath:localFilePath withAttachID:attachEntity.attachID];
+                                                                             
+                                                                             [button setTitle:@"打开" forState:UIControlStateNormal];
+                                                                             [button setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+                                                                             
+                                                                             [self.progressDictionary removeObjectForKey:attachEntity.attachID];
+                                                                         }
+                                                                     }];
+        
+        if (progress) {
+            self.progressDictionary[attachEntity.attachID] = progress;
+        }
+        // 监听下载进度
+        [progress addObserver:[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]]
+                   forKeyPath:@"fractionCompleted"
+                      options:NSKeyValueObservingOptionNew
+                      context:NULL];
+    }
+    
+    // 服务器端没有生成指定附件，暂不能下载
+    else {
+        [self showCustomTextAlert:@"网络不稳定，请稍后再试。"];
+    }
+        });
 }
 
 // 显示附件内容
@@ -170,6 +196,12 @@
         cell.progress.hidden = YES;
         
         attachEntity.localPath = localPath;
+    }
+    else if (progress) {
+        // 该附件正在下载
+        [cell.downloadButton setTitle:@"停止" forState:UIControlStateNormal];
+        [cell.downloadButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        cell.progress.hidden = NO;
     }
     else {
         // 该附件未下载

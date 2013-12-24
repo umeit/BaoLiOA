@@ -34,16 +34,16 @@
                                            block:(BLAttchManageServiceDownloadAttachBlock)block
 {
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-        // 首先查看服务端是否已生成对应的 zip 文件
-        NSDictionary *resultDic = [self isReadyForDownloadWithAttachID:attachID name:attachName];
-        NSError *error = resultDic[@"kError"];
-        
-        if (error) {
-            block(nil, error);
-        }
-        else if ([resultDic[@"kResult"] boolValue]) {
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    
+//        // 首先查看服务端是否已生成对应的 zip 文件
+//        NSDictionary *resultDic = [self isReadyForDownloadWithAttachID:attachID name:attachName];
+//        NSError *error = resultDic[@"kError"];
+//        
+//        if (error) {
+//            block(nil, error);
+//        }
+//        else if ([resultDic[@"kResult"] boolValue]) {
             // 服务器已经准备好待下载的附件
             // 附件下载到该文件夹
             NSString *documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
@@ -74,12 +74,12 @@
             }];
             // 用附件 ID 为 key，保存下载任务对象
             self.downloadDictionary[attachID] = downloadTask;
-        }
-        else {
-            // 服务器端没有准备好待下载的文件
-            block(nil, nil);
-        }
-    });
+//        }
+//        else {
+//            // 服务器端没有准备好待下载的文件
+//            block(nil, nil);
+//        }
+//    });
 }
 
 - (void)cancelDownloadAttachWithAttachID:(NSString *)attachID
