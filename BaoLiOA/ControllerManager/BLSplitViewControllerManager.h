@@ -24,4 +24,8 @@
 - (void)switchDetaiViewToToReadMatterList;
 
 - (void)switchDetaiViewToReadMatterList;
+
+- (void)switchDetaiViewInDocMatterList;
+
+- (void)switchDetaiViewGiveRemarkMatterList;
 @end

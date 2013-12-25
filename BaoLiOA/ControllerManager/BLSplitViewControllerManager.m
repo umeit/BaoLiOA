@@ -47,15 +47,32 @@
 
 - (void)switchDetaiViewToReadMatterList
 {
-    [self switchDetaiViewToBaseMatterListWithMaterType:kReadMatterList];
+    [self switchDetaiViewToBaseMatterListWithMaterType:kToReadMatterList];
 }
 
+- (void)switchDetaiViewInDocMatterList
+{
+    [self switchDetaiViewToBaseMatterListWithMaterType:kInDocMatterList];
+}
+
+- (void)switchDetaiViewGiveRemarkMatterList
+{
+    [self switchDetaiViewToBaseMatterListWithMaterType:kGiveRemarkMatterList];
+}
 
 #pragma mark - Private
 
 - (void)switchDetaiViewToBaseMatterListWithMaterType:(MatterTypeOfBaseMatterList)matterType
 {
-    UINavigationController *navigationControllerForDetailView = [self.splitViewController.storyboard instantiateViewControllerWithIdentifier:@"BLBaseMatterListViewController"];
+    UINavigationController *navigationControllerForDetailView;
+    
+    if (matterType == kInDocMatterList || matterType == kGiveRemarkMatterList) {
+        navigationControllerForDetailView = [self.splitViewController.storyboard instantiateViewControllerWithIdentifier:@"BLSegmentMatterListViewController"];
+    }
+    else {
+        navigationControllerForDetailView = [self.splitViewController.storyboard instantiateViewControllerWithIdentifier:@"BLBaseMatterListViewController"];
+    }
+    
     BLBaseMatterListViewController *baseMatterListViewController = (BLBaseMatterListViewController *)navigationControllerForDetailView.topViewController;
     
     baseMatterListViewController.currentMatterType = matterType;

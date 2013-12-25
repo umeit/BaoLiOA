@@ -9,10 +9,12 @@
 #import "BLMasterViewController.h"
 #import "BLSplitViewControllerManager.h"
 
-#define BacklogCellTag 30
-#define TakenCellTag   31
-#define ToReadCellTag  32
-#define ReadCellTag    33
+#define BacklogCellTag     30
+#define TakenCellTag       31
+#define ToReadCellTag      32
+#define ReadCellTag        33
+#define InDocCellTag       34
+#define GiveRemarkCellTag  35
 
 @interface BLMasterViewController ()
 @property (strong, nonatomic) BLSplitViewControllerManager *splitViewControllerManager;
@@ -48,6 +50,13 @@
             [self.splitViewControllerManager switchDetaiViewToReadMatterList];
             break;
             
+        case InDocCellTag:
+            [self.splitViewControllerManager switchDetaiViewInDocMatterList];
+            break;
+            
+        case GiveRemarkCellTag:
+            [self.splitViewControllerManager switchDetaiViewGiveRemarkMatterList];
+            break;
         default:
             break;
     }

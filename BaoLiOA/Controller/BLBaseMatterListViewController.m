@@ -82,6 +82,24 @@
         }
         break;
             
+        // 收文列表
+        case kInDocMatterList:
+        {
+            self.title = @"收文";
+            self.matterType = kInDoc;
+            self.matterStatus = kTodo;
+        }
+        break;
+            
+        // 呈批件列表
+        case kGiveRemarkMatterList:
+        {
+            self.title = @"呈批件";
+            self.matterType = kGiveRemark;
+            self.matterStatus = kTodo;
+        }
+        break;
+            
         default:
             break;
     }
@@ -144,7 +162,8 @@
 {
     [self showLodingView];
     
-    if (self.currentMatterType == kTodoMatterList || self.currentMatterType == kTakenMatterList ) {
+    if (self.currentMatterType == kTodoMatterList || self.currentMatterType == kTakenMatterList
+        || self.currentMatterType == kInDocMatterList || self.currentMatterType == kGiveRemarkMatterList) {
         [self.matterService matterListWithType:self.matterType status:self.matterStatus block:^(NSArray *list, NSError *error) {
             [self hideLodingView];
             
