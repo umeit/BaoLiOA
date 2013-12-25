@@ -19,14 +19,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
 }
 
-- (void)didReceiveMemoryWarning
+
+#pragma mark - Action
+
+- (IBAction)segmentValueChanged:(UISegmentedControl *)segmentedControl
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSInteger selectedIndex = segmentedControl.selectedSegmentIndex;
+    
+    if (selectedIndex == 0) {
+        self.matterStatus = 0;
+    }
+    else {
+        self.matterStatus = 1;
+    }
+    
+    [self updateData];
 }
 
 @end

@@ -446,6 +446,12 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="flowTimesImageView" destination="Zb5-V2-Q49" id="uqP-Rn-hPr"/>
+                                    <outlet property="matterTitleLabel" destination="Vnb-O6-Qup" id="N0l-TQ-rWm"/>
+                                    <outlet property="matterTypeLabel" destination="LFs-zB-dV9" id="qbP-A3-BfV"/>
+                                    <outlet property="receivedDateLabel" destination="nwH-ji-53c" id="Spg-2w-VvR"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -462,6 +468,9 @@
                                 <segment title="待办收文"/>
                                 <segment title="已办收文"/>
                             </segments>
+                            <connections>
+                                <action selector="segmentValueChanged:" destination="dQa-bO-PVV" eventType="valueChanged" id="fCt-RP-HTX"/>
+                            </connections>
                         </segmentedControl>
                     </navigationItem>
                     <connections>

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BLMatterInfoService.h"
 
 typedef enum MatterTypeOfBaseMatterList : NSUInteger {
     kTodoMatterList,        // 待办
@@ -19,6 +20,12 @@ typedef enum MatterTypeOfBaseMatterList : NSUInteger {
 
 @interface BLBaseMatterListViewController : UITableViewController
 
+@property (nonatomic) BLMIHLMatterType matterType;
+
+@property (nonatomic) BLMIHLMatterStatus matterStatus;
+
 @property (nonatomic) MatterTypeOfBaseMatterList currentMatterType;
+
+- (void)updateData;
 
 @end

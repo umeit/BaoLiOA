@@ -11,7 +11,6 @@
 //
 
 #import "BLBaseMatterListViewController.h"
-#import "BLMatterInfoService.h"
 #import "UIViewController+GViewController.h"
 #import "BLBaseMatterCell.h"
 #import "BLMatterEntity.h"
@@ -21,10 +20,6 @@
 @property (strong, nonatomic) NSArray *matterList;
 
 @property (strong, nonatomic) BLMatterInfoService *matterService;
-
-@property (nonatomic) BLMIHLMatterType matterType;
-
-@property (nonatomic) BLMIHLMatterStatus matterStatus;
 
 @property (nonatomic) BLMIHLReadMatterStatus readMatterStatus;
 
@@ -156,7 +151,7 @@
 }
 
 
-#pragma mark - Private
+#pragma mark - Public
 
 - (void)updateData
 {
@@ -190,6 +185,9 @@
         }];
     }
 }
+
+
+#pragma mark - Private
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
