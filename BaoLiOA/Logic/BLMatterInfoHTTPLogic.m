@@ -10,9 +10,9 @@
 #import "AFHTTPRequestOperation.h"
 #import "AFURLSessionManager.h"
 
-//#define SOAP_URL(s) [NSURL URLWithString:[NSString stringWithFormat:@"http://210.51.191.244:8081/OAWebService/BL_WebService.asmx?op=%@", s]];
+#define SOAP_URL(s) [NSURL URLWithString:[NSString stringWithFormat:@"http://210.51.191.244:8081/OAWebService/BL_WebService.asmx?op=%@", s]];
 // 测试地址
-#define SOAP_URL(s) [NSURL URLWithString:[NSString stringWithFormat:@"http://210.51.191.244:8081/OAWebService/DemoData_WebService.asmx?op=%@", s]];
+//#define SOAP_URL(s) [NSURL URLWithString:[NSString stringWithFormat:@"http://210.51.191.244:8081/OAWebService/DemoData_WebService.asmx?op=%@", s]];
 
 // 测试文件下载地址
 #define Attach_File_URL(id, type) [NSURL URLWithString:[NSString stringWithFormat:@"http://210.51.191.244:8081/OAWebService/Files/%@.%@", id, type]];
@@ -154,6 +154,70 @@
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         block(responseObject, nil);
 
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        block(nil, error);
+    }];
+    
+    [[NSOperationQueue mainQueue] addOperation:operation];
+}
+
++ (void)matterListWithMatterType:(BLMIHLMatterType)type
+                          status:(BLMIHLMatterStatus)status
+                       fromIndex:(NSString *)fromIndex
+                         toIndex:(NSString *)toIndex
+                          userID:(NSString *)userID
+                       withBlock:(BLMatterHTTPLogicGeneralBlock)block
+{
+    
+    NSString *modelName = @"";
+    NSString *todoFlag = @"";
+    
+    if (type == kInDoc) {
+        modelName = @"收文";
+    }
+    else if (type == kGiveRemark) {
+        modelName = @"呈批件";
+    }
+    else if (type == kFull) {
+        modelName = @"";
+    }
+    
+    if (status == kTodo) {
+        todoFlag = @"0";
+    }
+    else if (status == kTaken) {
+        todoFlag = @"1";
+    }
+    
+    NSString *soapBody = [NSString stringWithFormat:
+    @"<?xml version=\"1.0\" encoding=\"utf-8\"?>" \
+    "<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" "\
+    "xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">" \
+    "<soap:Body>" \
+      "<GetDocListByCondition xmlns=\"http://tempuri.org/\">"\
+        "<userID>%@</userID>"\
+        "<importance></importance>"\
+        "<title></title>"\
+        "<modelName>%@</modelName>"\
+        "<startTime></startTime>"\
+        "<endTime></endTime>"\
+        "<dbIdentifier></dbIdentifier>"\
+        "<recordStartIndex>%@</recordStartIndex>"\
+        "<recordEndIndex>%@</recordEndIndex>"\
+        "<todoFlag>%@</todoFlag>"\
+      "</GetDocListByCondition>"\
+    "</soap:Body>"\
+    "</soap:Envelope>", userID, modelName, fromIndex, toIndex, todoFlag];
+    
+    NSMutableURLRequest *request = [BLMatterInfoHTTPLogic soapRequestWithURLParam:@"GetDocListByCondition"
+                                                                       soapAction:@"http://tempuri.org/GetDocListByCondition"
+                                                                         soapBody:soapBody];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        block(responseObject, nil);
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         block(nil, error);
     }];

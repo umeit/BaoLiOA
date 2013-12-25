@@ -19,26 +19,7 @@
 
 - (void)matterListWithType:(BLMIHLMatterType)type status:(BLMIHLMatterStatus)status block:(BLMatterInfoServiceGeneralBlock)block
 {
-    NSString *elementIteratePath;
-    
-    switch (type) {
-        case kInDoc:
-        {
-            elementIteratePath = @"Body.GetDocTodolistResponse.GetDocTodolistResult.Doc";
-        }
-        break;
-            
-        case kGiveRemark:
-        {
-            elementIteratePath = @"Body.GetDocHasdolistResponse.GetDocHasdolistResult.Doc";
-        }
-        break;
-            
-        default:
-            break;
-    }
-    
-    [BLMatterInfoHTTPLogic matterListWithMatterType:type status:status order:@"" fromIndex:@"0" toIndex:@"5"
+    [BLMatterInfoHTTPLogic matterListWithMatterType:type status:status fromIndex:@"0" toIndex:@"5" userID:@"admin"
     withBlock:^(id responseData, NSError *error) {
         if (error) {
             block(nil, error);
@@ -48,7 +29,7 @@
             
             RXMLElement *rootElement = [RXMLElement elementFromXMLData:responseData];
             
-            [rootElement iterate:elementIteratePath usingBlock:^(RXMLElement *e) {
+            [rootElement iterate:@"Body.GetDocListByConditionResponse.GetDocListByConditionResult.Doc" usingBlock:^(RXMLElement *e) {
                 BLMatterEntity *matterEntity = [[BLMatterEntity alloc] init];
                 
                 matterEntity.matterID = [e child:@"DocID"].text;
