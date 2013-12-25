@@ -17,37 +17,20 @@
 
 @implementation BLMatterInfoService
 
-- (void)matterListWithType:(BLMatterInfoServiceListType)type block:(BLMatterInfoServiceGeneralBlock)block
+- (void)matterListWithType:(BLMIHLMatterType)type status:(BLMIHLMatterStatus)status block:(BLMatterInfoServiceGeneralBlock)block
 {
     NSString *elementIteratePath;
-    MatterType matterType;
     
     switch (type) {
-        case BLMatterInfoServiceTodoList:
+        case kInDoc:
         {
             elementIteratePath = @"Body.GetDocTodolistResponse.GetDocTodolistResult.Doc";
-            matterType = kTodoMatterType;
         }
         break;
             
-        case BLMatterInfoServiceTakenList:
+        case kGiveRemark:
         {
             elementIteratePath = @"Body.GetDocHasdolistResponse.GetDocHasdolistResult.Doc";
-            matterType = kTakenMatterType;
-        }
-        break;
-            
-        case BLMatterInfoServiceToReadList:
-        {
-            elementIteratePath = @"Body.GetDocToReadlistResponse.GetDocToReadlistResult.Doc";
-            matterType = kToReadMatterType;
-        }
-        break;
-            
-        case BLMatterInfoServiceReadList:
-        {
-            elementIteratePath = @"Body.GetDocHasReadlistResponse.GetDocHasReadlistResult.Doc";
-            matterType = kReadMatterType;
         }
         break;
             
@@ -55,7 +38,7 @@
             break;
     }
     
-    [BLMatterInfoHTTPLogic matterListWithMatterType:matterType order:@"" fromIndex:@"0" toIndex:@"5"
+    [BLMatterInfoHTTPLogic matterListWithMatterType:type status:status order:@"" fromIndex:@"0" toIndex:@"5"
     withBlock:^(id responseData, NSError *error) {
         if (error) {
             block(nil, error);
@@ -77,6 +60,51 @@
                 [todoList addObject:matterEntity];
             }];
             
+            block(todoList, nil);
+        }
+    }];
+}
+
+- (void)readMatterListWithStatus:(BLMIHLReadMatterStatus)status block:(BLMatterInfoServiceGeneralBlock)block
+{
+    // 解析时使用的路径
+    NSString *elementIteratePath;
+    
+    switch (status) {
+        case kToRead:
+            elementIteratePath = @"Body.GetDocToReadlistResponse.GetDocToReadlistResult.Doc";
+            break;
+            
+        case kRead:
+            elementIteratePath = @"Body.GetDocHasReadlistResponse.GetDocHasReadlistResult.Doc";
+            break;
+            
+        default:
+            break;
+    }
+    
+    [BLMatterInfoHTTPLogic readMatterListWithMatterStatus:status order:@"" fromIndex:@"0" toIndex:@"5"
+    withBlock:^(id responseData, NSError *error) {
+        if (error) {
+            block(nil, error);
+        }
+        else {
+            NSMutableArray *todoList = [[NSMutableArray alloc] init];
+          
+            RXMLElement *rootElement = [RXMLElement elementFromXMLData:responseData];
+          
+            [rootElement iterate:elementIteratePath usingBlock:^(RXMLElement *e) {
+                BLMatterEntity *matterEntity = [[BLMatterEntity alloc] init];
+              
+                matterEntity.matterID = [e child:@"DocID"].text;
+                matterEntity.title = [e child:@"DocTitle"].text;
+                matterEntity.matterType = [e child:@"DocType"].text;
+                matterEntity.from = [e child:@"SendFrom"].text;
+                matterEntity.sendTime = [e child:@"SendDate"].text;
+              
+                [todoList addObject:matterEntity];
+            }];
+          
             block(todoList, nil);
         }
     }];

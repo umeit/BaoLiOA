@@ -8,15 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum BLMatterInfoHTTPLogicMatterType : NSUInteger{
-    kTodoMatterType,    // 待办
-    kTakenMatterType,   // 已办
-    kToReadMatterType,  // 待阅
-    kReadMatterType,    // 已阅
-    CollectMatter,
-    ApproveMatter
-}MatterType;
+typedef enum BLMIHLReadMatterStatus : NSUInteger{
+    kToRead,  // 待阅
+    kRead     // 已阅
+}BLMIHLReadMatterStatus;
 
+typedef enum BLMIHLMatterType : NSUInteger {
+    kInDoc,       // 收文
+    kGiveRemark,  // 呈批件
+    kFull
+}BLMIHLMatterType;
+
+typedef enum BLMIHLMatterStatus : NSUInteger {
+    kTodo,  // 待办
+    kTaken  // 已办
+}BLMIHLMatterStatus;
 
 typedef void(^BLMatterHTTPLogicGeneralBlock)(id responseData, NSError *error);
 typedef void(^BLMatterHTTPLogicAttachDownloadBlock)(NSString *zipFileLocalPath, NSError *error);
@@ -33,7 +39,6 @@ typedef void(^BLMatterHTTPLogicAttachDownloadBlock)(NSString *zipFileLocalPath, 
  */
 + (NSDictionary *)isReadyForDownloadWithAttachID:(NSString *)attachID
                                             name:(NSString *)attachName;
-//                                           block:(BLMatterHTTPLogicGeneralBlock)block;
 
 + (NSURLSessionDownloadTask *)downloadFileWithAttachID:(NSString *)attachID
                                               fileType:(NSString *)fileType
@@ -48,11 +53,18 @@ typedef void(^BLMatterHTTPLogicAttachDownloadBlock)(NSString *zipFileLocalPath, 
  *  @param matterType 类别
  *  @param block      返回响应数据 NSData
  */
-+ (void)matterListWithMatterType:(MatterType)matterType
-                           order:(NSString *)order
-                       fromIndex:(NSString *)fromIndex
-                         toIndex:(NSString *)toIndex
-                       withBlock:(BLMatterHTTPLogicGeneralBlock)block;
++ (void)readMatterListWithMatterStatus:(BLMIHLReadMatterStatus)status
+                                 order:(NSString *)order
+                             fromIndex:(NSString *)fromIndex
+                               toIndex:(NSString *)toIndex
+                             withBlock:(BLMatterHTTPLogicGeneralBlock)block;
+
++ (void)matterListWithMatterType:(BLMIHLMatterType)type
+                          status:(BLMIHLMatterStatus)status
+                                 order:(NSString *)order
+                             fromIndex:(NSString *)fromIndex
+                               toIndex:(NSString *)toIndex
+                             withBlock:(BLMatterHTTPLogicGeneralBlock)block;
 
 + (void)matterDetailWithMatterID:(NSString *)matterID
                           userID:(NSString *)userID

@@ -110,28 +110,20 @@
     return downloadTask;
 }
 
-+ (void)matterListWithMatterType:(MatterType)matterType
-                           order:(NSString *)order
-                       fromIndex:(NSString *)fromIndex
-                         toIndex:(NSString *)toIndex withBlock:(BLMatterHTTPLogicGeneralBlock)block
++ (void)readMatterListWithMatterStatus:(BLMIHLReadMatterStatus)status
+                                 order:(NSString *)order
+                             fromIndex:(NSString *)fromIndex
+                               toIndex:(NSString *)toIndex withBlock:(BLMatterHTTPLogicGeneralBlock)block
 {
     NSString *userID = @"action";
-    
     NSString *listType;
-    switch (matterType) {
-        case kTodoMatterType:
-            listType = @"GetDocTodolist";
-            break;
-            
-        case kTakenMatterType:
-            listType = @"GetDocHasdolist";
-            break;
-            
-        case kToReadMatterType:
+    
+    switch (status) {
+        case kToRead:
             listType = @"GetDocToReadlist";
             break;
             
-        case kReadMatterType:
+        case kRead:
             listType = @"GetDocHasReadlist";
             break;
             

@@ -22,7 +22,11 @@
 
 @property (strong, nonatomic) BLMatterInfoService *matterService;
 
-@property (nonatomic) BLMatterInfoServiceListType listType;
+@property (nonatomic) BLMIHLMatterType matterType;
+
+@property (nonatomic) BLMIHLMatterStatus matterStatus;
+
+@property (nonatomic) BLMIHLReadMatterStatus readMatterStatus;
 
 @end
 
@@ -48,7 +52,8 @@
         case kTodoMatterList:
         {
             self.title = @"待办事宜";
-            self.listType = BLMatterInfoServiceTodoList;
+            self.matterType = kFull;
+            self.matterStatus = kTodo;
         }
         break;
             
@@ -56,7 +61,8 @@
         case kTakenMatterList:
         {
             self.title = @"已办事宜";
-            self.listType = BLMatterInfoServiceTakenList;
+            self.matterType = kFull;
+            self.matterStatus = kTaken;
         }
         break;
             
@@ -64,31 +70,15 @@
         case kToReadMatterList:
         {
             self.title = @"已阅事宜";
-            self.listType = BLMatterInfoServiceToReadList;
+            self.readMatterStatus = kRead;
         }
         break;
             
-        // 待阅列表
+        // 已阅列表
         case kReadMatterList:
         {
             self.title = @"已阅事宜";
-            self.listType = BLMatterInfoServiceReadList;
-        }
-        break;
-            
-        // 待阅列表
-        case kInDocMatterList:
-        {
-            self.title = @"收文";
-            self.listType = BLMatterInfoServiceReadList;
-        }
-        break;
-            
-        // 待阅列表
-        case kGiveRemarkMatterList:
-        {
-            self.title = @"呈批件";
-            self.listType = BLMatterInfoServiceReadList;
+            self.readMatterStatus = kToRead;
         }
         break;
             
@@ -154,19 +144,32 @@
 {
     [self showLodingView];
     
-    // 取得数据后刷新表格
-    [self.matterService matterListWithType:self.listType block:^(NSArray *list, NSError *error) {
-        
-        [self hideLodingView];
-        
-        if (error) {
-            [self showNetworkingErrorAlert];
-        }
-        else {
-            self.matterList = list;
-            [self.tableView reloadData];
-        }
-    }];
+    if (self.currentMatterType == kTodoMatterList || self.currentMatterType == kTakenMatterList ) {
+        [self.matterService matterListWithType:self.matterType status:self.matterStatus block:^(NSArray *list, NSError *error) {
+            [self hideLodingView];
+            
+            if (error) {
+                [self showNetworkingErrorAlert];
+            }
+            else {
+                self.matterList = list;
+                [self.tableView reloadData];
+            }
+        }];
+    }
+    else if (self.currentMatterType == kReadMatterList || self.currentMatterType == kToReadMatterList) {
+        [self.matterService readMatterListWithStatus:self.readMatterStatus block:^(NSArray *list, NSError *error) {
+            [self hideLodingView];
+            
+            if (error) {
+                [self showNetworkingErrorAlert];
+            }
+            else {
+                self.matterList = list;
+                [self.tableView reloadData];
+            }
+        }];
+    }
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
