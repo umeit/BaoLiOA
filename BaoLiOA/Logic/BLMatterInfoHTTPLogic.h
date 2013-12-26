@@ -24,6 +24,11 @@ typedef enum BLMIHLMatterStatus : NSUInteger {
     kTaken  // 已办
 }BLMIHLMatterStatus;
 
+typedef enum BLMIHLAtaachType : NSUInteger {
+    kAttach,  // 普通附件
+    kMainDoc  // 正文附件
+}BLMIHLAtaachType;
+
 typedef void(^BLMatterHTTPLogicGeneralBlock)(id responseData, NSError *error);
 typedef void(^BLMatterHTTPLogicAttachDownloadBlock)(NSString *zipFileLocalPath, NSError *error);
 
@@ -38,7 +43,9 @@ typedef void(^BLMatterHTTPLogicAttachDownloadBlock)(NSString *zipFileLocalPath, 
  *  @return 是否有准备好
  */
 + (NSDictionary *)isReadyForDownloadWithAttachID:(NSString *)attachID
-                                            name:(NSString *)attachName;
+                                            name:(NSString *)attachName
+                                          userID:(NSString *)userID
+                                      attachType:(BLMIHLAtaachType)attachType;
 
 + (NSURLSessionDownloadTask *)downloadFileWithAttachID:(NSString *)attachID
                                               fileType:(NSString *)fileType

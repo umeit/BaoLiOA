@@ -109,16 +109,28 @@
     [userDefaults setObject:savedAttachLocalPaths forKey:@"kSavedAttachLocalPaths"];
 }
 
-- (NSDictionary *)isReadyForDownloadWithAttachID:(NSString *)attachID name:(NSString *)attachName
+- (NSDictionary *)isReadyForDownloadWithAttachID:(NSString *)attachID name:(NSString *)attachName attachType:(BLMIHLAtaachType)attachType
 {
+    NSString *userID = @"admin";
+    
     NSInteger i = 0;
     NSDictionary *resultDic;
+    
+    NSString *elementPath;
+    if (attachType == kAttach) {
+        elementPath = @"Body.DownFileIsFinish_AttachmentResponse.DownFileIsFinish_AttachmentResult.IsFinished";
+    }
+    else if (attachType == kMainDoc) {
+        elementPath = @"Body.DownFileIsFinish_DocFileResponse.DownFileIsFinish_DocFileResult.IsFinished";
+    }
     
     while (i < 10) {
         i ++;
         
         resultDic = [BLMatterInfoHTTPLogic isReadyForDownloadWithAttachID:attachID
-                                                                     name:attachName];
+                                                                     name:attachName
+                                                                   userID:userID
+                                                               attachType:attachType];
         if (resultDic[@"kError"]) {
             // 网络出错
             return @{@"kError": resultDic[@"kError"]};
@@ -131,7 +143,8 @@
             return @{@"kResult": @NO};
         }
         
-        NSString *boolString = [rootElement child:@"Body.DownFileIsFinishResponse.DownFileIsFinishResult.IsFinished"].text;
+        NSString *boolString = [rootElement child:elementPath].text;
+        
 
         if ([boolString isEqualToString:@"true"]) {
             // 服务器端已经准备好好下载的数据

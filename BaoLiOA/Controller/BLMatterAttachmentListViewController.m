@@ -111,7 +111,8 @@
         
         // 首先查看服务端是否已生成对应的 zip 文件
         NSDictionary *resultDic = [self.attachManageService isReadyForDownloadWithAttachID:attachEntity.attachID
-                                                                                      name:attachEntity.attachTitle];
+                                                                                      name:attachEntity.attachTitle
+                                                                                attachType:kAttach];
         // 网络错误
         NSError *error = resultDic[@"kError"];
         if (error) {

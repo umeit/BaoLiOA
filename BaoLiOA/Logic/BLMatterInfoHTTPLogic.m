@@ -10,34 +10,52 @@
 #import "AFHTTPRequestOperation.h"
 #import "AFURLSessionManager.h"
 
-#define SOAP_URL(s) [NSURL URLWithString:[NSString stringWithFormat:@"http://210.51.191.244:8081/OAWebService/BL_WebService.asmx?op=%@", s]];
 // 测试地址
-//#define SOAP_URL(s) [NSURL URLWithString:[NSString stringWithFormat:@"http://210.51.191.244:8081/OAWebService/DemoData_WebService.asmx?op=%@", s]];
+//#define SOAP_URL(s) \
+[NSURL URLWithString:[NSString stringWithFormat:@"http://210.51.191.244:8081/OAWebService/DemoData_WebService.asmx?op=%@", s]];
+
+#define SOAP_URL(s) \
+[NSURL URLWithString:[NSString stringWithFormat:@"http://210.51.191.244:8081/OAWebService/BL_WebService.asmx?op=%@", s]];
 
 // 测试文件下载地址
-#define Attach_File_URL(id, type) [NSURL URLWithString:[NSString stringWithFormat:@"http://210.51.191.244:8081/OAWebService/Files/%@.%@", id, type]];
+#define Attach_File_URL(id, type) \
+[NSURL URLWithString:[NSString stringWithFormat:@"http://210.51.191.244:8081/OAWebService/Files/%@.%@", id, type]];
+
 @implementation BLMatterInfoHTTPLogic
 
-+ (NSDictionary *)isReadyForDownloadWithAttachID:(NSString *)attachID name:(NSString *)attachName
++ (NSDictionary *)isReadyForDownloadWithAttachID:(NSString *)attachID
+                                            name:(NSString *)attachName
+                                          userID:(NSString *)userID
+                                      attachType:(BLMIHLAtaachType)attachType
 {
+    NSCondition *condition = [[NSCondition alloc] init];
+    
     NSMutableDictionary *resultDic = [[NSMutableDictionary alloc] init];
     
-    NSCondition *condition = [[NSCondition alloc] init];
+    NSString *webMethodName;
+    if (attachType == kAttach) {
+        webMethodName = @"DownFileIsFinish_Attachment";
+    }
+    else if (attachType == kMainDoc) {
+        webMethodName = @"DownFileIsFinish_DocFile";
+    }
+    
     
     NSString *soapBody = [NSString stringWithFormat:
     @"<?xml version=\"1.0\" encoding=\"utf-8\"?>" \
     "<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" "\
     "xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">" \
     "<soap:Body>" \
-        "<DownFileIsFinish xmlns=\"http://tempuri.org/\">"\
+        "<%@ xmlns=\"http://tempuri.org/\">"\
+            "<userID>%@</userID>" \
             "<fileID>%@</fileID>"\
             "<parafileName>%@</parafileName>"\
-        "</DownFileIsFinish>"\
+        "</%@>"\
     "</soap:Body>"\
-    "</soap:Envelope>", attachID, attachName];
+    "</soap:Envelope>",webMethodName, userID, attachID, attachName, webMethodName];
     
-    NSMutableURLRequest *request = [BLMatterInfoHTTPLogic soapRequestWithURLParam:@"DownFileIsFinish"
-                                                                       soapAction:@"http://tempuri.org/DownFileIsFinish"
+    NSMutableURLRequest *request = [BLMatterInfoHTTPLogic soapRequestWithURLParam:webMethodName
+                                                                       soapAction:[NSString stringWithFormat:@"http://tempuri.org/%@", webMethodName]
                                                                          soapBody:soapBody];
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
@@ -103,9 +121,9 @@
     
     // 开始下载
     NSURLSessionDownloadTask *downloadTask = [sessionManager downloadTaskWithRequest:request
-                                                                     progress:progress
-                                                                  destination:DestinationBlock
-                                                            completionHandler:completionHandlerBlock];
+                                                                            progress:progress
+                                                                         destination:DestinationBlock
+                                                                   completionHandler:completionHandlerBlock];
     [downloadTask resume];
     return downloadTask;
 }

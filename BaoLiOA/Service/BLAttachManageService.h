@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BLMatterInfoHTTPLogic.h"
 
 typedef void(^BLAttchManageServiceDownloadAttachBlock)(NSString *localFilePath, NSError *error);
 typedef void(^BLAttachManageServiceBOOLBlock)(BOOL b, NSError *e);
@@ -27,5 +28,7 @@ typedef void(^BLAttachManageServiceBOOLBlock)(BOOL b, NSError *e);
 - (void)saveAttchLocalPath:(NSString *)localPath withAttachID:(NSString *)attachID;
 
 // 检测服务器端有没有准备好待下载的文件
-- (NSDictionary *)isReadyForDownloadWithAttachID:(NSString *)attachID name:(NSString *)attachName;
+- (NSDictionary *)isReadyForDownloadWithAttachID:(NSString *)attachID
+                                            name:(NSString *)attachName
+                                      attachType:(BLMIHLAtaachType)attachType;
 @end

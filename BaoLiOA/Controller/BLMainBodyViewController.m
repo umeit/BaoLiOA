@@ -77,7 +77,8 @@
             
             // 首先查看服务端是否已生成对应的 zip 文件
             NSDictionary *resultDic = [self.attchManageService isReadyForDownloadWithAttachID:self.bodyDocID
-                                                                                         name:self.docTtitle];
+                                                                                         name:self.docTtitle
+                                                                                   attachType:kMainDoc];
             // 网络错误
             NSError *error = resultDic[@"kError"];
             if (error) {
@@ -116,7 +117,12 @@
             
             // 服务器端没有生成指定附件，暂不能下载
             else {
-                [self showCustomTextAlert:@"网络不稳定，请稍后再试。"];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self showCustomTextAlert:@"下载失败，请稍后再试。"];
+                    
+                    [button setTitle:@"下载" forState:UIControlStateNormal];
+                });
+                
             }
         });
     }
