@@ -50,6 +50,9 @@
 		0381BC5518478BDF00DB661D /* BLCommonOpinionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0381BC5418478BDF00DB661D /* BLCommonOpinionViewController.m */; };
 		0381BC581847985400DB661D /* BLManageFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0381BC571847985400DB661D /* BLManageFollowViewController.m */; };
 		03844F97186456610028BF80 /* BLAttachManageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 03844F96186456610028BF80 /* BLAttachManageService.m */; };
+		038C8EFF186D2DA4007B1B2E /* BLSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 038C8EFE186D2DA4007B1B2E /* BLSettingViewController.m */; };
+		038C8F07186D38E8007B1B2E /* BLCommonOpinionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 038C8F06186D38E8007B1B2E /* BLCommonOpinionListViewController.m */; };
+		038C8F0A186D3D96007B1B2E /* BLAddOpinionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 038C8F09186D3D96007B1B2E /* BLAddOpinionViewController.m */; };
 		0390A01A1855BC6B00EEEEBB /* BLAttachPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0390A0191855BC6B00EEEEBB /* BLAttachPreviewViewController.m */; };
 		039155FD1861F24800BBFCB2 /* BLMatterFlowEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 039155FC1861F24800BBFCB2 /* BLMatterFlowEntity.m */; };
 		039156041861F6B900BBFCB2 /* BLMatterFlowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 039156031861F6B900BBFCB2 /* BLMatterFlowCell.m */; };
@@ -213,6 +216,12 @@
 		0381BC571847985400DB661D /* BLManageFollowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLManageFollowViewController.m; sourceTree = "<group>"; };
 		03844F95186456610028BF80 /* BLAttachManageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLAttachManageService.h; sourceTree = "<group>"; };
 		03844F96186456610028BF80 /* BLAttachManageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLAttachManageService.m; sourceTree = "<group>"; };
+		038C8EFD186D2DA4007B1B2E /* BLSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLSettingViewController.h; sourceTree = "<group>"; };
+		038C8EFE186D2DA4007B1B2E /* BLSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLSettingViewController.m; sourceTree = "<group>"; };
+		038C8F05186D38E8007B1B2E /* BLCommonOpinionListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCommonOpinionListViewController.h; sourceTree = "<group>"; };
+		038C8F06186D38E8007B1B2E /* BLCommonOpinionListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCommonOpinionListViewController.m; sourceTree = "<group>"; };
+		038C8F08186D3D96007B1B2E /* BLAddOpinionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLAddOpinionViewController.h; sourceTree = "<group>"; };
+		038C8F09186D3D96007B1B2E /* BLAddOpinionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLAddOpinionViewController.m; sourceTree = "<group>"; };
 		0390A0181855BC6B00EEEEBB /* BLAttachPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLAttachPreviewViewController.h; sourceTree = "<group>"; };
 		0390A0191855BC6B00EEEEBB /* BLAttachPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLAttachPreviewViewController.m; sourceTree = "<group>"; };
 		039155FB1861F24800BBFCB2 /* BLMatterFlowEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterFlowEntity.h; sourceTree = "<group>"; };
@@ -359,6 +368,12 @@
 				030D3C6A1849DE7700E844EA /* BLAppSettingsViewController.m */,
 				0390A0181855BC6B00EEEEBB /* BLAttachPreviewViewController.h */,
 				0390A0191855BC6B00EEEEBB /* BLAttachPreviewViewController.m */,
+				038C8EFD186D2DA4007B1B2E /* BLSettingViewController.h */,
+				038C8EFE186D2DA4007B1B2E /* BLSettingViewController.m */,
+				038C8F05186D38E8007B1B2E /* BLCommonOpinionListViewController.h */,
+				038C8F06186D38E8007B1B2E /* BLCommonOpinionListViewController.m */,
+				038C8F08186D3D96007B1B2E /* BLAddOpinionViewController.h */,
+				038C8F09186D3D96007B1B2E /* BLAddOpinionViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -865,11 +880,13 @@
 				03D2E929183FB6350096E463 /* BLMasterViewController.m in Sources */,
 				030D3C681849B30A00E844EA /* BLUserHTTPLogic.m in Sources */,
 				03588FDE183E4AED0067F5D0 /* BLBaseMatterCell.m in Sources */,
+				038C8F07186D38E8007B1B2E /* BLCommonOpinionListViewController.m in Sources */,
 				03BD18001844F2FF002F2C38 /* BLMatterOpinionViewController.m in Sources */,
 				036C0FED183D05AD00C61808 /* AFHTTPRequestOperation.m in Sources */,
 				039BF610185E077F00985B17 /* ioapi.c in Sources */,
 				0361DE18184F7EF700D33CE6 /* BLFromFieldItemEntity.m in Sources */,
 				03BD17FD1844EF77002F2C38 /* BLMatterFlowListViewController.m in Sources */,
+				038C8EFF186D2DA4007B1B2E /* BLSettingViewController.m in Sources */,
 				03DECA461842434D007F6F40 /* BLMatterOperationViewController.m in Sources */,
 				036C0FF5183D05AD00C61808 /* AFURLSessionManager.m in Sources */,
 				03844F97186456610028BF80 /* BLAttachManageService.m in Sources */,
@@ -880,6 +897,7 @@
 				03588FE4183E4B830067F5D0 /* BLMatterInfoHTTPLogic.m in Sources */,
 				036C0FEF183D05AD00C61808 /* AFHTTPSessionManager.m in Sources */,
 				030D3C621849B0A000E844EA /* BLLoginViewController.m in Sources */,
+				038C8F0A186D3D96007B1B2E /* BLAddOpinionViewController.m in Sources */,
 				030D3C651849B2F000E844EA /* BLUserService.m in Sources */,
 				036C0FEE183D05AD00C61808 /* AFHTTPRequestOperationManager.m in Sources */,
 				03588FDA183E4A780067F5D0 /* BLBaseMatterListViewController.m in Sources */,

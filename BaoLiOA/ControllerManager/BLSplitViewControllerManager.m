@@ -60,6 +60,13 @@
     [self switchDetaiViewToBaseMatterListWithMaterType:kGiveRemarkMatterList];
 }
 
+- (void)switchDetaiViewSettingList
+{
+    UINavigationController *navigationControllerForDetailView = [self.splitViewController.storyboard instantiateViewControllerWithIdentifier:@"BLSettingViewController"];
+    
+    self.splitViewController.viewControllers = @[self.splitViewController.viewControllers[0], navigationControllerForDetailView];
+}
+
 #pragma mark - Private
 
 - (void)switchDetaiViewToBaseMatterListWithMaterType:(MatterTypeOfBaseMatterList)matterType

@@ -13,6 +13,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *commonOpinionList = [[userDefaults arrayForKey:@"kCommonOpinionList"] mutableCopy];
+    if (!commonOpinionList) {
+        commonOpinionList = [NSMutableArray arrayWithObject:@"同意"];
+        [userDefaults setObject:commonOpinionList forKey:@"kCommonOpinionList"];
+    }
+    
     NSDictionary *appSettingsDic = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"AppSettings"];
     if (!appSettingsDic) {
         // 以后的应用默认设置都放到这里

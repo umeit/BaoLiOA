@@ -28,4 +28,6 @@
 - (void)switchDetaiViewInDocMatterList;
 
 - (void)switchDetaiViewGiveRemarkMatterList;
+
+- (void)switchDetaiViewSettingList;
 @end

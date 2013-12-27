@@ -15,6 +15,7 @@
 #define ReadCellTag        33
 #define InDocCellTag       34
 #define GiveRemarkCellTag  35
+#define SettingCellTag     36
 
 @interface BLMasterViewController ()
 @property (strong, nonatomic) BLSplitViewControllerManager *splitViewControllerManager;
@@ -57,6 +58,11 @@
         case GiveRemarkCellTag:
             [self.splitViewControllerManager switchDetaiViewGiveRemarkMatterList];
             break;
+            
+        case SettingCellTag:
+            [self.splitViewControllerManager switchDetaiViewSettingList];
+            break;
+            
         default:
             break;
     }
