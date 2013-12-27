@@ -751,6 +751,14 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Liu Feng";
 				TargetAttributes = {
+					036C0FA3183D02AB00C61808 = {
+						DevelopmentTeam = ZZAGTE8AU9;
+						SystemCapabilities = {
+							com.apple.InterAppAudio = {
+								enabled = 0;
+							};
+						};
+					};
 					036C0FBE183D02AB00C61808 = {
 						TestTargetID = 036C0FA3183D02AB00C61808;
 					};
