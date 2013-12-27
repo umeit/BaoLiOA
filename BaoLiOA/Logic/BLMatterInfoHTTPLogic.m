@@ -15,11 +15,11 @@
 [NSURL URLWithString:[NSString stringWithFormat:@"http://210.51.191.244:8081/OAWebService/DemoData_WebService.asmx?op=%@", s]];
 
 #define SOAP_URL(s) \
-[NSURL URLWithString:[NSString stringWithFormat:@"http://210.51.191.244:8081/OAWebService/BL_WebService.asmx?op=%@", s]];
+[NSURL URLWithString:[NSString stringWithFormat:@"http://%@:8081/OAWebService/BL_WebService.asmx?op=%@",[[NSUserDefaults standardUserDefaults] stringForKey:@"ServerAddress"], s]];
 
 // 测试文件下载地址
 #define Attach_File_URL(id, type) \
-[NSURL URLWithString:[NSString stringWithFormat:@"http://210.51.191.244:8081/OAWebService/Files/%@.%@", id, type]];
+[NSURL URLWithString:[NSString stringWithFormat:@"http://%@:8081/OAWebService/Files/%@.%@",[[NSUserDefaults standardUserDefaults] stringForKey:@"ServerAddress"], id, type]];
 
 @implementation BLMatterInfoHTTPLogic
 

@@ -18,16 +18,15 @@
 {
     [super viewDidLoad];
     
-    NSDictionary *appSettingsDic = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"AppSettings"];
-    self.serverAddressTextField.text = appSettingsDic[@"ServerAddress"];
+    NSString *serverIP = [[NSUserDefaults standardUserDefaults] stringForKey:@"ServerAddress"];
+    self.serverAddressTextField.text = serverIP;
 }
 
 #pragma mark - Action
 
 - (IBAction)saveButtonPress:(id)sender
 {
-    NSDictionary *newAppSettingsDic = @{@"ServerAddress": self.serverAddressTextField.text};
-    [[NSUserDefaults standardUserDefaults] setObject:newAppSettingsDic forKey:@"AppSettings"];
+    [[NSUserDefaults standardUserDefaults] setObject:self.serverAddressTextField.text forKey:@"ServerAddress"];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
