@@ -21,14 +21,7 @@
     [super viewDidLoad];
 
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    NSMutableArray *opinionList = [userDefault objectForKey:@"opinionList"];
-    
-    if (!opinionList) {
-        opinionList = [NSMutableArray arrayWithArray:@[@"同意", @"拟同意"]];
-        [userDefault setObject:opinionList forKey:@"opinionList"];
-    }
-    
-    self.opinionList = opinionList;
+    self.opinionList = [userDefault objectForKey:@"kCommonOpinionList"];
 }
 
 #pragma mark - Table view data source

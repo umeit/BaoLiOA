@@ -36,7 +36,7 @@
 
 - (IBAction)okButtonPress:(id)sender
 {
-    if ([self.textField.text length] > 0) {
+    if (self.textField.text && [self.textField.text length] > 0) {
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         NSMutableArray *commonOpinionList = [[userDefaults arrayForKey:@"kCommonOpinionList"] mutableCopy];
         
@@ -53,7 +53,6 @@
             [self.delegate performSelector:@selector(reloadData) withObject:nil];
         }];
     }
-    
 }
 
 - (IBAction)cancelButtonPress:(id)sender
