@@ -272,12 +272,11 @@
             
             [self.delegate matterOperationDidFinish];
             
-            [self showCustomTextAlert:@"操作成功！" withBlock:^{
+            [self showCustomTextAlert:title withBlock:^{
                 [self.navigationController popViewControllerAnimated:YES];
             }];
         }
-        else if ((retCode == kHasRoute || retCode == kHasEmployee)
-                 && [list count] > 0) {
+        else if (retCode == kHasRoute || retCode == kHasEmployee) {
       
             NSArray *itemList;
       

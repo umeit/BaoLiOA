@@ -54,8 +54,14 @@
     [self.userService loginWithLoginID:loginID password:password block:^(NSInteger retCode) {
         switch (retCode) {
             case 0:
+            {
+                NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                [userDefaults setObject:@"HZ8181e5415cd79f01415d11bde70773" forKey:@"CurrentUserID"];
+                [userDefaults setObject:@"朱铭新" forKey:@"CurrentUserName"];
+                
                 self.view.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BLSplitViewController"];
                 break;
+            }
                 
             default:
                 break;

@@ -19,7 +19,9 @@
 
 - (void)matterListWithType:(BLMIHLMatterType)type status:(BLMIHLMatterStatus)status block:(BLMatterInfoServiceGeneralBlock)block
 {
-    [BLMatterInfoHTTPLogic matterListWithMatterType:type status:status fromIndex:@"0" toIndex:@"5" userID:@"admin"
+    NSString *userID = [[NSUserDefaults standardUserDefaults] stringForKey:@"CurrentUserID"];
+
+    [BLMatterInfoHTTPLogic matterListWithMatterType:type status:status fromIndex:@"0" toIndex:@"5" userID:userID
     withBlock:^(id responseData, NSError *error) {
         if (error) {
             block(nil, error);
@@ -64,7 +66,9 @@
             break;
     }
     
-    [BLMatterInfoHTTPLogic readMatterListWithMatterStatus:status order:@"" fromIndex:@"0" toIndex:@"5" userID:@"admin"
+    NSString *userID = [[NSUserDefaults standardUserDefaults] stringForKey:@"CurrentUserID"];
+    
+    [BLMatterInfoHTTPLogic readMatterListWithMatterStatus:status order:@"" fromIndex:@"0" toIndex:@"5" userID:userID
     withBlock:^(id responseData, NSError *error) {
         if (error) {
             block(nil, error);
@@ -93,7 +97,10 @@
 
 - (void)matterDetailInfoWithMatterID:(NSString *)matterID block:(BLMatterInfoServiceGeneralBlock)block
 {
-    [BLMatterInfoHTTPLogic matterDetailWithMatterID:matterID userID:@"admin" userName:@"管理员"
+    NSString *userID = [[NSUserDefaults standardUserDefaults] stringForKey:@"CurrentUserID"];
+    NSString *userName = [[NSUserDefaults standardUserDefaults] stringForKey:@"CurrentUserName"];
+    
+    [BLMatterInfoHTTPLogic matterDetailWithMatterID:matterID userID:userID userName:userName
     block:^(id responseData, NSError *error) {
         if (error) {
             block(nil, error);

@@ -10,9 +10,12 @@
 
 /** Returns Codes **/
 typedef enum BLMatterOperationServiceRetCode : NSUInteger {
-    kSuccess,       // 成功
-    kHasRoute,      // 有待选择的部门
-    kHasEmployee    // 有待选择的人员
+    kRemoteError,     // 服务器错误
+    kNetworkingError, // 网络错误
+    kCantDraftError,  // 不能起草提交
+    kSuccess,         // 成功
+    kHasRoute,        // 有待选择的部门
+    kHasEmployee      // 有待选择的人员
 }BLMatterOperationServiceRetCode;
 
 

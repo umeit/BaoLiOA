@@ -111,7 +111,7 @@
 
 - (NSDictionary *)isReadyForDownloadWithAttachID:(NSString *)attachID name:(NSString *)attachName attachType:(BLMIHLAtaachType)attachType
 {
-    NSString *userID = @"admin";
+    NSString *userID = [[NSUserDefaults standardUserDefaults] stringForKey:@"CurrentUserID"];
     
     NSInteger i = 0;
     NSDictionary *resultDic;
