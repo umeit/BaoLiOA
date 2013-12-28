@@ -334,19 +334,6 @@
 
 - (void)switchVC:(UIViewController *)vc
 {
-    [self addChildViewController:vc];
-    
-    [self.currentViewController.view removeFromSuperview];
-    
-    // 修改新加入的的视图的尺寸，可以刚好放在预留好的地方
-    vc.view.frame = self.contentView.bounds;
-    [self.contentView addSubview:vc.view];
-    
-    [vc didMoveToParentViewController:self];
-    [self.currentViewController removeFromParentViewController];
-    
-    self.currentViewController = vc;
-    
     // 设置事项 ID
     if ([vc respondsToSelector:@selector(setMatterID:)]) {
         [vc performSelector:@selector(setMatterID:) withObject:self.matterID];
@@ -376,6 +363,19 @@
     if ([vc respondsToSelector:@selector(setMatterBodyDocID:)]) {
         [vc performSelector:@selector(setMatterBodyDocID:) withObject:self.matterBodyDocID];
     }
+    
+    [self addChildViewController:vc];
+    
+    [self.currentViewController.view removeFromSuperview];
+    
+    // 修改新加入的的视图的尺寸，可以刚好放在预留好的地方
+    vc.view.frame = self.contentView.bounds;
+    [self.contentView addSubview:vc.view];
+    
+    [vc didMoveToParentViewController:self];
+    [self.currentViewController removeFromParentViewController];
+    
+    self.currentViewController = vc;
 }
 
 - (UIViewController *)viewControllerForSelectedSegment

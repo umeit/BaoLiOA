@@ -61,8 +61,8 @@
                           (commentList ? commentList : @"")];
     
     NSMutableURLRequest *request = [BLMatterOperationHTTPLogic soapRequestWithURLParam:@"DoAction"
-                                                                       soapAction:@"http://tempuri.org/DoAction"
-                                                                         soapBody:soapBody];
+                                                                            soapAction:@"http://tempuri.org/DoAction"
+                                                                              soapBody:soapBody];
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     
