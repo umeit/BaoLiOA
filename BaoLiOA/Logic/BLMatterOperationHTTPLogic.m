@@ -34,7 +34,7 @@
     "xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">" \
         "<soap:Body>" \
             "<DoAction xmlns=\"http://tempuri.org/\">"\
-                "<userID>%@</userID>"\
+                "<userId>%@</userId>"\
                 "<userName>%@</userName>"\
                 "<docId>%@</docId>"\
                 "<flowId>%@</flowId>"\
