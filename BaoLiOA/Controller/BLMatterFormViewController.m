@@ -12,7 +12,7 @@
 #import "BLMatterInfoService.h"
 #import "BLFromFieldItemEntity.h"
 
-@interface BLMatterFormViewController () <UITableViewDataSource>
+@interface BLMatterFormViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -63,6 +63,14 @@
 }
 
 
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [[cell.contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+}
+
+
 #pragma mark - Navigation
 
 - (void)toBodyViewController
@@ -89,7 +97,7 @@
         
         // 计算当前 Label 的宽度
         CGFloat percent = fieldItem.percent / 100.f;
-        CGFloat labelWidth = cellWidth * percent;
+        CGFloat labelWidth = cellWidth * (percent == 0 ? 1 : percent);
         
         UILabel *aLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 0, labelWidth, 44)];
         aLabel.tag = 1;

@@ -64,6 +64,7 @@ typedef void(^BLMatterHTTPLogicAttachDownloadBlock)(NSString *zipFileLocalPath, 
                                  order:(NSString *)order
                              fromIndex:(NSString *)fromIndex
                                toIndex:(NSString *)toIndex
+                                userID:(NSString *)userID
                              withBlock:(BLMatterHTTPLogicGeneralBlock)block;
 
 + (void)matterListWithMatterType:(BLMIHLMatterType)type

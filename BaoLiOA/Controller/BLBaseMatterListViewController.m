@@ -159,6 +159,8 @@
     
     if (self.currentMatterType == kTodoMatterList || self.currentMatterType == kTakenMatterList
         || self.currentMatterType == kInDocMatterList || self.currentMatterType == kGiveRemarkMatterList) {
+        
+        // 待办、已办、收文、呈批件，用这个接口
         [self.matterService matterListWithType:self.matterType status:self.matterStatus block:^(NSArray *list, NSError *error) {
             [self hideLodingView];
             
@@ -171,7 +173,10 @@
             }
         }];
     }
+    
     else if (self.currentMatterType == kReadMatterList || self.currentMatterType == kToReadMatterList) {
+        
+        // 待阅、已阅，用这个接口
         [self.matterService readMatterListWithStatus:self.readMatterStatus block:^(NSArray *list, NSError *error) {
             [self hideLodingView];
             

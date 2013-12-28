@@ -64,7 +64,7 @@
             break;
     }
     
-    [BLMatterInfoHTTPLogic readMatterListWithMatterStatus:status order:@"" fromIndex:@"0" toIndex:@"5"
+    [BLMatterInfoHTTPLogic readMatterListWithMatterStatus:status order:@"" fromIndex:@"0" toIndex:@"5" userID:@"admin"
     withBlock:^(id responseData, NSError *error) {
         if (error) {
             block(nil, error);

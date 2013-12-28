@@ -144,7 +144,12 @@
 {
     [super viewDidLoad];
     
+    [self showLodingView];
+    
 	[self.matterInfoService matterDetailInfoWithMatterID:self.matterID block:^(NSDictionary *dic, NSError *error) {
+        
+        [self hideLodingView];
+        
         // 获取到表单列表
         self.matterFormInfoList = dic[kBLMatterInfoServiceFormInfo];
         // 获取到操作列表
@@ -185,6 +190,7 @@
     
     self.currentActionID = actionID;
     
+#warning 改用用真实的意见
     [self operationMatterWithAction:actionID
                             comment:comment
                           routeList:nil
