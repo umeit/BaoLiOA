@@ -198,7 +198,7 @@
 {
     BLBaseMatterCell *matterCell = (BLBaseMatterCell *)cell;
     
-    BLMatterEntity *matterEntity = self.matterList[0];
+    BLMatterEntity *matterEntity = self.matterList[indexPath.row];
     
     matterCell.matterTitleLabel.text = matterEntity.title;
     matterCell.receivedDateLabel.text = matterEntity.sendTime;
