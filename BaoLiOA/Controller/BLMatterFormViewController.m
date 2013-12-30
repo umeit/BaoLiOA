@@ -94,20 +94,20 @@
                 maxNameContentHeight = MAX(maxNameContentHeight, nameLabelHeight);
                 maxValueContentHeight = MAX(maxValueContentHeight, valueLabelHeight);
             }
-            // 不分行显示
+            // 不分行显示，返回 name 和 value 都在一行的高度
             else {
                 CGFloat nameLabelHeight = [self labelHeightWithMaxWidth:labelWidth content:[NSString stringWithFormat:@"%@%@", nameString, valueString]];
                 maxNameContentHeight = MAX(maxNameContentHeight, nameLabelHeight);
             }
         }
-        // 不显示 name
+        // 不显示 name，返回 value 的高度
         else {
             CGFloat valueLabelHeight = [self labelHeightWithMaxWidth:labelWidth content:valueString];
             maxValueContentHeight = MAX(maxValueContentHeight, valueLabelHeight);
         }
     }
     
-    return maxNameContentHeight + maxValueContentHeight;
+    return 8 + maxNameContentHeight + maxValueContentHeight + 8;
 }
 
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -152,12 +152,12 @@
         if (fieldItem.nameVisible) {
             // 分行显示
             if (fieldItem.nameRN) {
-                UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 0, labelWidth, 20)];
+                UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 8, labelWidth, 20)];
                 nameLabel.text = nameString;
                 
                 CGFloat valueLabelHeight = [self labelHeightWithMaxWidth:labelWidth content:valueString];
                 // value 标签
-                UILabel *valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 17, labelWidth, valueLabelHeight)];
+                UILabel *valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 30, labelWidth, valueLabelHeight)];
                 valueLabel.numberOfLines = 0;
                 valueLabel.text = valueString;
                 
@@ -166,14 +166,14 @@
             }
             // 不分行显示
             else {
-                UILabel *aLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 0, labelWidth, 20)];
+                UILabel *aLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 8, labelWidth, 20)];
                 aLabel.text = [NSString stringWithFormat:@"%@%@", nameString, valueString];
                 [cell.contentView addSubview:aLabel];
             }
         }
         // 不显示 name
         else {
-            UILabel *aLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 0, labelWidth, 20)];
+            UILabel *aLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 8, labelWidth, 20)];
             aLabel.text = valueString;
             [cell.contentView addSubview:aLabel];
         }
