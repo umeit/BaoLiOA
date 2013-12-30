@@ -20,6 +20,6 @@
 /**
  *  正文附件 ID
  */
-@property (strong, nonatomic) NSString *matterBodyDocID;
+//@property (strong, nonatomic) NSString *matterBodyDocID;
 
 @end

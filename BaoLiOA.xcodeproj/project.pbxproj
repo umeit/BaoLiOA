@@ -92,6 +92,14 @@
 		03DECA49184247D0007F6F40 /* BLGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DECA48184247D0007F6F40 /* BLGlobal.m */; };
 		03DECA4C184250B8007F6F40 /* BLMatterFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DECA4B184250B8007F6F40 /* BLMatterFormViewController.m */; };
 		03DECA4F18425154007F6F40 /* BLMatterOperationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DECA4E18425154007F6F40 /* BLMatterOperationService.m */; };
+		03F9BBEF1871CA1A00DBD40C /* Read@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F9BBE71871CA1A00DBD40C /* Read@2x.png */; };
+		03F9BBF01871CA1A00DBD40C /* new@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F9BBE81871CA1A00DBD40C /* new@2x.png */; };
+		03F9BBF11871CA1A00DBD40C /* Todo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F9BBE91871CA1A00DBD40C /* Todo@2x.png */; };
+		03F9BBF21871CA1A00DBD40C /* Setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F9BBEA1871CA1A00DBD40C /* Setting@2x.png */; };
+		03F9BBF31871CA1A00DBD40C /* Taken@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F9BBEB1871CA1A00DBD40C /* Taken@2x.png */; };
+		03F9BBF41871CA1A00DBD40C /* ToRead@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F9BBEC1871CA1A00DBD40C /* ToRead@2x.png */; };
+		03F9BBF51871CA1A00DBD40C /* InDoc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F9BBED1871CA1A00DBD40C /* InDoc@2x.png */; };
+		03F9BBF61871CA1A00DBD40C /* GiveRemark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F9BBEE1871CA1A00DBD40C /* GiveRemark@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -290,6 +298,14 @@
 		03DECA4B184250B8007F6F40 /* BLMatterFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterFormViewController.m; sourceTree = "<group>"; };
 		03DECA4D18425154007F6F40 /* BLMatterOperationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterOperationService.h; sourceTree = "<group>"; };
 		03DECA4E18425154007F6F40 /* BLMatterOperationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterOperationService.m; sourceTree = "<group>"; };
+		03F9BBE71871CA1A00DBD40C /* Read@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Read@2x.png"; sourceTree = "<group>"; };
+		03F9BBE81871CA1A00DBD40C /* new@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new@2x.png"; sourceTree = "<group>"; };
+		03F9BBE91871CA1A00DBD40C /* Todo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Todo@2x.png"; sourceTree = "<group>"; };
+		03F9BBEA1871CA1A00DBD40C /* Setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Setting@2x.png"; sourceTree = "<group>"; };
+		03F9BBEB1871CA1A00DBD40C /* Taken@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Taken@2x.png"; sourceTree = "<group>"; };
+		03F9BBEC1871CA1A00DBD40C /* ToRead@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ToRead@2x.png"; sourceTree = "<group>"; };
+		03F9BBED1871CA1A00DBD40C /* InDoc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "InDoc@2x.png"; sourceTree = "<group>"; };
+		03F9BBEE1871CA1A00DBD40C /* GiveRemark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GiveRemark@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -478,6 +494,7 @@
 		036C0FAD183D02AB00C61808 /* BaoLiOA */ = {
 			isa = PBXGroup;
 			children = (
+				03F9BBD11871C9B700DBD40C /* Resource */,
 				030CD0091841B8E2005A9B58 /* ControllerManager */,
 				03588FDB183E4AA30067F5D0 /* View */,
 				03588FD3183E4A340067F5D0 /* Controller */,
@@ -702,6 +719,29 @@
 			path = GUtil;
 			sourceTree = "<group>";
 		};
+		03F9BBD11871C9B700DBD40C /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				03F9BBD21871C9B700DBD40C /* AppImage */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		03F9BBD21871C9B700DBD40C /* AppImage */ = {
+			isa = PBXGroup;
+			children = (
+				03F9BBE71871CA1A00DBD40C /* Read@2x.png */,
+				03F9BBE81871CA1A00DBD40C /* new@2x.png */,
+				03F9BBE91871CA1A00DBD40C /* Todo@2x.png */,
+				03F9BBEA1871CA1A00DBD40C /* Setting@2x.png */,
+				03F9BBEB1871CA1A00DBD40C /* Taken@2x.png */,
+				03F9BBEC1871CA1A00DBD40C /* ToRead@2x.png */,
+				03F9BBED1871CA1A00DBD40C /* InDoc@2x.png */,
+				03F9BBEE1871CA1A00DBD40C /* GiveRemark@2x.png */,
+			);
+			path = AppImage;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -831,7 +871,11 @@
 				039BF60D185E077F00985B17 /* Doxyfile in Resources */,
 				036C0FD7183D031200C61808 /* Main.storyboard in Resources */,
 				039BF616185E077F00985B17 /* MiniZip64_info.txt in Resources */,
+				03F9BBF61871CA1A00DBD40C /* GiveRemark@2x.png in Resources */,
+				03F9BBF41871CA1A00DBD40C /* ToRead@2x.png in Resources */,
+				03F9BBF01871CA1A00DBD40C /* new@2x.png in Resources */,
 				039BF622185E077F00985B17 /* InfoPlist.strings in Resources */,
+				03F9BBF21871CA1A00DBD40C /* Setting@2x.png in Resources */,
 				036C0FB2183D02AB00C61808 /* InfoPlist.strings in Resources */,
 				039BF611185E077F00985B17 /* make_vms.com in Resources */,
 				039BF615185E077F00985B17 /* MiniZip64_Changes.txt in Resources */,
@@ -840,10 +884,14 @@
 				039BF60F185E077F00985B17 /* ChangeLogUnzip in Resources */,
 				039BF61A185E077F00985B17 /* README.md in Resources */,
 				039BF61D185E077F00985B17 /* V3.xml in Resources */,
+				03F9BBF31871CA1A00DBD40C /* Taken@2x.png in Resources */,
+				03F9BBF11871CA1A00DBD40C /* Todo@2x.png in Resources */,
+				03F9BBF51871CA1A00DBD40C /* InDoc@2x.png in Resources */,
 				039BF60C185E077F00985B17 /* CHANGELOG.md in Resources */,
 				039BF621185E077F00985B17 /* ZipArchive ios Tests-Info.plist in Resources */,
 				039BF623185E077F00985B17 /* ZipArchive mac Tests-Info.plist in Resources */,
 				039BF61E185E077F00985B17 /* tests-Info.plist in Resources */,
+				03F9BBEF1871CA1A00DBD40C /* Read@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

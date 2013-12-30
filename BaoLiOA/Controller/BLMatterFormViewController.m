@@ -20,9 +20,9 @@
 
 @property (strong, nonatomic) BLMatterOperationService *matterOprationService;
 
-@property (strong, nonatomic) NSString *mainbodyFileLocalPath;
+//@property (strong, nonatomic) NSString *mainbodyFileLocalPath;
 
-@property (strong, nonatomic) NSString *bodyTitle;
+//@property (strong, nonatomic) NSString *bodyTitle;
 
 @end
 
@@ -118,14 +118,14 @@
 
 #pragma mark - Navigation
 
-- (void)toBodyViewController
-{
-    BLMainBodyViewController *mainBodyViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMainBodyViewController"];
-    mainBodyViewController.bodyDocID = self.matterBodyDocID;
-    mainBodyViewController.docTtitle = self.bodyTitle;
-    
-    [self.navigationController pushViewController:mainBodyViewController animated:YES];
-}
+//- (void)toBodyViewController
+//{
+//    BLMainBodyViewController *mainBodyViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMainBodyViewController"];
+//    mainBodyViewController.bodyDocID = self.matterBodyDocID;
+//    mainBodyViewController.docTtitle = self.bodyTitle;
+//    
+//    [self.navigationController pushViewController:mainBodyViewController animated:YES];
+//}
 
 
 #pragma mark - Private
@@ -142,7 +142,15 @@
         
         // 计算当前 Label 的宽度
         CGFloat percent = fieldItem.percent / 100.f;
-        CGFloat labelWidth = cellWidth * (percent == 0 ? 1 : percent);
+        CGFloat labelWidth = (cellWidth - 15) * (percent == 0 ? 1 : percent) - 4;
+        
+        if (i > 0) {
+            UIView *splitView = [[UIView alloc] initWithFrame:CGRectMake(currentX, 0, 1, cell.frame.size.height)];
+            splitView.backgroundColor = [UIColor lightGrayColor];
+            [cell.contentView addSubview:splitView];
+            
+            currentX += 1;
+        }
         
         NSString *nameString = [NSString stringWithFormat:@"%@%@%@%@", fieldItem.beforeName, fieldItem.name, fieldItem.endName, fieldItem.splitString];
         NSString *valueString = [NSString stringWithFormat:@"%@%@%@", fieldItem.beforeValue, fieldItem.value, fieldItem.endValue];
@@ -181,23 +189,23 @@
         currentX += labelWidth;  // 左移 x 值，供后续 Label 使用
     }
     
-    // 对于第一行做特殊处理：判断是否有正文附件，如果有，在第一行的行尾放一个按钮，用于导航到正文页面
-    if (indexPath.row == 0 && self.matterBodyDocID) {
-        UIButton *bodyButton = [[UIButton alloc] initWithFrame:CGRectMake(cellWidth - 90, 8, 80, 30)];
-        [cell.contentView addSubview:bodyButton];
-        
-        bodyButton.titleLabel.text = @"查看正文";
-        [bodyButton addTarget:self action:@selector(toBodyViewController) forControlEvents:UIControlEventTouchUpInside];
-        [bodyButton setTitle:@"查看正文" forState:UIControlStateNormal];
-        [bodyButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        BLFromFieldItemEntity *fieldItem = itemListInLine[0];
-        self.bodyTitle = fieldItem.value;
-        
-        UIView *aLabel = [cell viewWithTag:1];
-        CGSize labelSize = aLabel.frame.size;
-        CGSize newSize = CGSizeMake(cellWidth - 90, labelSize.height);
-        aLabel.frame = CGRectMake(aLabel.frame.origin.x, aLabel.frame.origin.y, newSize.width, newSize.height);
-    }
+//    // 对于第一行做特殊处理：判断是否有正文附件，如果有，在第一行的行尾放一个按钮，用于导航到正文页面
+//    if (indexPath.row == 0 && self.matterBodyDocID) {
+//        UIButton *bodyButton = [[UIButton alloc] initWithFrame:CGRectMake(cellWidth - 90, 8, 80, 30)];
+//        [cell.contentView addSubview:bodyButton];
+//        
+//        bodyButton.titleLabel.text = @"查看正文";
+//        [bodyButton addTarget:self action:@selector(toBodyViewController) forControlEvents:UIControlEventTouchUpInside];
+//        [bodyButton setTitle:@"查看正文" forState:UIControlStateNormal];
+//        [bodyButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+//        BLFromFieldItemEntity *fieldItem = itemListInLine[0];
+//        self.bodyTitle = fieldItem.value;
+//        
+//        UIView *aLabel = [cell viewWithTag:1];
+//        CGSize labelSize = aLabel.frame.size;
+//        CGSize newSize = CGSizeMake(cellWidth - 90, labelSize.height);
+//        aLabel.frame = CGRectMake(aLabel.frame.origin.x, aLabel.frame.origin.y, newSize.width, newSize.height);
+//    }
 }
 
 - (CGFloat)labelHeightWithMaxWidth:(CGFloat)width content:(NSString *)content

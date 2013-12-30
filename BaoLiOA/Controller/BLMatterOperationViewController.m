@@ -35,6 +35,11 @@
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 
 /**
+ *  查看正文按钮
+ */
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *watchBodyDocButton;
+
+/**
  *  记录当前切换到的 controller
  */
 @property (strong, nonatomic) UIViewController *currentViewController;
@@ -165,11 +170,24 @@
         // 放置操作按钮到界面上
         [self initOperationButton:self.matterOperationList];
         
+        if (!self.matterBodyDocID || self.matterBodyDocID.length < 1) {
+            self.navigationItem.rightBarButtonItem = nil;
+        }
+        
         // 默认被选中的 view controller，为 表单 controller
         UIViewController *vc = [self viewControllerForSelectedSegment];
-        
         [self switchVC:vc];
     }];
+}
+
+
+#pragma - mark Navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    UIViewController *vc = segue.destinationViewController;
+    if ([vc respondsToSelector:@selector(setBodyDocID:)]) {
+        [vc performSelector:@selector(setBodyDocID:) withObject:self.matterBodyDocID];
+    }
 }
 
 
@@ -359,9 +377,9 @@
     }
     
     // 设置正文附件ID
-    if ([vc respondsToSelector:@selector(setMatterBodyDocID:)]) {
-        [vc performSelector:@selector(setMatterBodyDocID:) withObject:self.matterBodyDocID];
-    }
+//    if ([vc respondsToSelector:@selector(setMatterBodyDocID:)]) {
+//        [vc performSelector:@selector(setMatterBodyDocID:) withObject:self.matterBodyDocID];
+//    }
     
     [self addChildViewController:vc];
     
