@@ -238,7 +238,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="8rh-Vn-DAd" rowHeight="50" style="IBUITableViewCellStyleDefault" id="RXQ-t0-cwu">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="8rh-Vn-DAd" imageView="GZs-QT-vuA" rowHeight="50" style="IBUITableViewCellStyleDefault" id="RXQ-t0-cwu">
                                         <rect key="frame" x="0.0" y="364" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RXQ-t0-cwu" id="tyO-KD-BJQ">
@@ -246,12 +246,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="通知公告" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8rh-Vn-DAd">
-                                                    <rect key="frame" x="15" y="0.0" width="290" height="49"/>
+                                                    <rect key="frame" x="59" y="0.0" width="246" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="Notifity.png" id="GZs-QT-vuA">
+                                                    <rect key="frame" x="15" y="10" width="29" height="29"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1441,6 +1445,7 @@
     <resources>
         <image name="GiveRemark.png" width="29" height="29"/>
         <image name="InDoc.png" width="29" height="29"/>
+        <image name="Notifity.png" width="29" height="29"/>
         <image name="Read.png" width="29" height="29"/>
         <image name="Setting.png" width="29" height="29"/>
         <image name="Taken.png" width="29" height="29"/>

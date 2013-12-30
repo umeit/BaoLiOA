@@ -100,6 +100,7 @@
 		03F9BBF41871CA1A00DBD40C /* ToRead@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F9BBEC1871CA1A00DBD40C /* ToRead@2x.png */; };
 		03F9BBF51871CA1A00DBD40C /* InDoc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F9BBED1871CA1A00DBD40C /* InDoc@2x.png */; };
 		03F9BBF61871CA1A00DBD40C /* GiveRemark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F9BBEE1871CA1A00DBD40C /* GiveRemark@2x.png */; };
+		03F9BBF81871CD2F00DBD40C /* Notifity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F9BBF71871CD2F00DBD40C /* Notifity@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -306,6 +307,7 @@
 		03F9BBEC1871CA1A00DBD40C /* ToRead@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ToRead@2x.png"; sourceTree = "<group>"; };
 		03F9BBED1871CA1A00DBD40C /* InDoc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "InDoc@2x.png"; sourceTree = "<group>"; };
 		03F9BBEE1871CA1A00DBD40C /* GiveRemark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GiveRemark@2x.png"; sourceTree = "<group>"; };
+		03F9BBF71871CD2F00DBD40C /* Notifity@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Notifity@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -730,6 +732,7 @@
 		03F9BBD21871C9B700DBD40C /* AppImage */ = {
 			isa = PBXGroup;
 			children = (
+				03F9BBF71871CD2F00DBD40C /* Notifity@2x.png */,
 				03F9BBE71871CA1A00DBD40C /* Read@2x.png */,
 				03F9BBE81871CA1A00DBD40C /* new@2x.png */,
 				03F9BBE91871CA1A00DBD40C /* Todo@2x.png */,
@@ -872,6 +875,7 @@
 				036C0FD7183D031200C61808 /* Main.storyboard in Resources */,
 				039BF616185E077F00985B17 /* MiniZip64_info.txt in Resources */,
 				03F9BBF61871CA1A00DBD40C /* GiveRemark@2x.png in Resources */,
+				03F9BBF81871CD2F00DBD40C /* Notifity@2x.png in Resources */,
 				03F9BBF41871CA1A00DBD40C /* ToRead@2x.png in Resources */,
 				03F9BBF01871CA1A00DBD40C /* new@2x.png in Resources */,
 				039BF622185E077F00985B17 /* InfoPlist.strings in Resources */,
