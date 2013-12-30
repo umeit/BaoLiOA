@@ -65,6 +65,51 @@
 
 #pragma mark - UITableViewDelegate
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat maxNameContentHeight = 0.f;
+    CGFloat maxValueContentHeight = 0.f;
+    
+    NSArray *itemListInLine = self.matterFormInfoList[indexPath.row];
+    
+    for (NSInteger i=0; i<[itemListInLine count]; i++) {
+        BLFromFieldItemEntity *fieldItem = itemListInLine[i];
+        
+        // 计算当前 Label 的宽度
+        CGFloat cellWidth = tableView.bounds.size.width;
+        CGFloat percent = fieldItem.percent / 100.f;
+        CGFloat labelWidth = cellWidth * (percent == 0 ? 1 : percent);
+
+        NSString *nameString = [NSString stringWithFormat:@"%@%@%@%@", fieldItem.beforeName, fieldItem.name, fieldItem.endName, fieldItem.splitString];
+        NSString *valueString = [NSString stringWithFormat:@"%@%@%@", fieldItem.beforeValue, fieldItem.value, fieldItem.endValue];
+        
+        // 显示 name
+        if (fieldItem.nameVisible) {
+            // 分行显示，返回 name 加 value 的高度
+            if (fieldItem.nameRN) {
+                
+                CGFloat nameLabelHeight = [self labelHeightWithMaxWidth:labelWidth content:nameString];
+                CGFloat valueLabelHeight = [self labelHeightWithMaxWidth:labelWidth content:valueString];
+                
+                maxNameContentHeight = MAX(maxNameContentHeight, nameLabelHeight);
+                maxValueContentHeight = MAX(maxValueContentHeight, valueLabelHeight);
+            }
+            // 不分行显示
+            else {
+                CGFloat nameLabelHeight = [self labelHeightWithMaxWidth:labelWidth content:[NSString stringWithFormat:@"%@%@", nameString, valueString]];
+                maxNameContentHeight = MAX(maxNameContentHeight, nameLabelHeight);
+            }
+        }
+        // 不显示 name
+        else {
+            CGFloat valueLabelHeight = [self labelHeightWithMaxWidth:labelWidth content:valueString];
+            maxValueContentHeight = MAX(maxValueContentHeight, valueLabelHeight);
+        }
+    }
+    
+    return maxNameContentHeight + maxValueContentHeight;
+}
+
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [[cell.contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
@@ -99,20 +144,41 @@
         CGFloat percent = fieldItem.percent / 100.f;
         CGFloat labelWidth = cellWidth * (percent == 0 ? 1 : percent);
         
-        UILabel *aLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 0, labelWidth, 44)];
-        aLabel.tag = 1;
-        currentX += labelWidth;  // 左移 x 值，供后续 Label 使用
+        NSString *nameString = [NSString stringWithFormat:@"%@%@%@%@", fieldItem.beforeName, fieldItem.name, fieldItem.endName, fieldItem.splitString];
+        NSString *valueString = [NSString stringWithFormat:@"%@%@%@", fieldItem.beforeValue, fieldItem.value, fieldItem.endValue];
         
-        // 配置 Label 的显示内容
+        /** 配置 Label 的显示内容 */
+        // 显示 name
         if (fieldItem.nameVisible) {
-            aLabel.text = [NSString stringWithFormat:@"%@%@", fieldItem.name, fieldItem.value];
+            // 分行显示
+            if (fieldItem.nameRN) {
+                UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 0, labelWidth, 20)];
+                nameLabel.text = nameString;
+                
+                CGFloat valueLabelHeight = [self labelHeightWithMaxWidth:labelWidth content:valueString];
+                // value 标签
+                UILabel *valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 17, labelWidth, valueLabelHeight)];
+                valueLabel.numberOfLines = 0;
+                valueLabel.text = valueString;
+                
+                [cell.contentView addSubview:nameLabel];
+                [cell.contentView addSubview:valueLabel];
+            }
+            // 不分行显示
+            else {
+                UILabel *aLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 0, labelWidth, 20)];
+                aLabel.text = [NSString stringWithFormat:@"%@%@", nameString, valueString];
+                [cell.contentView addSubview:aLabel];
+            }
         }
+        // 不显示 name
         else {
-            aLabel.text = fieldItem.value;
+            UILabel *aLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 0, labelWidth, 20)];
+            aLabel.text = valueString;
+            [cell.contentView addSubview:aLabel];
         }
         
-        // 将 Label 添加到 cell 中
-        [cell.contentView addSubview:aLabel];
+        currentX += labelWidth;  // 左移 x 值，供后续 Label 使用
     }
     
     // 对于第一行做特殊处理：判断是否有正文附件，如果有，在第一行的行尾放一个按钮，用于导航到正文页面
@@ -133,4 +199,15 @@
         aLabel.frame = CGRectMake(aLabel.frame.origin.x, aLabel.frame.origin.y, newSize.width, newSize.height);
     }
 }
+
+- (CGFloat)labelHeightWithMaxWidth:(CGFloat)width content:(NSString *)content
+{
+    NSDictionary *dic = @{NSFontAttributeName: [UIFont systemFontOfSize:17]};
+    
+    return [content boundingRectWithSize:CGSizeMake(width, 1000)
+                                 options:NSStringDrawingTruncatesLastVisibleLine|NSStringDrawingUsesLineFragmentOrigin
+                              attributes:dic
+                                 context:nil].size.height;
+}
+
 @end

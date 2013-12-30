@@ -185,10 +185,25 @@
             BLFromFieldItemEntity *fieldItemEntity = [[BLFromFieldItemEntity alloc] init];
           
             fieldItemEntity.name = [fieldItemElement child:@"Name"].text;
+            fieldItemEntity.beforeName = [fieldItemElement child:@"BeforeNameString"].text;
+            fieldItemEntity.endName = [fieldItemElement child:@"EndNameString"].text;
             fieldItemEntity.nameVisible = [[fieldItemElement child:@"NameVisible"].text isEqualToString:@"true"] ? YES : NO;
+            fieldItemEntity.nameColor = [fieldItemElement child:@"NameColor"].text;
+            
+            fieldItemEntity.splitString = [fieldItemElement child:@"SplitString"].text;
+            fieldItemEntity.nameRN = [[fieldItemElement child:@"NameRN"].text isEqualToString:@"true"] ? YES : NO;
+            
             fieldItemEntity.Value = [fieldItemElement child:@"Value"].text;
+            fieldItemEntity.beforeValue = [fieldItemElement child:@"BeforeValueString"].text;
+            fieldItemEntity.endValue = [fieldItemElement child:@"EndValueString"].text;
+            fieldItemEntity.valueColor = [fieldItemElement child:@"ValueColor"].text;
+            
+            fieldItemEntity.desplayOrder = [[fieldItemElement child:@"DisplayOrder"].text integerValue];
+            fieldItemEntity.align = [fieldItemElement child:@"Align"].text;
+            
             fieldItemEntity.itemID = [fieldItemElement child:@"Key"].text;
             fieldItemEntity.sign = [[fieldItemElement child:@"Sign"].text isEqualToString:@"true"] ? YES : NO;
+            fieldItemEntity.inputType = [fieldItemElement child:@"Input"].text;
             fieldItemEntity.percent = [[fieldItemElement child:@"Percent"].text integerValue];
           
             [fieldItemList addObject:fieldItemEntity];
