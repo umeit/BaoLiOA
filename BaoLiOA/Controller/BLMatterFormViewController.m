@@ -169,12 +169,15 @@
             if (fieldItem.nameRN) {
                 UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 8, labelWidth, 20)];
                 nameLabel.text = nameString;
+                nameLabel.textColor = [self colorWithString:fieldItem.nameColor];
                 
                 CGFloat valueLabelHeight = [self labelHeightWithMaxWidth:labelWidth content:valueString];
                 // value 标签
                 UILabel *valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 30, labelWidth, valueLabelHeight)];
                 valueLabel.numberOfLines = 0;
                 valueLabel.text = valueString;
+                valueLabel.textColor = [self colorWithString:fieldItem.valueColor];
+                valueLabel.textAlignment = [self alignmentWithString:fieldItem.align];
                 
                 [cell.contentView addSubview:nameLabel];
                 [cell.contentView addSubview:valueLabel];
@@ -188,9 +191,12 @@
         }
         // 不显示 name
         else {
-            UILabel *aLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 8, labelWidth, 20)];
-            aLabel.text = valueString;
-            [cell.contentView addSubview:aLabel];
+            UILabel *valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 8, labelWidth, 20)];
+            valueLabel.text = valueString;
+            valueLabel.textColor = [self colorWithString:fieldItem.valueColor];
+            valueLabel.textAlignment = [self alignmentWithString:fieldItem.align];
+            
+            [cell.contentView addSubview:valueLabel];
         }
         
         currentX += labelWidth;  // 左移 x 值，供后续 Label 使用
@@ -223,6 +229,38 @@
                                  options:NSStringDrawingTruncatesLastVisibleLine|NSStringDrawingUsesLineFragmentOrigin
                               attributes:dic
                                  context:nil].size.height;
+}
+
+- (UIColor *)colorWithString:(NSString *)colorStr
+{
+    if ([colorStr isEqualToString:@"red"]) {
+        return [UIColor redColor];
+    }
+    else if ([colorStr isEqualToString:@"blue"]) {
+        return [UIColor blueColor];
+    }
+    else if ([colorStr isEqualToString:@"green"]) {
+        return [UIColor greenColor];
+    }
+    else {
+        return [UIColor blackColor];
+    }
+}
+
+- (NSTextAlignment)alignmentWithString:(NSString *)alignStr
+{
+    if ([alignStr isEqualToString:@"Right"]) {
+        return NSTextAlignmentRight;
+    }
+    else if ([alignStr isEqualToString:@"Left"]) {
+        return NSTextAlignmentLeft;
+    }
+    else if ([alignStr isEqualToString:@"Center"]) {
+        return NSTextAlignmentCenter;
+    }
+    else {
+        return NSTextAlignmentLeft;
+    }
 }
 
 @end
