@@ -29,6 +29,8 @@
 {
     [super viewDidLoad];
     
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
     self.commonOpinionList = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"kCommonOpinionList"] mutableCopy];
 }
 

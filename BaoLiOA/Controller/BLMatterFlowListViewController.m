@@ -33,7 +33,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
     [self.matterInfoService matterFlowWithMatterID:self.matterID block:^(id obj, NSError *error) {
         if (error) {
             

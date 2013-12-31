@@ -19,6 +19,25 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    switch (self.currentMatterType) {
+        case kInDocMatterList:
+        {
+            [self.segmentedControl setTitle:@"待办收文" forSegmentAtIndex:0];
+            [self.segmentedControl setTitle:@"已办收文" forSegmentAtIndex:1];
+        }
+            break;
+        
+        case kGiveRemarkMatterList:
+        {
+            [self.segmentedControl setTitle:@"待办呈批件" forSegmentAtIndex:0];
+            [self.segmentedControl setTitle:@"已办呈批件" forSegmentAtIndex:1];
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 

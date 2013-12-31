@@ -40,6 +40,8 @@
 {
     [super viewDidLoad];
     
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
     // 设置标题
     switch (self.currentMatterType) {
             
