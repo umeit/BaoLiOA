@@ -10,6 +10,7 @@
 #import "BLMatterInfoService.h"
 #import "BLMatterFlowCell.h"
 #import "BLMatterFlowEntity.h"
+#import "UIViewController+GViewController.h"
 
 @interface BLMatterFlowListViewController ()
 
@@ -36,10 +37,14 @@
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
+    [self showLodingView];
+    
     [self.matterInfoService matterFlowWithMatterID:self.matterID block:^(id obj, NSError *error) {
+        
+        [self hideLodingView];
+        
         if (error) {
-            
-            
+            [self showNetworkingErrorAlert];
         }
         else {
             self.flowList = obj;
