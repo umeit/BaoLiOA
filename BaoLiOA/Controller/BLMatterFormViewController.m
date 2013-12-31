@@ -11,6 +11,7 @@
 #import "BLMainBodyViewController.h"
 #import "BLMatterInfoService.h"
 #import "BLFromFieldItemEntity.h"
+#import "BLInfoRegionEntity.h"
 
 @interface BLMatterFormViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -70,7 +71,9 @@
     CGFloat maxNameContentHeight = 0.f;
     CGFloat maxValueContentHeight = 0.f;
     
-    NSArray *itemListInLine = self.matterFormInfoList[indexPath.row];
+    BLInfoRegionEntity *infoRegion = self.matterFormInfoList[indexPath.row];
+    
+    NSArray *itemListInLine = infoRegion.feildItemList;
     
     for (NSInteger i=0; i<[itemListInLine count]; i++) {
         BLFromFieldItemEntity *fieldItem = itemListInLine[i];
@@ -132,25 +135,29 @@
 
 - (void)configureMatterFormBaseCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray *itemListInLine = self.matterFormInfoList[indexPath.row];
+    BLInfoRegionEntity *infoRegion = self.matterFormInfoList[indexPath.row];
+    
+    NSArray *itemListInLine = infoRegion.feildItemList;
     
     CGFloat currentX = 15;
     CGFloat cellWidth = cell.contentView.bounds.size.width; // cell 的宽度
     
     for (NSInteger i=0; i<[itemListInLine count]; i++) {
+        
         BLFromFieldItemEntity *fieldItem = itemListInLine[i];
         
-        // 计算当前 Label 的宽度
-        CGFloat percent = fieldItem.percent / 100.f;
-        CGFloat labelWidth = (cellWidth - 15) * (percent == 0 ? 1 : percent) - 4;
-        
-        if (i > 0) {
+        // 加上一条纵向的分割线
+        if (i > 0 && infoRegion.vlineVisible) {
             UIView *splitView = [[UIView alloc] initWithFrame:CGRectMake(currentX, 0, 1, cell.frame.size.height)];
             splitView.backgroundColor = [UIColor lightGrayColor];
             [cell.contentView addSubview:splitView];
             
-            currentX += 1;
+            currentX += 11;
         }
+        
+        // 计算当前 Label 的宽度
+        CGFloat percent = fieldItem.percent / 100.f;
+        CGFloat labelWidth = (cellWidth - 15) * (percent == 0 ? 1 : percent) - 10;
         
         NSString *nameString = [NSString stringWithFormat:@"%@%@%@%@", fieldItem.beforeName, fieldItem.name, fieldItem.endName, fieldItem.splitString];
         NSString *valueString = [NSString stringWithFormat:@"%@%@%@", fieldItem.beforeValue, fieldItem.value, fieldItem.endValue];

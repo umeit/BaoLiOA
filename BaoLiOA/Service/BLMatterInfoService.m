@@ -13,7 +13,7 @@
 #import "BLFromFieldItemEntity.h"
 #import "BLAttachEntity.h"
 #import "RXMLElement.h"
-
+#import "BLInfoRegionEntity.h"
 
 @implementation BLMatterInfoService
 
@@ -175,7 +175,13 @@
     
     [rootElement iterate:@"Body.GetDocInfoResponse.GetDocInfoResult.RegionItems.InfoRegion"
     usingBlock:^(RXMLElement *regionInfoElement) {
-      
+        
+        BLInfoRegionEntity *infoRegionEntity = [[BLInfoRegionEntity alloc] init];
+        
+        infoRegionEntity.regionID = [regionInfoElement child:@"RegionID"].text;
+        infoRegionEntity.vlineVisible = [[regionInfoElement child:@"VlineVisible"].text boolValue];
+        infoRegionEntity.displayOrder = [[regionInfoElement child:@"DisplayOrder"].text integerValue];
+        
         // 解析一个 Region 中的所有 Field 数据
         NSMutableArray *fieldItemList = [[NSMutableArray alloc] init];
         
@@ -208,7 +214,10 @@
           
             [fieldItemList addObject:fieldItemEntity];
         }];
-        [regionList addObject:fieldItemList];
+        
+        infoRegionEntity.feildItemList = fieldItemList;
+        
+        [regionList addObject:infoRegionEntity];
   }];
     
     return regionList;

@@ -92,6 +92,7 @@
 		03DECA49184247D0007F6F40 /* BLGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DECA48184247D0007F6F40 /* BLGlobal.m */; };
 		03DECA4C184250B8007F6F40 /* BLMatterFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DECA4B184250B8007F6F40 /* BLMatterFormViewController.m */; };
 		03DECA4F18425154007F6F40 /* BLMatterOperationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DECA4E18425154007F6F40 /* BLMatterOperationService.m */; };
+		03E253DD1872703700EF9C05 /* BLInfoRegionEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E253DC1872703700EF9C05 /* BLInfoRegionEntity.m */; };
 		03F9BBEF1871CA1A00DBD40C /* Read@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F9BBE71871CA1A00DBD40C /* Read@2x.png */; };
 		03F9BBF01871CA1A00DBD40C /* new@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F9BBE81871CA1A00DBD40C /* new@2x.png */; };
 		03F9BBF11871CA1A00DBD40C /* Todo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F9BBE91871CA1A00DBD40C /* Todo@2x.png */; };
@@ -299,6 +300,8 @@
 		03DECA4B184250B8007F6F40 /* BLMatterFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterFormViewController.m; sourceTree = "<group>"; };
 		03DECA4D18425154007F6F40 /* BLMatterOperationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterOperationService.h; sourceTree = "<group>"; };
 		03DECA4E18425154007F6F40 /* BLMatterOperationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterOperationService.m; sourceTree = "<group>"; };
+		03E253DB1872703700EF9C05 /* BLInfoRegionEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLInfoRegionEntity.h; sourceTree = "<group>"; };
+		03E253DC1872703700EF9C05 /* BLInfoRegionEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLInfoRegionEntity.m; sourceTree = "<group>"; };
 		03F9BBE71871CA1A00DBD40C /* Read@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Read@2x.png"; sourceTree = "<group>"; };
 		03F9BBE81871CA1A00DBD40C /* new@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new@2x.png"; sourceTree = "<group>"; };
 		03F9BBE91871CA1A00DBD40C /* Todo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Todo@2x.png"; sourceTree = "<group>"; };
@@ -407,6 +410,8 @@
 				0323EAD41851E2EA00752172 /* BLAttachEntity.m */,
 				039155FB1861F24800BBFCB2 /* BLMatterFlowEntity.h */,
 				039155FC1861F24800BBFCB2 /* BLMatterFlowEntity.m */,
+				03E253DB1872703700EF9C05 /* BLInfoRegionEntity.h */,
+				03E253DC1872703700EF9C05 /* BLInfoRegionEntity.m */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -917,6 +922,7 @@
 				03BD17F71844DC44002F2C38 /* BLMatterAttachmentListViewController.m in Sources */,
 				0341733C185A1637003597D4 /* BLMatterOperationHTTPLogic.m in Sources */,
 				035C2D381843AA660090E5BA /* BLMainBodyViewController.m in Sources */,
+				03E253DD1872703700EF9C05 /* BLInfoRegionEntity.m in Sources */,
 				03588FE1183E4B620067F5D0 /* BLMatterInfoService.m in Sources */,
 				0303D4711869DD5D00184EED /* BLSegmentMatterListViewController.m in Sources */,
 				03DECA4F18425154007F6F40 /* BLMatterOperationService.m in Sources */,
