@@ -149,6 +149,8 @@
 {
     [super viewDidLoad];
     
+    self.navigationItem.title = self.matterTitle;
+    
     [self showLodingView];
     
 	[self.matterInfoService matterDetailInfoWithMatterID:self.matterID block:^(NSDictionary *dic, NSError *error) {

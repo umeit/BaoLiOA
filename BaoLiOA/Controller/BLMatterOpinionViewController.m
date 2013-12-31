@@ -10,7 +10,7 @@
 #import "BLCommonOpinionViewController.h"
 
 @interface BLMatterOpinionViewController () <BLCommonOpinionViewControllerDelegate>
-@property (weak, nonatomic) IBOutlet UITextField *opinionTextField;
+//@property (weak, nonatomic) IBOutlet UITextField *opinionTextField;
 @property (weak, nonatomic) IBOutlet UITextView *opinionTextView;
 @property (weak, nonatomic) UIPopoverController *commonOpinionPopover;
 @end
@@ -37,7 +37,7 @@
 
 - (void)opinionDidSelecte:(NSString *)opinion
 {
-    self.opinionTextField.text = opinion;
+    self.opinionTextView.text = opinion;
     
     [self.delegate opinionDidSelect:opinion];
     

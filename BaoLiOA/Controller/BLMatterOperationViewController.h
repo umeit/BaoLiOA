@@ -18,6 +18,8 @@
 
 @property (strong, nonatomic) NSString *matterID;
 
+@property (strong, nonatomic) NSString *matterTitle;
+
 @property (weak, nonatomic) id<BLMatterOperationViewControllerDelegate> delegate;
 
 @end

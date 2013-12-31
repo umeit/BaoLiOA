@@ -133,14 +133,19 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     UIViewController *vc = segue.destinationViewController;
+    BLMatterEntity *matter = self.matterList[[self.tableView indexPathForSelectedRow].row];
     
     if ([vc respondsToSelector:@selector(setMatterID:)]) {
-        NSString *matterID = ((BLMatterEntity *)self.matterList[[self.tableView indexPathForSelectedRow].row]).matterID;
+        NSString *matterID = matter.matterID;
         [vc performSelector:@selector(setMatterID:) withObject:matterID];
     }
     
     if ([vc respondsToSelector:@selector(setDelegate:)]) {
         [vc performSelector:@selector(setDelegate:) withObject:self];
+    }
+    
+    if ([vc respondsToSelector:@selector(setMatterTitle:)]) {
+        [vc performSelector:@selector(setMatterTitle:) withObject:matter.title];
     }
 }
 
