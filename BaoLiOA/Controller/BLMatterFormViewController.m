@@ -98,21 +98,21 @@
             // 分行显示，返回 name 加 value 的高度
             if (fieldItem.nameRN) {
                 
-                CGFloat nameLabelHeight = [self labelHeightWithMaxWidth:labelWidth content:nameString];
-                CGFloat valueLabelHeight = [self labelHeightWithMaxWidth:labelWidth content:valueString];
+                CGFloat nameLabelHeight = [self labelSizeWithMaxWidth:labelWidth content:nameString].height;
+                CGFloat valueLabelHeight = [self labelSizeWithMaxWidth:labelWidth content:valueString].height;
                 
                 maxNameContentHeight = MAX(maxNameContentHeight, nameLabelHeight);
                 maxValueContentHeight = MAX(maxValueContentHeight, valueLabelHeight);
             }
             // 不分行显示，返回 name 和 value 都在一行的高度
             else {
-                CGFloat nameLabelHeight = [self labelHeightWithMaxWidth:labelWidth content:[NSString stringWithFormat:@"%@%@", nameString, valueString]];
+                CGFloat nameLabelHeight = [self labelSizeWithMaxWidth:labelWidth content:[NSString stringWithFormat:@"%@%@", nameString, valueString]].height;
                 maxNameContentHeight = MAX(maxNameContentHeight, nameLabelHeight);
             }
         }
         // 不显示 name，返回 value 的高度
         else {
-            CGFloat valueLabelHeight = [self labelHeightWithMaxWidth:labelWidth content:valueString];
+            CGFloat valueLabelHeight = [self labelSizeWithMaxWidth:labelWidth content:valueString].height;
             maxValueContentHeight = MAX(maxValueContentHeight, valueLabelHeight);
         }
     }
@@ -178,7 +178,7 @@
                 nameLabel.text = nameString;
                 nameLabel.textColor = [self colorWithString:fieldItem.nameColor];
                 
-                CGFloat valueLabelHeight = [self labelHeightWithMaxWidth:labelWidth content:valueString];
+                CGFloat valueLabelHeight = [self labelSizeWithMaxWidth:labelWidth content:valueString].height;
                 // value 标签
                 UILabel *valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 30, labelWidth, valueLabelHeight)];
                 valueLabel.numberOfLines = 0;
@@ -192,7 +192,44 @@
             // 不分行显示
             else {
                 UILabel *aLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 8, labelWidth, 20)];
-                aLabel.text = [NSString stringWithFormat:@"%@%@", nameString, valueString];
+                
+                NSMutableAttributedString *nameAttrString = [[NSMutableAttributedString alloc] initWithString:nameString];
+                NSMutableAttributedString *valueAttrString = [[NSMutableAttributedString alloc] initWithString:valueString];
+                
+                [nameAttrString beginEditing];
+                [nameAttrString addAttribute:NSForegroundColorAttributeName value:[self colorWithString:fieldItem.nameColor] range:[nameString rangeOfString:nameString]];
+                [nameAttrString endEditing];
+                
+                [valueAttrString beginEditing];
+                [valueAttrString addAttribute:NSForegroundColorAttributeName value:[self colorWithString:fieldItem.valueColor] range:[valueString rangeOfString:valueString]];
+                [valueAttrString endEditing];
+                
+                [nameAttrString appendAttributedString:valueAttrString];
+                
+                aLabel.attributedText = nameAttrString;
+                
+//                NSString *fullString = [NSString stringWithFormat:@"%@%@", nameString, valueString];
+//                
+//                NSRange nameStringRange = [fullString rangeOfString:nameString];
+//                NSRange valueStringRange = [fullString rangeOfString:valueString];
+//                
+//                NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:fullString];
+//                
+//                [attrString beginEditing];
+//                [attrString addAttribute:NSForegroundColorAttributeName
+//                                   value:[self colorWithString:fieldItem.nameColor]
+//                                   range:nameStringRange];
+//                
+//                [attrString addAttribute:NSForegroundColorAttributeName
+//                                   value:[self colorWithString:fieldItem.valueColor]
+//                                   range:valueStringRange];
+//                [attrString endEditing];
+                
+//                aLabel.text = [NSString stringWithFormat:@"%@%@", nameString, valueString];
+//                aLabel.textColor = [self colorWithString:fieldItem.nameColor];
+                
+//                aLabel.attributedText = attrString;
+                
                 [cell.contentView addSubview:aLabel];
             }
         }
@@ -228,14 +265,14 @@
 //    }
 }
 
-- (CGFloat)labelHeightWithMaxWidth:(CGFloat)width content:(NSString *)content
+- (CGSize)labelSizeWithMaxWidth:(CGFloat)width content:(NSString *)content
 {
     NSDictionary *dic = @{NSFontAttributeName: [UIFont systemFontOfSize:17]};
     
     return [content boundingRectWithSize:CGSizeMake(width, 1000)
                                  options:NSStringDrawingTruncatesLastVisibleLine|NSStringDrawingUsesLineFragmentOrigin
                               attributes:dic
-                                 context:nil].size.height;
+                                 context:nil].size;
 }
 
 - (UIColor *)colorWithString:(NSString *)colorStr
