@@ -7,6 +7,7 @@
 //
 
 #import "BLSettingViewController.h"
+#import "UIViewController+GViewController.h"
 
 @interface BLSettingViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *commonOpinionNumberLabel;
@@ -53,6 +54,8 @@
 
 - (IBAction)logoutButtonPress:(id)sender
 {
-    
+    [self showCustomTextAlert:@"确定退出？" withOKButtonPressed:^{
+        self.view.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BLLoginViewController"];
+    }];
 }
 @end

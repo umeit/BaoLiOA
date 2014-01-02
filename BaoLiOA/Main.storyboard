@@ -354,7 +354,8 @@
                         </sections>
                     </tableView>
                     <navigationItem key="navigationItem" title="设置" id="2QY-jL-gqr">
-                        <barButtonItem key="rightBarButtonItem" title="注销" id="ogh-yH-JD1">
+                        <barButtonItem key="rightBarButtonItem" title="退出登录" id="ogh-yH-JD1">
+                            <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="logoutButtonPress:" destination="GIc-PY-00h" id="JbM-pn-k05"/>
                             </connections>
