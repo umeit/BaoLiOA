@@ -218,9 +218,20 @@
     // 使用 tag 记录「下载按钮」是属于哪一行的
     cell.downloadButton.tag = indexPath.row;
     
-    if ([attachEntity.attachType isEqualToString:@"docx"]
-        || [attachEntity.attachType isEqualToString:@"doc"]) {
+    if ([attachEntity.attachType compare:@"docx"options:NSCaseInsensitiveSearch] == NSOrderedSame
+        || [attachEntity.attachType compare:@"doc" options:NSCaseInsensitiveSearch] == NSOrderedSame) {
         cell.typeImageView.image = [UIImage imageNamed:@"W"];
+    }
+    else if ([attachEntity.attachType compare:@"xlsx"options:NSCaseInsensitiveSearch] == NSOrderedSame
+        || [attachEntity.attachType compare:@"xls" options:NSCaseInsensitiveSearch] == NSOrderedSame) {
+        cell.typeImageView.image = [UIImage imageNamed:@"S"];
+    }
+    else if ([attachEntity.attachType compare:@"pptx"options:NSCaseInsensitiveSearch] == NSOrderedSame
+             || [attachEntity.attachType compare:@"ppt" options:NSCaseInsensitiveSearch] == NSOrderedSame) {
+        cell.typeImageView.image = [UIImage imageNamed:@"P"];
+    }
+    else if ([attachEntity.attachType compare:@"PDF" options:NSCaseInsensitiveSearch] == NSOrderedSame) {
+        cell.typeImageView.image = [UIImage imageNamed:@"PDF"];
     }
     else {
         cell.typeImageView.image = [UIImage imageNamed:@"OTHER"];
