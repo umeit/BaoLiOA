@@ -33,6 +33,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    self.loginIDTextField.text = [userDefaults stringForKey:@"CurrentUserLoginID"];
 }
 
 #pragma mark - Action
@@ -46,11 +48,12 @@
         [self showCustomTextAlert:@"请输入用户名"];
         return;
     }
-    
-    if (!password || [password length] < 1) {
-        [self showCustomTextAlert:@"请输入密码"];
-        return;
-    }
+
+#warning 只在测试时关闭
+//    if (!password || [password length] < 1) {
+//        [self showCustomTextAlert:@"请输入密码"];
+//        return;
+//    }
     
     [self showLodingView];
     
@@ -62,9 +65,23 @@
             case 0:
             {
                 NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//                [userDefaults setObject:@"HZ8181e5415cd79f01415d11bde70773" forKey:@"CurrentUserID"];
-                [userDefaults setObject:@"admin" forKey:@"CurrentUserID"];
-                [userDefaults setObject:@"朱铭新" forKey:@"CurrentUserName"];
+//
+                
+                if ([loginID isEqualToString:@"admin"]) {
+                    [userDefaults setObject:@"admin" forKey:@"CurrentUserLoginID"];
+                    [userDefaults setObject:@"admin" forKey:@"CurrentUserID"];
+                    [userDefaults setObject:@"管理员" forKey:@"CurrentUserName"];
+                }
+                else if ([loginID isEqualToString:@"zhumx"]) {
+                    [userDefaults setObject:@"zhumx" forKey:@"CurrentUserLoginID"];
+                    [userDefaults setObject:@"HZ8181e5415cd79f01415d11bde70773" forKey:@"CurrentUserID"];
+                    [userDefaults setObject:@"朱铭新" forKey:@"CurrentUserName"];
+                }
+                else {
+                    [userDefaults setObject:@"admin" forKey:@"CurrentUserLoginID"];
+                    [userDefaults setObject:@"admin" forKey:@"CurrentUserID"];
+                    [userDefaults setObject:@"管理员" forKey:@"CurrentUserName"];
+                }
                 
                 self.view.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BLSplitViewController"];
                 break;
