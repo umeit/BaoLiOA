@@ -20,6 +20,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 
@@ -44,9 +46,11 @@
     
     if ([self isFollowMarked:@(indexPath.row)]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        cell.textLabel.textColor = [UIColor blackColor];
     }
     else {
         cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.textLabel.textColor = [UIColor grayColor];
     }
     
     return cell;

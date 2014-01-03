@@ -109,7 +109,7 @@
              
                 NSMutableArray *routList = [[NSMutableArray alloc] init];
              
-                [rootElement iterate:@"Body.DoActionResponse.DoActionResult.listAuthorInfo.AuthorInfo" usingBlock:^(RXMLElement *e) {
+                [rootElement iterate:@"Body.DoActionResponse.DoActionResult.ListAuthorInfo.AuthorInfo" usingBlock:^(RXMLElement *e) {
                     [routList addObject:@{@"UserID": [e child:@"UserID"].text,
                                        @"UserName": [e child:@"UserName"].text}];
                 }];
