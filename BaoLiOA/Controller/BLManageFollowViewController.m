@@ -50,7 +50,7 @@
     }
     else {
         cell.accessoryType = UITableViewCellAccessoryNone;
-        cell.textLabel.textColor = [UIColor grayColor];
+        cell.textLabel.textColor = [UIColor darkGrayColor];
     }
     
     return cell;
