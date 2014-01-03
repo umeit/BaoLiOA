@@ -217,5 +217,13 @@
     
     // 使用 tag 记录「下载按钮」是属于哪一行的
     cell.downloadButton.tag = indexPath.row;
+    
+    if ([attachEntity.attachType isEqualToString:@"docx"]
+        || [attachEntity.attachType isEqualToString:@"doc"]) {
+        cell.typeImageView.image = [UIImage imageNamed:@"W"];
+    }
+    else {
+        cell.typeImageView.image = [UIImage imageNamed:@"OTHER"];
+    }
 }
 @end

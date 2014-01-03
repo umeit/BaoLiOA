@@ -8,6 +8,7 @@
 
 #import "BLLoginViewController.h"
 #import "BLUserService.h"
+#import "UIViewController+GViewController.h"
 
 @interface BLLoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *loginIDTextField;
@@ -42,21 +43,27 @@
     NSString *password = self.passwordTextField.text;
     
     if (!loginID || [loginID length] < 1) {
-        // 提示
+        [self showCustomTextAlert:@"请输入用户名"];
         return;
     }
     
     if (!password || [password length] < 1) {
-        // 提示
+        [self showCustomTextAlert:@"请输入密码"];
         return;
     }
     
+    [self showLodingView];
+    
     [self.userService loginWithLoginID:loginID password:password block:^(NSInteger retCode) {
+        
+        [self hideLodingView];
+        
         switch (retCode) {
             case 0:
             {
                 NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-                [userDefaults setObject:@"HZ8181e5415cd79f01415d11bde70773" forKey:@"CurrentUserID"];
+//                [userDefaults setObject:@"HZ8181e5415cd79f01415d11bde70773" forKey:@"CurrentUserID"];
+                [userDefaults setObject:@"admin" forKey:@"CurrentUserID"];
                 [userDefaults setObject:@"朱铭新" forKey:@"CurrentUserName"];
                 
                 self.view.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BLSplitViewController"];

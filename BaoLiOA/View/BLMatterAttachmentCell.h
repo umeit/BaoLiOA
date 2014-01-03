@@ -12,5 +12,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *attachmentTitleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *downloadButton;
 @property (weak, nonatomic) IBOutlet UIProgressView *progress;
+@property (weak, nonatomic) IBOutlet UIImageView *typeImageView;
 
 @end

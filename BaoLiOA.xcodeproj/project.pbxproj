@@ -48,6 +48,11 @@
 		036C0FF3183D05AD00C61808 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 036C0FE8183D05AD00C61808 /* AFURLRequestSerialization.m */; };
 		036C0FF4183D05AD00C61808 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 036C0FEA183D05AD00C61808 /* AFURLResponseSerialization.m */; };
 		036C0FF5183D05AD00C61808 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 036C0FEC183D05AD00C61808 /* AFURLSessionManager.m */; };
+		036DEC5B18769A2300817F80 /* OTHER@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 036DEC5618769A2300817F80 /* OTHER@2x.png */; };
+		036DEC5C18769A2300817F80 /* P@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 036DEC5718769A2300817F80 /* P@2x.png */; };
+		036DEC5D18769A2300817F80 /* PDF@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 036DEC5818769A2300817F80 /* PDF@2x.png */; };
+		036DEC5E18769A2300817F80 /* S@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 036DEC5918769A2300817F80 /* S@2x.png */; };
+		036DEC5F18769A2300817F80 /* W@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 036DEC5A18769A2300817F80 /* W@2x.png */; };
 		0381BC5518478BDF00DB661D /* BLCommonOpinionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0381BC5418478BDF00DB661D /* BLCommonOpinionViewController.m */; };
 		0381BC581847985400DB661D /* BLManageFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0381BC571847985400DB661D /* BLManageFollowViewController.m */; };
 		03844F97186456610028BF80 /* BLAttachManageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 03844F96186456610028BF80 /* BLAttachManageService.m */; };
@@ -222,6 +227,11 @@
 		036C0FEA183D05AD00C61808 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		036C0FEB183D05AD00C61808 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		036C0FEC183D05AD00C61808 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		036DEC5618769A2300817F80 /* OTHER@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OTHER@2x.png"; sourceTree = "<group>"; };
+		036DEC5718769A2300817F80 /* P@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "P@2x.png"; sourceTree = "<group>"; };
+		036DEC5818769A2300817F80 /* PDF@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PDF@2x.png"; sourceTree = "<group>"; };
+		036DEC5918769A2300817F80 /* S@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S@2x.png"; sourceTree = "<group>"; };
+		036DEC5A18769A2300817F80 /* W@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "W@2x.png"; sourceTree = "<group>"; };
 		0381BC5318478BDF00DB661D /* BLCommonOpinionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCommonOpinionViewController.h; sourceTree = "<group>"; };
 		0381BC5418478BDF00DB661D /* BLCommonOpinionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCommonOpinionViewController.m; sourceTree = "<group>"; };
 		0381BC561847985400DB661D /* BLManageFollowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLManageFollowViewController.h; sourceTree = "<group>"; };
@@ -739,6 +749,11 @@
 		03F9BBD21871C9B700DBD40C /* AppImage */ = {
 			isa = PBXGroup;
 			children = (
+				036DEC5618769A2300817F80 /* OTHER@2x.png */,
+				036DEC5718769A2300817F80 /* P@2x.png */,
+				036DEC5818769A2300817F80 /* PDF@2x.png */,
+				036DEC5918769A2300817F80 /* S@2x.png */,
+				036DEC5A18769A2300817F80 /* W@2x.png */,
 				0360E5DF18756907007CC623 /* bg_login@2x.png */,
 				03F9BBF71871CD2F00DBD40C /* Notifity@2x.png */,
 				03F9BBE71871CA1A00DBD40C /* Read@2x.png */,
@@ -876,18 +891,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				039BF61C185E077F00985B17 /* V3.png in Resources */,
+				036DEC5E18769A2300817F80 /* S@2x.png in Resources */,
 				039BF620185E077F00985B17 /* InfoPlist.strings in Resources */,
 				039BF60E185E077F00985B17 /* LICENSE in Resources */,
+				036DEC5B18769A2300817F80 /* OTHER@2x.png in Resources */,
 				039BF61B185E077F00985B17 /* InfoPlist.strings in Resources */,
 				039BF60D185E077F00985B17 /* Doxyfile in Resources */,
 				0360E5E018756907007CC623 /* bg_login@2x.png in Resources */,
+				036DEC5F18769A2300817F80 /* W@2x.png in Resources */,
 				036C0FD7183D031200C61808 /* Main.storyboard in Resources */,
+				036DEC5C18769A2300817F80 /* P@2x.png in Resources */,
 				039BF616185E077F00985B17 /* MiniZip64_info.txt in Resources */,
 				03F9BBF61871CA1A00DBD40C /* GiveRemark@2x.png in Resources */,
 				03F9BBF81871CD2F00DBD40C /* Notifity@2x.png in Resources */,
 				03F9BBF41871CA1A00DBD40C /* ToRead@2x.png in Resources */,
 				03F9BBF01871CA1A00DBD40C /* new@2x.png in Resources */,
 				039BF622185E077F00985B17 /* InfoPlist.strings in Resources */,
+				036DEC5D18769A2300817F80 /* PDF@2x.png in Resources */,
 				03F9BBF21871CA1A00DBD40C /* Setting@2x.png in Resources */,
 				036C0FB2183D02AB00C61808 /* InfoPlist.strings in Resources */,
 				039BF611185E077F00985B17 /* make_vms.com in Resources */,
