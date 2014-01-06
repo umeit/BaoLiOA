@@ -151,6 +151,11 @@
     
     self.navigationItem.title = self.matterTitle;
     
+    // 加高 SegmentView 的高度，其他值与 IB 中保持一致
+    UIFont *segmentViewFont = [UIFont systemFontOfSize:16.f];
+    [self.SegmentView setTitleTextAttributes:@{NSFontAttributeName: segmentViewFont} forState:UIControlStateNormal];
+//    self.SegmentView.frame = CGRectMake(0, 65, 703, 55);
+    
     [self showLodingView];
     
 	[self.matterInfoService matterDetailInfoWithMatterID:self.matterID block:^(NSDictionary *dic, NSError *error) {
@@ -174,6 +179,10 @@
         
         if (!self.matterBodyDocID || self.matterBodyDocID.length < 1) {
             self.navigationItem.rightBarButtonItem = nil;
+        }
+        
+        if (!self.matterAttachList || self.matterAttachList.count < 1) {
+            [self.SegmentView removeSegmentAtIndex:1 animated:NO];
         }
         
         // 默认被选中的 view controller，为 表单 controller
