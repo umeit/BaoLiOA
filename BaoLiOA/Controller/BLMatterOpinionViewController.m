@@ -20,8 +20,28 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
+    self.opinionTextView.text = self.comment;
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(editFinish)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+}
+
+
+#pragma mark - Observer
+
+- (void)editFinish
+{
+    [self.delegate opinionDidSelect:self.opinionTextView.text];
+}
+
 
 #pragma mark - Navigation
 

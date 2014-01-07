@@ -400,6 +400,10 @@
         [vc performSelector:@selector(setMatterID:) withObject:self.matterID];
     }
     
+    if ([vc respondsToSelector:@selector(setComment:)]) {
+        [vc performSelector:@selector(setComment:) withObject:self.comment];
+    }
+    
     // 设置正文附件ID
 //    if ([vc respondsToSelector:@selector(setMatterBodyDocID:)]) {
 //        [vc performSelector:@selector(setMatterBodyDocID:) withObject:self.matterBodyDocID];
@@ -500,7 +504,7 @@
                 vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMatterFlowListViewController"];
                 break;
                 
-            case 4:
+            case 3:
                 // 意见视图
                 vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMatterOpinionViewController"];
                 break;

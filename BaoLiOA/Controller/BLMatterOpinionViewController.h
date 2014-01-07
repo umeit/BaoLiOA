@@ -17,6 +17,8 @@
 
 @interface BLMatterOpinionViewController : UIViewController
 
+@property (strong, nonatomic) NSString *comment;
+
 @property (weak, nonatomic) id<BLMatterOpinionViewControllerDelegate> delegate;
 
 @end

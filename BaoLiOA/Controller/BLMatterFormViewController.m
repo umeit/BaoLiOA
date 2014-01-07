@@ -17,9 +17,9 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (strong, nonatomic) BLMatterInfoService *matterService;
-
-@property (strong, nonatomic) BLMatterOperationService *matterOprationService;
+//@property (strong, nonatomic) BLMatterInfoService *matterService;
+//
+//@property (strong, nonatomic) BLMatterOperationService *matterOprationService;
 
 //@property (strong, nonatomic) NSString *mainbodyFileLocalPath;
 
@@ -34,8 +34,8 @@
     self = [super initWithCoder:aDecoder];
     
     if (self) {
-        _matterOprationService = [[BLMatterOperationService alloc] init];
-        _matterService = [[BLMatterInfoService alloc] init];
+//        _matterOprationService = [[BLMatterOperationService alloc] init];
+//        _matterService = [[BLMatterInfoService alloc] init];
     }
     return self;
 }
