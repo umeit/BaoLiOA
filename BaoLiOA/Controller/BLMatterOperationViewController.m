@@ -226,15 +226,19 @@
 
 - (void)operationButtonPress:(UIButton *)button
 {
+    if (!self.comment || self.comment.length < 1) {
+        [self showCustomTextAlert:@"您还未填写办理意见"];
+        return;
+    }
+    
     NSString *actionID = [self actionIDWithButtonName:button.titleLabel.text];
     
-    NSString *comment = @"同意";
+//    NSString *comment = @"同意";
     
     self.currentActionID = actionID;
     
-#warning 改用用真实的意见
     [self operationMatterWithAction:actionID
-                            comment:comment
+                            comment:self.comment
                           routeList:nil
                        employeeList:nil
                            matterID:self.matterID];
@@ -260,9 +264,8 @@
         }
     }
     
-#warning 改用用真实的意见
     [self operationMatterWithAction:self.currentActionID
-                            comment:@"同意"
+                            comment:self.comment
                           routeList:self.selectedRouteList
                        employeeList:self.selectedEmployeeList
                            matterID:self.matterID];
