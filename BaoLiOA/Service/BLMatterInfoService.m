@@ -27,6 +27,9 @@
             block(nil, error);
         }
         else {
+            NSLog(@"Response [Matter List Data]: %@", [[NSString alloc] initWithData:responseData
+                                                                              encoding:NSUTF8StringEncoding]);
+            
             NSMutableArray *todoList = [[NSMutableArray alloc] init];
             
             RXMLElement *rootElement = [RXMLElement elementFromXMLData:responseData];

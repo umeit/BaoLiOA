@@ -22,12 +22,15 @@
 #define Route    0
 #define Employee 1
 
+#define HasBodyDoc (self.matterBodyDocID && self.matterBodyDocID.length > 0)
+#define HasAttach  (self.matterAttachList && self.matterAttachList.count > 0)
+
 @interface BLMatterOperationViewController () <BLManageFollowViewControllerDelegate, BLMatterOpinionViewControllerDelegate>
 
 /**
  *  切换控件
  */
-@property (weak, nonatomic) IBOutlet UISegmentedControl *SegmentView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentView;
 
 /**
  *  界面中间用于显示切换的视图
@@ -37,7 +40,7 @@
 /**
  *  查看正文按钮
  */
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *watchBodyDocButton;
+//@property (weak, nonatomic) IBOutlet UIBarButtonItem *watchBodyDocButton;
 
 /**
  *  记录当前切换到的 controller
@@ -151,14 +154,18 @@
     
     self.navigationItem.title = self.matterTitle;
     
-    // 加高 SegmentView 的高度，其他值与 IB 中保持一致
+    // 加大 segment 的字号
     UIFont *segmentViewFont = [UIFont systemFontOfSize:16.f];
-    [self.SegmentView setTitleTextAttributes:@{NSFontAttributeName: segmentViewFont} forState:UIControlStateNormal];
-//    self.SegmentView.frame = CGRectMake(0, 65, 703, 55);
+    [self.segmentView setTitleTextAttributes:@{NSFontAttributeName: segmentViewFont} forState:UIControlStateNormal];
+
+    // 隐藏 segment
+    self.segmentView.hidden = YES;
     
     [self showLodingView];
     
 	[self.matterInfoService matterDetailInfoWithMatterID:self.matterID block:^(NSDictionary *dic, NSError *error) {
+        
+        self.segmentView.hidden = NO;
         
         [self hideLodingView];
         
@@ -178,12 +185,18 @@
         [self initOperationButton:self.matterOperationList];
         
         if (!self.matterBodyDocID || self.matterBodyDocID.length < 1) {
-            self.navigationItem.rightBarButtonItem = nil;
+//            self.navigationItem.rightBarButtonItem = nil;
+            [self.segmentView removeSegmentAtIndex:1 animated:NO];
+            
+            if (!self.matterAttachList || self.matterAttachList.count < 1) {
+                [self.segmentView removeSegmentAtIndex:1 animated:NO];
+            }
+        }
+        else if (!self.matterAttachList || self.matterAttachList.count < 1) {
+            [self.segmentView removeSegmentAtIndex:2 animated:NO];
         }
         
-        if (!self.matterAttachList || self.matterAttachList.count < 1) {
-            [self.SegmentView removeSegmentAtIndex:1 animated:NO];
-        }
+        
         
         // 默认被选中的 view controller，为 表单 controller
         UIViewController *vc = [self viewControllerForSelectedSegment];
@@ -406,34 +419,117 @@
     self.currentViewController = vc;
 }
 
+// 返回当前选择的 segment 代表的 controller
 - (UIViewController *)viewControllerForSelectedSegment
 {
     UIViewController *vc;
     
     // 根据 segment 的 index 找到相应的 view controller
-    switch (self.SegmentView.selectedSegmentIndex) {
-        case 0:
-            // 表单视图
-            vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMatterFormViewController"];
-            break;
-            
-        case 1:
-            // 附件视图
-            vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMatterAttachmentListViewController"];
-            break;
-            
-        case 2:
-            // 流程视图
-            vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMatterFlowListViewController"];
-            break;
-            
-        case 3:
-            // 意见视图
-            vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMatterOpinionViewController"];
-            break;
-        default:
-            break;
+    // 有正文和附件
+    if (HasBodyDoc && HasAttach) {
+        switch (self.segmentView.selectedSegmentIndex) {
+            case 0:
+                // 表单视图
+                vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMatterFormViewController"];
+                break;
+                
+            case 1:
+                // 正文视图
+                vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMainBodyViewController"];
+                break;
+                
+            case 2:
+                // 附件视图
+                vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMatterAttachmentListViewController"];
+                break;
+                
+            case 3:
+                // 流程视图
+                vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMatterFlowListViewController"];
+                break;
+                
+            case 4:
+                // 意见视图
+                vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMatterOpinionViewController"];
+                break;
+            default:
+                break;
+        }
     }
+    // 只有正文
+    else if (HasBodyDoc) {
+        switch (self.segmentView.selectedSegmentIndex) {
+            case 0:
+                // 表单视图
+                vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMatterFormViewController"];
+                break;
+                
+            case 1:
+                // 正文视图
+                vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMainBodyViewController"];
+                break;
+                
+            case 2:
+                // 流程视图
+                vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMatterFlowListViewController"];
+                break;
+                
+            case 3:
+                // 意见视图
+                vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMatterOpinionViewController"];
+                break;
+            default:
+                break;
+        }
+    }
+    // 只有附件
+    else if (HasAttach) {
+        switch (self.segmentView.selectedSegmentIndex) {
+            case 0:
+                // 表单视图
+                vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMatterFormViewController"];
+                break;
+                
+            case 1:
+                // 附件视图
+                vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMatterAttachmentListViewController"];
+                break;
+                
+            case 2:
+                // 流程视图
+                vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMatterFlowListViewController"];
+                break;
+                
+            case 4:
+                // 意见视图
+                vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMatterOpinionViewController"];
+                break;
+            default:
+                break;
+        }
+    }
+    // 没有正文也没有附件
+    else {
+        switch (self.segmentView.selectedSegmentIndex) {
+            case 0:
+                // 表单视图
+                vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMatterFormViewController"];
+                break;
+                
+            case 1:
+                // 流程视图
+                vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMatterFlowListViewController"];
+                break;
+                
+            case 2:
+                // 意见视图
+                vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMatterOpinionViewController"];
+                break;
+            default:
+                break;
+        }
+    }
+    
     return vc;
 }
 
