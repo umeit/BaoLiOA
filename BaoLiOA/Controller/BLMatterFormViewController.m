@@ -7,15 +7,18 @@
 //
 
 #import "BLMatterFormViewController.h"
+#import "BLCommonOpinionViewController.h"
 #import "BLMatterOperationService.h"
 #import "BLMainBodyViewController.h"
 #import "BLMatterInfoService.h"
 #import "BLFromFieldItemEntity.h"
 #import "BLInfoRegionEntity.h"
 
-@interface BLMatterFormViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface BLMatterFormViewController () <UITableViewDataSource, UITableViewDelegate, BLCommonOpinionViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (strong, nonatomic) BLCommonOpinionViewController *opinionViewController;
 
 //@property (strong, nonatomic) BLMatterInfoService *matterService;
 //
@@ -65,7 +68,7 @@
     static NSString *matterFormBaseCell = @"BLMatterFormBaseCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:matterFormBaseCell forIndexPath:indexPath];
     
-    [self configureMatterFormBaseCell:cell atIndexPath:indexPath];
+    [self configureCell:cell atIndexPath:indexPath];
 
     return cell;
 }
@@ -128,19 +131,33 @@
 
 #pragma mark - Navigation
 
-//- (void)toBodyViewController
-//{
-//    BLMainBodyViewController *mainBodyViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMainBodyViewController"];
-//    mainBodyViewController.bodyDocID = self.matterBodyDocID;
-//    mainBodyViewController.docTtitle = self.bodyTitle;
-//    
-//    [self.navigationController pushViewController:mainBodyViewController animated:YES];
-//}
+
+#pragma mark - Action
+
+- (void)eidtButtonPress:(UIButton *)button
+{
+    UINavigationController *navVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CommonOpinionNavigation"];
+    self.opinionViewController = (BLCommonOpinionViewController *)navVC.topViewController;
+    
+    self.opinionViewController.delegate = self;
+    [navVC setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+    [navVC setModalPresentationStyle:UIModalPresentationFormSheet];
+    
+    [self presentViewController:navVC animated:YES completion:nil];
+}
+
+
+#pragma mark - BLCommonOpinionViewControllerDelegate
+
+- (void)opinionDidSelecte:(NSString *)opinion
+{
+    [self.opinionViewController dismissViewControllerAnimated:YES completion:nil];
+}
 
 
 #pragma mark - Private
 
-- (void)configureMatterFormBaseCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     BLInfoRegionEntity *infoRegion = self.matterFormInfoList[indexPath.row];
     
@@ -208,28 +225,6 @@
                 
                 aLabel.attributedText = nameAttrString;
                 
-//                NSString *fullString = [NSString stringWithFormat:@"%@%@", nameString, valueString];
-//                
-//                NSRange nameStringRange = [fullString rangeOfString:nameString];
-//                NSRange valueStringRange = [fullString rangeOfString:valueString];
-//                
-//                NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:fullString];
-//                
-//                [attrString beginEditing];
-//                [attrString addAttribute:NSForegroundColorAttributeName
-//                                   value:[self colorWithString:fieldItem.nameColor]
-//                                   range:nameStringRange];
-//                
-//                [attrString addAttribute:NSForegroundColorAttributeName
-//                                   value:[self colorWithString:fieldItem.valueColor]
-//                                   range:valueStringRange];
-//                [attrString endEditing];
-                
-//                aLabel.text = [NSString stringWithFormat:@"%@%@", nameString, valueString];
-//                aLabel.textColor = [self colorWithString:fieldItem.nameColor];
-                
-//                aLabel.attributedText = attrString;
-                
                 [cell.contentView addSubview:aLabel];
             }
         }
@@ -243,26 +238,17 @@
             [cell.contentView addSubview:valueLabel];
         }
         
+        // 是否可以编辑
+        if ([fieldItem.mode isEqualToString:@"1"] && [fieldItem.inputType isEqualToString:@"11"]) {
+            UIButton *eidtButton = [[UIButton alloc] initWithFrame:CGRectMake(currentX, 0, labelWidth, cell.contentView.bounds.size.height)];
+            // 用 tag 记录当前编辑的 item 的 index
+            eidtButton.tag = i;
+            [eidtButton addTarget:self action:@selector(eidtButtonPress:) forControlEvents:UIControlEventTouchUpInside];
+            [cell.contentView addSubview:eidtButton];
+        }
+        
         currentX += labelWidth;  // 左移 x 值，供后续 Label 使用
     }
-    
-//    // 对于第一行做特殊处理：判断是否有正文附件，如果有，在第一行的行尾放一个按钮，用于导航到正文页面
-//    if (indexPath.row == 0 && self.matterBodyDocID) {
-//        UIButton *bodyButton = [[UIButton alloc] initWithFrame:CGRectMake(cellWidth - 90, 8, 80, 30)];
-//        [cell.contentView addSubview:bodyButton];
-//        
-//        bodyButton.titleLabel.text = @"查看正文";
-//        [bodyButton addTarget:self action:@selector(toBodyViewController) forControlEvents:UIControlEventTouchUpInside];
-//        [bodyButton setTitle:@"查看正文" forState:UIControlStateNormal];
-//        [bodyButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-//        BLFromFieldItemEntity *fieldItem = itemListInLine[0];
-//        self.bodyTitle = fieldItem.value;
-//        
-//        UIView *aLabel = [cell viewWithTag:1];
-//        CGSize labelSize = aLabel.frame.size;
-//        CGSize newSize = CGSizeMake(cellWidth - 90, labelSize.height);
-//        aLabel.frame = CGRectMake(aLabel.frame.origin.x, aLabel.frame.origin.y, newSize.width, newSize.height);
-//    }
 }
 
 - (CGSize)labelSizeWithMaxWidth:(CGFloat)width content:(NSString *)content

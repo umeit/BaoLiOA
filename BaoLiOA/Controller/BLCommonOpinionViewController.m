@@ -22,6 +22,8 @@
 
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     self.opinionList = [userDefault objectForKey:@"kCommonOpinionList"];
+    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 #pragma mark - Table view data source

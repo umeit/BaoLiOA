@@ -975,6 +975,61 @@
             </objects>
             <point key="canvasLocation" x="2497" y="-922"/>
         </scene>
+        <!--Common Opinion View Controller - 常用意见-->
+        <scene sceneID="2eD-IG-5c4">
+            <objects>
+                <tableViewController storyboardIdentifier="BLCommonOpinionViewControllerByForm" id="AAC-Hh-MHy" customClass="BLCommonOpinionViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Trm-26-03p">
+                        <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BLOpinionViewControllerCell" textLabel="tNi-DM-n7p" style="IBUITableViewCellStyleDefault" id="jPU-m5-I5Q">
+                                <rect key="frame" x="0.0" y="86" width="540" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jPU-m5-I5Q" id="OnC-xU-UCz">
+                                    <rect key="frame" x="0.0" y="0.0" width="540" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tNi-DM-n7p">
+                                            <rect key="frame" x="15" y="0.0" width="510" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="AAC-Hh-MHy" id="8Ro-m5-B8c"/>
+                            <outlet property="delegate" destination="AAC-Hh-MHy" id="fds-ym-p9q"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="常用意见" id="ZUC-U2-RlG"/>
+                    <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bN5-25-eEA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3869" y="-848"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="v9e-hA-rxS">
+            <objects>
+                <navigationController storyboardIdentifier="CommonOpinionNavigation" definesPresentationContext="YES" id="ypE-VH-b4C" sceneMemberID="viewController">
+                    <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rrO-Os-Tl2">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="AAC-Hh-MHy" kind="relationship" relationship="rootViewController" id="UF4-9r-jWF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZZx-1L-zwv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3279" y="-848"/>
+        </scene>
         <!--Matter Attachment List View Controller-->
         <scene sceneID="lg7-gu-mC4">
             <objects>
