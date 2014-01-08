@@ -101,6 +101,7 @@
 		03DECA4C184250B8007F6F40 /* BLMatterFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DECA4B184250B8007F6F40 /* BLMatterFormViewController.m */; };
 		03DECA4F18425154007F6F40 /* BLMatterOperationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DECA4E18425154007F6F40 /* BLMatterOperationService.m */; };
 		03E253DD1872703700EF9C05 /* BLInfoRegionEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E253DC1872703700EF9C05 /* BLInfoRegionEntity.m */; };
+		03E2ABBD187DADDE00130DE6 /* logo_m_22@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03E2ABBC187DADDE00130DE6 /* logo_m_22@2x.png */; };
 		03F9BBEF1871CA1A00DBD40C /* Read@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F9BBE71871CA1A00DBD40C /* Read@2x.png */; };
 		03F9BBF01871CA1A00DBD40C /* new@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F9BBE81871CA1A00DBD40C /* new@2x.png */; };
 		03F9BBF11871CA1A00DBD40C /* Todo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F9BBE91871CA1A00DBD40C /* Todo@2x.png */; };
@@ -318,6 +319,7 @@
 		03DECA4E18425154007F6F40 /* BLMatterOperationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterOperationService.m; sourceTree = "<group>"; };
 		03E253DB1872703700EF9C05 /* BLInfoRegionEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLInfoRegionEntity.h; sourceTree = "<group>"; };
 		03E253DC1872703700EF9C05 /* BLInfoRegionEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLInfoRegionEntity.m; sourceTree = "<group>"; };
+		03E2ABBC187DADDE00130DE6 /* logo_m_22@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_m_22@2x.png"; sourceTree = "<group>"; };
 		03F9BBE71871CA1A00DBD40C /* Read@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Read@2x.png"; sourceTree = "<group>"; };
 		03F9BBE81871CA1A00DBD40C /* new@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new@2x.png"; sourceTree = "<group>"; };
 		03F9BBE91871CA1A00DBD40C /* Todo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Todo@2x.png"; sourceTree = "<group>"; };
@@ -753,6 +755,7 @@
 		03F9BBD21871C9B700DBD40C /* AppImage */ = {
 			isa = PBXGroup;
 			children = (
+				03E2ABBC187DADDE00130DE6 /* logo_m_22@2x.png */,
 				03A85B7E187C583F00DD43FD /* logo_80@2x.png */,
 				03A85B78187C571A00DD43FD /* bg_login_s@2x.png */,
 				036DEC5618769A2300817F80 /* OTHER@2x.png */,
@@ -932,6 +935,7 @@
 				039BF621185E077F00985B17 /* ZipArchive ios Tests-Info.plist in Resources */,
 				039BF623185E077F00985B17 /* ZipArchive mac Tests-Info.plist in Resources */,
 				039BF61E185E077F00985B17 /* tests-Info.plist in Resources */,
+				03E2ABBD187DADDE00130DE6 /* logo_m_22@2x.png in Resources */,
 				03F9BBEF1871CA1A00DBD40C /* Read@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

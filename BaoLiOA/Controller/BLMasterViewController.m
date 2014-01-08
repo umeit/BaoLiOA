@@ -2,6 +2,8 @@
 //  BLMasterViewController.m
 //  BaoLiOA
 //
+//  侧边栏
+//
 //  Created by Liu Feng on 13-11-22.
 //  Copyright (c) 2013年 Liu Feng. All rights reserved.
 //
@@ -27,8 +29,17 @@
 {
     [super viewDidLoad];
     
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_m_44"]];
+    
     self.splitViewControllerManager = [[BLSplitViewControllerManager alloc] initWithSplitViewController:self.splitViewController];
     self.splitViewController.delegate = (id)self.splitViewControllerManager;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
 }
 
 // 根据选择的 cell 切换 Detail 视图

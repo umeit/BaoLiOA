@@ -20,6 +20,10 @@
 {
     [super viewDidLoad];
     
+    // 加大 segment 的字号
+    UIFont *segmentViewFont = [UIFont systemFontOfSize:16.f];
+    [self.segmentedControl setTitleTextAttributes:@{NSFontAttributeName: segmentViewFont} forState:UIControlStateNormal];
+    
     switch (self.currentMatterType) {
         case kInDocMatterList:
         {

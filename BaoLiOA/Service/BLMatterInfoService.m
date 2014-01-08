@@ -21,7 +21,7 @@
 {
     NSString *userID = [[NSUserDefaults standardUserDefaults] stringForKey:@"CurrentUserID"];
 
-    [BLMatterInfoHTTPLogic matterListWithMatterType:type status:status fromIndex:@"0" toIndex:@"5" userID:userID
+    [BLMatterInfoHTTPLogic matterListWithMatterType:type status:status fromIndex:@"0" toIndex:@"999" userID:userID
     withBlock:^(id responseData, NSError *error) {
         if (error) {
             block(nil, error);
@@ -71,7 +71,7 @@
     
     NSString *userID = [[NSUserDefaults standardUserDefaults] stringForKey:@"CurrentUserID"];
     
-    [BLMatterInfoHTTPLogic readMatterListWithMatterStatus:status order:@"" fromIndex:@"0" toIndex:@"5" userID:userID
+    [BLMatterInfoHTTPLogic readMatterListWithMatterStatus:status order:@"" fromIndex:@"0" toIndex:@"999" userID:userID
     withBlock:^(id responseData, NSError *error) {
         if (error) {
             block(nil, error);

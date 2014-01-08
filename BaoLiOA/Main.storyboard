@@ -254,29 +254,8 @@
                             </tableViewSection>
                             <tableViewSection id="2dQ-k0-Pr9">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="fzv-4W-XDj" imageView="8Iu-ID-tqL" rowHeight="50" style="IBUITableViewCellStyleDefault" id="npa-OG-MuQ">
-                                        <rect key="frame" x="0.0" y="439" width="320" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="npa-OG-MuQ" id="yNr-CA-QJi">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="通知公告" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fzv-4W-XDj">
-                                                    <rect key="frame" x="59" y="0.0" width="246" height="49"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="Notifity.png" id="8Iu-ID-tqL">
-                                                    <rect key="frame" x="15" y="10" width="29" height="29"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </imageView>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell tag="36" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="211-nf-CHn" imageView="20J-F3-hsY" rowHeight="50" style="IBUITableViewCellStyleDefault" id="QZE-sG-TxV">
-                                        <rect key="frame" x="0.0" y="489" width="320" height="50"/>
+                                        <rect key="frame" x="0.0" y="439" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QZE-sG-TxV" id="rcl-Je-FBJ">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -504,6 +483,7 @@
                     <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZsZ-8E-NxH">
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.40000000596046448" green="0.80000001192092896" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="GIc-PY-00h" kind="relationship" relationship="rootViewController" id="IzN-fq-bdM"/>
@@ -521,6 +501,7 @@
                     <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="O0p-Jc-29h">
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="dQa-bO-PVV" kind="relationship" relationship="rootViewController" id="zPm-N7-nEM"/>
@@ -659,6 +640,7 @@
                                 <segment title="待办收文"/>
                                 <segment title="已办收文"/>
                             </segments>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="segmentValueChanged:" destination="dQa-bO-PVV" eventType="valueChanged" id="fCt-RP-HTX"/>
                             </connections>
@@ -1390,6 +1372,7 @@
                     <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="MFd-1V-aVw">
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="q3Y-T3-2zJ" kind="relationship" relationship="rootViewController" id="3fi-5t-etM"/>
@@ -1405,6 +1388,7 @@
                 <navigationController id="HVz-ZK-H1v" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Zqc-6u-twf">
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.40000000596046448" green="0.80000001192092896" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="feI-vU-Aa5" kind="relationship" relationship="rootViewController" id="pac-Xb-DHN"/>
@@ -1529,7 +1513,6 @@
     <resources>
         <image name="GiveRemark.png" width="29" height="29"/>
         <image name="InDoc.png" width="29" height="29"/>
-        <image name="Notifity.png" width="29" height="29"/>
         <image name="Read.png" width="29" height="29"/>
         <image name="Setting.png" width="29" height="29"/>
         <image name="Taken.png" width="29" height="29"/>

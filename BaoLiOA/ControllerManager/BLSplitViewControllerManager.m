@@ -47,7 +47,7 @@
 
 - (void)switchDetaiViewToReadMatterList
 {
-    [self switchDetaiViewToBaseMatterListWithMaterType:kToReadMatterList];
+    [self switchDetaiViewToBaseMatterListWithMaterType:kReadMatterList];
 }
 
 - (void)switchDetaiViewInDocMatterList
@@ -74,6 +74,7 @@
     UINavigationController *navigationControllerForDetailView;
     
     if (matterType == kInDocMatterList || matterType == kGiveRemarkMatterList) {
+        // 对「收文」和「呈批件」使用带分段选择器的视图
         navigationControllerForDetailView = [self.splitViewController.storyboard instantiateViewControllerWithIdentifier:@"BLSegmentMatterListViewController"];
     }
     else {

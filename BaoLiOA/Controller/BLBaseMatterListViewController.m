@@ -66,8 +66,8 @@
         // 待阅列表
         case kToReadMatterList:
         {
-            self.title = @"已阅事宜";
-            self.readMatterStatus = kRead;
+            self.title = @"待阅事宜";
+            self.readMatterStatus = kToRead;
         }
         break;
             
@@ -75,7 +75,7 @@
         case kReadMatterList:
         {
             self.title = @"已阅事宜";
-            self.readMatterStatus = kToRead;
+            self.readMatterStatus = kRead;
         }
         break;
             
