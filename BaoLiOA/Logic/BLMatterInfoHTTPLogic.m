@@ -9,17 +9,18 @@
 #import "BLMatterInfoHTTPLogic.h"
 #import "AFHTTPRequestOperation.h"
 #import "AFURLSessionManager.h"
+#import "BLContextEntity.h"
 
 // 测试地址
 //#define SOAP_URL(s) \
 //[NSURL URLWithString:[NSString stringWithFormat:@"http://210.51.191.244:8081/OAWebService/DemoData_WebService.asmx?op=%@", s]];
 
 #define SOAP_URL(s) \
-[NSURL URLWithString:[NSString stringWithFormat:@"http://%@:8081/OAWebService/BL_WebService.asmx?op=%@",[[NSUserDefaults standardUserDefaults] stringForKey:@"ServerAddress"], s]];
+[NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%@/BLOAWebService/BL_WebService.asmx?op=%@",[[NSUserDefaults standardUserDefaults] stringForKey:@"ServerAddress"], [[NSUserDefaults standardUserDefaults] stringForKey:@"ServerPort"], s]];
 
 // 测试文件下载地址
 #define Attach_File_URL(id, type) \
-[NSURL URLWithString:[NSString stringWithFormat:@"http://%@:8081/OAWebService/Files/%@.%@",[[NSUserDefaults standardUserDefaults] stringForKey:@"ServerAddress"], id, type]];
+[NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%@/BLOAWebService/Files/%@.%@",[[NSUserDefaults standardUserDefaults] stringForKey:@"ServerAddress"], [[NSUserDefaults standardUserDefaults] stringForKey:@"ServerPort"], id, type]];
 
 @implementation BLMatterInfoHTTPLogic
 
@@ -184,7 +185,7 @@
                           status:(BLMIHLMatterStatus)status
                        fromIndex:(NSString *)fromIndex
                          toIndex:(NSString *)toIndex
-                          userID:(NSString *)userID
+                          context:(BLContextEntity *)context
                        withBlock:(BLMatterHTTPLogicGeneralBlock)block
 {
     
@@ -214,7 +215,7 @@
     "xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">" \
     "<soap:Body>" \
       "<GetDocListByCondition xmlns=\"http://tempuri.org/\">"\
-        "<userID>%@</userID>"\
+        "%@"\
         "<importance></importance>"\
         "<title></title>"\
         "<modelName>%@</modelName>"\
@@ -226,7 +227,7 @@
         "<todoFlag>%@</todoFlag>"\
       "</GetDocListByCondition>"\
     "</soap:Body>"\
-    "</soap:Envelope>", userID, modelName, fromIndex, toIndex, todoFlag];
+    "</soap:Envelope>", [self context:context], modelName, fromIndex, toIndex, todoFlag];
     
     NSMutableURLRequest *request = [BLMatterInfoHTTPLogic soapRequestWithURLParam:@"GetDocListByCondition"
                                                                        soapAction:@"http://tempuri.org/GetDocListByCondition"
@@ -311,6 +312,27 @@
 }
 
 #pragma mark - Private
+
++ (NSString *)context:(BLContextEntity *)context
+{
+    NSString *contextString = [NSString stringWithFormat:
+                         @"<context>"\
+                            "<UserID>%@</UserID>"\
+                            "<UserName>%@</UserName>"\
+                            "<OA_UserName>%@</OA_UserName>"\
+                            "<OA_DeptName></OA_DeptName>"\
+                            "<OA_UserId>%@</OA_UserId>"\
+                            "<OA_Account>%@</OA_Account>"\
+                            "<currentActionDesc>%@</currentActionDesc>"\
+                            "<currentDocId></currentDocId>"\
+                            "<currentFileId></currentFileId>"\
+                            "<currentAttId></currentAttId>"\
+                            "<currentreportID></currentreportID>"\
+                            "<currentreportName></currentreportName>"\
+                         "</context>",
+                         context.userID, context.userName, context.oaUserName, context.oaUserID, context.oaAccount, context.actionDesc];
+    return contextString;
+}
 
 + (NSMutableURLRequest *)soapRequestWithURLParam:(NSString *)urlParam
                                       soapAction:(NSString *)actionName

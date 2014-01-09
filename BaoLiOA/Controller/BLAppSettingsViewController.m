@@ -10,6 +10,7 @@
 
 @interface BLAppSettingsViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *serverAddressTextField;
+@property (weak, nonatomic) IBOutlet UITextField *serverPortTextField;
 @end
 
 @implementation BLAppSettingsViewController
@@ -19,14 +20,18 @@
     [super viewDidLoad];
     
     NSString *serverIP = [[NSUserDefaults standardUserDefaults] stringForKey:@"ServerAddress"];
+    NSString *serverPort = [[NSUserDefaults standardUserDefaults] stringForKey:@"ServerPort"];
     self.serverAddressTextField.text = serverIP;
+    self.serverPortTextField.text = serverPort;
 }
 
 #pragma mark - Action
 
 - (IBAction)saveButtonPress:(id)sender
 {
-    [[NSUserDefaults standardUserDefaults] setObject:self.serverAddressTextField.text forKey:@"ServerAddress"];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:self.serverAddressTextField.text forKey:@"ServerAddress"];
+    [userDefaults setObject:self.serverPortTextField.text forKey:@"ServerPort"];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }

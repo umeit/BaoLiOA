@@ -14,14 +14,16 @@
 #import "BLAttachEntity.h"
 #import "RXMLElement.h"
 #import "BLInfoRegionEntity.h"
+#import "BLContextEntity.h"
 
 @implementation BLMatterInfoService
 
 - (void)matterListWithType:(BLMIHLMatterType)type status:(BLMIHLMatterStatus)status block:(BLMatterInfoServiceGeneralBlock)block
 {
-    NSString *userID = [[NSUserDefaults standardUserDefaults] stringForKey:@"CurrentUserID"];
-
-    [BLMatterInfoHTTPLogic matterListWithMatterType:type status:status fromIndex:@"0" toIndex:@"999" userID:userID
+    NSData *contextData = [[NSUserDefaults standardUserDefaults] objectForKey:@"Context"];
+    BLContextEntity *context = [NSKeyedUnarchiver unarchiveObjectWithData:contextData];
+    
+    [BLMatterInfoHTTPLogic matterListWithMatterType:type status:status fromIndex:@"0" toIndex:@"10" context:context
     withBlock:^(id responseData, NSError *error) {
         if (error) {
             block(nil, error);

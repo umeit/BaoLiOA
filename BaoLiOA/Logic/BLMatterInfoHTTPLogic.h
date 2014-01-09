@@ -32,6 +32,8 @@ typedef enum BLMIHLAtaachType : NSUInteger {
 typedef void(^BLMatterHTTPLogicGeneralBlock)(id responseData, NSError *error);
 typedef void(^BLMatterHTTPLogicAttachDownloadBlock)(NSString *zipFileLocalPath, NSError *error);
 
+@class BLContextEntity;
+
 @interface BLMatterInfoHTTPLogic : NSObject
 
 /**
@@ -71,7 +73,7 @@ typedef void(^BLMatterHTTPLogicAttachDownloadBlock)(NSString *zipFileLocalPath, 
                           status:(BLMIHLMatterStatus)status
                        fromIndex:(NSString *)fromIndex
                          toIndex:(NSString *)toIndex
-                          userID:(NSString *)userID
+                         context:(BLContextEntity *)context
                        withBlock:(BLMatterHTTPLogicGeneralBlock)block;
 
 + (void)matterDetailWithMatterID:(NSString *)matterID

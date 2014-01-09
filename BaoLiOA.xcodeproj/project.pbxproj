@@ -14,6 +14,8 @@
 		030D3C681849B30A00E844EA /* BLUserHTTPLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 030D3C671849B30A00E844EA /* BLUserHTTPLogic.m */; };
 		030D3C6B1849DE7700E844EA /* BLAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 030D3C6A1849DE7700E844EA /* BLAppSettingsViewController.m */; };
 		0323EAD51851E2EA00752172 /* BLAttachEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 0323EAD41851E2EA00752172 /* BLAttachEntity.m */; };
+		03281655187EDF8500C0FDB7 /* logo_m_32@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03281654187EDF8500C0FDB7 /* logo_m_32@2x.png */; };
+		03281658187EE9A800C0FDB7 /* BLContextEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 03281657187EE9A800C0FDB7 /* BLContextEntity.m */; };
 		033EA7F3184E1A5D009E29C7 /* RXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 033EA7F2184E1A5D009E29C7 /* RXMLElement.m */; };
 		033EA7F5184E2E15009E29C7 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 033EA7F4184E2E15009E29C7 /* libz.dylib */; };
 		033EA7F7184E2E1D009E29C7 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 033EA7F6184E2E1D009E29C7 /* libxml2.dylib */; };
@@ -101,8 +103,6 @@
 		03DECA4C184250B8007F6F40 /* BLMatterFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DECA4B184250B8007F6F40 /* BLMatterFormViewController.m */; };
 		03DECA4F18425154007F6F40 /* BLMatterOperationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DECA4E18425154007F6F40 /* BLMatterOperationService.m */; };
 		03E253DD1872703700EF9C05 /* BLInfoRegionEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E253DC1872703700EF9C05 /* BLInfoRegionEntity.m */; };
-		03E2ABBD187DADDE00130DE6 /* logo_m_22@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03E2ABBC187DADDE00130DE6 /* logo_m_22@2x.png */; };
-		03EE1BBC187E54A50001FEB6 /* logo_m_28@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03EE1BBB187E54A50001FEB6 /* logo_m_28@2x.png */; };
 		03F9BBEF1871CA1A00DBD40C /* Read@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F9BBE71871CA1A00DBD40C /* Read@2x.png */; };
 		03F9BBF01871CA1A00DBD40C /* new@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F9BBE81871CA1A00DBD40C /* new@2x.png */; };
 		03F9BBF11871CA1A00DBD40C /* Todo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F9BBE91871CA1A00DBD40C /* Todo@2x.png */; };
@@ -174,6 +174,9 @@
 		030D3C6A1849DE7700E844EA /* BLAppSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLAppSettingsViewController.m; sourceTree = "<group>"; };
 		0323EAD31851E2EA00752172 /* BLAttachEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLAttachEntity.h; sourceTree = "<group>"; };
 		0323EAD41851E2EA00752172 /* BLAttachEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLAttachEntity.m; sourceTree = "<group>"; };
+		03281654187EDF8500C0FDB7 /* logo_m_32@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_m_32@2x.png"; sourceTree = "<group>"; };
+		03281656187EE9A800C0FDB7 /* BLContextEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLContextEntity.h; sourceTree = "<group>"; };
+		03281657187EE9A800C0FDB7 /* BLContextEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLContextEntity.m; sourceTree = "<group>"; };
 		033EA7F1184E1A5D009E29C7 /* RXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RXMLElement.h; sourceTree = "<group>"; };
 		033EA7F2184E1A5D009E29C7 /* RXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RXMLElement.m; sourceTree = "<group>"; };
 		033EA7F4184E2E15009E29C7 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -320,8 +323,6 @@
 		03DECA4E18425154007F6F40 /* BLMatterOperationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterOperationService.m; sourceTree = "<group>"; };
 		03E253DB1872703700EF9C05 /* BLInfoRegionEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLInfoRegionEntity.h; sourceTree = "<group>"; };
 		03E253DC1872703700EF9C05 /* BLInfoRegionEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLInfoRegionEntity.m; sourceTree = "<group>"; };
-		03E2ABBC187DADDE00130DE6 /* logo_m_22@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_m_22@2x.png"; sourceTree = "<group>"; };
-		03EE1BBB187E54A50001FEB6 /* logo_m_28@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_m_28@2x.png"; sourceTree = "<group>"; };
 		03F9BBE71871CA1A00DBD40C /* Read@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Read@2x.png"; sourceTree = "<group>"; };
 		03F9BBE81871CA1A00DBD40C /* new@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new@2x.png"; sourceTree = "<group>"; };
 		03F9BBE91871CA1A00DBD40C /* Todo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Todo@2x.png"; sourceTree = "<group>"; };
@@ -432,6 +433,8 @@
 				039155FC1861F24800BBFCB2 /* BLMatterFlowEntity.m */,
 				03E253DB1872703700EF9C05 /* BLInfoRegionEntity.h */,
 				03E253DC1872703700EF9C05 /* BLInfoRegionEntity.m */,
+				03281656187EE9A800C0FDB7 /* BLContextEntity.h */,
+				03281657187EE9A800C0FDB7 /* BLContextEntity.m */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -757,8 +760,7 @@
 		03F9BBD21871C9B700DBD40C /* AppImage */ = {
 			isa = PBXGroup;
 			children = (
-				03EE1BBB187E54A50001FEB6 /* logo_m_28@2x.png */,
-				03E2ABBC187DADDE00130DE6 /* logo_m_22@2x.png */,
+				03281654187EDF8500C0FDB7 /* logo_m_32@2x.png */,
 				03A85B7E187C583F00DD43FD /* logo_80@2x.png */,
 				03A85B78187C571A00DD43FD /* bg_login_s@2x.png */,
 				036DEC5618769A2300817F80 /* OTHER@2x.png */,
@@ -905,9 +907,9 @@
 				039BF61C185E077F00985B17 /* V3.png in Resources */,
 				036DEC5E18769A2300817F80 /* S@2x.png in Resources */,
 				039BF620185E077F00985B17 /* InfoPlist.strings in Resources */,
-				03EE1BBC187E54A50001FEB6 /* logo_m_28@2x.png in Resources */,
 				03A85B7F187C583F00DD43FD /* logo_80@2x.png in Resources */,
 				039BF60E185E077F00985B17 /* LICENSE in Resources */,
+				03281655187EDF8500C0FDB7 /* logo_m_32@2x.png in Resources */,
 				036DEC5B18769A2300817F80 /* OTHER@2x.png in Resources */,
 				039BF61B185E077F00985B17 /* InfoPlist.strings in Resources */,
 				039BF60D185E077F00985B17 /* Doxyfile in Resources */,
@@ -939,7 +941,6 @@
 				039BF621185E077F00985B17 /* ZipArchive ios Tests-Info.plist in Resources */,
 				039BF623185E077F00985B17 /* ZipArchive mac Tests-Info.plist in Resources */,
 				039BF61E185E077F00985B17 /* tests-Info.plist in Resources */,
-				03E2ABBD187DADDE00130DE6 /* logo_m_22@2x.png in Resources */,
 				03F9BBEF1871CA1A00DBD40C /* Read@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1003,6 +1004,7 @@
 				03588FE4183E4B830067F5D0 /* BLMatterInfoHTTPLogic.m in Sources */,
 				036C0FEF183D05AD00C61808 /* AFHTTPSessionManager.m in Sources */,
 				030D3C621849B0A000E844EA /* BLLoginViewController.m in Sources */,
+				03281658187EE9A800C0FDB7 /* BLContextEntity.m in Sources */,
 				038C8F0A186D3D96007B1B2E /* BLAddOpinionViewController.m in Sources */,
 				030D3C651849B2F000E844EA /* BLUserService.m in Sources */,
 				036C0FEE183D05AD00C61808 /* AFHTTPRequestOperationManager.m in Sources */,

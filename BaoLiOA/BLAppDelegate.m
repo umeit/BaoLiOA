@@ -23,13 +23,18 @@
         [userDefaults setObject:commonOpinionList forKey:@"kCommonOpinionList"];
     }
     
-    // 设置默认服务器 IP
+    // 设置默认服务器 IP 与 端口号
     NSString *serverIP = [userDefaults stringForKey:@"ServerAddress"];
+    NSString *serverPort = [userDefaults stringForKey:@"ServerPort"];
     if (!serverIP) {
-        // 以后的应用默认设置都放到这里
         serverIP = @"210.51.191.244";
         
         [userDefaults setObject:serverIP forKey:@"ServerAddress"];
+    }
+    if (!serverPort) {
+        serverPort = @"8081";
+        
+        [userDefaults setObject:serverPort forKey:@"ServerPort"];
     }
     
     // 显示登录页

@@ -8,6 +8,7 @@
 
 #import "BLLoginViewController.h"
 #import "BLUserService.h"
+#import "BLContextEntity.h"
 #import "UIViewController+GViewController.h"
 
 @interface BLLoginViewController ()
@@ -49,7 +50,7 @@
         return;
     }
 
-#warning 只在测试时关闭
+#warning 密码验证
 //    if (!password || [password length] < 1) {
 //        [self showCustomTextAlert:@"请输入密码"];
 //        return;
@@ -65,25 +66,40 @@
             case 0:
             {
                 NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//
+                BLContextEntity *context;
                 
                 if ([loginID isEqualToString:@"admin"]) {
-                    [userDefaults setObject:@"admin" forKey:@"CurrentUserLoginID"];
-                    [userDefaults setObject:@"admin" forKey:@"CurrentUserID"];
-                    [userDefaults setObject:@"管理员" forKey:@"CurrentUserName"];
+                    context = [[BLContextEntity alloc] initWithUserID:@"admin"
+                                                             userName:@"管理员"
+                                                             oaUserID:@"admin"
+                                                           oaUserName:@"管理员"
+                                                            oaAccount:@"管理员"
+                                                           actionDesc:@""];
+                    
+                    
+                }
+                else if ([loginID isEqualToString:@"konglj"]) {
+                    context = [[BLContextEntity alloc] initWithUserID:@"konglj"
+                                                             userName:@"登录名"
+                                                             oaUserID:@"HZ8080813e5f8e3e013e5f90486d003a"
+                                                           oaUserName:@"真实姓名"
+                                                            oaAccount:@"OA用户名"
+                                                           actionDesc:@""];
                 }
                 else if ([loginID isEqualToString:@"zhumx"]) {
-                    [userDefaults setObject:@"zhumx" forKey:@"CurrentUserLoginID"];
-                    [userDefaults setObject:@"HZ8181e5415cd79f01415d11bde70773" forKey:@"CurrentUserID"];
-                    [userDefaults setObject:@"朱铭新" forKey:@"CurrentUserName"];
-                }
-                else {
-                    [userDefaults setObject:@"admin" forKey:@"CurrentUserLoginID"];
-                    [userDefaults setObject:@"admin" forKey:@"CurrentUserID"];
-                    [userDefaults setObject:@"管理员" forKey:@"CurrentUserName"];
+                    context = [[BLContextEntity alloc] initWithUserID:@"zhumx"
+                                                             userName:@"登录名"
+                                                             oaUserID:@"HZ8181e5415cd79f01415d11bde70773"
+                                                           oaUserName:@"真实姓名"
+                                                            oaAccount:@"OA用户名"
+                                                           actionDesc:@""];
                 }
                 
+                
+                [userDefaults setObject:[NSKeyedArchiver archivedDataWithRootObject:context] forKey:@"Context"];
+                
                 self.view.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BLSplitViewController"];
+                
                 break;
             }
                 
