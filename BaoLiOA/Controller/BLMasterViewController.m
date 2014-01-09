@@ -39,7 +39,11 @@
 {
     [super viewWillAppear:animated];
     
-    [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+#warning 待优化
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    });
 }
 
 // 根据选择的 cell 切换 Detail 视图

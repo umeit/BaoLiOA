@@ -199,7 +199,7 @@
                 // value 标签
                 UILabel *valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 30, labelWidth, valueLabelHeight)];
                 valueLabel.numberOfLines = 0;
-                valueLabel.text = valueString;
+                valueLabel.text = [NSString stringWithFormat:@"  %@", valueString];
                 valueLabel.textColor = [self colorWithString:fieldItem.valueColor];
                 valueLabel.textAlignment = [self alignmentWithString:fieldItem.align];
                 
