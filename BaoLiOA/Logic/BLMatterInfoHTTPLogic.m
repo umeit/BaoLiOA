@@ -26,7 +26,7 @@
 
 + (NSDictionary *)isReadyForDownloadWithAttachID:(NSString *)attachID
                                             name:(NSString *)attachName
-                                          userID:(NSString *)userID
+                                         context:(BLContextEntity *)context
                                       attachType:(BLMIHLAtaachType)attachType
 {
     NSCondition *condition = [[NSCondition alloc] init];
@@ -48,12 +48,12 @@
     "xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">" \
     "<soap:Body>" \
         "<%@ xmlns=\"http://tempuri.org/\">"\
-            "<userID>%@</userID>" \
+            "%@" \
             "<fileID>%@</fileID>"\
             "<parafileName>%@</parafileName>"\
         "</%@>"\
     "</soap:Body>"\
-    "</soap:Envelope>",webMethodName, userID, attachID, attachName, webMethodName];
+    "</soap:Envelope>",webMethodName, [self context:context], attachID, attachName, webMethodName];
     
     NSMutableURLRequest *request = [BLMatterInfoHTTPLogic soapRequestWithURLParam:webMethodName
                                                                        soapAction:[NSString stringWithFormat:@"http://tempuri.org/%@", webMethodName]

@@ -111,7 +111,8 @@
 
 - (NSDictionary *)isReadyForDownloadWithAttachID:(NSString *)attachID name:(NSString *)attachName attachType:(BLMIHLAtaachType)attachType
 {
-    NSString *userID = [[NSUserDefaults standardUserDefaults] stringForKey:@"CurrentUserID"];
+    NSData *contextData = [[NSUserDefaults standardUserDefaults] objectForKey:@"Context"];
+    BLContextEntity *context = [NSKeyedUnarchiver unarchiveObjectWithData:contextData];
     
     NSInteger i = 0;
     NSDictionary *resultDic;
@@ -129,7 +130,7 @@
         
         resultDic = [BLMatterInfoHTTPLogic isReadyForDownloadWithAttachID:attachID
                                                                      name:attachName
-                                                                   userID:userID
+                                                                  context:context
                                                                attachType:attachType];
         if (resultDic[@"kError"]) {
             // 网络出错

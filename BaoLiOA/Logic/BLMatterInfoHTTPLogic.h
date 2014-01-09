@@ -46,7 +46,7 @@ typedef void(^BLMatterHTTPLogicAttachDownloadBlock)(NSString *zipFileLocalPath, 
  */
 + (NSDictionary *)isReadyForDownloadWithAttachID:(NSString *)attachID
                                             name:(NSString *)attachName
-                                          userID:(NSString *)userID
+                                         context:(BLContextEntity *)context
                                       attachType:(BLMIHLAtaachType)attachType;
 
 + (NSURLSessionDownloadTask *)downloadFileWithAttachID:(NSString *)attachID
