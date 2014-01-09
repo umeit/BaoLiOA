@@ -71,14 +71,18 @@
             break;
     }
     
-    NSString *userID = [[NSUserDefaults standardUserDefaults] stringForKey:@"CurrentUserID"];
+    NSData *contextData = [[NSUserDefaults standardUserDefaults] objectForKey:@"Context"];
+    BLContextEntity *context = [NSKeyedUnarchiver unarchiveObjectWithData:contextData];
     
-    [BLMatterInfoHTTPLogic readMatterListWithMatterStatus:status order:@"" fromIndex:@"0" toIndex:@"999" userID:userID
+    [BLMatterInfoHTTPLogic readMatterListWithMatterStatus:status order:@"" fromIndex:@"0" toIndex:@"10" context:context
     withBlock:^(id responseData, NSError *error) {
         if (error) {
             block(nil, error);
         }
         else {
+            NSLog(@"Response [Read List Data]: %@", [[NSString alloc] initWithData:responseData
+                                                                              encoding:NSUTF8StringEncoding]);
+            
             NSMutableArray *todoList = [[NSMutableArray alloc] init];
           
             RXMLElement *rootElement = [RXMLElement elementFromXMLData:responseData];
@@ -102,10 +106,10 @@
 
 - (void)matterDetailInfoWithMatterID:(NSString *)matterID block:(BLMatterInfoServiceGeneralBlock)block
 {
-    NSString *userID = [[NSUserDefaults standardUserDefaults] stringForKey:@"CurrentUserID"];
-    NSString *userName = [[NSUserDefaults standardUserDefaults] stringForKey:@"CurrentUserName"];
+    NSData *contextData = [[NSUserDefaults standardUserDefaults] objectForKey:@"Context"];
+    BLContextEntity *context = [NSKeyedUnarchiver unarchiveObjectWithData:contextData];
     
-    [BLMatterInfoHTTPLogic matterDetailWithMatterID:matterID userID:userID userName:userName
+    [BLMatterInfoHTTPLogic matterDetailWithMatterID:matterID context:context
     block:^(id responseData, NSError *error) {
         if (error) {
             block(nil, error);
@@ -149,7 +153,10 @@
 
 - (void)matterFlowWithMatterID:(NSString *)matterID block:(BLMatterInfoServiceGeneralBlock)block
 {
-    [BLMatterInfoHTTPLogic matterFlowWithMatterID:matterID block:^(id responseData, NSError *error) {
+    NSData *contextData = [[NSUserDefaults standardUserDefaults] objectForKey:@"Context"];
+    BLContextEntity *context = [NSKeyedUnarchiver unarchiveObjectWithData:contextData];
+    
+    [BLMatterInfoHTTPLogic matterFlowWithMatterID:matterID context:context block:^(id responseData, NSError *error) {
         if (error) {
             block(nil, error);
         }

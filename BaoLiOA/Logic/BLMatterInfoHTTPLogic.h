@@ -55,20 +55,14 @@ typedef void(^BLMatterHTTPLogicAttachDownloadBlock)(NSString *zipFileLocalPath, 
                                               progress:(NSProgress **)progress
                                                  block:(BLMatterHTTPLogicAttachDownloadBlock)block;
 
-/**
- *  获取事项列表
- *  类别支持：待办、已办、待阅、已阅
- *
- *  @param matterType 类别
- *  @param block      返回响应数据 NSData
- */
+// 获取已阅待阅列表
 + (void)readMatterListWithMatterStatus:(BLMIHLReadMatterStatus)status
                                  order:(NSString *)order
                              fromIndex:(NSString *)fromIndex
                                toIndex:(NSString *)toIndex
-                                userID:(NSString *)userID
+                               context:(BLContextEntity *)context
                              withBlock:(BLMatterHTTPLogicGeneralBlock)block;
-
+// 获取事宜列表
 + (void)matterListWithMatterType:(BLMIHLMatterType)type
                           status:(BLMIHLMatterStatus)status
                        fromIndex:(NSString *)fromIndex
@@ -76,12 +70,14 @@ typedef void(^BLMatterHTTPLogicAttachDownloadBlock)(NSString *zipFileLocalPath, 
                          context:(BLContextEntity *)context
                        withBlock:(BLMatterHTTPLogicGeneralBlock)block;
 
+// 详细信息
 + (void)matterDetailWithMatterID:(NSString *)matterID
-                          userID:(NSString *)userID
-                        userName:(NSString *)userName
+                         context:(BLContextEntity *)context
                            block:(BLMatterHTTPLogicGeneralBlock)block;
 
+// 流程列表
 + (void)matterFlowWithMatterID:(NSString *)matterID
+                       context:(BLContextEntity *)context
                          block:(BLMatterHTTPLogicGeneralBlock)block;
 
 @end
