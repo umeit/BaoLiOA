@@ -208,7 +208,7 @@
     BLMatterEntity *matterEntity = self.matterList[indexPath.row];
     
     matterCell.matterTitleLabel.text = matterEntity.title;
-    matterCell.receivedDateLabel.text = matterEntity.sendTime;
+    matterCell.receivedDateLabel.text = [matterEntity.sendTime stringByReplacingOccurrencesOfString:@"T" withString:@" "];
     matterCell.matterTypeLabel.text = matterEntity.matterType;
 }
 

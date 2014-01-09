@@ -86,7 +86,7 @@
     
     cell.stepNameLabel.text = flowEntity.stepName;
     cell.actionLabel.text = flowEntity.action;
-    cell.actionTimeLabel.text = flowEntity.actinoTime;
+    cell.actionTimeLabel.text = [flowEntity.actinoTime stringByReplacingOccurrencesOfString:@"T" withString:@" "];
 }
 
 @end
