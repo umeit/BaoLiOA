@@ -21,6 +21,7 @@
 
 @interface BLMasterViewController ()
 @property (strong, nonatomic) BLSplitViewControllerManager *splitViewControllerManager;
+@property (nonatomic) BOOL isAppear;
 @end
 
 @implementation BLMasterViewController
@@ -40,10 +41,15 @@
     [super viewWillAppear:animated];
     
 #warning 待优化
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+//    });
+    
+    if (!self.isAppear) {
+        self.isAppear = YES;
         [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    });
+    }
 }
 
 // 根据选择的 cell 切换 Detail 视图

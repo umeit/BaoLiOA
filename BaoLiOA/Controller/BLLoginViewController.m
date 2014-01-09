@@ -34,8 +34,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    self.loginIDTextField.text = [userDefaults stringForKey:@"CurrentUserLoginID"];
+    
+    NSData *contextData = [[NSUserDefaults standardUserDefaults] objectForKey:@"Context"];
+    if (contextData) {
+        BLContextEntity *context = [NSKeyedUnarchiver unarchiveObjectWithData:contextData];
+        self.loginIDTextField.text = context.userID;
+    }
 }
 
 #pragma mark - Action
@@ -51,10 +55,15 @@
     }
 
 #warning 密码验证
-//    if (!password || [password length] < 1) {
-//        [self showCustomTextAlert:@"请输入密码"];
-//        return;
-//    }
+    if (!password || [password length] < 1) {
+        [self showCustomTextAlert:@"请输入密码"];
+        return;
+    }
+    
+    if (![password isEqualToString:@"123456"]) {
+        [self showCustomTextAlert:@"密码错误"];
+        return;
+    }
     
     [self showLodingView];
     
@@ -110,6 +119,11 @@
                                                             oaAccount:@"OA用户名"
                                                            actionDesc:@""];
                 }
+                else {
+                    [self showCustomTextAlert:@"不存在该用户"];
+                    return;
+                }
+                    
                 
                 
                 [userDefaults setObject:[NSKeyedArchiver archivedDataWithRootObject:context] forKey:@"Context"];
