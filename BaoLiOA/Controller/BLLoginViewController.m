@@ -86,10 +86,26 @@
                                                             oaAccount:@"OA用户名"
                                                            actionDesc:@""];
                 }
+                else if ([loginID isEqualToString:@"liujc"]) {
+                    context = [[BLContextEntity alloc] initWithUserID:@"liujc"
+                                                             userName:@"登录名"
+                                                             oaUserID:@"HZ8181e5415cd79f01415d1544e207ad"
+                                                           oaUserName:@"真实姓名"
+                                                            oaAccount:@"OA用户名"
+                                                           actionDesc:@""];
+                }
                 else if ([loginID isEqualToString:@"zhumx"]) {
                     context = [[BLContextEntity alloc] initWithUserID:@"zhumx"
                                                              userName:@"登录名"
                                                              oaUserID:@"HZ8181e5415cd79f01415d11bde70773"
+                                                           oaUserName:@"真实姓名"
+                                                            oaAccount:@"OA用户名"
+                                                           actionDesc:@""];
+                }
+                else if ([loginID isEqualToString:@"xuns"]) {
+                    context = [[BLContextEntity alloc] initWithUserID:@"xuns"
+                                                             userName:@"登录名"
+                                                             oaUserID:@"HZ8181e5415cd79f01415d08d0a505e2"
                                                            oaUserName:@"真实姓名"
                                                             oaAccount:@"OA用户名"
                                                            actionDesc:@""];
