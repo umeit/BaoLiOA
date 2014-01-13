@@ -103,6 +103,7 @@
 		03DECA4C184250B8007F6F40 /* BLMatterFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DECA4B184250B8007F6F40 /* BLMatterFormViewController.m */; };
 		03DECA4F18425154007F6F40 /* BLMatterOperationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DECA4E18425154007F6F40 /* BLMatterOperationService.m */; };
 		03E253DD1872703700EF9C05 /* BLInfoRegionEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E253DC1872703700EF9C05 /* BLInfoRegionEntity.m */; };
+		03E6A94618843F450020F883 /* BLQuickOpinionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E6A94518843F450020F883 /* BLQuickOpinionViewController.m */; };
 		03F9BBEF1871CA1A00DBD40C /* Read@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F9BBE71871CA1A00DBD40C /* Read@2x.png */; };
 		03F9BBF01871CA1A00DBD40C /* new@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F9BBE81871CA1A00DBD40C /* new@2x.png */; };
 		03F9BBF11871CA1A00DBD40C /* Todo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F9BBE91871CA1A00DBD40C /* Todo@2x.png */; };
@@ -323,6 +324,8 @@
 		03DECA4E18425154007F6F40 /* BLMatterOperationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterOperationService.m; sourceTree = "<group>"; };
 		03E253DB1872703700EF9C05 /* BLInfoRegionEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLInfoRegionEntity.h; sourceTree = "<group>"; };
 		03E253DC1872703700EF9C05 /* BLInfoRegionEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLInfoRegionEntity.m; sourceTree = "<group>"; };
+		03E6A94418843F450020F883 /* BLQuickOpinionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLQuickOpinionViewController.h; sourceTree = "<group>"; };
+		03E6A94518843F450020F883 /* BLQuickOpinionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLQuickOpinionViewController.m; sourceTree = "<group>"; };
 		03F9BBE71871CA1A00DBD40C /* Read@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Read@2x.png"; sourceTree = "<group>"; };
 		03F9BBE81871CA1A00DBD40C /* new@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new@2x.png"; sourceTree = "<group>"; };
 		03F9BBE91871CA1A00DBD40C /* Todo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Todo@2x.png"; sourceTree = "<group>"; };
@@ -400,6 +403,8 @@
 				03BD17FC1844EF77002F2C38 /* BLMatterFlowListViewController.m */,
 				03BD17FE1844F2FF002F2C38 /* BLMatterOpinionViewController.h */,
 				03BD17FF1844F2FF002F2C38 /* BLMatterOpinionViewController.m */,
+				03E6A94418843F450020F883 /* BLQuickOpinionViewController.h */,
+				03E6A94518843F450020F883 /* BLQuickOpinionViewController.m */,
 				0381BC5318478BDF00DB661D /* BLCommonOpinionViewController.h */,
 				0381BC5418478BDF00DB661D /* BLCommonOpinionViewController.m */,
 				0381BC561847985400DB661D /* BLManageFollowViewController.h */,
@@ -977,6 +982,7 @@
 				039BF624185E077F00985B17 /* ZipArchive.m in Sources */,
 				0381BC581847985400DB661D /* BLManageFollowViewController.m in Sources */,
 				036C0FF2183D05AD00C61808 /* AFURLConnectionOperation.m in Sources */,
+				03E6A94618843F450020F883 /* BLQuickOpinionViewController.m in Sources */,
 				030D3C6B1849DE7700E844EA /* BLAppSettingsViewController.m in Sources */,
 				039BF612185E077F00985B17 /* Makefile in Sources */,
 				039156041861F6B900BBFCB2 /* BLMatterFlowCell.m in Sources */,

@@ -39,7 +39,7 @@
 
 - (void)editFinish
 {
-    [self.delegate opinionDidSelect:self.opinionTextView.text];
+    [self.delegate opinionDidFinish:self.opinionTextView.text];
 }
 
 
@@ -53,13 +53,14 @@
     self.commonOpinionPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
 }
 
+
 #pragma mark - BLCommonOpinionViewControllerDelegate
 
 - (void)opinionDidSelecte:(NSString *)opinion
 {
     self.opinionTextView.text = opinion;
     
-    [self.delegate opinionDidSelect:opinion];
+    [self.delegate opinionDidFinish:opinion];
     
     [self.commonOpinionPopover dismissPopoverAnimated:YES];
 }

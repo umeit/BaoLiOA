@@ -8,17 +8,23 @@
 
 #import "BLMatterFormViewController.h"
 #import "BLCommonOpinionViewController.h"
+#import "BLMatterOpinionViewController.h"
+#import "BLQuickOpinionViewController.h"
 #import "BLMatterOperationService.h"
 #import "BLMainBodyViewController.h"
 #import "BLMatterInfoService.h"
 #import "BLFromFieldItemEntity.h"
 #import "BLInfoRegionEntity.h"
 
-@interface BLMatterFormViewController () <UITableViewDataSource, UITableViewDelegate, BLCommonOpinionViewControllerDelegate>
+@interface BLMatterFormViewController () <UITableViewDataSource, UITableViewDelegate, BLCommonOpinionViewControllerDelegate, BLMatterOpinionViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) BLCommonOpinionViewController *opinionViewController;
+
+@property (strong, nonatomic) BLMatterOpinionViewController *matterOpinionViewController;
+
+@property (strong, nonatomic) BLQuickOpinionViewController *quickOpinionViewController;
 
 //@property (strong, nonatomic) BLMatterInfoService *matterService;
 //
@@ -136,10 +142,10 @@
 
 - (void)eidtButtonPress:(UIButton *)button
 {
-    UINavigationController *navVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CommonOpinionNavigation"];
-    self.opinionViewController = (BLCommonOpinionViewController *)navVC.topViewController;
+    UINavigationController *navVC = [self.storyboard instantiateViewControllerWithIdentifier:@"OpinionNavigation"];
+    self.quickOpinionViewController = (BLQuickOpinionViewController *)navVC.topViewController;
     
-    self.opinionViewController.delegate = self;
+    self.quickOpinionViewController.delegate = self;
     [navVC setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
     [navVC setModalPresentationStyle:UIModalPresentationFormSheet];
     
@@ -152,6 +158,13 @@
 - (void)opinionDidSelecte:(NSString *)opinion
 {
     [self.opinionViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+#pragma mark - BLMatterOpinionViewControllerDelegate
+- (void)opinionDidFinish:(NSString *)opinion
+{
+    NSLog(@"--- %@ ---", opinion);
 }
 
 

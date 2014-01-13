@@ -154,6 +154,8 @@
     
     self.navigationItem.title = self.matterTitle;
     
+    [self.view viewWithTag:OperationButtonParentViewTag].hidden = YES;
+    
     // 加大 segment 的字号
     UIFont *segmentViewFont = [UIFont systemFontOfSize:16.f];
     [self.segmentView setTitleTextAttributes:@{NSFontAttributeName: segmentViewFont} forState:UIControlStateNormal];
@@ -181,6 +183,7 @@
         self.matterAppendInfo = dic[kBlMatterInfoServiceAppendInfo];
         // 获取回传信息
         self.matterReturnDataInfo = dic[kBlMatterInfoServiceReturnDataInfo];
+        
         // 放置操作按钮到界面上
         [self initOperationButton:self.matterOperationList];
         
@@ -274,7 +277,7 @@
 
 #pragma - mark BLMatterOpinionViewControllerDelegate
 // 保存用户选择的意见
-- (void)opinionDidSelect:(NSString *)opinion
+- (void)opinionDidFinish:(NSString *)opinion
 {
     self.comment = opinion;
 }
@@ -358,21 +361,24 @@
 
 - (void)initOperationButton:(NSArray *)buttonList
 {
-    // 计算每个 Button 的宽度
-    CGFloat buttonWidth = 703.f / [buttonList count];
-    
-    CGFloat x = 0;
-    
-    for (NSDictionary *buttonInfo in buttonList) {
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(x, 0, buttonWidth, 70)];
+    if (buttonList.count > 0) {
+        [self.view viewWithTag:OperationButtonParentViewTag].hidden = NO;
+        // 计算每个 Button 的宽度
+        CGFloat buttonWidth = 703.f / buttonList.count;
         
-        [button addTarget:self action:@selector(operationButtonPress:) forControlEvents:UIControlEventTouchUpInside];
-        [button setTitle:buttonInfo[@"ActionName"] forState:UIControlStateNormal];
-        [button setBackgroundColor:[UIColor grayColor]];
+        CGFloat x = 0;
         
-        [[self.view viewWithTag:OperationButtonParentViewTag] addSubview:button];
-        
-        x += buttonWidth;
+        for (NSDictionary *buttonInfo in buttonList) {
+            UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(x, 0, buttonWidth, 70)];
+            
+            [button addTarget:self action:@selector(operationButtonPress:) forControlEvents:UIControlEventTouchUpInside];
+            [button setTitle:buttonInfo[@"ActionName"] forState:UIControlStateNormal];
+            [button setBackgroundColor:[UIColor grayColor]];
+            
+            [[self.view viewWithTag:OperationButtonParentViewTag] addSubview:button];
+            
+            x += buttonWidth;
+        }
     }
 }
 

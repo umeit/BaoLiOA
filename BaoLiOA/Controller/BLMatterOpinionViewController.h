@@ -10,7 +10,7 @@
 
 @protocol BLMatterOpinionViewControllerDelegate <NSObject>
 
-- (void)opinionDidSelect:(NSString *)opinion;
+- (void)opinionDidFinish:(NSString *)opinion;
 
 @end
 
