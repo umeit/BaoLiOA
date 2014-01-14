@@ -160,7 +160,7 @@
 
 
 #pragma mark - BLCommonOpinionViewControllerDelegate
-
+// 选择完常用意见
 - (void)opinionDidSelecte:(NSString *)opinion
 {
     [self.opinionViewController dismissViewControllerAnimated:YES completion:nil];
@@ -168,6 +168,7 @@
 
 
 #pragma mark - BLMatterOpinionViewControllerDelegate
+// 填写完意见
 - (void)opinionDidFinish:(NSString *)opinion
 {
     BLInfoRegionEntity *infoRegion = self.matterFormInfoList[self.currentEidtRegionIndex];
@@ -175,6 +176,8 @@
     BLFromFieldItemEntity *fieldItem = infoRegion.feildItemList[self.currentEidtFieldItemIndex];
     
     fieldItem.value = opinion;
+    
+    [self.delegate eidtOpinionForKey:fieldItem.itemID value:fieldItem.value];
     
     [self.tableView reloadData];
 }

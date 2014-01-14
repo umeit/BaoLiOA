@@ -13,6 +13,7 @@
 #import "BLMatterOperationService.h"
 #import "BLManageFollowViewController.h"
 #import "BLMatterOpinionViewController.h"
+#import "BLMatterFormViewController.h"
 #import "BLMatterInfoService.h"
 #import "UIViewController+GViewController.h"
 #import "NSArray+GArray.h"
@@ -25,7 +26,7 @@
 #define HasBodyDoc (self.matterBodyDocID && self.matterBodyDocID.length > 0)
 #define HasAttach  (self.matterAttachList && self.matterAttachList.count > 0)
 
-@interface BLMatterOperationViewController () <BLManageFollowViewControllerDelegate, BLMatterOpinionViewControllerDelegate>
+@interface BLMatterOperationViewController () <BLManageFollowViewControllerDelegate, BLMatterOpinionViewControllerDelegate, BLMatterFormViewControllerDelegate>
 
 /**
  *  切换控件
@@ -88,6 +89,11 @@
  *  保存用户的意见
  */
 @property (strong, nonatomic) NSString *comment;
+
+/**
+ *  保存用户在表单页面编辑的意见
+ */
+@property (strong, nonatomic) NSMutableArray *eidtFieldList;
 
 /**
  *  保存用户意见的正文
@@ -283,6 +289,18 @@
 }
 
 
+#pragma - mark BLMatterFormViewControllerDelegate
+// 保存用户在表单页面编辑的意见
+- (void)eidtOpinionForKey:(NSString *)key value:(NSString *)value
+{
+    if (!self.eidtFieldList) {
+        self.eidtFieldList = [NSMutableArray array];
+    }
+    
+    [self.eidtFieldList addObject:@{key: value}];
+}
+
+
 #pragma - mark Private
 // 通过操作的名称获取操作 ID
 - (NSString *)actionIDWithButtonName:(NSString *)name
@@ -409,6 +427,7 @@
         [vc performSelector:@selector(setMatterID:) withObject:self.matterID];
     }
     
+    // 设置意见
     if ([vc respondsToSelector:@selector(setComment:)]) {
         [vc performSelector:@selector(setComment:) withObject:self.comment];
     }

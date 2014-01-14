@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol BLMatterFormViewControllerDelegate <NSObject>
+
+- (void)eidtOpinionForKey:(NSString *)key value:(NSString *)value;
+
+@end
+
 @interface BLMatterFormViewController : UIViewController
 
 //@property (strong, nonatomic) NSString *matterID;
@@ -21,5 +27,8 @@
  *  正文附件 ID
  */
 //@property (strong, nonatomic) NSString *matterBodyDocID;
+
+
+@property (weak, nonatomic) id<BLMatterFormViewControllerDelegate>delegate;
 
 @end

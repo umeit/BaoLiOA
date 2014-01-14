@@ -40,12 +40,6 @@
 {
     [super viewWillAppear:animated];
     
-#warning 待优化
-//    static dispatch_once_t onceToken;
-//    dispatch_once(&onceToken, ^{
-//        [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-//    });
-    
     if (!self.isAppear) {
         self.isAppear = YES;
         [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];

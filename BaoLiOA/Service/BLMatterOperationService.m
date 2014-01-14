@@ -25,9 +25,6 @@
                    currentTrackID:(NSString *)currentTrackID
                             block:(BLMOSSubmitCallBackBlock)block
 {
-    NSString *userID = [[NSUserDefaults standardUserDefaults] stringForKey:@"CurrentUserID"];
-    NSString *userName = [[NSUserDefaults standardUserDefaults] stringForKey:@"CurrentUserName"];
-    
     NSMutableString *routIDStr = nil;
     if (routList && [routList count] > 0) {
         routIDStr = [[NSMutableString alloc] init];
@@ -44,8 +41,10 @@
         }
     }
     
+    NSData *contextData = [[NSUserDefaults standardUserDefaults] objectForKey:@"Context"];
+    BLContextEntity *context = [NSKeyedUnarchiver unarchiveObjectWithData:contextData];
     
-    [BLMatterOperationHTTPLogic submitMatterWithUserID:userID userName:userName matterID:matterID flowID:flowID
+    [BLMatterOperationHTTPLogic submitMatterWithContext:context matterID:matterID flowID:flowID
     operation:actionID Comment:comment commentList:commentList routeList:[routIDStr substringToIndex:[routIDStr length] - 1]
     employeeList:[employeeIDStr substringToIndex:[employeeIDStr length] - 1] currentNodeID:currentNodeID currentTrackID:currentTrackID
     block:^(id responseData, NSError *error) {

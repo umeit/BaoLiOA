@@ -8,6 +8,7 @@
 
 #import "BLMatterOperationHTTPLogic.h"
 #import "AFHTTPRequestOperation.h"
+#import "BLContextEntity.h"
 
 #define SOAP_URL(s) [NSURL URLWithString:[NSString stringWithFormat:@"http:/%@:%@/BLOAWebService/BL_WebService.asmx?op=%@",[[NSUserDefaults standardUserDefaults] stringForKey:@"ServerAddress"], [[NSUserDefaults standardUserDefaults] stringForKey:@"ServerPort"], s]];
 
@@ -15,18 +16,17 @@
 
 @implementation BLMatterOperationHTTPLogic
 
-+ (void)submitMatterWithUserID:(NSString *)userID
-                      userName:(NSString *)userName
-                      matterID:(NSString *)matterID
-                        flowID:(NSString *)flowID
-                     operation:(NSString *)operationType
-                       Comment:(NSString *)comment
-                   commentList:(NSString *)commentList
-                     routeList:(NSString *)routIDs
-                  employeeList:(NSString *)employeeIDs
-                 currentNodeID:(NSString *)currentNodeID
-                currentTrackID:(NSString *)currentTrackID
-                         block:(BLMatterOperationHTTPLogicGeneralBlock)block
++ (void)submitMatterWithContext:(BLContextEntity *)context
+                       matterID:(NSString *)matterID
+                         flowID:(NSString *)flowID
+                      operation:(NSString *)operationType
+                        Comment:(NSString *)comment
+                    commentList:(NSString *)commentList
+                      routeList:(NSString *)routIDs
+                   employeeList:(NSString *)employeeIDs
+                  currentNodeID:(NSString *)currentNodeID
+                 currentTrackID:(NSString *)currentTrackID
+                          block:(BLMatterOperationHTTPLogicGeneralBlock)block
 {
     NSString *soapBody = [NSString stringWithFormat:
     @"<?xml version=\"1.0\" encoding=\"utf-8\"?>" \
@@ -34,8 +34,7 @@
     "xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">" \
         "<soap:Body>" \
             "<DoAction xmlns=\"http://tempuri.org/\">"\
-                "<userId>%@</userId>"\
-                "<userName>%@</userName>"\
+                "%@"\
                 "<docId>%@</docId>"\
                 "<flowId>%@</flowId>"\
                 "<currentNodeid>%@</currentNodeid>"\
@@ -48,8 +47,7 @@
             "</DoAction>"\
         "</soap:Body>"\
     "</soap:Envelope>",
-                          userID,
-                          userName,
+                          context,
                           matterID,
                           flowID,
                           currentNodeID,
@@ -108,6 +106,27 @@
 
 
 #pragma mark - Private
+
++ (NSString *)context:(BLContextEntity *)context
+{
+    NSString *contextString = [NSString stringWithFormat:
+                               @"<context>"\
+                               "<UserID>%@</UserID>"\
+                               "<UserName>%@</UserName>"\
+                               "<OA_UserName>%@</OA_UserName>"\
+                               "<OA_DeptName></OA_DeptName>"\
+                               "<OA_UserId>%@</OA_UserId>"\
+                               "<OA_Account>%@</OA_Account>"\
+                               "<currentActionDesc>%@</currentActionDesc>"\
+                               "<currentDocId></currentDocId>"\
+                               "<currentFileId></currentFileId>"\
+                               "<currentAttId></currentAttId>"\
+                               "<currentreportID></currentreportID>"\
+                               "<currentreportName></currentreportName>"\
+                               "</context>",
+                               context.userID, context.userName, context.oaUserName, context.oaUserID, context.oaAccount, context.actionDesc];
+    return contextString;
+}
 
 + (NSMutableURLRequest *)soapRequestWithURLParam:(NSString *)urlParam
                                       soapAction:(NSString *)actionName
