@@ -34,6 +34,8 @@
 
 //@property (strong, nonatomic) NSString *bodyTitle;
 
+@property (nonatomic) NSInteger currentEidtFieldItemIndex;
+@property (nonatomic) NSInteger currentEidtRegionIndex;
 @end
 
 @implementation BLMatterFormViewController
@@ -142,6 +144,10 @@
 
 - (void)eidtButtonPress:(UIButton *)button
 {
+    self.currentEidtFieldItemIndex = button.tag;
+    UITableViewCell *cell = (UITableViewCell *)[[[button superview] superview] superview];
+    self.currentEidtRegionIndex = [self.tableView indexPathForCell:cell].row;
+    
     UINavigationController *navVC = [self.storyboard instantiateViewControllerWithIdentifier:@"OpinionNavigation"];
     self.quickOpinionViewController = (BLQuickOpinionViewController *)navVC.topViewController;
     
@@ -164,7 +170,13 @@
 #pragma mark - BLMatterOpinionViewControllerDelegate
 - (void)opinionDidFinish:(NSString *)opinion
 {
-    NSLog(@"--- %@ ---", opinion);
+    BLInfoRegionEntity *infoRegion = self.matterFormInfoList[self.currentEidtRegionIndex];
+    
+    BLFromFieldItemEntity *fieldItem = infoRegion.feildItemList[self.currentEidtFieldItemIndex];
+    
+    fieldItem.value = opinion;
+    
+    [self.tableView reloadData];
 }
 
 
