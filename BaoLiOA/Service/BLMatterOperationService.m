@@ -23,6 +23,7 @@
                            flowID:(NSString *)flowID
                     currentNodeID:(NSString *)currentNodeID
                    currentTrackID:(NSString *)currentTrackID
+                    eidtFieldList:(NSArray *)eidtFieldList
                             block:(BLMOSSubmitCallBackBlock)block
 {
     NSMutableString *routIDStr = nil;
@@ -46,7 +47,7 @@
     
     [BLMatterOperationHTTPLogic submitMatterWithContext:context matterID:matterID flowID:flowID
     operation:actionID Comment:comment commentList:commentList routeList:[routIDStr substringToIndex:[routIDStr length] - 1]
-    employeeList:[employeeIDStr substringToIndex:[employeeIDStr length] - 1] currentNodeID:currentNodeID currentTrackID:currentTrackID
+    employeeList:[employeeIDStr substringToIndex:[employeeIDStr length] - 1] currentNodeID:currentNodeID currentTrackID:currentTrackID eidtFieldList:eidtFieldList
     block:^(id responseData, NSError *error) {
                                                      
         if (error) {

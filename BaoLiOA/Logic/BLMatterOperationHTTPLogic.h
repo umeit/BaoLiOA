@@ -26,6 +26,7 @@ typedef void(^BLMatterOperationHTTPLogicGeneralBlock)(id responseData, NSError *
                    employeeList:(NSString *)employeeIDs
                   currentNodeID:(NSString *)currentNodeID
                  currentTrackID:(NSString *)currentTrackID
+                  eidtFieldList:(NSArray *)eidtFieldList
                             block:(BLMatterOperationHTTPLogicGeneralBlock)block;
 
 + (void)matterBodyTextWithBodyDocID:(NSString *)docID blcok:(BLMatterOperationHTTPLogicGeneralBlock)block;

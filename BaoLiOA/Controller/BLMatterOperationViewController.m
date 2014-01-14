@@ -242,8 +242,6 @@
     
     NSString *actionID = [self actionIDWithButtonName:button.titleLabel.text];
     
-//    NSString *comment = @"同意";
-    
     self.currentActionID = actionID;
     
     [self operationMatterWithAction:actionID
@@ -297,7 +295,10 @@
         self.eidtFieldList = [NSMutableArray array];
     }
     
-    [self.eidtFieldList addObject:@{key: value}];
+    [self.eidtFieldList addObject:@{@"key": key, @"value": value}];
+    
+    // 覆盖「办理」中的意见
+    self.comment = value;
 }
 
 
@@ -329,7 +330,7 @@
     // 将用户的「意见」和「意见正文」提交
     [self.matterOprationService operationMatterWithAction:actionID comment:comment commentList:returnData
     routeList:routList employeeList:employeeList matterID:matterID flowID:flowID
-    currentNodeID:currentNodeID currentTrackID:currentTrackID
+    currentNodeID:currentNodeID currentTrackID:currentTrackID eidtFieldList:self.eidtFieldList
     block:^(NSInteger retCode, NSArray *list, NSString *title) {
         
         [self hideLodingView];

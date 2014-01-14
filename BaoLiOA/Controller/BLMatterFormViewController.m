@@ -175,10 +175,11 @@
     
     BLFromFieldItemEntity *fieldItem = infoRegion.feildItemList[self.currentEidtFieldItemIndex];
     
+    [self.delegate eidtOpinionForKey:fieldItem.itemID value:opinion];
+    
+#warning 待实现
+//    fieldItem.value = [NSString stringWithFormat:@"%@\n%@", opinion, [NSDate date]];
     fieldItem.value = opinion;
-    
-    [self.delegate eidtOpinionForKey:fieldItem.itemID value:fieldItem.value];
-    
     [self.tableView reloadData];
 }
 

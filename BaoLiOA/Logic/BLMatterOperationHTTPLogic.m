@@ -26,6 +26,7 @@
                    employeeList:(NSString *)employeeIDs
                   currentNodeID:(NSString *)currentNodeID
                  currentTrackID:(NSString *)currentTrackID
+                  eidtFieldList:(NSArray *)eidtFieldList
                           block:(BLMatterOperationHTTPLogicGeneralBlock)block
 {
     NSString *soapBody = [NSString stringWithFormat:
@@ -44,6 +45,7 @@
                 "<SelectAuthorID>%@</SelectAuthorID>"\
                 "<Comments>%@</Comments>"\
                 "<CommentFieldName>%@</CommentFieldName>"\
+                "%@"\
             "</DoAction>"\
         "</soap:Body>"\
     "</soap:Envelope>",
@@ -56,7 +58,8 @@
                           (routIDs ? routIDs : @""),
                           (employeeIDs ? employeeIDs : @""),
                           comment,
-                          (commentList ? commentList : @"")];
+                          (commentList ? commentList : @""),
+                          [self eidtFeildList:eidtFieldList]];
     
     NSMutableURLRequest *request = [BLMatterOperationHTTPLogic soapRequestWithURLParam:@"DoAction"
                                                                             soapAction:@"http://tempuri.org/DoAction"
@@ -126,6 +129,31 @@
                                "</context>",
                                context.userID, context.userName, context.oaUserName, context.oaUserID, context.oaAccount, context.actionDesc];
     return contextString;
+}
+
++ (NSString *)eidtFeildList:(NSArray *)eidtFeildList
+{
+    NSMutableString *s = [[NSMutableString alloc] init];
+    for (NSDictionary *dic in eidtFeildList) {
+        NSString *eidtFeild = [NSString stringWithFormat:
+                               @"<EditField>"\
+                               "<Key>%@</Key>"\
+                               "<Mode>1</Mode>"\
+                               "<Sign>ture</Sign>"\
+                               "<Input>11</Input>"\
+                               "<Value>%@</Value>"\
+                               "<FieldType>1</FieldType>"\
+                               "</EditField>",
+                               dic[@"key"], dic[@"value"]];
+        [s stringByAppendingString:eidtFeild];
+    }
+    
+    NSString *eidtFeildListString = [NSString stringWithFormat:
+    @"<editFields>"\
+    "%@"\
+    "</editFields>", s];
+    
+    return eidtFeildListString;
 }
 
 + (NSMutableURLRequest *)soapRequestWithURLParam:(NSString *)urlParam
