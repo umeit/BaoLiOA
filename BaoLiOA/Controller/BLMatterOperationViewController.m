@@ -295,7 +295,21 @@
         self.eidtFieldList = [NSMutableArray array];
     }
     
-    [self.eidtFieldList addObject:@{@"key": key, @"value": value}];
+    __block NSInteger index = -1;
+    
+    [self.eidtFieldList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        if ([obj[@"key"] isEqualToString:key]) {
+            index = idx;
+            *stop = YES;
+        }
+    }];
+    
+    if (index > -1) {
+        self.eidtFieldList[index] = @{@"key": key, @"value": value};
+    }
+    else {
+        [self.eidtFieldList addObject:@{@"key": key, @"value": value}];
+    }
     
     // 覆盖「办理」中的意见
     self.comment = value;

@@ -49,7 +49,7 @@
             "</DoAction>"\
         "</soap:Body>"\
     "</soap:Envelope>",
-                          context,
+                          [self context:context],
                           matterID,
                           flowID,
                           currentNodeID,
@@ -133,19 +133,19 @@
 
 + (NSString *)eidtFeildList:(NSArray *)eidtFeildList
 {
-    NSMutableString *s = [[NSMutableString alloc] init];
+    NSString *s = @"";
     for (NSDictionary *dic in eidtFeildList) {
         NSString *eidtFeild = [NSString stringWithFormat:
                                @"<EditField>"\
                                "<Key>%@</Key>"\
-                               "<Mode>1</Mode>"\
-                               "<Sign>ture</Sign>"\
+                               "<Mode></Mode>"\
+                               "<Sign></Sign>"\
                                "<Input>11</Input>"\
                                "<Value>%@</Value>"\
-                               "<FieldType>1</FieldType>"\
+                               "<FieldType></FieldType>"\
                                "</EditField>",
                                dic[@"key"], dic[@"value"]];
-        [s stringByAppendingString:eidtFeild];
+         s = [s stringByAppendingString:eidtFeild];
     }
     
     NSString *eidtFeildListString = [NSString stringWithFormat:

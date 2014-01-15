@@ -219,6 +219,7 @@
             fieldItemEntity.desplayOrder = [[fieldItemElement child:@"DisplayOrder"].text integerValue];
             fieldItemEntity.align = [fieldItemElement child:@"Align"].text;
             
+            fieldItemEntity.mode = [fieldItemElement child:@"Mode"].text;
             fieldItemEntity.itemID = [fieldItemElement child:@"Key"].text;
             fieldItemEntity.sign = [[fieldItemElement child:@"Sign"].text isEqualToString:@"true"] ? YES : NO;
             fieldItemEntity.inputType = [fieldItemElement child:@"Input"].text;
