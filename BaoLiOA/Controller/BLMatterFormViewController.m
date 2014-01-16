@@ -177,9 +177,9 @@
     
     [self.delegate eidtOpinionForKey:fieldItem.itemID value:opinion];
     
-#warning 待实现
+#warning 待实现,加名字
 //    fieldItem.value = [NSString stringWithFormat:@"%@\n%@", opinion, [NSDate date]];
-    fieldItem.value = opinion;
+    fieldItem.eidtValue = [NSString stringWithFormat:@"%@\n", opinion];
     [self.tableView reloadData];
 }
 
@@ -213,8 +213,8 @@
         CGFloat labelWidth = (cellWidth - 15) * (percent == 0 ? 1 : percent) - 10;
         
         NSString *nameString = [NSString stringWithFormat:@"%@%@%@%@", fieldItem.beforeName, fieldItem.name, fieldItem.endName, fieldItem.splitString];
-        NSString *valueString = [NSString stringWithFormat:@"%@%@%@", fieldItem.beforeValue, fieldItem.value, fieldItem.endValue];
-        
+        NSString *valueString = [NSString stringWithFormat:@"%@%@%@%@", fieldItem.beforeValue, (fieldItem.eidtValue ? fieldItem.eidtValue : @""), fieldItem.value, fieldItem.endValue];
+//        NSString *valueString = [NSString stringWithFormat:@"%@%@%@", fieldItem.beforeValue, fieldItem.value, fieldItem.endValue];
         /** 配置 Label 的显示内容 */
         // 显示 name
         if (fieldItem.nameVisible) {

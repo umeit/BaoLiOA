@@ -26,6 +26,8 @@
 
 @property (nonatomic) BOOL nameRN;
 
+@property (strong, nonatomic) NSString *eidtValue;
+
 @property (strong, nonatomic) NSString *value;
 
 @property (strong, nonatomic) NSString *beforeValue;
