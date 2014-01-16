@@ -34,26 +34,53 @@
     NSMutableDictionary *resultDic = [[NSMutableDictionary alloc] init];
     
     NSString *webMethodName;
+    NSString *soapBody;
+    
     if (attachType == kAttach) {
         webMethodName = @"DownFileIsFinish_Attachment";
+        
+        soapBody = [NSString stringWithFormat:
+                              @"<?xml version=\"1.0\" encoding=\"utf-8\"?>" \
+                              "<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" "\
+                              "xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">" \
+                              "<soap:Body>" \
+                              "<%@ xmlns=\"http://tempuri.org/\">"\
+                              "%@" \
+                              "<fileID>%@</fileID>"\
+                              "<parafileName>%@</parafileName>"\
+                              "</%@>"\
+                              "</soap:Body>"\
+                              "</soap:Envelope>",webMethodName, [self context:context], attachID, attachName, webMethodName];
     }
     else if (attachType == kMainDoc) {
         webMethodName = @"DownFileIsFinish_DocFile";
+        
+        soapBody = [NSString stringWithFormat:
+                              @"<?xml version=\"1.0\" encoding=\"utf-8\"?>" \
+                              "<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" "\
+                              "xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">" \
+                              "<soap:Body>" \
+                              "<%@ xmlns=\"http://tempuri.org/\">"\
+                              "%@" \
+                              "<docID>%@</docID>"\
+                              "</%@>"\
+                              "</soap:Body>"\
+                              "</soap:Envelope>",webMethodName, [self context:context], attachID, webMethodName];
     }
     
     
-    NSString *soapBody = [NSString stringWithFormat:
-    @"<?xml version=\"1.0\" encoding=\"utf-8\"?>" \
-    "<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" "\
-    "xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">" \
-    "<soap:Body>" \
-        "<%@ xmlns=\"http://tempuri.org/\">"\
-            "%@" \
-            "<fileID>%@</fileID>"\
-            "<parafileName>%@</parafileName>"\
-        "</%@>"\
-    "</soap:Body>"\
-    "</soap:Envelope>",webMethodName, [self context:context], attachID, attachName, webMethodName];
+//    NSString *soapBody = [NSString stringWithFormat:
+//    @"<?xml version=\"1.0\" encoding=\"utf-8\"?>" \
+//    "<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" "\
+//    "xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">" \
+//    "<soap:Body>" \
+//        "<%@ xmlns=\"http://tempuri.org/\">"\
+//            "%@" \
+//            "<fileID>%@</fileID>"\
+//            "<parafileName>%@</parafileName>"\
+//        "</%@>"\
+//    "</soap:Body>"\
+//    "</soap:Envelope>",webMethodName, [self context:context], attachID, attachName, webMethodName];
     
     NSMutableURLRequest *request = [BLMatterInfoHTTPLogic soapRequestWithURLParam:webMethodName
                                                                        soapAction:[NSString stringWithFormat:@"http://tempuri.org/%@", webMethodName]
