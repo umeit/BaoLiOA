@@ -77,7 +77,7 @@
     [[NSOperationQueue mainQueue] addOperation:operation];
 }
 
-+ (void)matterBodyTextWithBodyDocID:(NSString *)docID blcok:(BLMatterOperationHTTPLogicGeneralBlock)block
++ (void)matterBodyTextWithBodyDocID:(NSString *)docID context:(BLContextEntity *)context blcok:(BLMatterOperationHTTPLogicGeneralBlock)block
 {
     NSString *soapBody = [NSString stringWithFormat:
     @"<?xml version=\"1.0\" encoding=\"utf-8\"?>" \
@@ -85,11 +85,12 @@
     "xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">" \
     "<soap:Body>" \
         "<GetWord_Text xmlns=\"http://tempuri.org/\">"\
+            "%@"\
             "<fileID>%@</fileID>"\
         "</GetWord_Text>"\
     "</soap:Body>"\
     "</soap:Envelope>",
-    docID];
+    [self context:context], docID];
     
     NSMutableURLRequest *request = [BLMatterOperationHTTPLogic soapRequestWithURLParam:@"GetWord_Text"
                                                                             soapAction:@"http://tempuri.org/GetWord_Text"

@@ -215,13 +215,13 @@
 
 
 #pragma - mark Navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    UIViewController *vc = segue.destinationViewController;
-    if ([vc respondsToSelector:@selector(setBodyDocID:)]) {
-        [vc performSelector:@selector(setBodyDocID:) withObject:self.matterBodyDocID];
-    }
-}
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//    UIViewController *vc = segue.destinationViewController;
+//    if ([vc respondsToSelector:@selector(setBodyDocID:)]) {
+//        [vc performSelector:@selector(setBodyDocID:) withObject:self.matterBodyDocID];
+//    }
+//}
 
 
 #pragma - mark Action
@@ -448,9 +448,9 @@
     }
     
     // 设置正文附件ID
-//    if ([vc respondsToSelector:@selector(setMatterBodyDocID:)]) {
-//        [vc performSelector:@selector(setMatterBodyDocID:) withObject:self.matterBodyDocID];
-//    }
+    if ([vc respondsToSelector:@selector(setBodyDocID:)]) {
+        [vc performSelector:@selector(setBodyDocID:) withObject:self.matterBodyDocID];
+    }
     
     [self addChildViewController:vc];
     

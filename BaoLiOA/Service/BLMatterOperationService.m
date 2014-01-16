@@ -130,7 +130,10 @@
 
 - (void)matterBodyTextWithBodyDocID:(NSString *)docID block:(BLMatterOprationServiceGeneralBlock)block
 {
-    [BLMatterOperationHTTPLogic matterBodyTextWithBodyDocID:docID blcok:^(id responseData, NSError *error) {
+    NSData *contextData = [[NSUserDefaults standardUserDefaults] objectForKey:@"Context"];
+    BLContextEntity *context = [NSKeyedUnarchiver unarchiveObjectWithData:contextData];
+    
+    [BLMatterOperationHTTPLogic matterBodyTextWithBodyDocID:docID context:context blcok:^(id responseData, NSError *error) {
         if (error) {
             block(nil, error);
         }

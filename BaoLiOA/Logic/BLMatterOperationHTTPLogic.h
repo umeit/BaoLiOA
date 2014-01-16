@@ -29,5 +29,5 @@ typedef void(^BLMatterOperationHTTPLogicGeneralBlock)(id responseData, NSError *
                   eidtFieldList:(NSArray *)eidtFieldList
                             block:(BLMatterOperationHTTPLogicGeneralBlock)block;
 
-+ (void)matterBodyTextWithBodyDocID:(NSString *)docID blcok:(BLMatterOperationHTTPLogicGeneralBlock)block;
++ (void)matterBodyTextWithBodyDocID:(NSString *)docID context:(BLContextEntity *)context blcok:(BLMatterOperationHTTPLogicGeneralBlock)block;
 @end
