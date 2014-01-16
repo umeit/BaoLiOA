@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void(^BLUserHTTPLogicGeneralBlock)(id responseData, NSError *error);
+
 @interface BLUserHTTPLogic : NSObject
+
++ (void)loginWithUserID:(NSString *)userID password:(NSString *)password block:(BLUserHTTPLogicGeneralBlock)block;
 
 @end
