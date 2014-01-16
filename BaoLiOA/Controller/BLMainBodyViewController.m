@@ -57,7 +57,9 @@
     }
     
     // 获取正文内容
+    [self showLodingView];
     [self.matterOprationService matterBodyTextWithBodyDocID:self.bodyDocID block:^(id obj, NSError *error) {
+        [self hideLodingView];
         self.mainBodyTextView.text = obj;
     }];
 }

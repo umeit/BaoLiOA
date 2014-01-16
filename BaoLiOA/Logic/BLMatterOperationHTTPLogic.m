@@ -86,7 +86,7 @@
     "<soap:Body>" \
         "<GetWord_Text xmlns=\"http://tempuri.org/\">"\
             "%@"\
-            "<fileID>%@</fileID>"\
+            "<docID>%@</docID>"\
         "</GetWord_Text>"\
     "</soap:Body>"\
     "</soap:Envelope>",
