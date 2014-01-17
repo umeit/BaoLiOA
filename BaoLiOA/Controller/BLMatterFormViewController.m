@@ -102,7 +102,7 @@
         CGFloat labelWidth = cellWidth * (percent == 0 ? 1 : percent);
 
         NSString *nameString = [NSString stringWithFormat:@"%@%@%@%@", fieldItem.beforeName, fieldItem.name, fieldItem.endName, fieldItem.splitString];
-        NSString *valueString = [NSString stringWithFormat:@"%@%@%@", fieldItem.beforeValue, fieldItem.value, fieldItem.endValue];
+        NSString *valueString = [NSString stringWithFormat:@"%@%@%@%@", fieldItem.beforeValue, (fieldItem.eidtValue ? fieldItem.eidtValue : @""), fieldItem.value, fieldItem.endValue];
         
         // 显示 name
         if (fieldItem.nameVisible) {
@@ -269,7 +269,7 @@
         
         // 是否可以编辑
         if ([fieldItem.mode isEqualToString:@"1"] && [fieldItem.inputType isEqualToString:@"11"]) {
-            UIButton *eidtButton = [[UIButton alloc] initWithFrame:CGRectMake(currentX, 0, labelWidth, cell.contentView.bounds.size.height)];
+            UIButton *eidtButton = [[UIButton alloc] initWithFrame:CGRectMake(currentX, 0, labelWidth, cell.bounds.size.height)];
             // 用 tag 记录当前编辑的 item 的 index
             eidtButton.tag = i;
             [eidtButton addTarget:self action:@selector(eidtButtonPress:) forControlEvents:UIControlEventTouchUpInside];
