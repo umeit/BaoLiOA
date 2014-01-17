@@ -28,7 +28,7 @@
                             "<loginCheckInfo>"\
                                 "<UserName>%@</UserName>"\
                                 "<PassWord>%@</PassWord>"\
-                                "<SimIMSI>898600</SimIMSI>"\
+                                "<SimIMSI></SimIMSI>"\
                                 "<PhoneIMEI>%@</PhoneIMEI>"\
                                 "<PhoneNumber></PhoneNumber>"\
                                 "<BindDevice>false</BindDevice>"\

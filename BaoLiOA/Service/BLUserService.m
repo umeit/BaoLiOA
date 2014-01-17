@@ -26,7 +26,7 @@
             
             RXMLElement *rootElement = [RXMLElement elementFromXMLData:responseData];
             
-            BOOL loginResult = [[rootElement child:@"Body.IOSLoginResponse.IOSLoginResult"].text isEqualToString:@"ture"];
+            BOOL loginResult = [[rootElement child:@"Body.IOSLoginResponse.IOSLoginResult"].text isEqualToString:@"true"];
             
             if (loginResult) {
                 NSString *userID = [rootElement child:@"Body.IOSLoginResponse.userInfo.UserID"].text;

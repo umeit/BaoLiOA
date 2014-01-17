@@ -38,7 +38,7 @@
     NSData *contextData = [[NSUserDefaults standardUserDefaults] objectForKey:@"Context"];
     if (contextData) {
         BLContextEntity *context = [NSKeyedUnarchiver unarchiveObjectWithData:contextData];
-        self.loginIDTextField.text = context.userID;
+        self.loginIDTextField.text = context.userName;
     }
 }
 
