@@ -389,6 +389,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="adIDLabel" destination="hB7-Zs-O6j" id="eL4-Qo-aBn"/>
                         <outlet property="commonOpinionNumberLabel" destination="Njg-dC-8yz" id="pmu-75-fdg"/>
                     </connections>
                 </tableViewController>

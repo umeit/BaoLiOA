@@ -53,90 +53,93 @@
         [self showCustomTextAlert:@"请输入用户名"];
         return;
     }
-
-#warning 密码验证
+    
     if (!password || [password length] < 1) {
         [self showCustomTextAlert:@"请输入密码"];
         return;
     }
     
-    if (![password isEqualToString:@"123456"]) {
-        [self showCustomTextAlert:@"密码错误"];
-        return;
-    }
-    
     [self showLodingView];
     
-    [self.userService loginWithLoginID:loginID password:password block:^(NSInteger retCode) {
-        
+    [self.userService loginWithLoginID:loginID password:password block:^(BOOL success, NSString *msg) {
         [self hideLodingView];
         
-        switch (retCode) {
-            case 0:
-            {
-                NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-                BLContextEntity *context;
-                
-                if ([loginID isEqualToString:@"admin"]) {
-                    context = [[BLContextEntity alloc] initWithUserID:@"admin"
-                                                             userName:@"管理员"
-                                                             oaUserID:@"admin"
-                                                           oaUserName:@"管理员"
-                                                            oaAccount:@"管理员"
-                                                           actionDesc:@""];
-                    
-                    
-                }
-                else if ([loginID isEqualToString:@"konglj"]) {
-                    context = [[BLContextEntity alloc] initWithUserID:@"konglj"
-                                                             userName:@"登录名"
-                                                             oaUserID:@"HZ8080813e5f8e3e013e5f90486d003a"
-                                                           oaUserName:@"真实姓名"
-                                                            oaAccount:@"OA用户名"
-                                                           actionDesc:@""];
-                }
-                else if ([loginID isEqualToString:@"liujc"]) {
-                    context = [[BLContextEntity alloc] initWithUserID:@"liujc"
-                                                             userName:@"登录名"
-                                                             oaUserID:@"HZ8181e5415cd79f01415d1544e207ad"
-                                                           oaUserName:@"真实姓名"
-                                                            oaAccount:@"OA用户名"
-                                                           actionDesc:@""];
-                }
-                else if ([loginID isEqualToString:@"zhumx"]) {
-                    context = [[BLContextEntity alloc] initWithUserID:@"zhumx"
-                                                             userName:@"登录名"
-                                                             oaUserID:@"HZ8181e5415cd79f01415d11bde70773"
-                                                           oaUserName:@"真实姓名"
-                                                            oaAccount:@"OA用户名"
-                                                           actionDesc:@""];
-                }
-                else if ([loginID isEqualToString:@"xuns"]) {
-                    context = [[BLContextEntity alloc] initWithUserID:@"xuns"
-                                                             userName:@"登录名"
-                                                             oaUserID:@"HZ8181e5415cd79f01415d08d0a505e2"
-                                                           oaUserName:@"真实姓名"
-                                                            oaAccount:@"OA用户名"
-                                                           actionDesc:@""];
-                }
-                else {
-                    [self showCustomTextAlert:@"不存在该用户"];
-                    return;
-                }
-                    
-                
-                
-                [userDefaults setObject:[NSKeyedArchiver archivedDataWithRootObject:context] forKey:@"Context"];
-                
-                self.view.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BLSplitViewController"];
-                
-                break;
-            }
-                
-            default:
-                break;
+        if (success) {
+            self.view.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BLSplitViewController"];
+        }
+        else {
+            [self showCustomTextAlert:msg];
         }
     }];
+        
+//    
+//        
+//        switch (retCode) {
+//            case 0:
+//            {
+//                NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//                BLContextEntity *context;
+//                
+//                if ([loginID isEqualToString:@"admin"]) {
+//                    context = [[BLContextEntity alloc] initWithUserID:@"admin"
+//                                                             userName:@"管理员"
+//                                                             oaUserID:@"admin"
+//                                                           oaUserName:@"管理员"
+//                                                            oaAccount:@"管理员"
+//                                                           actionDesc:@""];
+//                    
+//                    
+//                }
+//                else if ([loginID isEqualToString:@"konglj"]) {
+//                    context = [[BLContextEntity alloc] initWithUserID:@"konglj"
+//                                                             userName:@"登录名"
+//                                                             oaUserID:@"HZ8080813e5f8e3e013e5f90486d003a"
+//                                                           oaUserName:@"真实姓名"
+//                                                            oaAccount:@"OA用户名"
+//                                                           actionDesc:@""];
+//                }
+//                else if ([loginID isEqualToString:@"liujc"]) {
+//                    context = [[BLContextEntity alloc] initWithUserID:@"liujc"
+//                                                             userName:@"登录名"
+//                                                             oaUserID:@"HZ8181e5415cd79f01415d1544e207ad"
+//                                                           oaUserName:@"真实姓名"
+//                                                            oaAccount:@"OA用户名"
+//                                                           actionDesc:@""];
+//                }
+//                else if ([loginID isEqualToString:@"zhumx"]) {
+//                    context = [[BLContextEntity alloc] initWithUserID:@"zhumx"
+//                                                             userName:@"登录名"
+//                                                             oaUserID:@"HZ8181e5415cd79f01415d11bde70773"
+//                                                           oaUserName:@"真实姓名"
+//                                                            oaAccount:@"OA用户名"
+//                                                           actionDesc:@""];
+//                }
+//                else if ([loginID isEqualToString:@"xuns"]) {
+//                    context = [[BLContextEntity alloc] initWithUserID:@"xuns"
+//                                                             userName:@"登录名"
+//                                                             oaUserID:@"HZ8181e5415cd79f01415d08d0a505e2"
+//                                                           oaUserName:@"真实姓名"
+//                                                            oaAccount:@"OA用户名"
+//                                                           actionDesc:@""];
+//                }
+//                else {
+//                    [self showCustomTextAlert:@"不存在该用户"];
+//                    return;
+//                }
+//                    
+//                
+//                
+//                [userDefaults setObject:[NSKeyedArchiver archivedDataWithRootObject:context] forKey:@"Context"];
+//                
+//                self.view.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BLSplitViewController"];
+//                
+//                break;
+//            }
+//                
+//            default:
+//                break;
+//        }
+//    }];
 }
 
 - (IBAction)settingsButtonPress:(id)sender

@@ -13,11 +13,11 @@
 
 @implementation BLUserService
 
-- (void)loginWithLoginID:(NSString *)loginID password:(NSString *)password block:(BLUserServiceGeneralRetCode)block
+- (void)loginWithLoginID:(NSString *)loginID password:(NSString *)password block:(BLUserServiceLoginBlock)block
 {
     [BLUserHTTPLogic loginWithUserID:loginID password:password block:^(id responseData, NSError *error) {
         if (error) {
-            block(-1);
+            block(NO, @"登录失败，请检查您的网络或稍后再试。");
         }
         else {
             NSLog(@"Response [Login Data]: %@", [[NSString alloc] initWithData:responseData
@@ -41,26 +41,30 @@
                 NSString *oaAccount = [rootElement child:@"Body.IOSLoginResponse.userInfo.OA_Account"].text;
                 NSString *pwdString = [rootElement child:@"Body.IOSLoginResponse.userInfo.pwd_string"].text;
                 NSString *bindDevice = [rootElement child:@"Body.IOSLoginResponse.userInfo.BindDevice"].text;
-                NSString *bindDevice = [rootElement child:@"Body.IOSLoginResponse.userInfo.BindDevice"].text;
                 NSString *phoneOfficeAuthy = [rootElement child:@"Body.IOSLoginResponse.userInfo.Phone_office_Authy"].text;
                 NSString *phoneChartAuthy = [rootElement child:@"Body.IOSLoginResponse.userInfo.Phone_Chart_Authy"].text;
                 NSString *isNeedCheckCode = [rootElement child:@"Body.IOSLoginResponse.userInfo.isNeedCheckCode"].text;
                 NSString *checkCode = [rootElement child:@"Body.IOSLoginResponse.userInfo.CheckCode"].text;
                 
                 
-                BLContextEntity *context = [[BLContextEntity alloc] initWithUserID:@"xuns"
-                                                                          userName:@"登录名"
-                                                                          oaUserID:@"HZ8181e5415cd79f01415d08d0a505e2"
-                                                                        oaUserName:@"真实姓名"
-                                                                         oaAccount:@"OA用户名"
+                BLContextEntity *context = [[BLContextEntity alloc] initWithUserID:userID
+                                                                          userName:userName
+                                                                          oaUserID:oaUserId
+                                                                        oaUserName:oaUserName
+                                                                         oaAccount:oaAccount
                                                                         actionDesc:@""];
+                
+                NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                [userDefaults setObject:[NSKeyedArchiver archivedDataWithRootObject:context] forKey:@"Context"];
+                
+                block(YES, nil);
             }
-            
-            block(0);
+            else {
+                NSString *errorMsg = [rootElement child:@"Body.IOSLoginResponse.errorMsg"].text;
+                block(NO, errorMsg);
+            }
         }
     }];
-    
-    block(0);
 }
 
 @end

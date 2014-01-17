@@ -8,6 +8,7 @@
 
 #import "BLUserHTTPLogic.h"
 #import "AFHTTPRequestOperation.h"
+#import <AdSupport/AdSupport.h>
 
 #define SOAP_URL(s) \
 [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%@/BLOAWebService/BL_WebService.asmx?op=%@",[[NSUserDefaults standardUserDefaults] stringForKey:@"ServerAddress"], [[NSUserDefaults standardUserDefaults] stringForKey:@"ServerPort"], s]];
@@ -16,6 +17,8 @@
 
 + (void)loginWithUserID:(NSString *)userID password:(NSString *)password block:(BLUserHTTPLogicGeneralBlock)block
 {
+    NSString *adId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+    
     NSString *soapBody = [NSString stringWithFormat:
                           @"<?xml version=\"1.0\" encoding=\"utf-8\"?>" \
                           "<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" "\
@@ -25,8 +28,8 @@
                             "<loginCheckInfo>"\
                                 "<UserName>%@</UserName>"\
                                 "<PassWord>%@</PassWord>"\
-                                "<SimIMSI></SimIMSI>"\
-                                "<PhoneIMEI>352343050666419</PhoneIMEI>"\
+                                "<SimIMSI>898600</SimIMSI>"\
+                                "<PhoneIMEI>%@</PhoneIMEI>"\
                                 "<PhoneNumber></PhoneNumber>"\
                                 "<BindDevice>false</BindDevice>"\
                                 "<isNeedCheckCode>false</isNeedCheckCode>"\
@@ -35,7 +38,7 @@
                             "</loginCheckInfo>"\
                           "</IOSLogin>"\
                           "</soap:Body>"\
-                          "</soap:Envelope>", userID, password];
+                          "</soap:Envelope>", userID, password, adId];
     
     NSMutableURLRequest *request = [BLUserHTTPLogic soapRequestWithURLParam:@"IOSLogin"
                                                                  soapAction:@"http://tempuri.org/IOSLogin"

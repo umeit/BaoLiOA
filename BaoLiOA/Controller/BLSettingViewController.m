@@ -8,9 +8,11 @@
 
 #import "BLSettingViewController.h"
 #import "UIViewController+GViewController.h"
+#import <AdSupport/AdSupport.h>
 
 @interface BLSettingViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *commonOpinionNumberLabel;
+@property (weak, nonatomic) IBOutlet UILabel *adIDLabel;
 
 @end
 
@@ -19,6 +21,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    NSString *adId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+    self.adIDLabel.text = adId;
 }
 
 - (void)viewWillAppear:(BOOL)animated

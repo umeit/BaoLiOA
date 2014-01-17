@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void(^BLUserServiceGeneralRetCode)(NSInteger retCode);
+typedef void(^BLUserServiceLoginBlock)(BOOL success, NSString *msg);
 
 @interface BLUserService : NSObject
 
-- (void)loginWithLoginID:(NSString *)loginID password:(NSString *)password block:(BLUserServiceGeneralRetCode)block;
+- (void)loginWithLoginID:(NSString *)loginID password:(NSString *)password block:(BLUserServiceLoginBlock)block;
 
 @end
