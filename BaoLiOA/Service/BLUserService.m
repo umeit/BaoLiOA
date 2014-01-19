@@ -17,9 +17,9 @@
 - (void)loginWithLoginID:(NSString *)loginID password:(NSString *)password block:(BLUserServiceLoginBlock)block
 {
     // 给密码加密
-    NSString *passwordUesDES = [BLUserService encryptUseDES:password key:@"key"];
+    NSString *passwordUesDES = [BLUserService encryptUseDES:password key:@"Poly"];
     
-    [BLUserHTTPLogic loginWithUserID:loginID password:passwordUesDES block:^(id responseData, NSError *error) {
+    [BLUserHTTPLogic loginWithUserID:loginID password:password block:^(id responseData, NSError *error) {
         if (error) {
             block(NO, @"登录失败，请检查您的网络或稍后再试。");
         }
