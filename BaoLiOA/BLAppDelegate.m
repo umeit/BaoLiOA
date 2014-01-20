@@ -27,7 +27,7 @@
     NSString *serverIP = [userDefaults stringForKey:@"ServerAddress"];
     NSString *serverPort = [userDefaults stringForKey:@"ServerPort"];
     if (!serverIP) {
-        serverIP = @"210.51.191.244";
+        serverIP = @"172.16.11.193";
         
         [userDefaults setObject:serverIP forKey:@"ServerAddress"];
     }
