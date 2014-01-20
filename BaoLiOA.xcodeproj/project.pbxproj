@@ -97,6 +97,7 @@
 		03BD17FA1844DC8F002F2C38 /* BLMatterAttachmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BD17F91844DC8F002F2C38 /* BLMatterAttachmentCell.m */; };
 		03BD17FD1844EF77002F2C38 /* BLMatterFlowListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BD17FC1844EF77002F2C38 /* BLMatterFlowListViewController.m */; };
 		03BD18001844F2FF002F2C38 /* BLMatterOpinionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BD17FF1844F2FF002F2C38 /* BLMatterOpinionViewController.m */; };
+		03C26F73188D7B69007214BC /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C26F71188D7B69007214BC /* GTMBase64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		03D2E929183FB6350096E463 /* BLMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03D2E928183FB6350096E463 /* BLMasterViewController.m */; };
 		03DECA461842434D007F6F40 /* BLMatterOperationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DECA451842434D007F6F40 /* BLMatterOperationViewController.m */; };
 		03DECA49184247D0007F6F40 /* BLGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DECA48184247D0007F6F40 /* BLGlobal.m */; };
@@ -312,6 +313,9 @@
 		03BD17FC1844EF77002F2C38 /* BLMatterFlowListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterFlowListViewController.m; sourceTree = "<group>"; };
 		03BD17FE1844F2FF002F2C38 /* BLMatterOpinionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterOpinionViewController.h; sourceTree = "<group>"; };
 		03BD17FF1844F2FF002F2C38 /* BLMatterOpinionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterOpinionViewController.m; sourceTree = "<group>"; };
+		03C26F70188D7B69007214BC /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
+		03C26F71188D7B69007214BC /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
+		03C26F72188D7B69007214BC /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
 		03D2E927183FB6350096E463 /* BLMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMasterViewController.h; sourceTree = "<group>"; };
 		03D2E928183FB6350096E463 /* BLMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMasterViewController.m; sourceTree = "<group>"; };
 		03DECA441842434D007F6F40 /* BLMatterOperationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterOperationViewController.h; sourceTree = "<group>"; };
@@ -579,6 +583,7 @@
 		036C0FD8183D05AD00C61808 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				03C26F6F188D7B69007214BC /* GTMBase64 */,
 				03B0E0AB186995CF007B2C8E /* GUtil */,
 				0398DCCA18684DBF00980CE4 /* MBProgressHUD */,
 				0398DCC218684D3D00980CE4 /* GViewController */,
@@ -752,6 +757,16 @@
 				03B0E0AD186995CF007B2C8E /* NSArray+GArray.m */,
 			);
 			path = GUtil;
+			sourceTree = "<group>";
+		};
+		03C26F6F188D7B69007214BC /* GTMBase64 */ = {
+			isa = PBXGroup;
+			children = (
+				03C26F70188D7B69007214BC /* GTMBase64.h */,
+				03C26F71188D7B69007214BC /* GTMBase64.m */,
+				03C26F72188D7B69007214BC /* GTMDefines.h */,
+			);
+			path = GTMBase64;
 			sourceTree = "<group>";
 		};
 		03F9BBD11871C9B700DBD40C /* Resource */ = {
@@ -984,6 +999,7 @@
 				036C0FF2183D05AD00C61808 /* AFURLConnectionOperation.m in Sources */,
 				03E6A94618843F450020F883 /* BLQuickOpinionViewController.m in Sources */,
 				030D3C6B1849DE7700E844EA /* BLAppSettingsViewController.m in Sources */,
+				03C26F73188D7B69007214BC /* GTMBase64.m in Sources */,
 				039BF612185E077F00985B17 /* Makefile in Sources */,
 				039156041861F6B900BBFCB2 /* BLMatterFlowCell.m in Sources */,
 				03588FE7183E4F7B0067F5D0 /* BLMatterEntity.m in Sources */,

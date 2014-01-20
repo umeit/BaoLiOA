@@ -24,7 +24,7 @@
                           "<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" "\
                           "xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">" \
                           "<soap:Body>" \
-                          "<IOSLogin xmlns=\"http://tempuri.org/\">"\
+                          "<PPCLogin xmlns=\"http://tempuri.org/\">"\
                             "<loginCheckInfo>"\
                                 "<UserName>%@</UserName>"\
                                 "<PassWord>%@</PassWord>"\
@@ -36,12 +36,12 @@
                                 "<CheckCode></CheckCode>"\
                                 "<ClientType>3</ClientType>"\
                             "</loginCheckInfo>"\
-                          "</IOSLogin>"\
+                          "</PPCLogin>"\
                           "</soap:Body>"\
                           "</soap:Envelope>", userID, password, adId];
     
-    NSMutableURLRequest *request = [BLUserHTTPLogic soapRequestWithURLParam:@"IOSLogin"
-                                                                 soapAction:@"http://tempuri.org/IOSLogin"
+    NSMutableURLRequest *request = [BLUserHTTPLogic soapRequestWithURLParam:@"PPCLogin"
+                                                                 soapAction:@"http://tempuri.org/PPCLogin"
                                                                    soapBody:soapBody];
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
