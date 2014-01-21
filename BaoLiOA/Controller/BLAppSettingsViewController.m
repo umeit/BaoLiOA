@@ -11,6 +11,11 @@
 @interface BLAppSettingsViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *serverAddressTextField;
 @property (weak, nonatomic) IBOutlet UITextField *serverPortTextField;
+
+@property (weak, nonatomic) IBOutlet UISwitch *isUseVPNSwitch;
+@property (weak, nonatomic) IBOutlet UITextField *vpnAddressTextField;
+@property (weak, nonatomic) IBOutlet UITextField *vpnPortTextField;
+
 @end
 
 @implementation BLAppSettingsViewController
@@ -19,19 +24,38 @@
 {
     [super viewDidLoad];
     
-    NSString *serverIP = [[NSUserDefaults standardUserDefaults] stringForKey:@"ServerAddress"];
-    NSString *serverPort = [[NSUserDefaults standardUserDefaults] stringForKey:@"ServerPort"];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    NSString *serverIP = [userDefaults stringForKey:@"ServerAddress"];
+    NSString *serverPort = [userDefaults stringForKey:@"ServerPort"];
+    
+    BOOL isUseVPN = [userDefaults boolForKey:@"UseVPN"];
+    NSString *vpnIP = [userDefaults stringForKey:@"VPNAddress"];
+    NSString *vpnPort = [userDefaults stringForKey:@"VPNPort"];
+    
     self.serverAddressTextField.text = serverIP;
     self.serverPortTextField.text = serverPort;
+    
+    self.isUseVPNSwitch.on = isUseVPN;
+    self.vpnAddressTextField.text = vpnIP;
+    self.vpnPortTextField.text = vpnPort;
 }
 
 #pragma mark - Action
+- (IBAction)vpnUseSwitch:(UISwitch *)useSwitch
+{
+    
+}
 
 - (IBAction)saveButtonPress:(id)sender
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:self.serverAddressTextField.text forKey:@"ServerAddress"];
     [userDefaults setObject:self.serverPortTextField.text forKey:@"ServerPort"];
+    
+    [userDefaults setObject:@(self.isUseVPNSwitch.on) forKey:@"UseVPN"];
+    [userDefaults setObject:self.vpnAddressTextField.text forKey:@"VPNAddress"];
+    [userDefaults setObject:self.vpnPortTextField.text forKey:@"VPNPort"];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }

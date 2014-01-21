@@ -10,12 +10,14 @@
 #import "BLUserService.h"
 #import "BLContextEntity.h"
 #import "UIViewController+GViewController.h"
+#import "AuthHelper.h"
 
 @interface BLLoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *loginIDTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 
 @property (strong, nonatomic) BLUserService *userService;
+@property (strong, nonatomic) AuthHelper *authHelper;
 @end
 
 @implementation BLLoginViewController
@@ -34,6 +36,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+//    self.authHelper = [[AuthHelper alloc] initWithHostAndPort:@"" port:0 delegate:nil];
     
     NSData *contextData = [[NSUserDefaults standardUserDefaults] objectForKey:@"Context"];
     if (contextData) {

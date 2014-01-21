@@ -93,6 +93,9 @@
 		03A85B79187C571A00DD43FD /* bg_login_s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03A85B78187C571A00DD43FD /* bg_login_s@2x.png */; };
 		03A85B7F187C583F00DD43FD /* logo_80@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03A85B7E187C583F00DD43FD /* logo_80@2x.png */; };
 		03B0E0AE186995CF007B2C8E /* NSArray+GArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B0E0AD186995CF007B2C8E /* NSArray+GArray.m */; };
+		03B301CE188EC8CE002781F8 /* libSangforSdk_armv7.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03B301C9188EC8CE002781F8 /* libSangforSdk_armv7.a */; };
+		03B301D8188ECBAD002781F8 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 03B301D7188ECBAD002781F8 /* libstdc++.6.0.9.dylib */; };
+		03B301DA188ECBB4002781F8 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03B301D9188ECBB4002781F8 /* CFNetwork.framework */; };
 		03BD17F71844DC44002F2C38 /* BLMatterAttachmentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BD17F61844DC44002F2C38 /* BLMatterAttachmentListViewController.m */; };
 		03BD17FA1844DC8F002F2C38 /* BLMatterAttachmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BD17F91844DC8F002F2C38 /* BLMatterAttachmentCell.m */; };
 		03BD17FD1844EF77002F2C38 /* BLMatterFlowListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BD17FC1844EF77002F2C38 /* BLMatterFlowListViewController.m */; };
@@ -305,6 +308,12 @@
 		03A85B7E187C583F00DD43FD /* logo_80@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_80@2x.png"; sourceTree = "<group>"; };
 		03B0E0AC186995CF007B2C8E /* NSArray+GArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+GArray.h"; sourceTree = "<group>"; };
 		03B0E0AD186995CF007B2C8E /* NSArray+GArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+GArray.m"; sourceTree = "<group>"; };
+		03B301C9188EC8CE002781F8 /* libSangforSdk_armv7.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSangforSdk_armv7.a; sourceTree = "<group>"; };
+		03B301CA188EC8CE002781F8 /* sdkheader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sdkheader.h; sourceTree = "<group>"; };
+		03B301CB188EC8CE002781F8 /* svpn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = svpn.h; sourceTree = "<group>"; };
+		03B301CC188EC8CE002781F8 /* svpnnb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = svpnnb.h; sourceTree = "<group>"; };
+		03B301D7188ECBAD002781F8 /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
+		03B301D9188ECBB4002781F8 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		03BD17F51844DC44002F2C38 /* BLMatterAttachmentListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterAttachmentListViewController.h; sourceTree = "<group>"; };
 		03BD17F61844DC44002F2C38 /* BLMatterAttachmentListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterAttachmentListViewController.m; sourceTree = "<group>"; };
 		03BD17F81844DC8F002F2C38 /* BLMatterAttachmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterAttachmentCell.h; sourceTree = "<group>"; };
@@ -346,7 +355,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03B301DA188ECBB4002781F8 /* CFNetwork.framework in Frameworks */,
+				03B301D8188ECBAD002781F8 /* libstdc++.6.0.9.dylib in Frameworks */,
 				039BF635185E080A00985B17 /* libZipArchive-ios.a in Frameworks */,
+				03B301CE188EC8CE002781F8 /* libSangforSdk_armv7.a in Frameworks */,
 				033EA7F7184E2E1D009E29C7 /* libxml2.dylib in Frameworks */,
 				033EA7F5184E2E15009E29C7 /* libz.dylib in Frameworks */,
 				036C0FAA183D02AB00C61808 /* CoreGraphics.framework in Frameworks */,
@@ -520,6 +532,8 @@
 		036C0FA6183D02AB00C61808 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				03B301D9188ECBB4002781F8 /* CFNetwork.framework */,
+				03B301D7188ECBAD002781F8 /* libstdc++.6.0.9.dylib */,
 				033EA7F6184E2E1D009E29C7 /* libxml2.dylib */,
 				033EA7F4184E2E15009E29C7 /* libz.dylib */,
 				036C0FA7183D02AB00C61808 /* Foundation.framework */,
@@ -583,6 +597,7 @@
 		036C0FD8183D05AD00C61808 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				03B301C6188EC8CE002781F8 /* EasyAppVPN */,
 				03C26F6F188D7B69007214BC /* GTMBase64 */,
 				03B0E0AB186995CF007B2C8E /* GUtil */,
 				0398DCCA18684DBF00980CE4 /* MBProgressHUD */,
@@ -757,6 +772,17 @@
 				03B0E0AD186995CF007B2C8E /* NSArray+GArray.m */,
 			);
 			path = GUtil;
+			sourceTree = "<group>";
+		};
+		03B301C6188EC8CE002781F8 /* EasyAppVPN */ = {
+			isa = PBXGroup;
+			children = (
+				03B301C9188EC8CE002781F8 /* libSangforSdk_armv7.a */,
+				03B301CA188EC8CE002781F8 /* sdkheader.h */,
+				03B301CB188EC8CE002781F8 /* svpn.h */,
+				03B301CC188EC8CE002781F8 /* svpnnb.h */,
+			);
+			path = EasyAppVPN;
 			sourceTree = "<group>";
 		};
 		03C26F6F188D7B69007214BC /* GTMBase64 */ = {
@@ -1198,6 +1224,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/liufeng/Documents/Build/BaoLiOA/BaoLiOA/Lib/ZipArchive,
+					/Users/liufeng/Documents/Build/BaoLiOA/BaoLiOA/Lib/EasyAppVPN,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1220,6 +1247,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/liufeng/Documents/Build/BaoLiOA/BaoLiOA/Lib/ZipArchive,
+					/Users/liufeng/Documents/Build/BaoLiOA/BaoLiOA/Lib/EasyAppVPN,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
