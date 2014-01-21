@@ -10,14 +10,14 @@
 #import "BLUserService.h"
 #import "BLContextEntity.h"
 #import "UIViewController+GViewController.h"
-#import "AuthHelper.h"
+//#import "AuthHelper.h"
 
 @interface BLLoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *loginIDTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 
 @property (strong, nonatomic) BLUserService *userService;
-@property (strong, nonatomic) AuthHelper *authHelper;
+//@property (strong, nonatomic) AuthHelper *authHelper;
 @end
 
 @implementation BLLoginViewController
