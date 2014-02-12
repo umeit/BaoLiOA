@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0301906918ABC57E00A3A418 /* AuthHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0301906718ABC57E00A3A418 /* AuthHelper.m */; };
 		0303D4711869DD5D00184EED /* BLSegmentMatterListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0303D4701869DD5D00184EED /* BLSegmentMatterListViewController.m */; };
 		030CD00C1841B91B005A9B58 /* BLSplitViewControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 030CD00B1841B91B005A9B58 /* BLSplitViewControllerManager.m */; };
 		030D3C621849B0A000E844EA /* BLLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 030D3C611849B0A000E844EA /* BLLoginViewController.m */; };
@@ -165,6 +166,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0301906718ABC57E00A3A418 /* AuthHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthHelper.m; sourceTree = "<group>"; };
+		0301906818ABC57E00A3A418 /* AuthHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthHelper.h; sourceTree = "<group>"; };
 		0303D46F1869DD5D00184EED /* BLSegmentMatterListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLSegmentMatterListViewController.h; sourceTree = "<group>"; };
 		0303D4701869DD5D00184EED /* BLSegmentMatterListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLSegmentMatterListViewController.m; sourceTree = "<group>"; };
 		030CD00A1841B91B005A9B58 /* BLSplitViewControllerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLSplitViewControllerManager.h; sourceTree = "<group>"; };
@@ -777,6 +780,8 @@
 		03B301C6188EC8CE002781F8 /* EasyAppVPN */ = {
 			isa = PBXGroup;
 			children = (
+				0301906718ABC57E00A3A418 /* AuthHelper.m */,
+				0301906818ABC57E00A3A418 /* AuthHelper.h */,
 				03B301C9188EC8CE002781F8 /* libSangforSdk_armv7.a */,
 				03B301CA188EC8CE002781F8 /* sdkheader.h */,
 				03B301CB188EC8CE002781F8 /* svpn.h */,
@@ -1055,6 +1060,7 @@
 				03281658187EE9A800C0FDB7 /* BLContextEntity.m in Sources */,
 				038C8F0A186D3D96007B1B2E /* BLAddOpinionViewController.m in Sources */,
 				030D3C651849B2F000E844EA /* BLUserService.m in Sources */,
+				0301906918ABC57E00A3A418 /* AuthHelper.m in Sources */,
 				036C0FEE183D05AD00C61808 /* AFHTTPRequestOperationManager.m in Sources */,
 				03588FDA183E4A780067F5D0 /* BLBaseMatterListViewController.m in Sources */,
 				030CD00C1841B91B005A9B58 /* BLSplitViewControllerManager.m in Sources */,

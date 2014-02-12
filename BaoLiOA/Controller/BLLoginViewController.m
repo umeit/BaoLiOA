@@ -10,14 +10,25 @@
 #import "BLUserService.h"
 #import "BLContextEntity.h"
 #import "UIViewController+GViewController.h"
-//#import "AuthHelper.h"
+#import "AuthHelper.h"
 
-@interface BLLoginViewController ()
+#define VPN_HOST @""
+#define VPN_PORT 0
+
+#define VPN_STATUS_INIT_SUCCESS 1
+
+@interface BLLoginViewController () <SangforSDKDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *loginIDTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 
 @property (strong, nonatomic) BLUserService *userService;
-//@property (strong, nonatomic) AuthHelper *authHelper;
+@property (strong, nonatomic) AuthHelper *authHelper;
+
+@property (nonatomic) BOOL isUseVPN;
+@property (nonatomic) NSInteger vpnInitStatus;
+
+//@property (strong, nonatomic) NSString *loginID;
+//@property (strong, nonatomic) NSString *password;
 @end
 
 @implementation BLLoginViewController
@@ -36,7 +47,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    self.authHelper = [[AuthHelper alloc] initWithHostAndPort:@"" port:0 delegate:nil];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    self.isUseVPN = [userDefaults boolForKey:@"UseVPN"];
+    
+    if (self.isUseVPN) {
+        NSString *vpnIP = [userDefaults stringForKey:@"VPNAddress"];
+        NSInteger vpnPort = [userDefaults integerForKey:@"VPNPort"];
+        
+        NSLog(@"Init VPN Info, IP:%@ Port:%d", vpnIP, vpnPort);
+        self.authHelper = [[AuthHelper alloc] initWithHostAndPort:vpnIP port:vpnPort delegate:self];
+    }
     
     NSData *contextData = [[NSUserDefaults standardUserDefaults] objectForKey:@"Context"];
     if (contextData) {
@@ -44,6 +65,24 @@
         self.loginIDTextField.text = context.userName;
     }
 }
+
+// 登录 OA 系统
+- (void)loginWithID:(NSString *)loginID password:(NSString *)password
+{
+    [self showLodingView];
+    
+    [self.userService loginWithLoginID:loginID password:password block:^(BOOL success, NSString *msg) {
+        [self hideLodingView];
+        
+        if (success) {
+            self.view.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BLSplitViewController"];
+        }
+        else {
+            [self showCustomTextAlert:msg];
+        }
+    }];
+}
+
 
 #pragma mark - Action
 
@@ -62,91 +101,67 @@
         return;
     }
     
-    [self showLodingView];
-    
-    [self.userService loginWithLoginID:loginID password:password block:^(BOOL success, NSString *msg) {
-        [self hideLodingView];
+    if (self.isUseVPN) {
         
-        if (success) {
-            self.view.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BLSplitViewController"];
-        }
-        else {
-            [self showCustomTextAlert:msg];
-        }
-    }];
+//        self.loginID = loginID;
+//        self.password = password;
         
-//    
-//        
-//        switch (retCode) {
-//            case 0:
-//            {
-//                NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//                BLContextEntity *context;
-//                
-//                if ([loginID isEqualToString:@"admin"]) {
-//                    context = [[BLContextEntity alloc] initWithUserID:@"admin"
-//                                                             userName:@"管理员"
-//                                                             oaUserID:@"admin"
-//                                                           oaUserName:@"管理员"
-//                                                            oaAccount:@"管理员"
-//                                                           actionDesc:@""];
-//                    
-//                    
-//                }
-//                else if ([loginID isEqualToString:@"konglj"]) {
-//                    context = [[BLContextEntity alloc] initWithUserID:@"konglj"
-//                                                             userName:@"登录名"
-//                                                             oaUserID:@"HZ8080813e5f8e3e013e5f90486d003a"
-//                                                           oaUserName:@"真实姓名"
-//                                                            oaAccount:@"OA用户名"
-//                                                           actionDesc:@""];
-//                }
-//                else if ([loginID isEqualToString:@"liujc"]) {
-//                    context = [[BLContextEntity alloc] initWithUserID:@"liujc"
-//                                                             userName:@"登录名"
-//                                                             oaUserID:@"HZ8181e5415cd79f01415d1544e207ad"
-//                                                           oaUserName:@"真实姓名"
-//                                                            oaAccount:@"OA用户名"
-//                                                           actionDesc:@""];
-//                }
-//                else if ([loginID isEqualToString:@"zhumx"]) {
-//                    context = [[BLContextEntity alloc] initWithUserID:@"zhumx"
-//                                                             userName:@"登录名"
-//                                                             oaUserID:@"HZ8181e5415cd79f01415d11bde70773"
-//                                                           oaUserName:@"真实姓名"
-//                                                            oaAccount:@"OA用户名"
-//                                                           actionDesc:@""];
-//                }
-//                else if ([loginID isEqualToString:@"xuns"]) {
-//                    context = [[BLContextEntity alloc] initWithUserID:@"xuns"
-//                                                             userName:@"登录名"
-//                                                             oaUserID:@"HZ8181e5415cd79f01415d08d0a505e2"
-//                                                           oaUserName:@"真实姓名"
-//                                                            oaAccount:@"OA用户名"
-//                                                           actionDesc:@""];
-//                }
-//                else {
-//                    [self showCustomTextAlert:@"不存在该用户"];
-//                    return;
-//                }
-//                    
-//                
-//                
-//                [userDefaults setObject:[NSKeyedArchiver archivedDataWithRootObject:context] forKey:@"Context"];
-//                
-//                self.view.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BLSplitViewController"];
-//                
-//                break;
-//            }
-//                
-//            default:
-//                break;
-//        }
-//    }];
+        if (self.vpnInitStatus != VPN_STATUS_INIT_SUCCESS) {
+            [self showCustomText:@"正在初始化VPN，请稍后再试。" delay:2];
+            return;
+        }
+        
+        // 登录VPN
+        [self.authHelper setUserNamePassword:loginID password:password];
+        [self.authHelper loginVpn:SSL_AUTH_TYPE_PASSWORD];
+    }
+    else {
+        [self loginWithID:loginID password:password];
+    }
 }
 
 - (IBAction)settingsButtonPress:(id)sender
 {
     
 }
+
+
+#pragma mark - SangforSDKDelegate
+// 监控 VPN 状态
+- (void)onCallBack:(const VPN_RESULT_NO)vpnErrno authType:(const int)authType
+{
+    switch (vpnErrno)
+    {
+        case RESULT_VPN_INIT_FAIL:
+            [self showCustomTextAlert:@"VPN初始化失败，请稍后再试或联系管理员"];
+            break;
+            
+        case RESULT_VPN_AUTH_FAIL:
+            [self showCustomTextAlert:@"VPN验证失败，请稍后再试或联系管理员"];
+//            [self.authHelper clearAuthParam:@SET_RND_CODE_STR];
+            break;
+            
+        case RESULT_VPN_INIT_SUCCESS:
+            self.vpnInitStatus = VPN_STATUS_INIT_SUCCESS;
+            NSLog(@"VPN 初始化成功");
+            break;
+            
+        case RESULT_VPN_AUTH_SUCCESS:
+//            [self loginWithID:self.loginID password:self.password];
+            NSLog(@"VPN 认证成功");
+            break;
+            
+        case RESULT_VPN_AUTH_LOGOUT:
+            NSLog(@"VPN 已注销");
+            break;
+            
+        case RESULT_VPN_NONE:
+            NSLog(@"VPN 返回无效值\"0\"");
+            break;
+            
+        default:
+            break;
+    }
+}
+
 @end

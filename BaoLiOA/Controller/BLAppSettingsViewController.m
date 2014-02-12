@@ -31,14 +31,14 @@
     
     BOOL isUseVPN = [userDefaults boolForKey:@"UseVPN"];
     NSString *vpnIP = [userDefaults stringForKey:@"VPNAddress"];
-    NSString *vpnPort = [userDefaults stringForKey:@"VPNPort"];
+    NSNumber *vpnPort = [userDefaults objectForKey:@"VPNPort"];
     
     self.serverAddressTextField.text = serverIP;
     self.serverPortTextField.text = serverPort;
     
     self.isUseVPNSwitch.on = isUseVPN;
     self.vpnAddressTextField.text = vpnIP;
-    self.vpnPortTextField.text = vpnPort;
+    self.vpnPortTextField.text = [vpnPort stringValue];
 }
 
 #pragma mark - Action
@@ -55,7 +55,8 @@
     
     [userDefaults setObject:@(self.isUseVPNSwitch.on) forKey:@"UseVPN"];
     [userDefaults setObject:self.vpnAddressTextField.text forKey:@"VPNAddress"];
-    [userDefaults setObject:self.vpnPortTextField.text forKey:@"VPNPort"];
+    NSInteger port = [self.vpnPortTextField.text integerValue];
+    [userDefaults setObject:@(port) forKey:@"VPNPort"];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
