@@ -102,7 +102,7 @@
     
     // 使用 VPN 登录
     if (self.isUseVPN) {
-        [self showLodingView];
+        
         
         self.loginID = loginID;
         self.password = password;
@@ -116,21 +116,30 @@
             NSInteger vpnPort = [userDefaults integerForKey:@"VPNPort"];
             
             //1 初始化 VPN
-            
+            [self showLodingView];
             [vpnManager initVPNWithIP:vpnIP port:vpnPort block:^(BOOL success) {
+                [self hideLodingView];
                 if (success) {
                     //2 初始化 VPN 成功，登录 VPN
                     self.vpnInitStatus = VPN_STATUS_INIT_SUCCESS;
 //                    if (self.vpnLoginStatus != VPN_STATUS_LOGIN_SUCCESS) {
                     if (!vpnManager.isLoginVPN) {
+                        [self showLodingView];
                         [vpnManager loginVPNWithUserName:VPN_USER_NAME password:VPN_PASSWORD block:^(BOOL success) {
+                            [self hideLodingView];
                             if (success) {
                                 //3 登录 VPN 成功，然后登录 OA 系统
                                 self.vpnLoginStatus = VPN_STATUS_LOGIN_SUCCESS;
                                 [self loginWithID:self.loginID password:self.password];
                             }
+                            else {
+                                [self showCustomTextAlert:@"VPN验证失败，请稍后再试或联系管理员"];
+                            }
                         }];
                     }
+                }
+                else {
+                    [self showCustomTextAlert:@"VPN初始化失败，请稍后再试或联系管理员。"];
                 }
             }];
            
