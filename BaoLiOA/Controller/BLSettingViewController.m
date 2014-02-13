@@ -64,9 +64,16 @@
 - (IBAction)logoutButtonPress:(id)sender
 {
     [self showCustomTextAlert:@"确定退出？" withOKButtonPressed:^{
-        [[BLVPNManager sharedInstance] logoutVPN:^{
+        BLVPNManager *vpnManager = [BLVPNManager sharedInstance];
+        if (vpnManager && vpnManager.isLoginVPN) {
+            [vpnManager logoutVPN:^{
+                self.view.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BLLoginViewController"];
+            }];
+        }
+        else {
             self.view.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BLLoginViewController"];
-        }];
+        }
+        
     }];
 }
 @end
