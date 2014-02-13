@@ -117,6 +117,7 @@
 		03F9BBF51871CA1A00DBD40C /* InDoc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F9BBED1871CA1A00DBD40C /* InDoc@2x.png */; };
 		03F9BBF61871CA1A00DBD40C /* GiveRemark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F9BBEE1871CA1A00DBD40C /* GiveRemark@2x.png */; };
 		03F9BBF81871CD2F00DBD40C /* Notifity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F9BBF71871CD2F00DBD40C /* Notifity@2x.png */; };
+		7E68727F18ACCDB00067E331 /* BLVPNManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E68727E18ACCDB00067E331 /* BLVPNManager.m */; };
 		7E6A025018ACB08A0041B784 /* libSangforSdk_armv7.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E6A024F18ACB08A0041B784 /* libSangforSdk_armv7.a */; };
 /* End PBXBuildFile section */
 
@@ -350,6 +351,8 @@
 		03F9BBED1871CA1A00DBD40C /* InDoc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "InDoc@2x.png"; sourceTree = "<group>"; };
 		03F9BBEE1871CA1A00DBD40C /* GiveRemark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GiveRemark@2x.png"; sourceTree = "<group>"; };
 		03F9BBF71871CD2F00DBD40C /* Notifity@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Notifity@2x.png"; sourceTree = "<group>"; };
+		7E68727D18ACCDB00067E331 /* BLVPNManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLVPNManager.h; sourceTree = "<group>"; };
+		7E68727E18ACCDB00067E331 /* BLVPNManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLVPNManager.m; sourceTree = "<group>"; };
 		7E6A024F18ACB08A0041B784 /* libSangforSdk_armv7.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSangforSdk_armv7.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -496,6 +499,8 @@
 			children = (
 				03DECA47184247D0007F6F40 /* BLGlobal.h */,
 				03DECA48184247D0007F6F40 /* BLGlobal.m */,
+				7E68727D18ACCDB00067E331 /* BLVPNManager.h */,
+				7E68727E18ACCDB00067E331 /* BLVPNManager.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -1061,6 +1066,7 @@
 				038C8F0A186D3D96007B1B2E /* BLAddOpinionViewController.m in Sources */,
 				030D3C651849B2F000E844EA /* BLUserService.m in Sources */,
 				0301906918ABC57E00A3A418 /* AuthHelper.m in Sources */,
+				7E68727F18ACCDB00067E331 /* BLVPNManager.m in Sources */,
 				036C0FEE183D05AD00C61808 /* AFHTTPRequestOperationManager.m in Sources */,
 				03588FDA183E4A780067F5D0 /* BLBaseMatterListViewController.m in Sources */,
 				030CD00C1841B91B005A9B58 /* BLSplitViewControllerManager.m in Sources */,
