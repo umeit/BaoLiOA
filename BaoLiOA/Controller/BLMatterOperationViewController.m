@@ -235,10 +235,11 @@
 
 - (void)operationButtonPress:(UIButton *)button
 {
-    if (!self.comment || self.comment.length < 1) {
-        [self showCustomTextAlert:@"您还未填写办理意见"];
-        return;
-    }
+#warning 打开注释：必须填写办理意见才能提交
+//    if (!self.comment || self.comment.length < 1) {
+//        [self showCustomTextAlert:@"您还未填写办理意见"];
+//        return;
+//    }
     
     NSString *actionID = [self actionIDWithButtonName:button.titleLabel.text];
     

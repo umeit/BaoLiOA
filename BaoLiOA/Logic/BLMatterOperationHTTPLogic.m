@@ -57,7 +57,8 @@
                           operationType,
                           (routIDs ? routIDs : @""),
                           (employeeIDs ? employeeIDs : @""),
-                          comment,
+#warning 不判断用户是否填写办理意见时，此处加入对 comment 的 nil 判断
+                          (comment ? comment : @""),
                           (commentList ? commentList : @""),
                           [self eidtFeildList:eidtFieldList]];
     
