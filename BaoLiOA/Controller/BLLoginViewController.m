@@ -11,6 +11,7 @@
 #import "BLContextEntity.h"
 #import "UIViewController+GViewController.h"
 #import "AuthHelper.h"
+#import "BLVPNManager.h"
 
 //#define VPN_HOST @""
 //#define VPN_PORT 0
@@ -49,11 +50,6 @@
     return self;
 }
 
-- (void)dealloc
-{
-    NSLog(@"dealloc");
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -78,7 +74,6 @@
         }
         // 登录失败
         else {
-//            [self.authHelper logoutVpn];
             [self showCustomTextAlert:msg];
         }
     }];
@@ -112,33 +107,54 @@
         self.loginID = loginID;
         self.password = password;
         
-        // 初始化 VPN
-        if (self.vpnInitStatus != VPN_STATUS_INIT_SUCCESS) {
+        BLVPNManager *vpnManager = [BLVPNManager sharedInstance];
+        
+        // 是否已初始化 VPN
+//        if (self.vpnInitStatus != VPN_STATUS_INIT_SUCCESS) {
+        if (!vpnManager.isInitVPN) {
             NSString *vpnIP = [userDefaults stringForKey:@"VPNAddress"];
             NSInteger vpnPort = [userDefaults integerForKey:@"VPNPort"];
-            NSLog(@"Init VPN Info, IP:%@ Port:%d", vpnIP, vpnPort);
-            self.authHelper = [[AuthHelper alloc] initWithHostAndPort:vpnIP port:vpnPort delegate:self];
+            
+            //1 初始化 VPN
+            
+            [vpnManager initVPNWithIP:vpnIP port:vpnPort block:^(BOOL success) {
+                if (success) {
+                    //2 初始化 VPN 成功，登录 VPN
+                    self.vpnInitStatus = VPN_STATUS_INIT_SUCCESS;
+//                    if (self.vpnLoginStatus != VPN_STATUS_LOGIN_SUCCESS) {
+                    if (!vpnManager.isLoginVPN) {
+                        [vpnManager loginVPNWithUserName:VPN_USER_NAME password:VPN_PASSWORD block:^(BOOL success) {
+                            if (success) {
+                                //3 登录 VPN 成功，然后登录 OA 系统
+                                self.vpnLoginStatus = VPN_STATUS_LOGIN_SUCCESS;
+                                [self loginWithID:self.loginID password:self.password];
+                            }
+                        }];
+                    }
+                }
+            }];
+           
+//            NSLog(@"Init VPN Info, IP:%@ Port:%d", vpnIP, vpnPort);
+//            self.authHelper = [[AuthHelper alloc] initWithHostAndPort:vpnIP port:vpnPort delegate:self];
         }
-        // 已初始化 VPN，登录 VPN
+        // 已初始化 VPN，是否登录 VPN
         else if (self.vpnLoginStatus != VPN_STATUS_LOGIN_SUCCESS) {
-//            [self.authHelper logoutVpn]; // 先注销
-            [self.authHelper setUserNamePassword:VPN_USER_NAME password:VPN_PASSWORD];
-            [self.authHelper loginVpn:SSL_AUTH_TYPE_PASSWORD];
+            // 登录 VPN
+            BLVPNManager *vpnManager = [BLVPNManager sharedInstance];
+            [vpnManager loginVPNWithUserName:VPN_USER_NAME password:VPN_PASSWORD block:^(BOOL success) {
+                if (success) {
+                    // 登录 VPN 成功，然后登录 OA 系统
+                    self.vpnLoginStatus = VPN_STATUS_LOGIN_SUCCESS;
+                    [self loginWithID:self.loginID password:self.password];
+                }
+            }];
+//            [self.authHelper setUserNamePassword:VPN_USER_NAME password:VPN_PASSWORD];
+//            [self.authHelper loginVpn:SSL_AUTH_TYPE_PASSWORD];
         }
         // 已登录 VPN，登录 OA 系统
         else {
             [self loginWithID:loginID password:password];
         }
-        
-//        if (self.vpnInitStatus != VPN_STATUS_INIT_SUCCESS) {
-//            [self showCustomText:@"正在初始化VPN，请稍后再试。" delay:2];
-//            return;
-//        }
-        
-        // 登录VPN
-//        [self.authHelper setUserNamePassword:loginID password:password];
-//        [self.authHelper setUserNamePassword:@"oatest" password:@"1111"];
-//        [self.authHelper loginVpn:SSL_AUTH_TYPE_PASSWORD];
     }
     // 不使用 VPN 登录
     else {
@@ -165,7 +181,6 @@
             
         case RESULT_VPN_AUTH_FAIL:
             [self showCustomTextAlert:@"VPN验证失败，请稍后再试或联系管理员"];
-//            [self.authHelper clearAuthParam:@SET_RND_CODE_STR];
             break;
             
         case RESULT_VPN_INIT_SUCCESS:
@@ -173,7 +188,6 @@
             
             self.vpnInitStatus = VPN_STATUS_INIT_SUCCESS;
             // 初始化 VPN 成功，登录 VPN
-//            [self.authHelper logoutVpn]; // 先注销
             if (self.vpnLoginStatus != VPN_STATUS_LOGIN_SUCCESS) {
                 [self.authHelper setUserNamePassword:VPN_USER_NAME password:VPN_PASSWORD];
                 [self.authHelper loginVpn:SSL_AUTH_TYPE_PASSWORD];

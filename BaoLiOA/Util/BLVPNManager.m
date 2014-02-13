@@ -70,16 +70,19 @@
             
         case RESULT_VPN_INIT_SUCCESS:
             NSLog(@"VPN 初始化成功");
+            self.isInitVPN = YES;
             self.initBlock(YES);
             break;
             
         case RESULT_VPN_AUTH_SUCCESS:
             NSLog(@"VPN 认证成功");
+            self.isLoginVPN = YES;
             self.loginBlock(YES);
             break;
             
         case RESULT_VPN_AUTH_LOGOUT:
             NSLog(@"VPN 已注销");
+            self.isLoginVPN = NO;
             self.logoutBlock();
             break;
             

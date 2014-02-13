@@ -8,6 +8,7 @@
 
 #import "BLSettingViewController.h"
 #import "UIViewController+GViewController.h"
+#import "BLVPNManager.h"
 #import <AdSupport/AdSupport.h>
 
 @interface BLSettingViewController ()
@@ -63,7 +64,9 @@
 - (IBAction)logoutButtonPress:(id)sender
 {
     [self showCustomTextAlert:@"确定退出？" withOKButtonPressed:^{
-        self.view.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BLLoginViewController"];
+        [[BLVPNManager sharedInstance] logoutVPN:^{
+            self.view.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BLLoginViewController"];
+        }];
     }];
 }
 @end

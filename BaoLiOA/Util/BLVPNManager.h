@@ -14,6 +14,9 @@ typedef void(^LogoutBLock)();
 
 @interface BLVPNManager : NSObject
 
+@property (nonatomic) BOOL isInitVPN;
+@property (nonatomic) BOOL isLoginVPN;
+
 + (instancetype)sharedInstance;
 
 - (void)initVPNWithIP:(NSString *)ip port:(NSInteger)port block:(InitBLock)block;
