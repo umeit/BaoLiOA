@@ -25,10 +25,10 @@
 @property (strong, nonatomic) AuthHelper *authHelper;
 
 @property (nonatomic) BOOL isUseVPN;
-@property (nonatomic) NSInteger vpnInitStatus;
+//@property (nonatomic) NSInteger vpnInitStatus;
 
-//@property (strong, nonatomic) NSString *loginID;
-//@property (strong, nonatomic) NSString *password;
+@property (strong, nonatomic) NSString *loginID;
+@property (strong, nonatomic) NSString *password;
 @end
 
 @implementation BLLoginViewController
@@ -47,17 +47,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    self.isUseVPN = [userDefaults boolForKey:@"UseVPN"];
-    
-    if (self.isUseVPN) {
-        NSString *vpnIP = [userDefaults stringForKey:@"VPNAddress"];
-        NSInteger vpnPort = [userDefaults integerForKey:@"VPNPort"];
-        
-        NSLog(@"Init VPN Info, IP:%@ Port:%d", vpnIP, vpnPort);
-        self.authHelper = [[AuthHelper alloc] initWithHostAndPort:vpnIP port:vpnPort delegate:self];
-    }
     
     NSData *contextData = [[NSUserDefaults standardUserDefaults] objectForKey:@"Context"];
     if (contextData) {
@@ -101,20 +90,33 @@
         return;
     }
     
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    self.isUseVPN = [userDefaults boolForKey:@"UseVPN"];
+    
+    // 使用 VPN 登录
     if (self.isUseVPN) {
+        [self showLodingView];
         
-//        self.loginID = loginID;
-//        self.password = password;
+        // 初始化 VPN
+        NSString *vpnIP = [userDefaults stringForKey:@"VPNAddress"];
+        NSInteger vpnPort = [userDefaults integerForKey:@"VPNPort"];
+        NSLog(@"Init VPN Info, IP:%@ Port:%d", vpnIP, vpnPort);
+        self.authHelper = [[AuthHelper alloc] initWithHostAndPort:vpnIP port:vpnPort delegate:self];
         
-        if (self.vpnInitStatus != VPN_STATUS_INIT_SUCCESS) {
-            [self showCustomText:@"正在初始化VPN，请稍后再试。" delay:2];
-            return;
-        }
+        self.loginID = loginID;
+        self.password = password;
+        
+//        if (self.vpnInitStatus != VPN_STATUS_INIT_SUCCESS) {
+//            [self showCustomText:@"正在初始化VPN，请稍后再试。" delay:2];
+//            return;
+//        }
         
         // 登录VPN
-        [self.authHelper setUserNamePassword:loginID password:password];
-        [self.authHelper loginVpn:SSL_AUTH_TYPE_PASSWORD];
+//        [self.authHelper setUserNamePassword:loginID password:password];
+//        [self.authHelper setUserNamePassword:@"oatest" password:@"1111"];
+//        [self.authHelper loginVpn:SSL_AUTH_TYPE_PASSWORD];
     }
+    // 不使用 VPN 登录
     else {
         [self loginWithID:loginID password:password];
     }
@@ -142,13 +144,19 @@
             break;
             
         case RESULT_VPN_INIT_SUCCESS:
-            self.vpnInitStatus = VPN_STATUS_INIT_SUCCESS;
             NSLog(@"VPN 初始化成功");
+            
+//            self.vpnInitStatus = VPN_STATUS_INIT_SUCCESS;
+            // 初始化 VPN 成功，登录 VPN
+            [self.authHelper setUserNamePassword:@"oatest" password:@"1111"];
+            [self.authHelper loginVpn:SSL_AUTH_TYPE_PASSWORD];
             break;
             
         case RESULT_VPN_AUTH_SUCCESS:
-//            [self loginWithID:self.loginID password:self.password];
             NSLog(@"VPN 认证成功");
+            [self hideLodingView];
+            // 登录 VPN 成功，然后登录 OA 系统
+            [self loginWithID:self.loginID password:self.password];
             break;
             
         case RESULT_VPN_AUTH_LOGOUT:
