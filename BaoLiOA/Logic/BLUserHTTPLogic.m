@@ -43,9 +43,10 @@
     NSMutableURLRequest *request = [BLUserHTTPLogic soapRequestWithURLParam:@"PPCLogin"
                                                                  soapAction:@"http://tempuri.org/PPCLogin"
                                                                    soapBody:soapBody];
+    [request setTimeoutInterval:6];
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    
+
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         block(responseObject, nil);
         
