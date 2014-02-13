@@ -57,6 +57,9 @@
 
  */
 
+
+#pragma mark - Action
+
 - (IBAction)logoutButtonPress:(id)sender
 {
     [self showCustomTextAlert:@"确定退出？" withOKButtonPressed:^{

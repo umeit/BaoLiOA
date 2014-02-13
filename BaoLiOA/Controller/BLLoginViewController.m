@@ -12,10 +12,14 @@
 #import "UIViewController+GViewController.h"
 #import "AuthHelper.h"
 
-#define VPN_HOST @""
-#define VPN_PORT 0
+//#define VPN_HOST @""
+//#define VPN_PORT 0
 
-#define VPN_STATUS_INIT_SUCCESS 1
+#define VPN_STATUS_INIT_SUCCESS  1
+#define VPN_STATUS_LOGIN_SUCCESS 1
+
+#define VPN_USER_NAME @"mobileOA"
+#define VPN_PASSWORD  @"mobileOA1111"
 
 @interface BLLoginViewController () <SangforSDKDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *loginIDTextField;
@@ -25,7 +29,8 @@
 @property (strong, nonatomic) AuthHelper *authHelper;
 
 @property (nonatomic) BOOL isUseVPN;
-//@property (nonatomic) NSInteger vpnInitStatus;
+@property (nonatomic) NSInteger vpnInitStatus;
+@property (nonatomic) NSInteger vpnLoginStatus;
 
 @property (strong, nonatomic) NSString *loginID;
 @property (strong, nonatomic) NSString *password;
@@ -42,6 +47,11 @@
     }
     
     return self;
+}
+
+- (void)dealloc
+{
+    NSLog(@"dealloc");
 }
 
 - (void)viewDidLoad
@@ -66,7 +76,9 @@
         if (success) {
             self.view.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BLSplitViewController"];
         }
+        // 登录失败
         else {
+//            [self.authHelper logoutVpn];
             [self showCustomTextAlert:msg];
         }
     }];
@@ -97,14 +109,26 @@
     if (self.isUseVPN) {
         [self showLodingView];
         
-        // 初始化 VPN
-        NSString *vpnIP = [userDefaults stringForKey:@"VPNAddress"];
-        NSInteger vpnPort = [userDefaults integerForKey:@"VPNPort"];
-        NSLog(@"Init VPN Info, IP:%@ Port:%d", vpnIP, vpnPort);
-        self.authHelper = [[AuthHelper alloc] initWithHostAndPort:vpnIP port:vpnPort delegate:self];
-        
         self.loginID = loginID;
         self.password = password;
+        
+        // 初始化 VPN
+        if (self.vpnInitStatus != VPN_STATUS_INIT_SUCCESS) {
+            NSString *vpnIP = [userDefaults stringForKey:@"VPNAddress"];
+            NSInteger vpnPort = [userDefaults integerForKey:@"VPNPort"];
+            NSLog(@"Init VPN Info, IP:%@ Port:%d", vpnIP, vpnPort);
+            self.authHelper = [[AuthHelper alloc] initWithHostAndPort:vpnIP port:vpnPort delegate:self];
+        }
+        // 已初始化 VPN，登录 VPN
+        else if (self.vpnLoginStatus != VPN_STATUS_LOGIN_SUCCESS) {
+//            [self.authHelper logoutVpn]; // 先注销
+            [self.authHelper setUserNamePassword:VPN_USER_NAME password:VPN_PASSWORD];
+            [self.authHelper loginVpn:SSL_AUTH_TYPE_PASSWORD];
+        }
+        // 已登录 VPN，登录 OA 系统
+        else {
+            [self loginWithID:loginID password:password];
+        }
         
 //        if (self.vpnInitStatus != VPN_STATUS_INIT_SUCCESS) {
 //            [self showCustomText:@"正在初始化VPN，请稍后再试。" delay:2];
@@ -135,7 +159,8 @@
     switch (vpnErrno)
     {
         case RESULT_VPN_INIT_FAIL:
-            [self showCustomTextAlert:@"VPN初始化失败，请稍后再试或联系管理员"];
+            [self hideLodingView];
+            [self showCustomTextAlert:@"VPN初始化失败，请稍后再试或联系管理员。"];
             break;
             
         case RESULT_VPN_AUTH_FAIL:
@@ -146,15 +171,19 @@
         case RESULT_VPN_INIT_SUCCESS:
             NSLog(@"VPN 初始化成功");
             
-//            self.vpnInitStatus = VPN_STATUS_INIT_SUCCESS;
+            self.vpnInitStatus = VPN_STATUS_INIT_SUCCESS;
             // 初始化 VPN 成功，登录 VPN
-            [self.authHelper setUserNamePassword:@"oatest" password:@"1111"];
-            [self.authHelper loginVpn:SSL_AUTH_TYPE_PASSWORD];
+//            [self.authHelper logoutVpn]; // 先注销
+            if (self.vpnLoginStatus != VPN_STATUS_LOGIN_SUCCESS) {
+                [self.authHelper setUserNamePassword:VPN_USER_NAME password:VPN_PASSWORD];
+                [self.authHelper loginVpn:SSL_AUTH_TYPE_PASSWORD];
+            }
             break;
             
         case RESULT_VPN_AUTH_SUCCESS:
             NSLog(@"VPN 认证成功");
             [self hideLodingView];
+            self.vpnLoginStatus = VPN_STATUS_LOGIN_SUCCESS;
             // 登录 VPN 成功，然后登录 OA 系统
             [self loginWithID:self.loginID password:self.password];
             break;
