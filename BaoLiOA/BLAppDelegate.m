@@ -26,8 +26,12 @@
     // 设置默认服务器 IP 与 端口号
     NSString *serverIP = [userDefaults stringForKey:@"ServerAddress"];
     NSString *serverPort = [userDefaults stringForKey:@"ServerPort"];
+//    BOOL isUseVPN = [userDefaults boolForKey:@"UseVPN"];
+    NSString *vpnIP = [userDefaults stringForKey:@"VPNAddress"];
+    NSNumber *vpnPort = [userDefaults objectForKey:@"VPNPort"];
+    
     if (!serverIP) {
-        serverIP = @"172.16.11.193";
+        serverIP = @"172.16.11.182";
         
         [userDefaults setObject:serverIP forKey:@"ServerAddress"];
     }
@@ -35,6 +39,16 @@
         serverPort = @"8081";
         
         [userDefaults setObject:serverPort forKey:@"ServerPort"];
+    }
+    if (!vpnIP) {
+        vpnIP = @"114.255.160.133";
+        
+        [userDefaults setObject:vpnIP forKey:@"VPNAddress"];
+    }
+    if (!vpnPort) {
+        vpnPort = @(443);
+        
+        [userDefaults setObject:vpnPort forKey:@"VPNPort"];
     }
     
     // 显示登录页

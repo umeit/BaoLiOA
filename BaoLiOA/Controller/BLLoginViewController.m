@@ -173,6 +173,7 @@
     }
     // 不使用 VPN 登录
     else {
+        [self showLodingView];
         [self loginWithID:loginID password:password];
     }
 }
