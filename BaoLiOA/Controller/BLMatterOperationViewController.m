@@ -346,7 +346,7 @@
     [self.matterOprationService operationMatterWithAction:actionID comment:comment commentList:returnData
     routeList:routList employeeList:employeeList matterID:matterID flowID:flowID
     currentNodeID:currentNodeID currentTrackID:currentTrackID eidtFieldList:self.eidtFieldList
-    block:^(NSInteger retCode, NSArray *list, NSString *title) {
+    block:^(NSInteger retCode, NSArray *list, NSString *title, BOOL isMultiSelect) {
         
         [self hideLodingView];
         
@@ -378,7 +378,7 @@
             BLManageFollowViewController *manageFollowViewController = (BLManageFollowViewController *)[navigation topViewController];
       
             manageFollowViewController.title = title;
-      
+            manageFollowViewController.multipleSelect = isMultiSelect;
             manageFollowViewController.followList = itemList;
             manageFollowViewController.delegate = self;
       
