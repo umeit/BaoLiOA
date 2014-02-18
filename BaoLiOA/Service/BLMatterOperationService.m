@@ -38,7 +38,7 @@
     if (employeeList && [employeeList count] > 0) {
         employeeIDStr = [[NSMutableString alloc] init];
         for (NSString *employyeID in employeeList) {
-            [employeeIDStr appendFormat:@"%@,", employyeID];
+            [employeeIDStr appendFormat:@"%@|", employyeID];
         }
     }
     
@@ -51,7 +51,7 @@
     block:^(id responseData, NSError *error) {
                                                      
         if (error) {
-            block(kNetworkingError, nil, nil);
+            block(kNetworkingError, nil, nil, NO);
         }
         else {
             NSLog(@"Response Data: %@", [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
@@ -62,17 +62,17 @@
             
             // 执行失败
             if (!isExcuted) {
-                block(kRemoteError, nil, nil);
+                block(kRemoteError, nil, nil, NO);
                 return;
             }
             
             
             NSString *retCode = [rootElement child:@"Body.DoActionResponse.DoActionResult.ResultCode"].text;
             NSString *title   = [rootElement child:@"Body.DoActionResponse.DoActionResult.ResultInfo"].text;
-         
+            
             // 服务器错误
             if (!retCode || [retCode length] < 1) {
-                block(kRemoteError, nil, nil);
+                block(kRemoteError, nil, nil, NO);
                 return;
             }
             
@@ -97,16 +97,17 @@
                 }];
              
                 if ([routList count] < 1) {
-                    block(kRemoteError, nil, nil);
+                    block(kRemoteError, nil, nil, NO);
                 } else {
-                    block(kHasRoute, routList, title);
+                    block(kHasRoute, routList, title, NO);
                 }
                 
             }
             // 解析办理人员数据
             else if ([retCode integerValue] == 4) {
                 NSString *title = [rootElement child:@"Body.DoActionResponse.DoActionResult.ResultInfo"].text;
-             
+                BOOL isMultiSelectUser = [[rootElement child:@"Body.DoActionResponse.DoActionResult.ResultInfo"].text boolValue];
+                
                 NSMutableArray *routList = [[NSMutableArray alloc] init];
              
                 [rootElement iterate:@"Body.DoActionResponse.DoActionResult.ListAuthorInfo.AuthorInfo" usingBlock:^(RXMLElement *e) {
@@ -115,14 +116,14 @@
                 }];
              
                 if ([routList count] < 1) {
-                    block(kRemoteError, nil, nil);
+                    block(kRemoteError, nil, nil, NO);
                 } else {
-                    block(kHasEmployee, routList, title);
+                    block(kHasEmployee, routList, title, isMultiSelectUser);
                 }
             }
             // 其他操作完成
             else {
-                block(kSuccess, nil, title);
+                block(kSuccess, nil, title, NO);
             }
         }
     }];

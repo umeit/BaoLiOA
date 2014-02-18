@@ -22,7 +22,8 @@ typedef enum BLMatterOperationServiceRetCode : NSUInteger {
 /** Blocks **/
 typedef void(^BLMatterOprationServiceGeneralListBlock)(NSArray *list, NSError *error);
 
-typedef void(^BLMOSSubmitCallBackBlock)(NSInteger retCode, NSArray *list, NSString *title);
+// 操作完成的回调，返回一个列表（部门或员工）list，和是否可以多选 isMultiSelect
+typedef void(^BLMOSSubmitCallBackBlock)(NSInteger retCode, NSArray *list, NSString *title, BOOL isMultiSelect);
 
 typedef void(^BLMatterOprationServiceGeneralBlock)(id obj, NSError *error);
 
