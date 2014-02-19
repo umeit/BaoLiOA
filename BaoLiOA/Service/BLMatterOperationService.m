@@ -106,7 +106,7 @@
             // 解析办理人员数据
             else if ([retCode integerValue] == 4) {
                 NSString *title = [rootElement child:@"Body.DoActionResponse.DoActionResult.ResultInfo"].text;
-                BOOL isMultiSelectUser = [[rootElement child:@"Body.DoActionResponse.DoActionResult.ResultInfo"].text boolValue];
+                BOOL isMultiSelectUser = [[rootElement child:@"Body.DoActionResponse.DoActionResult.IsMultiSelectUser"].text boolValue];
                 
                 NSMutableArray *routList = [[NSMutableArray alloc] init];
              
