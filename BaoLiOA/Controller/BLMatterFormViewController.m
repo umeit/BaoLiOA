@@ -237,7 +237,7 @@
             }
             // 不分行显示
             else {
-                UILabel *aLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 8, labelWidth, 20)];
+//                UILabel *aLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 8, labelWidth, 20)];
                 
                 NSMutableAttributedString *nameAttrString = [[NSMutableAttributedString alloc] initWithString:nameString];
                 NSMutableAttributedString *valueAttrString = [[NSMutableAttributedString alloc] initWithString:valueString];
@@ -252,6 +252,9 @@
                 
                 [nameAttrString appendAttributedString:valueAttrString];
                 
+                CGFloat valueLabelHeight = [self labelSizeWithMaxWidth:labelWidth content:[nameAttrString string]].height;
+                UILabel *aLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 8, labelWidth, valueLabelHeight)];
+                aLabel.numberOfLines = 0;
                 aLabel.attributedText = nameAttrString;
                 
                 [cell.contentView addSubview:aLabel];
@@ -259,7 +262,10 @@
         }
         // 不显示 name
         else {
-            UILabel *valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 8, labelWidth, 20)];
+            CGFloat valueLabelHeight = [self labelSizeWithMaxWidth:labelWidth content:valueString].height;
+            UILabel *valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 8, labelWidth, valueLabelHeight)];
+            valueLabel.numberOfLines = 0;
+//            valueLabel.text = [NSString stringWithFormat:@"  %@", valueString];
             valueLabel.text = valueString;
             valueLabel.textColor = [self colorWithString:fieldItem.valueColor];
             valueLabel.textAlignment = [self alignmentWithString:fieldItem.align];
