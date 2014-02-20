@@ -11,8 +11,8 @@
 
 @interface BLMatterOpinionViewController () <BLCommonOpinionViewControllerDelegate>
 //@property (weak, nonatomic) IBOutlet UITextField *opinionTextField;
-@property (weak, nonatomic) IBOutlet UITextView *opinionTextView;
-@property (weak, nonatomic) UIPopoverController *commonOpinionPopover;
+//@property (weak, nonatomic) IBOutlet UITextView *opinionTextView;
+//@property (weak, nonatomic) UIPopoverController *commonOpinionPopover;
 @end
 
 @implementation BLMatterOpinionViewController

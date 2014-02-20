@@ -41,6 +41,25 @@
 }
 - (IBAction)okPuttonPress:(id)sender
 {
+    [self.delegate opinionDidFinish:self.opinionTextView.text];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+#pragma mark - Observer
+
+- (void)editFinish
+{
+    
+}
+
+#pragma mark - BLCommonOpinionViewControllerDelegate
+
+- (void)opinionDidSelecte:(NSString *)opinion
+{
+    self.opinionTextView.text = opinion;
+    
+    [self.commonOpinionPopover dismissPopoverAnimated:YES];
+}
+
 @end

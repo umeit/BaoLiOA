@@ -19,6 +19,9 @@
 
 @property (strong, nonatomic) NSString *comment;
 
+@property (weak, nonatomic) IBOutlet UITextView *opinionTextView;
+@property (weak, nonatomic) UIPopoverController *commonOpinionPopover;
+
 @property (weak, nonatomic) id<BLMatterOpinionViewControllerDelegate> delegate;
 
 @end

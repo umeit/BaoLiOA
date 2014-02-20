@@ -272,6 +272,7 @@
             UIButton *eidtButton = [[UIButton alloc] initWithFrame:CGRectMake(currentX, 0, labelWidth, cell.bounds.size.height)];
             // 用 tag 记录当前编辑的 item 的 index
             eidtButton.tag = i;
+            eidtButton.backgroundColor = [UIColor colorWithRed:0.1 green:0.6 blue:0.1 alpha:0.08];
             [eidtButton addTarget:self action:@selector(eidtButtonPress:) forControlEvents:UIControlEventTouchUpInside];
             [cell.contentView addSubview:eidtButton];
         }
