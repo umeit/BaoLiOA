@@ -158,7 +158,12 @@
 {
     [super viewDidLoad];
     
-    self.navigationItem.title = self.matterTitle;
+    UILabel * titleLabelView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 25)];
+    titleLabelView.textColor = [UIColor blackColor];
+    titleLabelView.textAlignment = NSTextAlignmentCenter;
+    titleLabelView.adjustsFontSizeToFitWidth = YES;
+    titleLabelView.text = self.matterTitle;
+    self.navigationItem.titleView = titleLabelView;
     
     [self.view viewWithTag:OperationButtonParentViewTag].hidden = YES;
     

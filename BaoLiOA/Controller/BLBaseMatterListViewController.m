@@ -132,6 +132,10 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+//    UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];
+//    temporaryBarButtonItem.title = @"返回";
+//    self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
+    
     UIViewController *vc = segue.destinationViewController;
     BLMatterEntity *matter = self.matterList[[self.tableView indexPathForSelectedRow].row];
     

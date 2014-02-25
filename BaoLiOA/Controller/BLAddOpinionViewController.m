@@ -38,7 +38,7 @@
 {
     if (self.textField.text && [self.textField.text length] > 0) {
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        NSMutableArray *commonOpinionList = [[userDefaults arrayForKey:@"kCommonOpinionList"] mutableCopy];
+        NSMutableArray *commonOpinionList = [[userDefaults arrayForKey:[NSString stringWithFormat:@"%@%@", @"kCommonOpinionList", [[NSUserDefaults standardUserDefaults] stringForKey:@"kLoginID"]]] mutableCopy];
         
         if (!commonOpinionList) {
             commonOpinionList = [NSMutableArray arrayWithObject:self.textField.text];
@@ -47,7 +47,7 @@
             [commonOpinionList addObject:self.textField.text];
         }
         
-        [userDefaults setObject:commonOpinionList forKey:@"kCommonOpinionList"];
+        [userDefaults setObject:commonOpinionList forKey:[NSString stringWithFormat:@"%@%@", @"kCommonOpinionList", [[NSUserDefaults standardUserDefaults] stringForKey:@"kLoginID"]]];
         
         [self dismissViewControllerAnimated:YES completion:^{
             [self.delegate performSelector:@selector(reloadData) withObject:nil];

@@ -152,6 +152,11 @@
     self.quickOpinionViewController = (BLQuickOpinionViewController *)navVC.topViewController;
     
     self.quickOpinionViewController.delegate = self;
+    BLInfoRegionEntity *infoRegion = self.matterFormInfoList[self.currentEidtRegionIndex];
+    BLFromFieldItemEntity *fieldItem = infoRegion.feildItemList[self.currentEidtFieldItemIndex];
+    
+    self.quickOpinionViewController.comment = fieldItem.eidtValue;
+    
     [navVC setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
     [navVC setModalPresentationStyle:UIModalPresentationFormSheet];
     

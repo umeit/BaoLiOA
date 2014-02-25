@@ -21,7 +21,7 @@
     [super viewDidLoad];
 
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    self.opinionList = [userDefault objectForKey:@"kCommonOpinionList"];
+    self.opinionList = [userDefault objectForKey:[NSString stringWithFormat:@"%@%@", @"kCommonOpinionList", [[NSUserDefaults standardUserDefaults] stringForKey:@"kLoginID"]]];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }

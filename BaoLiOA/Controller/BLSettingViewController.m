@@ -31,7 +31,7 @@
 {
     [super viewWillAppear:animated];
     
-    NSArray *commonOpinionList = [[NSUserDefaults standardUserDefaults] arrayForKey:@"kCommonOpinionList"];
+    NSArray *commonOpinionList = [[NSUserDefaults standardUserDefaults] arrayForKey:[NSString stringWithFormat:@"%@%@", @"kCommonOpinionList", [[NSUserDefaults standardUserDefaults] stringForKey:@"kLoginID"]]];
     if (commonOpinionList && [commonOpinionList count] > 0) {
         self.commonOpinionNumberLabel.text = [NSString stringWithFormat:@"共%d条", [commonOpinionList count]];
     }

@@ -31,7 +31,7 @@
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    self.commonOpinionList = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"kCommonOpinionList"] mutableCopy];
+    self.commonOpinionList = [[[NSUserDefaults standardUserDefaults] arrayForKey:[NSString stringWithFormat:@"%@%@", @"kCommonOpinionList", [[NSUserDefaults standardUserDefaults] stringForKey:@"kLoginID"]]] mutableCopy];
 }
 
 
@@ -70,7 +70,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [self.commonOpinionList removeObjectAtIndex:indexPath.row];
         
-        [[NSUserDefaults standardUserDefaults] setObject:self.commonOpinionList forKey:@"kCommonOpinionList"];
+        [[NSUserDefaults standardUserDefaults] setObject:self.commonOpinionList forKey:[NSString stringWithFormat:@"%@%@", @"kCommonOpinionList", [[NSUserDefaults standardUserDefaults] stringForKey:@"kLoginID"]]];
         
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
@@ -111,7 +111,7 @@
 
 - (void)reloadData
 {
-    self.commonOpinionList = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"kCommonOpinionList"] mutableCopy];
+    self.commonOpinionList = [[[NSUserDefaults standardUserDefaults] arrayForKey:[NSString stringWithFormat:@"%@%@", @"kCommonOpinionList", [[NSUserDefaults standardUserDefaults] stringForKey:@"kLoginID"]]] mutableCopy];
     
     [self.tableView reloadData];
 }
