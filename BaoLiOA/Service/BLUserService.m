@@ -61,6 +61,14 @@
                 
                 NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
                 [userDefaults setObject:[NSKeyedArchiver archivedDataWithRootObject:context] forKey:@"Context"];
+                [userDefaults setObject:loginID forKey:@"kLoginID"];
+                
+                // 设置默认「常用意见」
+                NSMutableArray *commonOpinionList = [[userDefaults arrayForKey:[NSString stringWithFormat:@"%@%@", @"kCommonOpinionList", [[NSUserDefaults standardUserDefaults] stringForKey:@"kLoginID"]]] mutableCopy];
+                if (!commonOpinionList) {
+                    commonOpinionList = [NSMutableArray arrayWithObject:@"同意"];
+                    [userDefaults setObject:commonOpinionList forKey:[NSString stringWithFormat:@"%@%@", @"kCommonOpinionList", [[NSUserDefaults standardUserDefaults] stringForKey:@"kLoginID"]]];
+                }
                 
                 block(YES, nil);
             }
