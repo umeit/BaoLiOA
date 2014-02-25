@@ -16,12 +16,12 @@
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
-    // 设置默认「常用意见」
-    NSMutableArray *commonOpinionList = [[userDefaults arrayForKey:@"kCommonOpinionList"] mutableCopy];
-    if (!commonOpinionList) {
-        commonOpinionList = [NSMutableArray arrayWithObject:@"同意"];
-        [userDefaults setObject:commonOpinionList forKey:@"kCommonOpinionList"];
-    }
+//    // 设置默认「常用意见」
+//    NSMutableArray *commonOpinionList = [[userDefaults arrayForKey:[NSString stringWithFormat:@"%@%@", @"kCommonOpinionList", [[NSUserDefaults standardUserDefaults] stringForKey:@"kLoginID"]]] mutableCopy];
+//    if (!commonOpinionList) {
+//        commonOpinionList = [NSMutableArray arrayWithObject:@"同意"];
+//        [userDefaults setObject:commonOpinionList forKey:[NSString stringWithFormat:@"%@%@", @"kCommonOpinionList", [[NSUserDefaults standardUserDefaults] stringForKey:@"kLoginID"]]];
+//    }
     
     // 设置默认服务器 IP 与 端口号
     NSString *serverIP = [userDefaults stringForKey:@"ServerAddress"];
