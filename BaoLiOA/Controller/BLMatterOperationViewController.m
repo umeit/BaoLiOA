@@ -470,8 +470,8 @@
     
     [self.currentViewController.view removeFromSuperview];
     
-    // 修改新加入的的视图的尺寸，可以刚好放在预留好的地方
-    vc.view.frame = self.contentView.bounds;
+//    // 修改新加入的的视图的尺寸，可以刚好放在预留好的地方
+//    vc.view.frame = self.contentView.bounds;
     
 //    if ([vc isKindOfClass:[BLMatterFormViewController class]]) {
 //        
@@ -479,6 +479,9 @@
 //        NSLog(@"*** %f ***", formVC.tableView.frame.size.height);
 //    }
     [self.contentView addSubview:vc.view];
+    
+    // 修改新加入的的视图的尺寸，可以刚好放在预留好的地方
+    vc.view.frame = self.contentView.bounds;
     
     [vc didMoveToParentViewController:self];
     [self.currentViewController removeFromParentViewController];
