@@ -18,7 +18,7 @@
 
 @interface BLMatterFormViewController () <UITableViewDataSource, UITableViewDelegate, BLCommonOpinionViewControllerDelegate, BLMatterOpinionViewControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+//@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) BLCommonOpinionViewController *opinionViewController;
 
@@ -57,7 +57,6 @@
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
-
 
 #pragma mark - UITableViewDataSource
 

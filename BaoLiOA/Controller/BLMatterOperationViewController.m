@@ -198,6 +198,14 @@
         // 放置操作按钮到界面上
         [self initOperationButton:self.matterOperationList];
         
+        if (!self.matterOperationList || [self.matterOperationList count] < 1) {
+            // 如果没有可用的按钮，则加高 contentView 的高度，使其撑满屏幕
+            CGRect tempRect = self.contentView.frame;
+            tempRect.size.height += 74;
+            
+            self.contentView.frame = tempRect;
+        }
+        
         if (!self.matterBodyDocID || self.matterBodyDocID.length < 1) {
 //            self.navigationItem.rightBarButtonItem = nil;
             [self.segmentView removeSegmentAtIndex:1 animated:NO];
@@ -464,6 +472,12 @@
     
     // 修改新加入的的视图的尺寸，可以刚好放在预留好的地方
     vc.view.frame = self.contentView.bounds;
+    
+//    if ([vc isKindOfClass:[BLMatterFormViewController class]]) {
+//        
+//        BLMatterFormViewController *formVC = (BLMatterFormViewController *)vc;
+//        NSLog(@"*** %f ***", formVC.tableView.frame.size.height);
+//    }
     [self.contentView addSubview:vc.view];
     
     [vc didMoveToParentViewController:self];

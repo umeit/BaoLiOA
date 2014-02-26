@@ -14,7 +14,7 @@
 
 @end
 
-@interface BLMatterFormViewController : UIViewController
+@interface BLMatterFormViewController : UITableViewController
 
 //@property (strong, nonatomic) NSString *matterID;
 
@@ -23,6 +23,7 @@
  */
 @property (strong, nonatomic) NSArray *matterFormInfoList;
 
+//@property (weak, nonatomic) IBOutlet UITableView *tableView;
 /**
  *  正文附件 ID
  */
