@@ -14,6 +14,7 @@
 		030D3C651849B2F000E844EA /* BLUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 030D3C641849B2F000E844EA /* BLUserService.m */; };
 		030D3C681849B30A00E844EA /* BLUserHTTPLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 030D3C671849B30A00E844EA /* BLUserHTTPLogic.m */; };
 		030D3C6B1849DE7700E844EA /* BLAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 030D3C6A1849DE7700E844EA /* BLAppSettingsViewController.m */; };
+		0322764818D7398C006F6916 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0322764718D7398C006F6916 /* Main_iPhone.storyboard */; };
 		0323EAD51851E2EA00752172 /* BLAttachEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 0323EAD41851E2EA00752172 /* BLAttachEntity.m */; };
 		03281655187EDF8500C0FDB7 /* logo_m_32@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03281654187EDF8500C0FDB7 /* logo_m_32@2x.png */; };
 		03281658187EE9A800C0FDB7 /* BLContextEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 03281657187EE9A800C0FDB7 /* BLContextEntity.m */; };
@@ -41,7 +42,7 @@
 		036C0FC3183D02AB00C61808 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 036C0FAB183D02AB00C61808 /* UIKit.framework */; };
 		036C0FCB183D02AB00C61808 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 036C0FC9183D02AB00C61808 /* InfoPlist.strings */; };
 		036C0FCD183D02AB00C61808 /* BaoLiOATests.m in Sources */ = {isa = PBXBuildFile; fileRef = 036C0FCC183D02AB00C61808 /* BaoLiOATests.m */; };
-		036C0FD7183D031200C61808 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036C0FD6183D031200C61808 /* Main.storyboard */; };
+		036C0FD7183D031200C61808 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036C0FD6183D031200C61808 /* Main_iPad.storyboard */; };
 		036C0FED183D05AD00C61808 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 036C0FDB183D05AD00C61808 /* AFHTTPRequestOperation.m */; };
 		036C0FEE183D05AD00C61808 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 036C0FDD183D05AD00C61808 /* AFHTTPRequestOperationManager.m */; };
 		036C0FEF183D05AD00C61808 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 036C0FDF183D05AD00C61808 /* AFHTTPSessionManager.m */; };
@@ -181,6 +182,7 @@
 		030D3C671849B30A00E844EA /* BLUserHTTPLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLUserHTTPLogic.m; sourceTree = "<group>"; };
 		030D3C691849DE7700E844EA /* BLAppSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLAppSettingsViewController.h; sourceTree = "<group>"; };
 		030D3C6A1849DE7700E844EA /* BLAppSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLAppSettingsViewController.m; sourceTree = "<group>"; };
+		0322764718D7398C006F6916 /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
 		0323EAD31851E2EA00752172 /* BLAttachEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLAttachEntity.h; sourceTree = "<group>"; };
 		0323EAD41851E2EA00752172 /* BLAttachEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLAttachEntity.m; sourceTree = "<group>"; };
 		03281654187EDF8500C0FDB7 /* logo_m_32@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_m_32@2x.png"; sourceTree = "<group>"; };
@@ -223,7 +225,7 @@
 		036C0FC8183D02AB00C61808 /* BaoLiOATests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BaoLiOATests-Info.plist"; sourceTree = "<group>"; };
 		036C0FCA183D02AB00C61808 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		036C0FCC183D02AB00C61808 /* BaoLiOATests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaoLiOATests.m; sourceTree = "<group>"; };
-		036C0FD6183D031200C61808 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		036C0FD6183D031200C61808 /* Main_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPad.storyboard; sourceTree = "<group>"; };
 		036C0FDA183D05AD00C61808 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		036C0FDB183D05AD00C61808 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		036C0FDC183D05AD00C61808 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -568,7 +570,8 @@
 				036C0FB7183D02AB00C61808 /* BLAppDelegate.m */,
 				036C0FB9183D02AB00C61808 /* Images.xcassets */,
 				036C0FAE183D02AB00C61808 /* Supporting Files */,
-				036C0FD6183D031200C61808 /* Main.storyboard */,
+				036C0FD6183D031200C61808 /* Main_iPad.storyboard */,
+				0322764718D7398C006F6916 /* Main_iPhone.storyboard */,
 			);
 			path = BaoLiOA;
 			sourceTree = "<group>";
@@ -888,7 +891,7 @@
 				ORGANIZATIONNAME = "Liu Feng";
 				TargetAttributes = {
 					036C0FA3183D02AB00C61808 = {
-						DevelopmentTeam = 4LARBL5NPT;
+						DevelopmentTeam = 722Y85EX47;
 						SystemCapabilities = {
 							com.apple.InterAppAudio = {
 								enabled = 0;
@@ -972,11 +975,12 @@
 				0360E5E018756907007CC623 /* bg_login@2x.png in Resources */,
 				036DEC5F18769A2300817F80 /* W@2x.png in Resources */,
 				03A85B79187C571A00DD43FD /* bg_login_s@2x.png in Resources */,
-				036C0FD7183D031200C61808 /* Main.storyboard in Resources */,
+				036C0FD7183D031200C61808 /* Main_iPad.storyboard in Resources */,
 				036DEC5C18769A2300817F80 /* P@2x.png in Resources */,
 				039BF616185E077F00985B17 /* MiniZip64_info.txt in Resources */,
 				03F9BBF61871CA1A00DBD40C /* GiveRemark@2x.png in Resources */,
 				03F9BBF81871CD2F00DBD40C /* Notifity@2x.png in Resources */,
+				0322764818D7398C006F6916 /* Main_iPhone.storyboard in Resources */,
 				03F9BBF41871CA1A00DBD40C /* ToRead@2x.png in Resources */,
 				03F9BBF01871CA1A00DBD40C /* new@2x.png in Resources */,
 				039BF622185E077F00985B17 /* InfoPlist.strings in Resources */,
@@ -1245,7 +1249,8 @@
 					"/Users/gulbel/Desktop/ios\\ liufeng/BaoLiOA/BaoLiOA/Lib/EasyAppVPN",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "60EBFCA4-4A46-4E02-A915-03D770C6A895";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1273,7 +1278,8 @@
 					"/Users/gulbel/Desktop/ios\\ liufeng/BaoLiOA/BaoLiOA/Lib/EasyAppVPN",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "60EBFCA4-4A46-4E02-A915-03D770C6A895";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -96,6 +96,9 @@
         return;
     }
     
+    [self.loginIDTextField resignFirstResponder];
+    [self.passwordTextField resignFirstResponder];
+    
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     self.isUseVPN = [userDefaults boolForKey:@"UseVPN"];
     
