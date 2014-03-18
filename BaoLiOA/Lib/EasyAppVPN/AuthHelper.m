@@ -6,6 +6,8 @@
 //
 //
 
+#if REAL_DEVICE
+
 #import <netinet/in.h>
 #import <sys/socket.h>
 #include <arpa/inet.h>
@@ -155,3 +157,5 @@ static id<SangforSDKDelegate> shareDelegate = nil;
 }
 
 @end
+
+#endif

@@ -22,12 +22,19 @@
 #define VPN_USER_NAME @"mobileOA"
 #define VPN_PASSWORD  @"mobileOA1111"
 
+#if REAL_DEVICE
 @interface BLLoginViewController () <SangforSDKDelegate>
+#else
+@interface BLLoginViewController ()
+#endif
+
 @property (weak, nonatomic) IBOutlet UITextField *loginIDTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 
 @property (strong, nonatomic) BLUserService *userService;
+#if REAL_DEVICE
 @property (strong, nonatomic) AuthHelper *authHelper;
+#endif
 
 @property (nonatomic) BOOL isUseVPN;
 @property (nonatomic) NSInteger vpnInitStatus;
@@ -186,7 +193,7 @@
     
 }
 
-
+#if REAL_DEVICE
 #pragma mark - SangforSDKDelegate
 // 监控 VPN 状态
 - (void)onCallBack:(const VPN_RESULT_NO)vpnErrno authType:(const int)authType
@@ -233,5 +240,6 @@
             break;
     }
 }
+#endif
 
 @end

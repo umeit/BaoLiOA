@@ -8,9 +8,15 @@
 
 #import "BLVPNManager.h"
 #import "AuthHelper.h"
-
+#if REAL_DEVICE
 @interface BLVPNManager ()<SangforSDKDelegate>
+#else
+@interface BLVPNManager ()
+#endif
+
+#if REAL_DEVICE
 @property (strong, nonatomic) AuthHelper *authHelper;
+#endif
 
 @property (copy, nonatomic) InitBLock initBlock;
 @property (copy, nonatomic) LoginBLock loginBlock;
@@ -34,23 +40,30 @@
 - (void)initVPNWithIP:(NSString *)ip port:(NSInteger)port block:(void (^)(BOOL))block
 {
     self.initBlock = block;
+#if REAL_DEVICE
     self.authHelper  = [[AuthHelper alloc] initWithHostAndPort:ip port:port delegate:self];
+#endif
 }
 
 - (void)loginVPNWithUserName:(NSString *)name password:(NSString *)password block:(LoginBLock)block
 {
     self.loginBlock = block;
+#if REAL_DEVICE
     [self.authHelper setUserNamePassword:name password:password];
     [self.authHelper loginVpn:SSL_AUTH_TYPE_PASSWORD];
+#endif
 }
 
 - (void)logoutVPN:(LogoutBLock)block
 {
     self.logoutBlock = block;
+#if REAL_DEVICE
     [self.authHelper logoutVpn];
+#endif
 }
 
 
+#if REAL_DEVICE
 #pragma mark - SangforSDKDelegate
 // 监控 VPN 状态
 - (void)onCallBack:(const VPN_RESULT_NO)vpnErrno authType:(const int)authType
@@ -94,5 +107,6 @@
             break;
     }
 }
+#endif
 
 @end
