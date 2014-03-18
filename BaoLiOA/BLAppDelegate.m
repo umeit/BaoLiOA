@@ -10,7 +10,7 @@
 #import "BLSplitViewControllerManager.h"
 
 @implementation BLAppDelegate
-// test
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
