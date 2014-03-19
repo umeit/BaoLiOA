@@ -30,6 +30,7 @@
 		035C2D381843AA660090E5BA /* BLMainBodyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 035C2D371843AA660090E5BA /* BLMainBodyViewController.m */; };
 		0360E5E018756907007CC623 /* bg_login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0360E5DF18756907007CC623 /* bg_login@2x.png */; };
 		0361DE18184F7EF700D33CE6 /* BLFromFieldItemEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 0361DE17184F7EF700D33CE6 /* BLFromFieldItemEntity.m */; };
+		03629A0018D94C6F0089BF91 /* BLMainPageForiPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 036299FF18D94C6F0089BF91 /* BLMainPageForiPhoneViewController.m */; };
 		036C0FA8183D02AB00C61808 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 036C0FA7183D02AB00C61808 /* Foundation.framework */; };
 		036C0FAA183D02AB00C61808 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 036C0FA9183D02AB00C61808 /* CoreGraphics.framework */; };
 		036C0FAC183D02AB00C61808 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 036C0FAB183D02AB00C61808 /* UIKit.framework */; };
@@ -209,6 +210,8 @@
 		0360E5DF18756907007CC623 /* bg_login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_login@2x.png"; sourceTree = "<group>"; };
 		0361DE16184F7EF700D33CE6 /* BLFromFieldItemEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLFromFieldItemEntity.h; sourceTree = "<group>"; };
 		0361DE17184F7EF700D33CE6 /* BLFromFieldItemEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLFromFieldItemEntity.m; sourceTree = "<group>"; };
+		036299FE18D94C6F0089BF91 /* BLMainPageForiPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMainPageForiPhoneViewController.h; sourceTree = "<group>"; };
+		036299FF18D94C6F0089BF91 /* BLMainPageForiPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMainPageForiPhoneViewController.m; sourceTree = "<group>"; };
 		036C0FA4183D02AB00C61808 /* BaoLiOA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaoLiOA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		036C0FA7183D02AB00C61808 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		036C0FA9183D02AB00C61808 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -520,6 +523,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		036299F918D94C380089BF91 /* ControllerForiPhone */ = {
+			isa = PBXGroup;
+			children = (
+				036299FE18D94C6F0089BF91 /* BLMainPageForiPhoneViewController.h */,
+				036299FF18D94C6F0089BF91 /* BLMainPageForiPhoneViewController.m */,
+			);
+			path = ControllerForiPhone;
+			sourceTree = "<group>";
+		};
 		036C0F9B183D02AB00C61808 = {
 			isa = PBXGroup;
 			children = (
@@ -557,6 +569,7 @@
 		036C0FAD183D02AB00C61808 /* BaoLiOA */ = {
 			isa = PBXGroup;
 			children = (
+				036299F918D94C380089BF91 /* ControllerForiPhone */,
 				03F9BBD11871C9B700DBD40C /* Resource */,
 				030CD0091841B8E2005A9B58 /* ControllerManager */,
 				03588FDB183E4AA30067F5D0 /* View */,
@@ -1042,6 +1055,7 @@
 				03C26F73188D7B69007214BC /* GTMBase64.m in Sources */,
 				039BF612185E077F00985B17 /* Makefile in Sources */,
 				039156041861F6B900BBFCB2 /* BLMatterFlowCell.m in Sources */,
+				03629A0018D94C6F0089BF91 /* BLMainPageForiPhoneViewController.m in Sources */,
 				03588FE7183E4F7B0067F5D0 /* BLMatterEntity.m in Sources */,
 				036C0FF1183D05AD00C61808 /* AFSecurityPolicy.m in Sources */,
 				03DECA4C184250B8007F6F40 /* BLMatterFormViewController.m in Sources */,
