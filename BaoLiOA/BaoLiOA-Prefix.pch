@@ -16,3 +16,5 @@
 #endif
 
 #define REAL_DEVICE !(TARGET_IPHONE_SIMULATOR)
+
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)

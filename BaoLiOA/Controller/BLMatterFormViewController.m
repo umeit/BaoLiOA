@@ -18,44 +18,45 @@
 
 @interface BLMatterFormViewController () <UITableViewDataSource, UITableViewDelegate, BLCommonOpinionViewControllerDelegate, BLMatterOpinionViewControllerDelegate>
 
-//@property (weak, nonatomic) IBOutlet UITableView *tableView;
-
 @property (strong, nonatomic) BLCommonOpinionViewController *opinionViewController;
 
 @property (strong, nonatomic) BLMatterOpinionViewController *matterOpinionViewController;
 
 @property (strong, nonatomic) BLQuickOpinionViewController *quickOpinionViewController;
 
-//@property (strong, nonatomic) BLMatterInfoService *matterService;
-//
-//@property (strong, nonatomic) BLMatterOperationService *matterOprationService;
-
-//@property (strong, nonatomic) NSString *mainbodyFileLocalPath;
-
-//@property (strong, nonatomic) NSString *bodyTitle;
-
 @property (nonatomic) NSInteger currentEidtFieldItemIndex;
+
 @property (nonatomic) NSInteger currentEidtRegionIndex;
+
+@property (strong, nonatomic) NSArray *matterFormInfoListForiPhone;
+
 @end
 
 @implementation BLMatterFormViewController
 
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super initWithCoder:aDecoder];
-    
-    if (self) {
-//        _matterOprationService = [[BLMatterOperationService alloc] init];
-//        _matterService = [[BLMatterInfoService alloc] init];
-    }
-    return self;
-}
+//- (id)initWithCoder:(NSCoder *)aDecoder
+//{
+//    self = [super initWithCoder:aDecoder];
+//    
+//    if (self) {
+////        _matterOprationService = [[BLMatterOperationService alloc] init];
+////        _matterService = [[BLMatterInfoService alloc] init];
+//    }
+//    return self;
+//}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    // 构建 iPhone 版使用的数据，iPhone 版每行只显示一个 FeildItem
+    NSMutableArray *feildItemList = [[NSMutableArray alloc] init];
+    for (BLInfoRegionEntity *infoRegion in self.matterFormInfoList) {
+        [feildItemList addObjectsFromArray:infoRegion.feildItemList];
+    }
+    self.matterFormInfoListForiPhone = feildItemList;
 }
 
 #pragma mark - UITableViewDataSource
@@ -67,7 +68,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.matterFormInfoList count];
+    if (IS_IPAD) {
+        return [self.matterFormInfoList count];
+    }
+    else {
+        return [self.matterFormInfoListForiPhone count];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -85,6 +91,73 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (IS_IPAD) {
+        return [self iPadtableView:tableView heightForRowAtIndexPath:indexPath];
+    }
+    else {
+        return [self iPhonetableView:tableView heightForRowAtIndexPath:indexPath];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [[cell.contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+}
+
+
+#pragma mark - Action
+
+- (void)eidtButtonPress:(UIButton *)button
+{
+    self.currentEidtFieldItemIndex = button.tag;
+    UITableViewCell *cell = (UITableViewCell *)[[[button superview] superview] superview];
+    self.currentEidtRegionIndex = [self.tableView indexPathForCell:cell].row;
+    
+    UINavigationController *navVC = [self.storyboard instantiateViewControllerWithIdentifier:@"OpinionNavigation"];
+    self.quickOpinionViewController = (BLQuickOpinionViewController *)navVC.topViewController;
+    
+    self.quickOpinionViewController.delegate = self;
+    BLInfoRegionEntity *infoRegion = self.matterFormInfoList[self.currentEidtRegionIndex];
+    BLFromFieldItemEntity *fieldItem = infoRegion.feildItemList[self.currentEidtFieldItemIndex];
+    
+    self.quickOpinionViewController.comment = fieldItem.eidtValue;
+    
+    [navVC setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+    [navVC setModalPresentationStyle:UIModalPresentationFormSheet];
+    
+    [self presentViewController:navVC animated:YES completion:nil];
+}
+
+
+#pragma mark - BLCommonOpinionViewControllerDelegate
+
+// 选择完常用意见
+- (void)opinionDidSelecte:(NSString *)opinion
+{
+    [self.opinionViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+#pragma mark - BLMatterOpinionViewControllerDelegate
+
+// 填写完意见
+- (void)opinionDidFinish:(NSString *)opinion
+{
+    BLInfoRegionEntity *infoRegion = self.matterFormInfoList[self.currentEidtRegionIndex];
+    
+    BLFromFieldItemEntity *fieldItem = infoRegion.feildItemList[self.currentEidtFieldItemIndex];
+    
+    [self.delegate eidtOpinionForKey:fieldItem.itemID value:opinion];
+    
+    fieldItem.eidtValue = [NSString stringWithFormat:@"%@\n", opinion];
+    [self.tableView reloadData];
+}
+
+
+#pragma mark - Private
+
+- (CGFloat)iPadtableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     CGFloat maxNameContentHeight = 0.f;
     CGFloat maxValueContentHeight = 0.f;
     
@@ -99,7 +172,7 @@
         CGFloat cellWidth = tableView.bounds.size.width;
         CGFloat percent = fieldItem.percent / 100.f;
         CGFloat labelWidth = cellWidth * (percent == 0 ? 1 : percent);
-
+        
         NSString *nameString = [NSString stringWithFormat:@"%@%@%@%@", fieldItem.beforeName, fieldItem.name, fieldItem.endName, fieldItem.splitString];
         NSString *valueString = [NSString stringWithFormat:@"%@%@%@%@", fieldItem.beforeValue, (fieldItem.eidtValue ? fieldItem.eidtValue : @""), fieldItem.value, fieldItem.endValue];
         
@@ -130,65 +203,38 @@
     return 8 + maxNameContentHeight + maxValueContentHeight + 8;
 }
 
-- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)iPhonetableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [[cell.contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    CGFloat nameLabelHeight = 0.f;
+    CGFloat valueLabelHeight = 0.f;
+    
+    BLFromFieldItemEntity *fieldItem = self.matterFormInfoListForiPhone[indexPath.row];
+    
+    CGFloat labelWidth = tableView.bounds.size.width;
+    
+    NSString *nameString = [NSString stringWithFormat:@"%@%@%@%@", fieldItem.beforeName, fieldItem.name, fieldItem.endName, fieldItem.splitString];
+    NSString *valueString = [NSString stringWithFormat:@"%@%@%@%@", fieldItem.beforeValue, (fieldItem.eidtValue ? fieldItem.eidtValue : @""), fieldItem.value, fieldItem.endValue];
+    
+    // 显示 name
+    if (fieldItem.nameVisible) {
+        // 分行显示，返回 name 加 value 的高度
+        if (fieldItem.nameRN) {
+            
+            nameLabelHeight = [self labelSizeWithMaxWidth:labelWidth content:nameString].height;
+            valueLabelHeight = [self labelSizeWithMaxWidth:labelWidth content:valueString].height;
+        }
+        // 不分行显示，返回 name 和 value 都在一行的高度
+        else {
+            nameLabelHeight = [self labelSizeWithMaxWidth:labelWidth content:[NSString stringWithFormat:@"%@%@", nameString, valueString]].height;
+        }
+    }
+    // 不显示 name，返回 value 的高度
+    else {
+        valueLabelHeight = [self labelSizeWithMaxWidth:labelWidth content:valueString].height;
+    }
+    
+    return 8 + nameLabelHeight + valueLabelHeight + 8;
 }
-
-
-#pragma mark - Navigation
-
-
-#pragma mark - Action
-
-- (void)eidtButtonPress:(UIButton *)button
-{
-    self.currentEidtFieldItemIndex = button.tag;
-    UITableViewCell *cell = (UITableViewCell *)[[[button superview] superview] superview];
-    self.currentEidtRegionIndex = [self.tableView indexPathForCell:cell].row;
-    
-    UINavigationController *navVC = [self.storyboard instantiateViewControllerWithIdentifier:@"OpinionNavigation"];
-    self.quickOpinionViewController = (BLQuickOpinionViewController *)navVC.topViewController;
-    
-    self.quickOpinionViewController.delegate = self;
-    BLInfoRegionEntity *infoRegion = self.matterFormInfoList[self.currentEidtRegionIndex];
-    BLFromFieldItemEntity *fieldItem = infoRegion.feildItemList[self.currentEidtFieldItemIndex];
-    
-    self.quickOpinionViewController.comment = fieldItem.eidtValue;
-    
-    [navVC setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-    [navVC setModalPresentationStyle:UIModalPresentationFormSheet];
-    
-    [self presentViewController:navVC animated:YES completion:nil];
-}
-
-
-#pragma mark - BLCommonOpinionViewControllerDelegate
-// 选择完常用意见
-- (void)opinionDidSelecte:(NSString *)opinion
-{
-    [self.opinionViewController dismissViewControllerAnimated:YES completion:nil];
-}
-
-
-#pragma mark - BLMatterOpinionViewControllerDelegate
-// 填写完意见
-- (void)opinionDidFinish:(NSString *)opinion
-{
-    BLInfoRegionEntity *infoRegion = self.matterFormInfoList[self.currentEidtRegionIndex];
-    
-    BLFromFieldItemEntity *fieldItem = infoRegion.feildItemList[self.currentEidtFieldItemIndex];
-    
-    [self.delegate eidtOpinionForKey:fieldItem.itemID value:opinion];
-    
-#warning 待实现,加名字
-//    fieldItem.value = [NSString stringWithFormat:@"%@\n%@", opinion, [NSDate date]];
-    fieldItem.eidtValue = [NSString stringWithFormat:@"%@\n", opinion];
-    [self.tableView reloadData];
-}
-
-
-#pragma mark - Private
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
@@ -218,7 +264,7 @@
         
         NSString *nameString = [NSString stringWithFormat:@"%@%@%@%@", fieldItem.beforeName, fieldItem.name, fieldItem.endName, fieldItem.splitString];
         NSString *valueString = [NSString stringWithFormat:@"%@%@%@%@", fieldItem.beforeValue, (fieldItem.eidtValue ? fieldItem.eidtValue : @""), fieldItem.value, fieldItem.endValue];
-//        NSString *valueString = [NSString stringWithFormat:@"%@%@%@", fieldItem.beforeValue, fieldItem.value, fieldItem.endValue];
+        
         /** 配置 Label 的显示内容 */
         // 显示 name
         if (fieldItem.nameVisible) {
@@ -241,7 +287,6 @@
             }
             // 不分行显示
             else {
-//                UILabel *aLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 8, labelWidth, 20)];
                 
                 NSMutableAttributedString *nameAttrString = [[NSMutableAttributedString alloc] initWithString:nameString];
                 NSMutableAttributedString *valueAttrString = [[NSMutableAttributedString alloc] initWithString:valueString];
@@ -269,7 +314,6 @@
             CGFloat valueLabelHeight = [self labelSizeWithMaxWidth:labelWidth content:valueString].height;
             UILabel *valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 8, labelWidth, valueLabelHeight)];
             valueLabel.numberOfLines = 0;
-//            valueLabel.text = [NSString stringWithFormat:@"  %@", valueString];
             valueLabel.text = valueString;
             valueLabel.textColor = [self colorWithString:fieldItem.valueColor];
             valueLabel.textAlignment = [self alignmentWithString:fieldItem.align];
