@@ -78,10 +78,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *matterFormBaseCell = @"BLMatterFormBaseCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:matterFormBaseCell forIndexPath:indexPath];
+    UITableViewCell *cell;
     
-    [self configureCell:cell atIndexPath:indexPath];
+    if (IS_IPAD) {
+        static NSString *matterFormBaseCell = @"BLMatterFormBaseCell";
+        cell = [tableView dequeueReusableCellWithIdentifier:matterFormBaseCell forIndexPath:indexPath];
+        [self iPadConfigureCell:cell atIndexPath:indexPath];
+    }
+    else {
+        static NSString *matterFormBaseCell = @"BLMatterFormBaseCellForiPhone";
+        cell = [tableView dequeueReusableCellWithIdentifier:matterFormBaseCell forIndexPath:indexPath];
+        [self iPhoneConfigureCell:cell atIndexPath:indexPath];
+    }
 
     return cell;
 }
@@ -110,15 +118,23 @@
 - (void)eidtButtonPress:(UIButton *)button
 {
     self.currentEidtFieldItemIndex = button.tag;
-    UITableViewCell *cell = (UITableViewCell *)[[[button superview] superview] superview];
-    self.currentEidtRegionIndex = [self.tableView indexPathForCell:cell].row;
+    BLFromFieldItemEntity *fieldItem;
+    
+    if (IS_IPAD) {
+        UITableViewCell *cell = (UITableViewCell *)[[[button superview] superview] superview];
+        self.currentEidtRegionIndex = [self.tableView indexPathForCell:cell].row;
+        
+        BLInfoRegionEntity *infoRegion = self.matterFormInfoList[self.currentEidtRegionIndex];
+        fieldItem = infoRegion.feildItemList[self.currentEidtFieldItemIndex];
+        
+    }
+    else {
+        fieldItem = self.matterFormInfoListForiPhone[button.tag];
+    }
     
     UINavigationController *navVC = [self.storyboard instantiateViewControllerWithIdentifier:@"OpinionNavigation"];
     self.quickOpinionViewController = (BLQuickOpinionViewController *)navVC.topViewController;
-    
     self.quickOpinionViewController.delegate = self;
-    BLInfoRegionEntity *infoRegion = self.matterFormInfoList[self.currentEidtRegionIndex];
-    BLFromFieldItemEntity *fieldItem = infoRegion.feildItemList[self.currentEidtFieldItemIndex];
     
     self.quickOpinionViewController.comment = fieldItem.eidtValue;
     
@@ -143,9 +159,17 @@
 // 填写完意见
 - (void)opinionDidFinish:(NSString *)opinion
 {
-    BLInfoRegionEntity *infoRegion = self.matterFormInfoList[self.currentEidtRegionIndex];
-    
-    BLFromFieldItemEntity *fieldItem = infoRegion.feildItemList[self.currentEidtFieldItemIndex];
+    BLFromFieldItemEntity *fieldItem;
+    if (IS_IPAD) {
+        BLInfoRegionEntity *infoRegion = self.matterFormInfoList[self.currentEidtRegionIndex];
+        
+        fieldItem = infoRegion.feildItemList[self.currentEidtFieldItemIndex];
+        
+        
+    }
+    else {
+        fieldItem = self.matterFormInfoListForiPhone[self.currentEidtFieldItemIndex];
+    }
     
     [self.delegate eidtOpinionForKey:fieldItem.itemID value:opinion];
     
@@ -236,7 +260,7 @@
     return 8 + nameLabelHeight + valueLabelHeight + 8;
 }
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (void)iPadConfigureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     BLInfoRegionEntity *infoRegion = self.matterFormInfoList[indexPath.row];
     
@@ -332,6 +356,82 @@
         }
         
         currentX += labelWidth;  // 左移 x 值，供后续 Label 使用
+    }
+}
+
+- (void)iPhoneConfigureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    BLFromFieldItemEntity *fieldItem = self.matterFormInfoListForiPhone[indexPath.row];
+    
+    NSString *nameString = [NSString stringWithFormat:@"%@%@%@%@", fieldItem.beforeName, fieldItem.name, fieldItem.endName, fieldItem.splitString];
+    NSString *valueString = [NSString stringWithFormat:@"%@%@%@%@", fieldItem.beforeValue, (fieldItem.eidtValue ? fieldItem.eidtValue : @""), fieldItem.value, fieldItem.endValue];
+    
+    CGFloat labelWidth = cell.contentView.bounds.size.width;
+    
+    /** 配置 Label 的显示内容 */
+    // 显示 name
+    if (fieldItem.nameVisible) {
+        // 分行显示
+        if (fieldItem.nameRN) {
+            UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 8, labelWidth, 20)];
+            nameLabel.text = nameString;
+            nameLabel.textColor = [self colorWithString:fieldItem.nameColor];
+            
+            CGFloat valueLabelHeight = [self labelSizeWithMaxWidth:labelWidth content:valueString].height;
+            // value 标签
+            UILabel *valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 30, labelWidth, valueLabelHeight)];
+            valueLabel.numberOfLines = 0;
+            valueLabel.text = [NSString stringWithFormat:@"  %@", valueString];
+            valueLabel.textColor = [self colorWithString:fieldItem.valueColor];
+            valueLabel.textAlignment = [self alignmentWithString:fieldItem.align];
+            
+            [cell.contentView addSubview:nameLabel];
+            [cell.contentView addSubview:valueLabel];
+        }
+        // 不分行显示
+        else {
+            
+            NSMutableAttributedString *nameAttrString = [[NSMutableAttributedString alloc] initWithString:nameString];
+            NSMutableAttributedString *valueAttrString = [[NSMutableAttributedString alloc] initWithString:valueString];
+            
+            [nameAttrString beginEditing];
+            [nameAttrString addAttribute:NSForegroundColorAttributeName value:[self colorWithString:fieldItem.nameColor] range:[nameString rangeOfString:nameString]];
+            [nameAttrString endEditing];
+            
+            [valueAttrString beginEditing];
+            [valueAttrString addAttribute:NSForegroundColorAttributeName value:[self colorWithString:fieldItem.valueColor] range:[valueString rangeOfString:valueString]];
+            [valueAttrString endEditing];
+            
+            [nameAttrString appendAttributedString:valueAttrString];
+            
+            CGFloat valueLabelHeight = [self labelSizeWithMaxWidth:labelWidth content:[nameAttrString string]].height;
+            UILabel *aLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 8, labelWidth, valueLabelHeight)];
+            aLabel.numberOfLines = 0;
+            aLabel.attributedText = nameAttrString;
+            
+            [cell.contentView addSubview:aLabel];
+        }
+    }
+    // 不显示 name
+    else {
+        CGFloat valueLabelHeight = [self labelSizeWithMaxWidth:labelWidth content:valueString].height;
+        UILabel *valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 8, labelWidth, valueLabelHeight)];
+        valueLabel.numberOfLines = 0;
+        valueLabel.text = valueString;
+        valueLabel.textColor = [self colorWithString:fieldItem.valueColor];
+        valueLabel.textAlignment = [self alignmentWithString:fieldItem.align];
+        
+        [cell.contentView addSubview:valueLabel];
+    }
+    
+    // 是否可以编辑
+    if ([fieldItem.mode isEqualToString:@"1"] && [fieldItem.inputType isEqualToString:@"11"]) {
+        UIButton *eidtButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, labelWidth, cell.bounds.size.height)];
+        // 用 tag 记录当前编辑的 item 的 index
+        eidtButton.tag = indexPath.row;
+        eidtButton.backgroundColor = [UIColor colorWithRed:0.1 green:0.6 blue:0.1 alpha:0.08];
+        [eidtButton addTarget:self action:@selector(eidtButtonPress:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.contentView addSubview:eidtButton];
     }
 }
 

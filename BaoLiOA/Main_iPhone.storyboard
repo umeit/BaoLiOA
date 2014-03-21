@@ -444,7 +444,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="CnW-0s-YOl">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BLMatterFormBaseCellForiPhone" id="CnW-0s-YOl">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CnW-0s-YOl" id="Ccr-TL-JOv">
@@ -623,6 +623,81 @@
             </objects>
             <point key="canvasLocation" x="2547" y="863"/>
         </scene>
+        <!--Quick Opinion View Controller - 办理意见-->
+        <scene sceneID="Noh-wM-eqv">
+            <objects>
+                <viewController id="Mjv-ZU-HEt" customClass="BLQuickOpinionViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zA7-m3-ozw"/>
+                        <viewControllerLayoutGuide type="bottom" id="1FY-ds-igO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PNd-l6-g89">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="发表意见：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kNk-6k-Eyg">
+                                <rect key="frame" x="20" y="77" width="85" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Spy-2F-Ptc">
+                                <rect key="frame" x="240" y="73" width="60" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="常用意见">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="LiG-36-fMx" kind="modal" id="tNX-IE-4no"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LPZ-ex-nHj">
+                                <rect key="frame" x="0.0" y="113" width="320" height="405"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="办理意见" id="SVC-FJ-DWK">
+                        <barButtonItem key="leftBarButtonItem" title="取消" id="jbv-1Y-QQa">
+                            <connections>
+                                <action selector="cancelButtonPress:" destination="Mjv-ZU-HEt" id="E7R-ax-Ao1"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="确定" id="kRD-59-so4">
+                            <connections>
+                                <action selector="okPuttonPress:" destination="Mjv-ZU-HEt" id="MbM-pG-Uwn"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="opinionTextView" destination="LPZ-ex-nHj" id="zus-6J-wM6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NEc-U6-LHv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3471" y="863"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="nsF-rD-M71">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="DmM-Ga-DHx" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ikn-da-TgR">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Mjv-ZU-HEt" kind="relationship" relationship="rootViewController" id="XT4-bX-0oA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nqn-FD-phx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3057" y="863"/>
+        </scene>
         <!--Common Opinion View Controller - 常用意见-->
         <scene sceneID="ckJ-xO-ASh">
             <objects>
@@ -681,5 +756,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="s0r-uK-ZXu"/>
+        <segue reference="tNX-IE-4no"/>
     </inferredMetricsTieBreakers>
 </document>
