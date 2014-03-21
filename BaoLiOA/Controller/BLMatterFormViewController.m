@@ -132,7 +132,14 @@
         fieldItem = self.matterFormInfoListForiPhone[button.tag];
     }
     
-    UINavigationController *navVC = [self.storyboard instantiateViewControllerWithIdentifier:@"OpinionNavigation"];
+    UINavigationController *navVC;
+    if (IS_IPAD) {
+        navVC = [self.storyboard instantiateViewControllerWithIdentifier:@"OpinionNavigation"];
+    }
+    else {
+        navVC = [self.storyboard instantiateViewControllerWithIdentifier:@"OpinionNavigationForiPhone"];
+    }
+    
     self.quickOpinionViewController = (BLQuickOpinionViewController *)navVC.topViewController;
     self.quickOpinionViewController.delegate = self;
     

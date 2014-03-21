@@ -686,7 +686,7 @@
         <!--Navigation Controller-->
         <scene sceneID="nsF-rD-M71">
             <objects>
-                <navigationController definesPresentationContext="YES" id="DmM-Ga-DHx" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="OpinionNavigationForiPhone" definesPresentationContext="YES" id="DmM-Ga-DHx" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ikn-da-TgR">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
