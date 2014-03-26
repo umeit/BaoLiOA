@@ -73,6 +73,7 @@
     }
     else {
         return [self.matterFormInfoListForiPhone count];
+//        return [self.matterFormInfoList count];
     }
 }
 
@@ -89,6 +90,7 @@
         static NSString *matterFormBaseCell = @"BLMatterFormBaseCellForiPhone";
         cell = [tableView dequeueReusableCellWithIdentifier:matterFormBaseCell forIndexPath:indexPath];
         [self iPhoneConfigureCell:cell atIndexPath:indexPath];
+//        [self iPadConfigureCell:cell atIndexPath:indexPath];
     }
 
     return cell;
@@ -104,6 +106,7 @@
     }
     else {
         return [self iPhonetableView:tableView heightForRowAtIndexPath:indexPath];
+//        return [self iPadtableView:tableView heightForRowAtIndexPath:indexPath];
     }
 }
 

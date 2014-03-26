@@ -50,7 +50,9 @@
     BLCommonOpinionViewController *vc = segue.destinationViewController;
     vc.delegate = self;
     
-    self.commonOpinionPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
+    if (IS_IPAD) {
+        self.commonOpinionPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
+    }
 }
 
 

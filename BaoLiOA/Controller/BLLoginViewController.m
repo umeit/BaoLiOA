@@ -66,6 +66,10 @@
         BLContextEntity *context = [NSKeyedUnarchiver unarchiveObjectWithData:contextData];
         self.loginIDTextField.text = context.userName;
     }
+    
+#ifdef DEBUG
+    self.passwordTextField.text = @"123456";
+#endif
 }
 
 // 登录 OA 系统
@@ -76,7 +80,12 @@
         [self hideLodingView];
         
         if (success) {
-            self.view.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BLSplitViewController"];
+            if (IS_IPAD) {
+                self.view.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BLSplitViewController"];
+            }
+            else {
+                self.view.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMainPageForiPhoneNavigationController"];
+            }
         }
         // 登录失败
         else {

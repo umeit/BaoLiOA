@@ -14,7 +14,6 @@
 		030D3C651849B2F000E844EA /* BLUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 030D3C641849B2F000E844EA /* BLUserService.m */; };
 		030D3C681849B30A00E844EA /* BLUserHTTPLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 030D3C671849B30A00E844EA /* BLUserHTTPLogic.m */; };
 		030D3C6B1849DE7700E844EA /* BLAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 030D3C6A1849DE7700E844EA /* BLAppSettingsViewController.m */; };
-		0322764818D7398C006F6916 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0322764718D7398C006F6916 /* Main_iPhone.storyboard */; };
 		0323EAD51851E2EA00752172 /* BLAttachEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 0323EAD41851E2EA00752172 /* BLAttachEntity.m */; };
 		03281655187EDF8500C0FDB7 /* logo_m_32@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03281654187EDF8500C0FDB7 /* logo_m_32@2x.png */; };
 		03281658187EE9A800C0FDB7 /* BLContextEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 03281657187EE9A800C0FDB7 /* BLContextEntity.m */; };
@@ -43,7 +42,6 @@
 		036C0FC3183D02AB00C61808 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 036C0FAB183D02AB00C61808 /* UIKit.framework */; };
 		036C0FCB183D02AB00C61808 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 036C0FC9183D02AB00C61808 /* InfoPlist.strings */; };
 		036C0FCD183D02AB00C61808 /* BaoLiOATests.m in Sources */ = {isa = PBXBuildFile; fileRef = 036C0FCC183D02AB00C61808 /* BaoLiOATests.m */; };
-		036C0FD7183D031200C61808 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036C0FD6183D031200C61808 /* Main_iPad.storyboard */; };
 		036C0FED183D05AD00C61808 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 036C0FDB183D05AD00C61808 /* AFHTTPRequestOperation.m */; };
 		036C0FEE183D05AD00C61808 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 036C0FDD183D05AD00C61808 /* AFHTTPRequestOperationManager.m */; };
 		036C0FEF183D05AD00C61808 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 036C0FDF183D05AD00C61808 /* AFHTTPSessionManager.m */; };
@@ -104,6 +102,8 @@
 		03BD18001844F2FF002F2C38 /* BLMatterOpinionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BD17FF1844F2FF002F2C38 /* BLMatterOpinionViewController.m */; };
 		03C26F73188D7B69007214BC /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C26F71188D7B69007214BC /* GTMBase64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		03D2E929183FB6350096E463 /* BLMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03D2E928183FB6350096E463 /* BLMasterViewController.m */; };
+		03DAB07E18E32CFF0054F4A4 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03DAB08018E32CFF0054F4A4 /* Main_iPad.storyboard */; };
+		03DAB08518E32E950054F4A4 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03DAB08718E32E950054F4A4 /* Main_iPhone.storyboard */; };
 		03DECA461842434D007F6F40 /* BLMatterOperationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DECA451842434D007F6F40 /* BLMatterOperationViewController.m */; };
 		03DECA49184247D0007F6F40 /* BLGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DECA48184247D0007F6F40 /* BLGlobal.m */; };
 		03DECA4C184250B8007F6F40 /* BLMatterFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DECA4B184250B8007F6F40 /* BLMatterFormViewController.m */; };
@@ -183,7 +183,6 @@
 		030D3C671849B30A00E844EA /* BLUserHTTPLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLUserHTTPLogic.m; sourceTree = "<group>"; };
 		030D3C691849DE7700E844EA /* BLAppSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLAppSettingsViewController.h; sourceTree = "<group>"; };
 		030D3C6A1849DE7700E844EA /* BLAppSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLAppSettingsViewController.m; sourceTree = "<group>"; };
-		0322764718D7398C006F6916 /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
 		0323EAD31851E2EA00752172 /* BLAttachEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLAttachEntity.h; sourceTree = "<group>"; };
 		0323EAD41851E2EA00752172 /* BLAttachEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLAttachEntity.m; sourceTree = "<group>"; };
 		03281654187EDF8500C0FDB7 /* logo_m_32@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_m_32@2x.png"; sourceTree = "<group>"; };
@@ -228,7 +227,6 @@
 		036C0FC8183D02AB00C61808 /* BaoLiOATests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BaoLiOATests-Info.plist"; sourceTree = "<group>"; };
 		036C0FCA183D02AB00C61808 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		036C0FCC183D02AB00C61808 /* BaoLiOATests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaoLiOATests.m; sourceTree = "<group>"; };
-		036C0FD6183D031200C61808 /* Main_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPad.storyboard; sourceTree = "<group>"; };
 		036C0FDA183D05AD00C61808 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		036C0FDB183D05AD00C61808 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		036C0FDC183D05AD00C61808 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -335,6 +333,11 @@
 		03C26F72188D7B69007214BC /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
 		03D2E927183FB6350096E463 /* BLMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMasterViewController.h; sourceTree = "<group>"; };
 		03D2E928183FB6350096E463 /* BLMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMasterViewController.m; sourceTree = "<group>"; };
+		03DAB07F18E32CFF0054F4A4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		03DAB08618E32E950054F4A4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		03DAB09318E331020054F4A4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		03DAB09418E331020054F4A4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/Main_iPad.storyboard"; sourceTree = "<group>"; };
+		03DAB09518E331020054F4A4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/Main_iPhone.storyboard"; sourceTree = "<group>"; };
 		03DECA441842434D007F6F40 /* BLMatterOperationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterOperationViewController.h; sourceTree = "<group>"; };
 		03DECA451842434D007F6F40 /* BLMatterOperationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterOperationViewController.m; sourceTree = "<group>"; };
 		03DECA47184247D0007F6F40 /* BLGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLGlobal.h; sourceTree = "<group>"; };
@@ -583,8 +586,8 @@
 				036C0FB7183D02AB00C61808 /* BLAppDelegate.m */,
 				036C0FB9183D02AB00C61808 /* Images.xcassets */,
 				036C0FAE183D02AB00C61808 /* Supporting Files */,
-				036C0FD6183D031200C61808 /* Main_iPad.storyboard */,
-				0322764718D7398C006F6916 /* Main_iPhone.storyboard */,
+				03DAB08018E32CFF0054F4A4 /* Main_iPad.storyboard */,
+				03DAB08718E32E950054F4A4 /* Main_iPhone.storyboard */,
 			);
 			path = BaoLiOA;
 			sourceTree = "<group>";
@@ -922,6 +925,8 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"zh-Hans",
+				Base,
 			);
 			mainGroup = 036C0F9B183D02AB00C61808;
 			productRefGroup = 036C0FA5183D02AB00C61808 /* Products */;
@@ -988,12 +993,12 @@
 				0360E5E018756907007CC623 /* bg_login@2x.png in Resources */,
 				036DEC5F18769A2300817F80 /* W@2x.png in Resources */,
 				03A85B79187C571A00DD43FD /* bg_login_s@2x.png in Resources */,
-				036C0FD7183D031200C61808 /* Main_iPad.storyboard in Resources */,
+				03DAB07E18E32CFF0054F4A4 /* Main_iPad.storyboard in Resources */,
 				036DEC5C18769A2300817F80 /* P@2x.png in Resources */,
 				039BF616185E077F00985B17 /* MiniZip64_info.txt in Resources */,
 				03F9BBF61871CA1A00DBD40C /* GiveRemark@2x.png in Resources */,
 				03F9BBF81871CD2F00DBD40C /* Notifity@2x.png in Resources */,
-				0322764818D7398C006F6916 /* Main_iPhone.storyboard in Resources */,
+				03DAB08518E32E950054F4A4 /* Main_iPhone.storyboard in Resources */,
 				03F9BBF41871CA1A00DBD40C /* ToRead@2x.png in Resources */,
 				03F9BBF01871CA1A00DBD40C /* new@2x.png in Resources */,
 				039BF622185E077F00985B17 /* InfoPlist.strings in Resources */,
@@ -1125,6 +1130,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				036C0FB1183D02AB00C61808 /* en */,
+				03DAB09318E331020054F4A4 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1159,6 +1165,24 @@
 				039BF602185E077F00985B17 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		03DAB08018E32CFF0054F4A4 /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				03DAB07F18E32CFF0054F4A4 /* en */,
+				03DAB09418E331020054F4A4 /* zh-Hans */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		03DAB08718E32E950054F4A4 /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				03DAB08618E32E950054F4A4 /* en */,
+				03DAB09518E331020054F4A4 /* zh-Hans */,
+			);
+			name = Main_iPhone.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

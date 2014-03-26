@@ -557,7 +557,7 @@
         switch (self.segmentView.selectedSegmentIndex) {
             case 0:
                 // 表单视图
-                vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMatterFormViewController"];
+                vc = [self matterFormViewController];
                 break;
                 
             case 1:
@@ -601,6 +601,15 @@
     }
     
     return vc;
+}
+
+
+#pragma mark - Controller Gatter
+
+- (UIViewController *)matterFormViewController
+{
+    NSString *storyboardIdentifier = IS_IPAD ? @"BLMatterFormViewController" : @"BLMatterFormViewControllerForiPhone";
+    return [self.storyboard instantiateViewControllerWithIdentifier:storyboardIdentifier];
 }
 
 @end
