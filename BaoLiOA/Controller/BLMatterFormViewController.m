@@ -132,7 +132,12 @@
         
     }
     else {
-        fieldItem = self.matterFormInfoListForiPhone[button.tag];
+        UITableViewCell *cell = (UITableViewCell *)[[[button superview] superview] superview];
+        self.currentEidtRegionIndex = [self.tableView indexPathForCell:cell].row;
+        
+        BLInfoRegionEntity *infoRegion = self.matterFormInfoList[self.currentEidtRegionIndex];
+        fieldItem = infoRegion.feildItemList[self.currentEidtFieldItemIndex];
+//        fieldItem = self.matterFormInfoListForiPhone[button.tag];
     }
     
     UINavigationController *navVC;
@@ -178,7 +183,10 @@
         
     }
     else {
-        fieldItem = self.matterFormInfoListForiPhone[self.currentEidtFieldItemIndex];
+        BLInfoRegionEntity *infoRegion = self.matterFormInfoList[self.currentEidtRegionIndex];
+        
+        fieldItem = infoRegion.feildItemList[self.currentEidtFieldItemIndex];
+//        fieldItem = self.matterFormInfoListForiPhone[self.currentEidtFieldItemIndex];
     }
     
     [self.delegate eidtOpinionForKey:fieldItem.itemID value:opinion];
