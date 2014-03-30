@@ -53,6 +53,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.delegate opinionDidSelecte:[tableView cellForRowAtIndexPath:indexPath].textLabel.text];
+    if (!IS_IPAD) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 @end

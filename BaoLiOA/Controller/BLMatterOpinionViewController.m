@@ -47,11 +47,15 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    BLCommonOpinionViewController *vc = segue.destinationViewController;
-    vc.delegate = self;
-    
     if (IS_IPAD) {
+        BLCommonOpinionViewController *vc = segue.destinationViewController;
+        vc.delegate = self;
         self.commonOpinionPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
+    }
+    else {
+        UINavigationController *navigationController = segue.destinationViewController;
+        BLCommonOpinionViewController *vc = (BLCommonOpinionViewController *)navigationController.topViewController;
+        vc.delegate = self;
     }
 }
 

@@ -1334,6 +1334,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="160" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BLOpinionViewControllerCell" textLabel="U2F-dB-dXo" style="IBUITableViewCellStyleDefault" id="eQf-hl-9km">
                                 <rect key="frame" x="0.0" y="22" width="160" height="44"/>
@@ -1639,6 +1640,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="cih-aU-I9P"/>
-        <segue reference="WLh-aI-oMC"/>
+        <segue reference="gzF-CU-k48"/>
     </inferredMetricsTieBreakers>
 </document>

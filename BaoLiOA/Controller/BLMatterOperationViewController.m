@@ -557,7 +557,8 @@
         switch (self.segmentView.selectedSegmentIndex) {
             case 0:
                 // 表单视图
-                vc = [self matterFormViewController];
+//                vc = [self matterFormViewController];
+                vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMatterFormViewController"];
                 break;
                 
             case 1:

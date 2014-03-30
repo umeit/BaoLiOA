@@ -72,8 +72,8 @@
         return [self.matterFormInfoList count];
     }
     else {
-        return [self.matterFormInfoListForiPhone count];
-//        return [self.matterFormInfoList count];
+//        return [self.matterFormInfoListForiPhone count];
+        return [self.matterFormInfoList count];
     }
 }
 
@@ -89,8 +89,8 @@
     else {
         static NSString *matterFormBaseCell = @"BLMatterFormBaseCellForiPhone";
         cell = [tableView dequeueReusableCellWithIdentifier:matterFormBaseCell forIndexPath:indexPath];
-        [self iPhoneConfigureCell:cell atIndexPath:indexPath];
-//        [self iPadConfigureCell:cell atIndexPath:indexPath];
+//        [self iPhoneConfigureCell:cell atIndexPath:indexPath];
+        [self iPadConfigureCell:cell atIndexPath:indexPath];
     }
 
     return cell;
@@ -105,8 +105,8 @@
         return [self iPadtableView:tableView heightForRowAtIndexPath:indexPath];
     }
     else {
-        return [self iPhonetableView:tableView heightForRowAtIndexPath:indexPath];
-//        return [self iPadtableView:tableView heightForRowAtIndexPath:indexPath];
+//        return [self iPhonetableView:tableView heightForRowAtIndexPath:indexPath];
+        return [self iPadtableView:tableView heightForRowAtIndexPath:indexPath];
     }
 }
 
