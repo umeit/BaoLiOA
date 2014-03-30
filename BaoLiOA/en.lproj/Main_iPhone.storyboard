@@ -357,7 +357,7 @@
                                 </segments>
                             </segmentedControl>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cgg-IN-Lwt">
-                                <rect key="frame" x="0.0" y="97" width="320" height="424"/>
+                                <rect key="frame" x="0.0" y="94" width="320" height="427"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
@@ -688,7 +688,7 @@
         <!--Navigation Controller-->
         <scene sceneID="nsF-rD-M71">
             <objects>
-                <navigationController storyboardIdentifier="OpinionNavigationForiPhone" definesPresentationContext="YES" id="DmM-Ga-DHx" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="OpinionNavigation" definesPresentationContext="YES" id="DmM-Ga-DHx" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ikn-da-TgR">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

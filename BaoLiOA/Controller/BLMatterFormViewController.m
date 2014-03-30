@@ -141,13 +141,9 @@
     }
     
     UINavigationController *navVC;
-    if (IS_IPAD) {
-        navVC = [self.storyboard instantiateViewControllerWithIdentifier:@"OpinionNavigation"];
-    }
-    else {
-        navVC = [self.storyboard instantiateViewControllerWithIdentifier:@"OpinionNavigationForiPhone"];
-    }
-    
+
+    navVC = [self.storyboard instantiateViewControllerWithIdentifier:@"OpinionNavigation"];
+
     self.quickOpinionViewController = (BLQuickOpinionViewController *)navVC.topViewController;
     self.quickOpinionViewController.delegate = self;
     
