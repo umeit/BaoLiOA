@@ -372,8 +372,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ax1-Vm-cdx" firstAttribute="top" secondItem="KvT-Dd-eK6" secondAttribute="bottom" id="7Fa-Hf-cjf"/>
-                            <constraint firstItem="ax1-Vm-cdx" firstAttribute="top" secondItem="Cgg-IN-Lwt" secondAttribute="bottom" constant="47" id="tbO-fM-ahr"/>
+                            <constraint firstItem="KvT-Dd-eK6" firstAttribute="top" secondItem="Cgg-IN-Lwt" secondAttribute="bottom" constant="-3" id="9ax-HD-PH2"/>
+                            <constraint firstItem="Cgg-IN-Lwt" firstAttribute="top" secondItem="MHk-r9-xfW" secondAttribute="top" constant="94" id="MUQ-f5-2qB"/>
+                            <constraint firstAttribute="bottom" secondItem="Cgg-IN-Lwt" secondAttribute="bottom" constant="47" id="ebH-4z-IAf"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ipA-Vm-0o9"/>
