@@ -356,18 +356,22 @@
                                     <segment title="办理"/>
                                 </segments>
                             </segmentedControl>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cgg-IN-Lwt">
-                                <rect key="frame" x="0.0" y="94" width="320" height="427"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KvT-Dd-eK6">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KvT-Dd-eK6">
                                 <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cgg-IN-Lwt">
+                                <rect key="frame" x="0.0" y="94" width="320" height="427"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ax1-Vm-cdx" firstAttribute="top" secondItem="KvT-Dd-eK6" secondAttribute="bottom" id="7Fa-Hf-cjf"/>
+                            <constraint firstItem="ax1-Vm-cdx" firstAttribute="top" secondItem="Cgg-IN-Lwt" secondAttribute="bottom" constant="47" id="tbO-fM-ahr"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ipA-Vm-0o9"/>
                     <connections>
