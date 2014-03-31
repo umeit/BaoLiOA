@@ -408,15 +408,18 @@
 
 - (void)initOperationButton:(NSArray *)buttonList
 {
+    CGFloat buttonPadWidth = IS_IPAD ? 703.f : 320.f;
+    CGFloat buttonHieght = IS_IPAD ? 70 : 50;
+    
     if (buttonList.count > 0) {
         [self.view viewWithTag:OperationButtonParentViewTag].hidden = NO;
         // 计算每个 Button 的宽度
-        CGFloat buttonWidth = 703.f / buttonList.count;
+        CGFloat buttonWidth = buttonPadWidth / buttonList.count;
         
         CGFloat x = 0;
         
         for (NSDictionary *buttonInfo in buttonList) {
-            UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(x, 0, buttonWidth, 70)];
+            UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(x, 0, buttonWidth, buttonHieght)];
             
             [button addTarget:self action:@selector(operationButtonPress:) forControlEvents:UIControlEventTouchUpInside];
             [button setTitle:buttonInfo[@"ActionName"] forState:UIControlStateNormal];
