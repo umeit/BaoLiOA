@@ -329,6 +329,8 @@
 		03BD17FC1844EF77002F2C38 /* BLMatterFlowListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterFlowListViewController.m; sourceTree = "<group>"; };
 		03BD17FE1844F2FF002F2C38 /* BLMatterOpinionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterOpinionViewController.h; sourceTree = "<group>"; };
 		03BD17FF1844F2FF002F2C38 /* BLMatterOpinionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterOpinionViewController.m; sourceTree = "<group>"; };
+		03BD913718EB1F6900ABA91F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/Main_iPad.storyboard"; sourceTree = "<group>"; };
+		03BD913C18EB1F6900ABA91F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/Main_iPhone.storyboard"; sourceTree = "<group>"; };
 		03C26F70188D7B69007214BC /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
 		03C26F71188D7B69007214BC /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
 		03C26F72188D7B69007214BC /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
@@ -1127,6 +1129,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				03358C6218E7D5E300A5D317 /* en */,
+				03BD913C18EB1F6900ABA91F /* zh-Hans */,
 			);
 			name = Main_iPhone.storyboard;
 			sourceTree = "<group>";
@@ -1175,6 +1178,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				03DAB07F18E32CFF0054F4A4 /* en */,
+				03BD913718EB1F6900ABA91F /* zh-Hans */,
 			);
 			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
