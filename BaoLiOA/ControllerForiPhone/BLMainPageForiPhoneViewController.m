@@ -52,6 +52,18 @@
             case TakenTag:
                 [self segue:segue toMatterListWithType:kTakenMatterList];
                 break;
+            case ToReadTag:
+                [self segue:segue toMatterListWithType:kToReadMatterList];
+                break;
+            case ReadTag:
+                [self segue:segue toMatterListWithType:kReadMatterList];
+                break;
+            case InDocTag:
+                [self segue:segue toMatterListWithType:kInDocMatterList];
+                break;
+            case GiveRemarkTag:
+                [self segue:segue toMatterListWithType:kGiveRemarkMatterList];
+                break;
             default:
                 break;
         }
