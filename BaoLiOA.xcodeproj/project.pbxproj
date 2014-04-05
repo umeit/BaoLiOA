@@ -195,6 +195,7 @@
 		033EA7F6184E2E1D009E29C7 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		0341733A185A1637003597D4 /* BLMatterOperationHTTPLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMatterOperationHTTPLogic.h; sourceTree = "<group>"; };
 		0341733B185A1637003597D4 /* BLMatterOperationHTTPLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMatterOperationHTTPLogic.m; sourceTree = "<group>"; };
+		0357B3B518F0552300ED62CE /* BLOperationProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLOperationProtocol.h; sourceTree = "<group>"; };
 		03588FD8183E4A780067F5D0 /* BLBaseMatterListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLBaseMatterListViewController.h; sourceTree = "<group>"; };
 		03588FD9183E4A780067F5D0 /* BLBaseMatterListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLBaseMatterListViewController.m; sourceTree = "<group>"; };
 		03588FDC183E4AED0067F5D0 /* BLBaseMatterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLBaseMatterCell.h; sourceTree = "<group>"; };
@@ -411,6 +412,14 @@
 			path = RaptureXML;
 			sourceTree = "<group>";
 		};
+		0357B3B018F054F400ED62CE /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				0357B3B518F0552300ED62CE /* BLOperationProtocol.h */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		03588FD3183E4A340067F5D0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -571,6 +580,7 @@
 		036C0FAD183D02AB00C61808 /* BaoLiOA */ = {
 			isa = PBXGroup;
 			children = (
+				0357B3B018F054F400ED62CE /* Protocol */,
 				036299F918D94C380089BF91 /* ControllerForiPhone */,
 				03F9BBD11871C9B700DBD40C /* Resource */,
 				030CD0091841B8E2005A9B58 /* ControllerManager */,

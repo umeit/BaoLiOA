@@ -17,6 +17,8 @@
 #import "BLMatterInfoService.h"
 #import "UIViewController+GViewController.h"
 #import "NSArray+GArray.h"
+#import "BLOperationProtocol.h"
+#import "BLFromFieldItemEntity.h"
 
 #define OperationButtonParentViewTag 30
 
@@ -26,7 +28,7 @@
 #define HasBodyDoc (self.matterBodyDocID && self.matterBodyDocID.length > 0)
 #define HasAttach  (self.matterAttachList && self.matterAttachList.count > 0)
 
-@interface BLMatterOperationViewController () <BLManageFollowViewControllerDelegate, BLMatterOpinionViewControllerDelegate, BLMatterFormViewControllerDelegate>
+@interface BLMatterOperationViewController () <BLManageFollowViewControllerDelegate, BLMatterOpinionViewControllerDelegate, BLMatterFormViewControllerDelegate, BLOperationProtocol>
 
 /**
  *  切换控件
@@ -136,10 +138,14 @@
 @property (strong, nonatomic) NSString *matterBodyDocID;
 
 /**
- *  记录对事项当前的操作
+ * 记录对事项当前的操作
  */
 @property (strong, nonatomic) NSString *currentActionID;
 
+/**
+ * 必须填写的意见
+ */
+@property (strong, nonatomic) NSSet *mustEditFeildItems;
 @end
 
 @implementation BLMatterOperationViewController
@@ -254,6 +260,13 @@
 //        return;
 //    }
     
+    for (BLFromFieldItemEntity *fieldItem in [self.mustEditFeildItems allObjects]) {
+        if (!fieldItem || fieldItem.eidtValue.length < 1) {
+            [self showCustomTextAlert:@"您还有未填写的意见，请填写后再提交"];
+            return;
+        }
+    }
+    
     NSString *actionID = [self actionIDWithButtonName:button.titleLabel.text];
     
     self.currentActionID = actionID;
@@ -327,6 +340,14 @@
     
     // 覆盖「办理」中的意见
     self.comment = value;
+}
+
+
+#pragma - mark BLOperationProtocol
+
+- (void)mustEditFeildItems:(NSSet *)mustEditFeildItems
+{
+    self.mustEditFeildItems = mustEditFeildItems;
 }
 
 
@@ -452,6 +473,11 @@
     // 设置 delegate
     if ([vc respondsToSelector:@selector(setDelegate:)]) {
         [vc performSelector:@selector(setDelegate:) withObject:self];
+    }
+    
+    // 设置 operation delegate
+    if ([vc respondsToSelector:@selector(setOperationDelegate:)]) {
+        [vc performSelector:@selector(setOperationDelegate:) withObject:self];
     }
     
     // 设置 MatterID

@@ -57,6 +57,9 @@
         [feildItemList addObjectsFromArray:infoRegion.feildItemList];
     }
     self.matterFormInfoListForiPhone = feildItemList;
+    
+    // 将必填的 feildItem 项发送给 BLMatterOperationViewController，它将在用户办理事宜时判断用户是否已填写
+    [self sendMustEditFeildItemsToOperationViewController];
 }
 
 #pragma mark - UITableViewDataSource
@@ -193,6 +196,20 @@
 
 
 #pragma mark - Private
+
+- (void)sendMustEditFeildItemsToOperationViewController
+{
+    NSMutableSet *mustEditFeildItems = [[NSMutableSet alloc] init];
+    for (BLInfoRegionEntity *infoRegion in self.matterFormInfoList) {
+        for (BLFromFieldItemEntity *fieldItem in infoRegion.feildItemList) {
+            if ([fieldItem.mode isEqualToString:@"200"] && [fieldItem.inputType isEqualToString:@"11"]) {
+                [mustEditFeildItems addObject:fieldItem];
+            }
+        }
+    }
+    
+    [self.operationDelegate mustEditFeildItems:mustEditFeildItems];
+}
 
 - (CGFloat)iPadtableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -360,7 +377,9 @@
         }
         
         // 是否可以编辑
-        if ([fieldItem.mode isEqualToString:@"1"] && [fieldItem.inputType isEqualToString:@"11"]) {
+        if (([fieldItem.mode isEqualToString:@"1"] || [fieldItem.mode isEqualToString:@"200"])
+            && [fieldItem.inputType isEqualToString:@"11"]) {
+            
             UIButton *eidtButton = [[UIButton alloc] initWithFrame:CGRectMake(currentX, 0, labelWidth, cell.bounds.size.height)];
             // 用 tag 记录当前编辑的 item 的 index
             eidtButton.tag = i;

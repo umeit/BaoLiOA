@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BLOperationProtocol.h"
 
 @protocol BLMatterFormViewControllerDelegate <NSObject>
 
@@ -31,5 +32,7 @@
 
 
 @property (weak, nonatomic) id<BLMatterFormViewControllerDelegate>delegate;
+
+@property (weak, nonatomic) id<BLOperationProtocol>operationDelegate;
 
 @end
