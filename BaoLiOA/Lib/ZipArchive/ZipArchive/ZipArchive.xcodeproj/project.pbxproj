@@ -41,12 +41,10 @@
 		C95AB35A17E1C37800120861 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95AB35917E1C37800120861 /* XCTest.framework */; };
 		C95AB35B17E1C37800120861 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 		C95AB35D17E1C37800120861 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95AB35C17E1C37800120861 /* UIKit.framework */; };
-		C95AB36317E1C37800120861 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C95AB36117E1C37800120861 /* InfoPlist.strings */; };
 		C95AB36C17E1C3D400120861 /* tests.m in Sources */ = {isa = PBXBuildFile; fileRef = C99D6913164BCC7E00B6A7C3 /* tests.m */; };
 		C95AB36D17E1C43400120861 /* libZipArchive-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB518D /* libZipArchive-ios.a */; };
 		C95AB36F17E1C44200120861 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C95AB36E17E1C44200120861 /* libz.dylib */; };
 		C95AB37517E1C47D00120861 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95AB35917E1C37800120861 /* XCTest.framework */; };
-		C95AB37B17E1C47D00120861 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C95AB37917E1C47D00120861 /* InfoPlist.strings */; };
 		C95AB38417E1C49400120861 /* tests.m in Sources */ = {isa = PBXBuildFile; fileRef = C99D6913164BCC7E00B6A7C3 /* tests.m */; };
 		C95AB38517E1C50900120861 /* libZipArchive-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C908A96F160AC26D000395DB /* libZipArchive-mac.a */; };
 		C95AB38617E1C50900120861 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E8EBDB124F3CD70047C862 /* libz.dylib */; };
@@ -105,12 +103,10 @@
 		C95AB35917E1C37800120861 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		C95AB35C17E1C37800120861 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		C95AB36017E1C37800120861 /* ZipArchive ios Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ZipArchive ios Tests-Info.plist"; sourceTree = "<group>"; };
-		C95AB36217E1C37800120861 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C95AB36617E1C37800120861 /* ZipArchive ios Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZipArchive ios Tests-Prefix.pch"; sourceTree = "<group>"; };
 		C95AB36E17E1C44200120861 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
 		C95AB37417E1C47D00120861 /* ZipArchive mac Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ZipArchive mac Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C95AB37817E1C47D00120861 /* ZipArchive mac Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ZipArchive mac Tests-Info.plist"; sourceTree = "<group>"; };
-		C95AB37A17E1C47D00120861 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C95AB37E17E1C47D00120861 /* ZipArchive mac Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZipArchive mac Tests-Prefix.pch"; sourceTree = "<group>"; };
 		C99D6904164BCC7E00B6A7C3 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		C99D6906164BCC7E00B6A7C3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
@@ -118,7 +114,6 @@
 		C99D690A164BCC7E00B6A7C3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C99D690B164BCC7E00B6A7C3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C99D690E164BCC7E00B6A7C3 /* tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "tests-Info.plist"; sourceTree = "<group>"; };
-		C99D6910164BCC7E00B6A7C3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C99D6912164BCC7E00B6A7C3 /* tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tests.h; sourceTree = "<group>"; };
 		C99D6913164BCC7E00B6A7C3 /* tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tests.m; sourceTree = "<group>"; };
 		C99D6915164BCC7E00B6A7C3 /* tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "tests-Prefix.pch"; sourceTree = "<group>"; };
@@ -262,7 +257,6 @@
 			isa = PBXGroup;
 			children = (
 				C95AB36017E1C37800120861 /* ZipArchive ios Tests-Info.plist */,
-				C95AB36117E1C37800120861 /* InfoPlist.strings */,
 				C95AB36617E1C37800120861 /* ZipArchive ios Tests-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -280,7 +274,6 @@
 			isa = PBXGroup;
 			children = (
 				C95AB37817E1C47D00120861 /* ZipArchive mac Tests-Info.plist */,
-				C95AB37917E1C47D00120861 /* InfoPlist.strings */,
 				C95AB37E17E1C47D00120861 /* ZipArchive mac Tests-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -312,7 +305,6 @@
 			isa = PBXGroup;
 			children = (
 				C99D690E164BCC7E00B6A7C3 /* tests-Info.plist */,
-				C99D690F164BCC7E00B6A7C3 /* InfoPlist.strings */,
 				C99D6915164BCC7E00B6A7C3 /* tests-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -486,7 +478,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C95AB36317E1C37800120861 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,7 +485,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C95AB37B17E1C47D00120861 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,33 +555,6 @@
 			targetProxy = C9C36EFC160AC3C9005BED39 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		C95AB36117E1C37800120861 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C95AB36217E1C37800120861 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		C95AB37917E1C47D00120861 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C95AB37A17E1C47D00120861 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		C99D690F164BCC7E00B6A7C3 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C99D6910164BCC7E00B6A7C3 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1DEB921F08733DC00010E9CD /* Debug */ = {

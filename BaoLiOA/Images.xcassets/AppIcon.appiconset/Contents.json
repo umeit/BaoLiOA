@@ -1,6 +1,12 @@
 {
   "images" : [
     {
+      "size" : "60x60",
+      "idiom" : "iphone",
+      "filename" : "logo_60@2x.png",
+      "scale" : "2x"
+    },
+    {
       "idiom" : "ipad",
       "size" : "29x29",
       "scale" : "1x"
