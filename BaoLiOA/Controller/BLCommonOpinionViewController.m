@@ -58,4 +58,10 @@
     }
 }
 
+
+#pragma - mark Action
+- (IBAction)cancelButtonPress:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end

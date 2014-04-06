@@ -1262,7 +1262,13 @@
                             <outlet property="delegate" destination="oSC-Ze-mCP" id="3j7-u2-f7c"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="常用意见" id="aBL-wx-qGL"/>
+                    <navigationItem key="navigationItem" title="常用意见" id="aBL-wx-qGL">
+                        <barButtonItem key="leftBarButtonItem" title="取消" id="pYC-D3-wU4">
+                            <connections>
+                                <action selector="cancelButtonPress:" destination="oSC-Ze-mCP" id="SGe-iF-cL0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vyX-zH-pQx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
