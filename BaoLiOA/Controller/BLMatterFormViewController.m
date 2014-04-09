@@ -238,7 +238,7 @@
             if (fieldItem.nameRN) {
                 
                 CGFloat nameLabelHeight = [self labelSizeWithMaxWidth:labelWidth content:nameString].height;
-                CGFloat valueLabelHeight = [self labelSizeWithMaxWidth:labelWidth content:valueString].height;
+                CGFloat valueLabelHeight = [self labelSizeWithMaxWidth:labelWidth content:[NSString stringWithFormat:@"  %@", valueString]].height;
                 
                 maxNameContentHeight = MAX(maxNameContentHeight, nameLabelHeight);
                 maxValueContentHeight = MAX(maxValueContentHeight, valueLabelHeight);
@@ -330,7 +330,7 @@
                 nameLabel.text = nameString;
                 nameLabel.textColor = [self colorWithString:fieldItem.nameColor];
                 
-                CGFloat valueLabelHeight = [self labelSizeWithMaxWidth:labelWidth content:valueString].height;
+                CGFloat valueLabelHeight = [self labelSizeWithMaxWidth:labelWidth content:[NSString stringWithFormat:@"  %@", valueString]].height;
                 // value 标签
                 UILabel *valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 30, labelWidth, valueLabelHeight)];
                 valueLabel.numberOfLines = 0;
