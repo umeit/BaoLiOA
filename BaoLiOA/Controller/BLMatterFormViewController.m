@@ -226,7 +226,8 @@
         // 计算当前 Label 的宽度
         CGFloat cellWidth = tableView.bounds.size.width;
         CGFloat percent = fieldItem.percent / 100.f;
-        CGFloat labelWidth = cellWidth * (percent == 0 ? 1 : percent);
+//        CGFloat labelWidth = cellWidth * (percent == 0 ? 1 : percent);
+        CGFloat labelWidth = (cellWidth - 15) * (percent == 0 ? 1 : percent) - 10;
         
         NSString *nameString = [NSString stringWithFormat:@"%@%@%@%@", fieldItem.beforeName, fieldItem.name, fieldItem.endName, fieldItem.splitString];
         NSString *valueString = [NSString stringWithFormat:@"%@%@%@%@", fieldItem.beforeValue, (fieldItem.eidtValue ? fieldItem.eidtValue : @""), fieldItem.value, fieldItem.endValue];
