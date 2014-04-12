@@ -28,7 +28,7 @@
                                 <rect key="frame" x="126" y="128" width="140" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mjz-xh-fE0">
                                 <rect key="frame" x="126" y="171" width="140" height="30"/>
@@ -811,7 +811,7 @@
         <!--Navigation Controller-->
         <scene sceneID="cFZ-Tc-ZUm">
             <objects>
-                <navigationController definesPresentationContext="YES" id="V9H-zC-Mbk" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="FollowNavigation" definesPresentationContext="YES" id="V9H-zC-Mbk" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="WRN-Ny-4lA">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
