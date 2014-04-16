@@ -30,6 +30,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *loginIDTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 
 @property (strong, nonatomic) BLUserService *userService;
 #if REAL_DEVICE
@@ -70,6 +71,9 @@
 #ifdef DEBUG
     self.passwordTextField.text = @"123456";
 #endif
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *appVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    self.versionLabel.text = [NSString stringWithFormat:@"v%@", appVersion];
 }
 
 // 登录 OA 系统
