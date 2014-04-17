@@ -225,6 +225,8 @@
             fieldItemEntity.inputType = [fieldItemElement child:@"Input"].text;
             fieldItemEntity.percent = [[fieldItemElement child:@"Percent"].text integerValue];
           
+            fieldItemEntity.mustInput = [[fieldItemElement child:@"MustInput"].text isEqualToString:@"true"] ? YES : NO;
+            
             [fieldItemList addObject:fieldItemEntity];
         }];
         

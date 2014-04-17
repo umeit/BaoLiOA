@@ -199,10 +199,12 @@
 
 - (void)sendMustEditFeildItemsToOperationViewController
 {
+    // 找出所有的必填项
     NSMutableSet *mustEditFeildItems = [[NSMutableSet alloc] init];
     for (BLInfoRegionEntity *infoRegion in self.matterFormInfoList) {
         for (BLFromFieldItemEntity *fieldItem in infoRegion.feildItemList) {
-            if ([fieldItem.mode isEqualToString:@"200"] && [fieldItem.inputType isEqualToString:@"11"]) {
+//            if ([fieldItem.mode isEqualToString:@"200"] && [fieldItem.inputType isEqualToString:@"11"]) {
+            if (fieldItem.mustInput) {
                 [mustEditFeildItems addObject:fieldItem];
             }
         }
@@ -259,38 +261,38 @@
     return 8 + maxNameContentHeight + maxValueContentHeight + 8;
 }
 
-- (CGFloat)iPhonetableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    CGFloat nameLabelHeight = 0.f;
-    CGFloat valueLabelHeight = 0.f;
-    
-    BLFromFieldItemEntity *fieldItem = self.matterFormInfoListForiPhone[indexPath.row];
-    
-    CGFloat labelWidth = tableView.bounds.size.width;
-    
-    NSString *nameString = [NSString stringWithFormat:@"%@%@%@%@", fieldItem.beforeName, fieldItem.name, fieldItem.endName, fieldItem.splitString];
-    NSString *valueString = [NSString stringWithFormat:@"%@%@%@%@", fieldItem.beforeValue, (fieldItem.eidtValue ? fieldItem.eidtValue : @""), fieldItem.value, fieldItem.endValue];
-    
-    // 显示 name
-    if (fieldItem.nameVisible) {
-        // 分行显示，返回 name 加 value 的高度
-        if (fieldItem.nameRN) {
-            
-            nameLabelHeight = [self labelSizeWithMaxWidth:labelWidth content:nameString].height;
-            valueLabelHeight = [self labelSizeWithMaxWidth:labelWidth content:valueString].height;
-        }
-        // 不分行显示，返回 name 和 value 都在一行的高度
-        else {
-            nameLabelHeight = [self labelSizeWithMaxWidth:labelWidth content:[NSString stringWithFormat:@"%@%@", nameString, valueString]].height;
-        }
-    }
-    // 不显示 name，返回 value 的高度
-    else {
-        valueLabelHeight = [self labelSizeWithMaxWidth:labelWidth content:valueString].height;
-    }
-    
-    return 8 + nameLabelHeight + valueLabelHeight + 8;
-}
+//- (CGFloat)iPhonetableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    CGFloat nameLabelHeight = 0.f;
+//    CGFloat valueLabelHeight = 0.f;
+//    
+//    BLFromFieldItemEntity *fieldItem = self.matterFormInfoListForiPhone[indexPath.row];
+//    
+//    CGFloat labelWidth = tableView.bounds.size.width;
+//    
+//    NSString *nameString = [NSString stringWithFormat:@"%@%@%@%@", fieldItem.beforeName, fieldItem.name, fieldItem.endName, fieldItem.splitString];
+//    NSString *valueString = [NSString stringWithFormat:@"%@%@%@%@", fieldItem.beforeValue, (fieldItem.eidtValue ? fieldItem.eidtValue : @""), fieldItem.value, fieldItem.endValue];
+//    
+//    // 显示 name
+//    if (fieldItem.nameVisible) {
+//        // 分行显示，返回 name 加 value 的高度
+//        if (fieldItem.nameRN) {
+//            
+//            nameLabelHeight = [self labelSizeWithMaxWidth:labelWidth content:nameString].height;
+//            valueLabelHeight = [self labelSizeWithMaxWidth:labelWidth content:valueString].height;
+//        }
+//        // 不分行显示，返回 name 和 value 都在一行的高度
+//        else {
+//            nameLabelHeight = [self labelSizeWithMaxWidth:labelWidth content:[NSString stringWithFormat:@"%@%@", nameString, valueString]].height;
+//        }
+//    }
+//    // 不显示 name，返回 value 的高度
+//    else {
+//        valueLabelHeight = [self labelSizeWithMaxWidth:labelWidth content:valueString].height;
+//    }
+//    
+//    return 8 + nameLabelHeight + valueLabelHeight + 8;
+//}
 
 - (void)iPadConfigureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
@@ -378,7 +380,8 @@
         }
         
         // 是否可以编辑
-        if (([fieldItem.mode isEqualToString:@"1"] || [fieldItem.mode isEqualToString:@"200"])
+//        if (([fieldItem.mode isEqualToString:@"1"] || [fieldItem.mode isEqualToString:@"200"])
+        if (([fieldItem.mode isEqualToString:@"1"] || fieldItem.mustInput)
             && [fieldItem.inputType isEqualToString:@"11"]) {
             
             UIButton *eidtButton = [[UIButton alloc] initWithFrame:CGRectMake(currentX, 0, labelWidth, cell.bounds.size.height)];
@@ -393,81 +396,81 @@
     }
 }
 
-- (void)iPhoneConfigureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
-{
-    BLFromFieldItemEntity *fieldItem = self.matterFormInfoListForiPhone[indexPath.row];
-    
-    NSString *nameString = [NSString stringWithFormat:@"%@%@%@%@", fieldItem.beforeName, fieldItem.name, fieldItem.endName, fieldItem.splitString];
-    NSString *valueString = [NSString stringWithFormat:@"%@%@%@%@", fieldItem.beforeValue, (fieldItem.eidtValue ? fieldItem.eidtValue : @""), fieldItem.value, fieldItem.endValue];
-    
-    CGFloat labelWidth = cell.contentView.bounds.size.width;
-    
-    /** 配置 Label 的显示内容 */
-    // 显示 name
-    if (fieldItem.nameVisible) {
-        // 分行显示
-        if (fieldItem.nameRN) {
-            UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 8, labelWidth, 20)];
-            nameLabel.text = nameString;
-            nameLabel.textColor = [self colorWithString:fieldItem.nameColor];
-            
-            CGFloat valueLabelHeight = [self labelSizeWithMaxWidth:labelWidth content:valueString].height;
-            // value 标签
-            UILabel *valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 30, labelWidth, valueLabelHeight)];
-            valueLabel.numberOfLines = 0;
-            valueLabel.text = [NSString stringWithFormat:@"  %@", valueString];
-            valueLabel.textColor = [self colorWithString:fieldItem.valueColor];
-            valueLabel.textAlignment = [self alignmentWithString:fieldItem.align];
-            
-            [cell.contentView addSubview:nameLabel];
-            [cell.contentView addSubview:valueLabel];
-        }
-        // 不分行显示
-        else {
-            
-            NSMutableAttributedString *nameAttrString = [[NSMutableAttributedString alloc] initWithString:nameString];
-            NSMutableAttributedString *valueAttrString = [[NSMutableAttributedString alloc] initWithString:valueString];
-            
-            [nameAttrString beginEditing];
-            [nameAttrString addAttribute:NSForegroundColorAttributeName value:[self colorWithString:fieldItem.nameColor] range:[nameString rangeOfString:nameString]];
-            [nameAttrString endEditing];
-            
-            [valueAttrString beginEditing];
-            [valueAttrString addAttribute:NSForegroundColorAttributeName value:[self colorWithString:fieldItem.valueColor] range:[valueString rangeOfString:valueString]];
-            [valueAttrString endEditing];
-            
-            [nameAttrString appendAttributedString:valueAttrString];
-            
-            CGFloat valueLabelHeight = [self labelSizeWithMaxWidth:labelWidth content:[nameAttrString string]].height;
-            UILabel *aLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 8, labelWidth, valueLabelHeight)];
-            aLabel.numberOfLines = 0;
-            aLabel.attributedText = nameAttrString;
-            
-            [cell.contentView addSubview:aLabel];
-        }
-    }
-    // 不显示 name
-    else {
-        CGFloat valueLabelHeight = [self labelSizeWithMaxWidth:labelWidth content:valueString].height;
-        UILabel *valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 8, labelWidth, valueLabelHeight)];
-        valueLabel.numberOfLines = 0;
-        valueLabel.text = valueString;
-        valueLabel.textColor = [self colorWithString:fieldItem.valueColor];
-        valueLabel.textAlignment = [self alignmentWithString:fieldItem.align];
-        
-        [cell.contentView addSubview:valueLabel];
-    }
-    
-    // 是否可以编辑
-    if ([fieldItem.mode isEqualToString:@"1"] && [fieldItem.inputType isEqualToString:@"11"]) {
-        UIButton *eidtButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, labelWidth, cell.bounds.size.height)];
-        // 用 tag 记录当前编辑的 item 的 index
-        eidtButton.tag = indexPath.row;
-        eidtButton.backgroundColor = [UIColor colorWithRed:0.1 green:0.6 blue:0.1 alpha:0.08];
-        [eidtButton addTarget:self action:@selector(eidtButtonPress:) forControlEvents:UIControlEventTouchUpInside];
-        [cell.contentView addSubview:eidtButton];
-    }
-}
+//- (void)iPhoneConfigureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+//{
+//    BLFromFieldItemEntity *fieldItem = self.matterFormInfoListForiPhone[indexPath.row];
+//    
+//    NSString *nameString = [NSString stringWithFormat:@"%@%@%@%@", fieldItem.beforeName, fieldItem.name, fieldItem.endName, fieldItem.splitString];
+//    NSString *valueString = [NSString stringWithFormat:@"%@%@%@%@", fieldItem.beforeValue, (fieldItem.eidtValue ? fieldItem.eidtValue : @""), fieldItem.value, fieldItem.endValue];
+//    
+//    CGFloat labelWidth = cell.contentView.bounds.size.width;
+//    
+//    /** 配置 Label 的显示内容 */
+//    // 显示 name
+//    if (fieldItem.nameVisible) {
+//        // 分行显示
+//        if (fieldItem.nameRN) {
+//            UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 8, labelWidth, 20)];
+//            nameLabel.text = nameString;
+//            nameLabel.textColor = [self colorWithString:fieldItem.nameColor];
+//            
+//            CGFloat valueLabelHeight = [self labelSizeWithMaxWidth:labelWidth content:valueString].height;
+//            // value 标签
+//            UILabel *valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 30, labelWidth, valueLabelHeight)];
+//            valueLabel.numberOfLines = 0;
+//            valueLabel.text = [NSString stringWithFormat:@"  %@", valueString];
+//            valueLabel.textColor = [self colorWithString:fieldItem.valueColor];
+//            valueLabel.textAlignment = [self alignmentWithString:fieldItem.align];
+//            
+//            [cell.contentView addSubview:nameLabel];
+//            [cell.contentView addSubview:valueLabel];
+//        }
+//        // 不分行显示
+//        else {
+//            
+//            NSMutableAttributedString *nameAttrString = [[NSMutableAttributedString alloc] initWithString:nameString];
+//            NSMutableAttributedString *valueAttrString = [[NSMutableAttributedString alloc] initWithString:valueString];
+//            
+//            [nameAttrString beginEditing];
+//            [nameAttrString addAttribute:NSForegroundColorAttributeName value:[self colorWithString:fieldItem.nameColor] range:[nameString rangeOfString:nameString]];
+//            [nameAttrString endEditing];
+//            
+//            [valueAttrString beginEditing];
+//            [valueAttrString addAttribute:NSForegroundColorAttributeName value:[self colorWithString:fieldItem.valueColor] range:[valueString rangeOfString:valueString]];
+//            [valueAttrString endEditing];
+//            
+//            [nameAttrString appendAttributedString:valueAttrString];
+//            
+//            CGFloat valueLabelHeight = [self labelSizeWithMaxWidth:labelWidth content:[nameAttrString string]].height;
+//            UILabel *aLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 8, labelWidth, valueLabelHeight)];
+//            aLabel.numberOfLines = 0;
+//            aLabel.attributedText = nameAttrString;
+//            
+//            [cell.contentView addSubview:aLabel];
+//        }
+//    }
+//    // 不显示 name
+//    else {
+//        CGFloat valueLabelHeight = [self labelSizeWithMaxWidth:labelWidth content:valueString].height;
+//        UILabel *valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 8, labelWidth, valueLabelHeight)];
+//        valueLabel.numberOfLines = 0;
+//        valueLabel.text = valueString;
+//        valueLabel.textColor = [self colorWithString:fieldItem.valueColor];
+//        valueLabel.textAlignment = [self alignmentWithString:fieldItem.align];
+//        
+//        [cell.contentView addSubview:valueLabel];
+//    }
+//    
+//    // 是否可以编辑
+//    if ([fieldItem.mode isEqualToString:@"1"] && [fieldItem.inputType isEqualToString:@"11"]) {
+//        UIButton *eidtButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, labelWidth, cell.bounds.size.height)];
+//        // 用 tag 记录当前编辑的 item 的 index
+//        eidtButton.tag = indexPath.row;
+//        eidtButton.backgroundColor = [UIColor colorWithRed:0.1 green:0.6 blue:0.1 alpha:0.08];
+//        [eidtButton addTarget:self action:@selector(eidtButtonPress:) forControlEvents:UIControlEventTouchUpInside];
+//        [cell.contentView addSubview:eidtButton];
+//    }
+//}
 
 - (CGSize)labelSizeWithMaxWidth:(CGFloat)width content:(NSString *)content
 {

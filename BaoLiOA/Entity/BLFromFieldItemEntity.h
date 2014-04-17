@@ -52,4 +52,7 @@
 
 @property (nonatomic) NSInteger percent;
 
+// 必填项
+@property (nonatomic) BOOL mustInput;
+
 @end
