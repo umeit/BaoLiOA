@@ -223,6 +223,8 @@
         else if (!self.matterAttachList || self.matterAttachList.count < 1) {
             [self.segmentView removeSegmentAtIndex:2 animated:NO];
         }
+        // 永不显示最后一个 segment（意见办理）视图
+        [self.segmentView removeSegmentAtIndex:self.segmentView.numberOfSegments - 1 animated:NO];
         
         
         
