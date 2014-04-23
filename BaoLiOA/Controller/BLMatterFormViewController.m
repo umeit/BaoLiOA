@@ -389,6 +389,12 @@
             eidtButton.tag = i;
             eidtButton.backgroundColor = [UIColor colorWithRed:0.1 green:0.6 blue:0.1 alpha:0.08];
             [eidtButton addTarget:self action:@selector(eidtButtonPress:) forControlEvents:UIControlEventTouchUpInside];
+            
+            // 对没有填写意见的可填项，在按钮上显示提示文字
+            if ([valueString length] < 1) {
+                eidtButton.titleLabel.text = @"填写意见";
+            }
+            
             [cell.contentView addSubview:eidtButton];
         }
         
