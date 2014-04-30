@@ -392,8 +392,11 @@
             
             // 对没有填写意见的可填项，在按钮上显示提示文字
             if (valueString == nil || [valueString length] < 1) {
-                eidtButton.titleLabel.text = @"填写意见";
-                eidtButton.titleLabel.textColor = [UIColor lightGrayColor];
+//                eidtButton.titleLabel.text = @"填写意见";
+//                eidtButton.titleLabel.textColor = [UIColor lightGrayColor];
+                [eidtButton setTitle:@"请填写意见" forState:UIControlStateNormal];
+//                eidtButton.titleLabel.textColor = [UIColor lightGrayColor];
+                [eidtButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
             }
             
             [cell.contentView addSubview:eidtButton];
