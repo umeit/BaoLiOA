@@ -31,6 +31,7 @@
 		0360E5E018756907007CC623 /* bg_login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0360E5DF18756907007CC623 /* bg_login@2x.png */; };
 		0361DE18184F7EF700D33CE6 /* BLFromFieldItemEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 0361DE17184F7EF700D33CE6 /* BLFromFieldItemEntity.m */; };
 		03629A0018D94C6F0089BF91 /* BLMainPageForiPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 036299FF18D94C6F0089BF91 /* BLMainPageForiPhoneViewController.m */; };
+		036BA7791925E26700E24552 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 036BA7771925E26700E24552 /* libMobClickLibrary.a */; };
 		036C0FA8183D02AB00C61808 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 036C0FA7183D02AB00C61808 /* Foundation.framework */; };
 		036C0FAA183D02AB00C61808 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 036C0FA9183D02AB00C61808 /* CoreGraphics.framework */; };
 		036C0FAC183D02AB00C61808 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 036C0FAB183D02AB00C61808 /* UIKit.framework */; };
@@ -207,6 +208,8 @@
 		0361DE17184F7EF700D33CE6 /* BLFromFieldItemEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLFromFieldItemEntity.m; sourceTree = "<group>"; };
 		036299FE18D94C6F0089BF91 /* BLMainPageForiPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMainPageForiPhoneViewController.h; sourceTree = "<group>"; };
 		036299FF18D94C6F0089BF91 /* BLMainPageForiPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMainPageForiPhoneViewController.m; sourceTree = "<group>"; };
+		036BA7771925E26700E24552 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
+		036BA7781925E26700E24552 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		036C0FA4183D02AB00C61808 /* BaoLiOA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaoLiOA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		036C0FA7183D02AB00C61808 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		036C0FA9183D02AB00C61808 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -366,6 +369,7 @@
 				036C0FAA183D02AB00C61808 /* CoreGraphics.framework in Frameworks */,
 				036C0FAC183D02AB00C61808 /* UIKit.framework in Frameworks */,
 				036C0FA8183D02AB00C61808 /* Foundation.framework in Frameworks */,
+				036BA7791925E26700E24552 /* libMobClickLibrary.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,6 +535,15 @@
 			path = ControllerForiPhone;
 			sourceTree = "<group>";
 		};
+		036BA7761925E26700E24552 /* UMAnalytics_Sdk_2.2.1.OpenUDID */ = {
+			isa = PBXGroup;
+			children = (
+				036BA7771925E26700E24552 /* libMobClickLibrary.a */,
+				036BA7781925E26700E24552 /* MobClick.h */,
+			);
+			path = UMAnalytics_Sdk_2.2.1.OpenUDID;
+			sourceTree = "<group>";
+		};
 		036C0F9B183D02AB00C61808 = {
 			isa = PBXGroup;
 			children = (
@@ -619,6 +632,7 @@
 		036C0FD8183D05AD00C61808 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				036BA7761925E26700E24552 /* UMAnalytics_Sdk_2.2.1.OpenUDID */,
 				03B301C6188EC8CE002781F8 /* EasyAppVPN */,
 				03C26F6F188D7B69007214BC /* GTMBase64 */,
 				03B0E0AB186995CF007B2C8E /* GUtil */,
@@ -1228,7 +1242,9 @@
 					"$(inherited)",
 					/Users/liufeng/Documents/Build/BaoLiOA/BaoLiOA/Lib/ZipArchive,
 					/Users/liufeng/Documents/Build/BaoLiOA/BaoLiOA/Lib/EasyAppVPN,
-					"/Users/gulbel/Desktop/ios\\ liufeng/BaoLiOA/BaoLiOA/Lib/EasyAppVPN",
+					/Users/gulbel/Desktop/ios,
+					liufeng/BaoLiOA/BaoLiOA/Lib/EasyAppVPN,
+					"$(PROJECT_DIR)/BaoLiOA/Lib/UMAnalytics_Sdk_2.2.1.OpenUDID",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "60EBFCA4-4A46-4E02-A915-03D770C6A895";
@@ -1257,7 +1273,9 @@
 					"$(inherited)",
 					/Users/liufeng/Documents/Build/BaoLiOA/BaoLiOA/Lib/ZipArchive,
 					/Users/liufeng/Documents/Build/BaoLiOA/BaoLiOA/Lib/EasyAppVPN,
-					"/Users/gulbel/Desktop/ios\\ liufeng/BaoLiOA/BaoLiOA/Lib/EasyAppVPN",
+					/Users/gulbel/Desktop/ios,
+					liufeng/BaoLiOA/BaoLiOA/Lib/EasyAppVPN,
+					"$(PROJECT_DIR)/BaoLiOA/Lib/UMAnalytics_Sdk_2.2.1.OpenUDID",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "60EBFCA4-4A46-4E02-A915-03D770C6A895";
