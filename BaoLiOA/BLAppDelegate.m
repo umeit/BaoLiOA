@@ -8,11 +8,16 @@
 
 #import "BLAppDelegate.h"
 #import "BLSplitViewControllerManager.h"
+#import "MobClick.h"
 
 @implementation BLAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    [MobClick startWithAppkey:@"5375ac6356240b3f6f00deb5" reportPolicy:SEND_ON_EXIT channelId:@"Web"];
+//    [MobClick checkUpdate];
+    [MobClick checkUpdate:@"发现新版本：" cancelButtonTitle:@"以后" otherButtonTitles:@"现在更新"];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
