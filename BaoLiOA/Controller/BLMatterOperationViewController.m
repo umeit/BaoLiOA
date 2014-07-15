@@ -635,6 +635,10 @@
     return vc;
 }
 
+- (void)cancel:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 #pragma mark - Controller Gatter
 

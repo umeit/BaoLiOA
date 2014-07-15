@@ -6,6 +6,7 @@
 //  Copyright (c) 2013年 Liu Feng. All rights reserved.
 //
 
+#import "BLMatterOperationViewController.h"
 #import "BLMatterAttachmentListViewController.h"
 #import "BLAttachPreviewViewController.h"
 #import "BLMatterOperationService.h"
@@ -92,7 +93,13 @@
     // 点击打开
     if ([buttonTitle isEqualToString:@"打开"]) {
         // 打开附件文件
-        [self showPreviewViewControllerWithFilePath:((BLAttachEntity *)self.matterAttachList[row]).localPath];
+        // 对于 gllc 类型的附件，直接打开对应的公文即可
+        if ([attachEntity.attachType compare:@"gllc" options:NSCaseInsensitiveSearch] == NSOrderedSame) {
+            [self showMatterOperationViewControllerWithMatterID:attachEntity.attachID matterTitle:attachEntity.attachTitle delegate:self];
+        }
+        else {
+            [self showPreviewViewControllerWithFilePath:((BLAttachEntity *)self.matterAttachList[row]).localPath];
+        }
     }
     
     // 点击下载
@@ -181,6 +188,26 @@
     [self presentViewController:vc animated:YES completion:nil];
 }
 
+// 显示公文附件
+- (void)showMatterOperationViewControllerWithMatterID:(NSString *)matterID matterTitle:(NSString *)matterTitle delegate:(id)delegate
+{
+    BLMatterOperationViewController *matterOperationViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BLMatterOperationViewController"];
+    matterOperationViewController.matterID = matterID;
+    matterOperationViewController.matterTitle = [NSString stringWithFormat:@"附件：%@", matterTitle];
+    matterOperationViewController.delegate = delegate;
+    
+    [matterOperationViewController setModalPresentationStyle:UIModalPresentationCurrentContext];
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:matterOperationViewController];
+    UIBarButtonItem *cancelButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:matterOperationViewController action:@selector(cancel:)];
+
+    
+    [nav setModalPresentationStyle:UIModalPresentationCurrentContext];
+//    [nav.navigationItem setLeftBarButtonItem:cancelButtonItem];
+    [matterOperationViewController.navigationItem setLeftBarButtonItem:cancelButtonItem];
+    [self presentViewController:nav animated:YES completion:nil];
+}
+
 // 配置 cell
 - (void)configureMatterAttachmentCell:(BLMatterAttachmentCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
@@ -196,9 +223,10 @@
     NSString *localPath = [self.attachManageService attachLocalPathWithAttachID:attachEntity.attachID];
     if (localPath) {
         // 该附件已下载
-        [cell.downloadButton setTitle:@"打开" forState:UIControlStateNormal];
-        [cell.downloadButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
-        cell.progress.hidden = YES;
+//        [cell.downloadButton setTitle:@"打开" forState:UIControlStateNormal];
+//        [cell.downloadButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+//        cell.progress.hidden = YES;
+        [self setAttachCellToOpenState:cell];
         
         attachEntity.localPath = localPath;
     }
@@ -233,8 +261,24 @@
     else if ([attachEntity.attachType compare:@"PDF" options:NSCaseInsensitiveSearch] == NSOrderedSame) {
         cell.typeImageView.image = [UIImage imageNamed:@"PDF"];
     }
+    // 2014.7.15 Add
+    // 新的附件类型：gllc
+    else if ([attachEntity.attachType compare:@"gllc" options:NSCaseInsensitiveSearch] == NSOrderedSame) {
+        cell.typeImageView.image = [UIImage imageNamed:@"OTHER"];
+        // 这种类型的附件就是一个待办事件，无需下载，直接打开即可
+        [self setAttachCellToOpenState:cell];
+    }
     else {
         cell.typeImageView.image = [UIImage imageNamed:@"OTHER"];
     }
+}
+
+
+#pragma mark - Private - UI Operation
+- (void)setAttachCellToOpenState:(BLMatterAttachmentCell *)cell
+{
+    [cell.downloadButton setTitle:@"打开" forState:UIControlStateNormal];
+    [cell.downloadButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+    cell.progress.hidden = YES;
 }
 @end
